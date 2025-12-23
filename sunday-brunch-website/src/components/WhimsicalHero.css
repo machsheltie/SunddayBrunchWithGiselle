@@ -1,0 +1,214 @@
+.whimsical-hero {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    background: linear-gradient(135deg, var(--pale-buttercream) 0%, var(--light-lemon) 100%);
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    margin: var(--space-8) 0;
+    position: relative;
+    box-shadow:
+        inset 0 0 60px rgba(255, 255, 255, 0.5),
+        var(--shadow-lg);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+}
+
+.whimsical-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: repeating-linear-gradient(45deg,
+            var(--pastel-lavender),
+            var(--pastel-lavender) 15px,
+            var(--soft-sakura) 15px,
+            var(--soft-sakura) 30px,
+            var(--pastel-sky) 30px,
+            var(--pastel-sky) 45px);
+    opacity: 0.7;
+    z-index: 5;
+}
+
+/* Glassmorphism Card Effect */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+}
+
+.whimsical-hero__content {
+    flex: 1.2;
+    z-index: 2;
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.whimsical-hero__title {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    line-height: 1;
+    color: var(--midnight-lavender);
+    margin-bottom: var(--space-6);
+    letter-spacing: -0.02em;
+}
+
+.script-accent {
+    font-family: var(--font-script);
+    font-size: 0.8em;
+    color: var(--midnight-lavender);
+    /* More readable on light yellow, lavender/pink used as glow */
+    text-shadow: 2px 2px var(--soft-sakura);
+    vertical-align: middle;
+    margin: 0 0.1em;
+}
+
+.whimsical-hero__text {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+    color: var(--dusty-plum);
+    margin-bottom: var(--space-8);
+    line-height: var(--leading-relaxed);
+    max-width: 520px;
+}
+
+.whimsical-hero__cta-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.secondary-link {
+    background: transparent;
+    border: none;
+    color: var(--dusty-plum);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-base);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color var(--transition-fast);
+}
+
+.secondary-link:hover {
+    color: var(--pastel-sky);
+    text-decoration-color: var(--soft-sakura);
+}
+
+.whimsical-hero__visual {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 1.2s ease-out;
+}
+
+.photo-frame {
+    background: #fff;
+    padding: var(--space-4) var(--space-4) var(--space-16) var(--space-4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: rotate(2deg);
+    position: relative;
+    transition: all var(--transition-slow);
+}
+
+.photo-frame:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.photo-container {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    background: var(--pale-buttercream);
+    border: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.hero-watercolor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.glimmer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 100%);
+    pointer-events: none;
+}
+
+.hero-decor-paw {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 100px;
+    height: 100px;
+    opacity: 0.15;
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 992px) {
+    .whimsical-hero {
+        flex-direction: column-reverse;
+        padding: var(--space-8);
+        text-align: center;
+        gap: var(--space-10);
+    }
+
+    .whimsical-hero__content {
+        width: 100%;
+    }
+
+    .whimsical-hero__text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .whimsical-hero__cta-group {
+        justify-content: center;
+    }
+
+    .photo-frame {
+        width: 90%;
+        max-width: 350px;
+    }
+}

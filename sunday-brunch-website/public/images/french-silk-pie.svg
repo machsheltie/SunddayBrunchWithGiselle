@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="French Silk Pie illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff3eb"/>
+      <stop offset="100%" stop-color="#ffe2d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="600" cy="320" r="230" fill="#f6d6c5" stroke="#c4562a" stroke-width="12"/>
+  <circle cx="600" cy="320" r="180" fill="#5b3525"/>
+  <text x="600" y="140" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="54" fill="#2f221c">Sunday Brunch</text>
+  <text x="600" y="200" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#2f221c">French Silk Pie</text>
+  <text x="600" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#6a5243">Cozy recipes, transcripts, and AI Sheltie co-hosts</text>
+</svg>

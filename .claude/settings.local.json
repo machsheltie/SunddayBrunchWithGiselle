@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(if exist backend echo \"Backend directory exists\" else echo \"No backend directory\")",
+      "Bash(dir /b)",
+      "Bash(ls:*)",
+      "Bash(if [ -d \"sunday-brunch-website\" ])",
+      "Bash(then ls sunday-brunch-website/)",
+      "Bash(fi)",
+      "Bash(npm install)",
+      "Bash(psql:*)",
+      "Bash(pg_config:*)",
+      "Bash(npm run db:migrate:*)"
+    ]
+  }
+}

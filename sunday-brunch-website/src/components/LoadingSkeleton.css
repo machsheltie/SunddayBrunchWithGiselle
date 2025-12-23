@@ -1,0 +1,76 @@
+.skeleton {
+    padding: var(--space-6);
+}
+
+.skeleton__title {
+    height: 2.5rem;
+    width: 70%;
+    background: linear-gradient(90deg,
+            var(--cream) 0%,
+            var(--warm-white) 50%,
+            var(--cream) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+}
+
+.skeleton__meta {
+    height: 1.5rem;
+    width: 50%;
+    background: linear-gradient(90deg,
+            var(--cream) 0%,
+            var(--warm-white) 50%,
+            var(--cream) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-6);
+}
+
+.skeleton__text {
+    height: 1rem;
+    background: linear-gradient(90deg,
+            var(--cream) 0%,
+            var(--warm-white) 50%,
+            var(--cream) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3);
+}
+
+.skeleton__text--short {
+    width: 40%;
+}
+
+.skeleton__text--medium {
+    width: 60%;
+}
+
+.skeleton__text--long {
+    width: 85%;
+}
+
+.skeleton__player {
+    height: 4rem;
+    width: 100%;
+    background: linear-gradient(90deg,
+            var(--cream) 0%,
+            var(--warm-white) 50%,
+            var(--cream) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}

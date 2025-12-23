@@ -1,0 +1,101 @@
+.recipe-page {
+    min-height: 100vh;
+    background: var(--buttercream-yellow);
+}
+
+.recipe-page__hero {
+    background: linear-gradient(135deg, var(--sage-green) 0%, var(--soft-lavender) 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.recipe-page__title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.recipe-page__subtitle {
+    font-family: var(--font-script);
+    font-size: 1.5rem;
+    opacity: 0.95;
+}
+
+.recipe-page__content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.recipe-page__story {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.recipe-page__story h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--sage-green);
+    margin-bottom: 1.5rem;
+}
+
+.recipe-page__story p {
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.recipe-page__tips {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.recipe-page__tips h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--sage-green);
+    margin-bottom: 1.5rem;
+}
+
+.recipe-page__tips ul {
+    list-style-position: inside;
+    color: var(--text-color);
+}
+
+.recipe-page__tips li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .recipe-page__hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .recipe-page__title {
+        font-size: 2rem;
+    }
+
+    .recipe-page__subtitle {
+        font-size: 1.2rem;
+    }
+
+    .recipe-page__content {
+        padding: 1rem;
+    }
+
+    .recipe-page__story,
+    .recipe-page__tips {
+        padding: 1.5rem;
+    }
+}

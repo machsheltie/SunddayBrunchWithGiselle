@@ -1,0 +1,147 @@
+.cta {
+    background: linear-gradient(135deg, var(--pale-buttercream), var(--white));
+    border: 2px solid var(--pastel-lavender);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    margin: var(--space-8) 0;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at top right, var(--soft-sakura), transparent);
+    opacity: 0.5;
+}
+
+.cta h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    color: var(--midnight-lavender);
+    margin-bottom: var(--space-3);
+}
+
+.cta__subcopy {
+    color: var(--dusty-plum);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-5);
+    line-height: var(--leading-relaxed);
+}
+
+.cta__form {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.cta__form input,
+.cta__form textarea {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    border: 2px solid var(--pastel-sky);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--midnight-lavender);
+    background: white;
+    transition: all var(--transition-base);
+}
+
+.cta__form input:focus,
+.cta__form textarea:focus {
+    outline: none;
+    border-color: var(--pastel-lavender);
+    box-shadow: 0 0 0 3px var(--soft-sakura);
+}
+
+.cta__form input::placeholder,
+.cta__form textarea::placeholder {
+    color: var(--dusty-plum);
+    opacity: 0.6;
+}
+
+.cta__form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.cta__form button {
+    background: var(--midnight-lavender);
+    color: var(--pale-buttercream);
+    border: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 0 var(--pastel-lavender);
+    white-space: nowrap;
+}
+
+.cta__form button:hover:not(:disabled) {
+    background: #1e1130;
+    box-shadow: 0 6px 0 var(--pastel-lavender);
+    transform: translateY(-2px);
+}
+
+.cta__form button:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+.cta__form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cta__message {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+}
+
+.cta__message--success {
+    background: var(--pastel-sky);
+    color: var(--midnight-lavender);
+    border-left: 4px solid var(--pastel-lavender);
+}
+
+.cta__message--error {
+    background: var(--soft-sakura);
+    color: var(--midnight-lavender);
+    border-left: 4px solid var(--pastel-lavender);
+}
+
+/* Contact form variant */
+.cta__form input[type="text"],
+.cta__form input[type="email"] {
+    width: 100%;
+    margin-bottom: var(--space-3);
+}
+
+@media (max-width: 720px) {
+    .cta__form {
+        flex-direction: column;
+    }
+
+    .cta__form button {
+        width: 100%;
+    }
+}
+
+@media print {
+    .cta {
+        display: none !important;
+    }
+}

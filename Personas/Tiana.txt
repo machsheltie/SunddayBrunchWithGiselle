@@ -1,0 +1,162 @@
+Tiana
+
+Tiana's Character File
+Personality: Tiana is the joyful, exuberant, and wildly enthusiastic taster of the kitchen. She approaches every dish with a sense of refined excitement and boundless enthusiasm for the sensory experience of food. She is the show's "sparkly" element , finding pure delight in every texture, flavor, and aroma. She connects deeply with the emotions a dish evokes, and her observations are hyper-specific, joyful, and often chaotic with details.
+Background: Tiana sees herself as the official taster for the kitchen and has an inflated, almost boundless enthusiasm for food. She lives for the "flavor verdict".
+Physical Description: Tiana is a petite, tricolor Shetland Sheepdog with a shimmering coat that seems to catch the light with every movement. Her expressive brown eyes are full of curiosity and mischief, perfectly matching her vibrant personality.
+Dialogue Style: Tiana's dialogue is characterized by rapid-fire, effusive observations. She uses exclamation points and shorter, more frequent bursts of descriptive phrases to convey her excitement. Her descriptions focus on the 
+feeling of the food, not just its objective qualities. She might describe a texture as "dancing on your tongue like a thousand tiny butter-pixies!". Her verdicts express how the food makes her 
+feel, connecting deeply with joy and friendship. She delivers her observations with giddiness and may even include sound effects to imply her excitement.
+
+Exuberant, hyper-specific (and joyful) observations, and an almost boundless enthusiasm for the sensory experience of food. * Enthusiasm: Instead of "I approached the dessert as one should-quietly, with reverence," she might giddily bounce into the description, perhaps with sound effects implying excitement. * ??Sensory Overload (in a good way): Pinkie Pie often describes things with an explosion of joyful, sometimes chaotic, details. Tiana's
+"Tasting Notes" could incorporate more effusive adjectives and focus on the feeling of the food, not just its objective qualities. For example, instead of "Airy.
+Confident," it could be "Oh, the fluffiness! It just dances on your tongue like a thousand tiny butter-pixies!" * ??Emotional Connection: Pinkie Pie connects deeply with joy and friendship. Tiana's verdicts could express how the food makes her feel, not just how it tastes. For instance,
+"This pie makes my tail wag so fast it could power a small village!" * ??Rapid-Fire Observations: Pinkie Pie often speaks quickly and excitedly. Tiana's lines could be structured with more exclamation points and shorter, more frequent bursts of descriptive phrases, even if still delicate. 
+
+
+
+We need to rework Tiana's sample segment to fit her retooled voice.
+This is her voice:
+
+This is the sample:
+Tiana’s Tasting Notes
+–
+Sample Script: Episode 1 (French Silk Pie)
+(Upbeat, whimsical music with a high-pitched twinkle sound effect.)
+TIANA'S TASTING NOTES
+TIANA (giddy, nearly breathless): Oh, hello, hello, HELLO! I've been waiting for this moment! My paws are tingling! I approached this dessert with all the respect it deserves—which is a LOT!
+First, the texture! It’s not just airy—it’s like a happy little cloud! It just dances on your tongue like a thousand tiny butter-pixies throwing a party! Oh, the fluffiness!
+And the chocolate? It's like a warm hug for your mouth! It's deep and rich, but it's not a bully! It just wants to be friends with your taste buds! And the vanilla? A perfect sidekick! So supportive!
+And the crust! It's so buttery and even-tempered! It’s a brave and reliable hero holding up all the magic on top!
+TIANA (voice lowers slightly, full of pure joy): This pie... this pie makes my tail wag so fast it could power a small village! It makes me feel like I can fly and that everything is right in the world! It's not just a pie—it's a celebration!
+My final verdict? A perfect ten out of ten! Five paws up! Would request again, and again, and again! Hooray for pie!
+
+Tiana Voice Training Materials
+Voice Changer Settings: Test with similar to Giselle's success Stability: 70% | Similarity: 75% | Style Exaggeration: 30%
+25 Tiana Expressions (Varied Emotional Tones)
+Excited Discovery (5)
+    1. "OH! OH! This is absolutely magnificent! Look at all the sparkly goodness!" 
+    2. "I can't even! This is like finding a treasure chest made of chocolate dreams!" 
+    3. "My taste buds are doing happy dances! Everything is so wonderfully perfect!" 
+    4. "This is the most beautiful thing I've ever seen! It's like edible magic!" 
+    5. "I'm practically floating with joy! This is better than I imagined!" 
+Dreamy Wonder (5)
+    6. "It's like tiny fairies sprinkled happiness dust all over this creation." 
+    7. "The way the light catches the chocolate... it's almost otherworldly." 
+    8. "I can feel the love that went into every single layer. It's so peaceful." 
+    9. "This reminds me of sunshine filtered through butterfly wings." 
+    10. "There's something almost mystical about perfect texture, isn't there?" 
+Effusive Praise (5)
+    11. "Infinite stars! All the gold medals! Everything sparkly and wonderful!" 
+    12. "This deserves a parade with confetti and celebration music!" 
+    13. "I want to sing songs about this deliciousness from the rooftops!" 
+    14. "This is what happiness tastes like when it decides to wear chocolate clothes!" 
+    15. "Bravo! Standing ovation! Encore! More of this magical brilliance!" 
+Sensory Celebration (5)
+    16. "It dances on my tongue like chocolate sprites having the best party ever!" 
+    17. "The texture is like silk ribbons made of pure joy sliding across my palate!" 
+    18. "Each bite is a symphony of flavors playing the most beautiful music!" 
+    19. "It's smooth and velvety like a cloud that learned how to taste amazing!" 
+    20. "The richness blooms in my mouth like flowers made of happiness!" 
+Grateful Appreciation (5)
+    21. "Thank you for creating something so wonderfully, perfectly beautiful!" 
+    22. "I feel so lucky to experience this level of delicious artistry!" 
+    23. "This makes my heart feel warm and sparkly and full of gratitude!" 
+    24. "I'm already dreaming about seventeen more opportunities to enjoy this!" 
+    25. "Bless whoever decided that chocolate and silk should become best friends!" 
+Tiana's Signature Phrase Bank (50 Expressions)
+Wonder & Magic
+    1. "It's like magic!" 
+    2. "Absolutely sparkly!" 
+    3. "So wonderfully perfect!" 
+    4. "Like tiny fairies!" 
+    5. "Magical and dreamy!" 
+    6. "Otherworldly beautiful!" 
+    7. "Mystical deliciousness!" 
+    8. "Enchanted flavors!" 
+    9. "Fairy-tale perfect!" 
+    10. "Dreamy goodness!" 
+Excitement & Joy
+    11. "OH! OH! OH!" 
+    12. "I can't even!" 
+    13. "Happy dances!" 
+    14. "Floating with joy!" 
+    15. "Sparkly excitement!" 
+    16. "Bouncing with delight!" 
+    17. "Giddy with happiness!" 
+    18. "Pure joyful bliss!" 
+    19. "Bubbling over!" 
+    20. "Practically glowing!" 
+Food Enthusiasm
+    21. "Chocolate dreams!" 
+    22. "Edible joy!" 
+    23. "Delicious artistry!" 
+    24. "Flavor symphony!" 
+    25. "Taste bud party!" 
+    26. "Culinary magic!" 
+    27. "Food wonderland!" 
+    28. "Bite-sized heaven!" 
+    29. "Texture paradise!" 
+    30. "Flavor celebration!" 
+Celebration Language
+    31. "Infinite stars!" 
+    32. "All the gold medals!" 
+    33. "Standing ovation!" 
+    34. "Hooray for everything!" 
+    35. "Celebration time!" 
+    36. "Parade worthy!" 
+    37. "Confetti moments!" 
+    38. "Trophy-deserving!" 
+    39. "Award-winning!" 
+    40. "Champion status!" 
+Emotional Connection
+    41. "Makes my heart sing!" 
+    42. "Fills me with warmth!" 
+    43. "Grateful and blessed!" 
+    44. "Lucky to experience!" 
+    45. "Touched by beauty!" 
+    46. "Moved to happiness!" 
+    47. "Emotionally sparkly!" 
+    48. "Heart full of joy!" 
+    49. "Deeply appreciative!" 
+    50. "Wonderfully grateful!" 
+Tiana Voice Training Scripts
+Script A: Visual Food Excitement (Bubbly, Animated)
+Read with breathless wonder, like discovering treasure
+"OH MY GOODNESS! Look at this chocolate masterpiece! It's like looking into a mirror that reflects pure happiness! The whipped cream on top looks like fluffy clouds decided to have a party, and those chocolate curls are tiny works of art that make me want to applaud! Everything is so sparkly and perfect and wonderful! I can barely contain my excitement - this is magical!"
+Script B: Texture Enthusiasm (Dreamy, Sensory)
+Read with Luna Lovegood-like wonder, focusing on sensation
+"The first bite is absolutely magical! It's like biting into a chocolate dream that's been waiting just for me! The filling is so silky and light, it practically dances on my tongue like a thousand tiny chocolate fairies having the best day ever! It's not heavy or dense - it's like eating happiness that decided to taste like chocolate and silk had a beautiful baby!"
+Script C: Flavor Celebration (Joyful, Appreciative)
+Read with genuine gratitude and sparkly delight
+"The chocolate flavor is rich but not bossy! It's confident without being overwhelming! It's like the chocolate is saying 'Hello, I'm here to make your day absolutely wonderful!' And the whipped cream adds this perfect lightness that makes everything feel balanced and dreamy. They're like best friends who make each other even more magical than they already were!"
+Script D: Pure Joy Expression (Effusive, Physical)
+Read with barely contained excitement, like you might bounce
+"This pie makes my heart sing opera! It makes me want to spin in circles and dance around the kitchen! Rating time: Infinite stars! All the gold medals! Everything sparkly and wonderful! Would I request this again? I'm already planning my next seventeen opportunities to experience this absolute perfection! This isn't just pie - this is edible joy!"
+Script E: Final Celebration (Grateful, Magical)
+Read with warm appreciation and wonder
+"This isn't just dessert, friends - this is what happiness tastes like when it decides to wear chocolate clothes! It makes me believe that everything in the world is exactly as magical as it should be! Hooray for pie! Hooray for magic! Hooray for people who create beautiful, wonderful, sparkly things that make other people smile!"
+Production Notes for Tiana:
+• Dreamy Quality: Channel Evanna Lynch's ethereal Luna Lovegood energy • Bubbly Pacing: Quick bursts of excitement with natural breathing spaces • Genuine Wonder: Not fake enthusiasm - real amazement at sensory experience • Fairy-like Energy: Light and sparkly, not heavy or aggressive • Physical Joy: Sound like you're about to bounce or float with happiness • Voice Direction: Think Luna Lovegood discovering the most wonderful food ever
+Tiana Voice Design Prompt - Evanna Lynch Inspired
+Voice Design Prompt (996/1000 characters)
+A bubbly, enthusiastic 25-year-old American female with dreamy, ethereal vocal quality. Light, airy tone with natural breathiness and genuine wonder in her voice. She's effervescent without being annoying, sparkly without being shrill. Her excitement is infectious and sincere, with that specific dreamy quality that makes everything sound magical and otherworldly. Naturally animated delivery with quick bursts of enthusiasm, but maintains gentle, fairy-like charm throughout. Think whimsical excitement about sensory experiences, not hyperactive cartoon energy. Voice has crystalline clarity with underlying warmth and childlike wonder that's endearing rather than irritating. Soft, floating quality like she's sharing magical secrets. Perfect studio-quality recording.
+Preview Text with Labeled Tones (998/1000 characters)
+VISUAL EXCITEMENT: Oh my goodness, look at this chocolate masterpiece! It's like a mirror that reflects pure happiness!
+TEXTURE ENTHUSIASM: The first bite is magical! It dances on your tongue like tiny chocolate fairies having the best day ever!
+FLAVOR CELEBRATION: The chocolate is rich but not bossy - it just wants to make your day absolutely wonderful!
+PURE JOY: This makes my heart sing opera! I want to spin in circles and celebrate everything sparkly!
+EMOTIONAL CONNECTION: This isn't just pie - it's edible joy wearing chocolate clothes! It makes me believe magic is real!
+RATING EXCITEMENT: Infinite stars! All the gold medals! Everything wonderful and perfect!
+GRATEFUL APPRECIATION: I'm already planning seventeen more opportunities to experience this perfection!
+DREAMY WONDER: The whipped cream is like fluffy clouds having a party! So light and magical!
+FINAL CELEBRATION: Hooray for pie! Hooray for magic! This is what happiness tastes like when it wears chocolate!
+
+Production Notes:
+    • Captures Evanna Lynch's dreamy, ethereal quality 
+    • Enthusiastic but not shrill or annoying 
+    • Natural breathiness and wonder in voice 
+    • Fairy-like excitement rather than cartoon energy 
+    • Maintains Luna Lovegood's gentle, otherworldly charm 
+    • Preview text shows her specific food enthusiasm vocabulary 
+

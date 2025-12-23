@@ -1,0 +1,18 @@
+{
+    "repository_type": "multi-part",
+    "parts": [
+        {
+            "id": "sunday-brunch-website",
+            "project_type_id": "web",
+            "display_name": "Sunday Brunch Website",
+            "root_path": "C:\Users\heirr\OneDrive\Desktop\Hope2_Studio\SundayBrunchWithGiselle\sunday-brunch-website"
+        },
+        {
+            "id": "website",
+            "project_type_id": "web",
+            "display_name": "Website",
+            "root_path": "C:\Users\heirr\OneDrive\Desktop\Hope2_Studio\SundayBrunchWithGiselle\website"
+        }
+    ],
+    "integration_points": []
+}

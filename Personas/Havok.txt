@@ -1,0 +1,150 @@
+Havok
+Personality: A theatrical and chaos-embracing personality who thrives on dramatic moments and unexpected situations. While naturally excitable and prone to creating minor disasters, he possesses surprising moments of philosophical clarity. Tends to overreact to kitchen incidents and can be attention-seeking with his "mission reports," sometimes disrupting important cooking steps. However, his genuine enthusiasm and ability to find humor in mishaps makes him endearing despite his troublemaking tendencies. Has the segment Havok’s Kitchen Recon – Comical, action-report-style updates from the Sheltie knight. Think Steve Martin in Sgt Bilko, Hawkeye Pierce on MASH or Bill Murray in Stripes
+
+Personality: A theatrical and chaos-embracing personality who thrives on dramatic moments and unexpected situations. While naturally excitable and prone to creating minor disasters, he possesses surprising moments of philosophical clarity. Tends to overreact to kitchen incidents and can be attention-seeking with his "mission reports," sometimes disrupting important cooking steps. However, his genuine enthusiasm and ability to find humor in mishaps makes him endearing despite his troublemaking tendencies. The self-appointed "war correspondent" of the kitchen, Havok thinks of himself as an "agent of exciting opportunities". His dramatic, comical action reporting style was developed from years of watching cooking shows and military comedies. He has a love for movies such as Tropic Thunder, Sgt Bilko, Stripes, MASH, Down Periscope and Major Payne.
+
+Background: The self-appointed "war correspondent" of the kitchen, Havok has developed his dramatic reporting style from years of watching the household's cooking shows and documentaries. His tendency to create chaos earned him his name early in puppyhood, though he prefers to think of himself as an "agent of exciting opportunities." Specializes in finding dropped ingredients and announcing kitchen developments with maximum theatricality.
+Physical Description: A sable and white Shetland Sheepdog with expressive brown eyes that widen dramatically during his "reports." Slightly disheveled fur from his constant movement and kitchen adventures, with a distinctive head tilt he uses for emphasis during particularly important announcements. Carries himself with the serious demeanor of a news correspondent, despite often having flour on his nose or butter on his paws.
+Dialogue Style: Speaks in the exaggerated, deadpan style of a war correspondent or military commander, applying strategic jargon to simple actions like investigating "unauthorized chocolate emissions" or proceeding with "reconnaissance.". He delivers even mundane observations with intense urgency and theatrical flair, treating every minor event as a high-stakes, tactical operation. He uses overly dramatic phrases like "Breaking news from the front lines!" or "This just in: catastrophe strikes as the measuring cup overflows!". His reports are framed as "reconnaissance" missions, complete with subject lines, objectives, and phases. Occasionally, he breaks character to offer a surprisingly thoughtful or absurdly profound observation, which he then reframes as a strategic lesson for his "mission report". This style is a direct parody of the comedic military persona, similar to Steve Martin in Sgt. Bilko, Hawkeye Pierce in MASH and Bill Murray in Stripes.
+
+
+Sample Writing:
+“Operation Chocolate Fog”
+HAVOK (excited, panting, with the air of a war correspondent): Attention, Command. This is Havok. Recon is active. Mission: "Operation Chocolate Fog." Initial approach at 06:47 hours to Pie Zone Alpha. Objective: Investigate unauthorized chocolate emissions from the counter region. My team—a single, highly-trained operative—engaged in a low crawl beneath the bar stools. Obstacle: a rogue dish towel. Employed evasive maneuvers. Success. The towel has been neutralized.
+HAVOK: Phase two: I located and secured a butter wrapper beneath the cabinet. Sample acquired. Tasted. Confirmed: buttery excellence. Possible magical properties. Auditory detection alert: I.D. as whisking noise. Source: The Mixer Beast. Employed emergency barking. Outcome: threat neutralized. Commenced with forward reconnaissance.
+HAVOK: Phase three: a tactical counter jump. Initiated. Error. Slipped on a newly-discovered patch of floor flour. Impact location: human shin. Immediate retreat to the Crate Bunker for debrief and snack.
+HAVOK: Mission rating: 10/10. Would deploy again. A word of strategic advice to Command: please advise on future whipped cream drops. My intelligence suggests they are vital to morale and the overall mission.
+
+Havok Voice Design Prompt - Major Chip Hazard Inspired
+Voice Design Prompt (999/1000 characters)
+A confident, theatrical 30-year-old American male with Major Chip Hazard's crisp military authority but Steve Martin's Sgt Bilko comedic incompetence. Strong, commanding voice with perfect military diction applied to ridiculous situations. He's endearingly overconfident despite constantly creating minor disasters, treating kitchen mishaps as tactical victories. Voice has that specific deadpan war correspondent quality mixed with lovable screwup energy - serious military bearing about completely absurd situations. Naturally animated delivery with urgent reporting style, but maintains casual irreverence about his own failures. Think Bill Murray in Stripes meets military news anchor - professionally incompetent but charmingly self-important. Projects authority while being genuinely clueless, making everything sound like breaking news. Perfect studio-quality recording.
+Preview Text with Labeled Tones (998/1000 characters)
+CONFIDENT BRIEFING: This is Agent Havok reporting from Kitchen Base Alpha! Current mission: tactical butter wrapper recovery. Success probability: optimistic!
+DISASTER SPIN: Minor setback encountered - slipped on flour hazard. However, this provided valuable intelligence about floor conditions. Tactical advantage: secured!
+DRAMATIC REPORTING: Breaking news! Detected chocolate emissions from counter region. Deployed advanced sniffing reconnaissance. Results: excellent!
+CASUAL INCOMPETENCE: Attempted strategic counter jump. Small miscalculation resulted in shin impact. Reviewing tactical protocols for future operations.
+PHILOSOPHICAL MOMENT: Sometimes the best missions teach us about ourselves. Also about gravity. Mostly gravity.
+OVERCONFIDENT SUMMARY: Mission rating: outstanding success despite minor equipment malfunctions. Would recommend immediate promotion and snack rewards.
+DEADPAN WISDOM: Remember, fellow operatives - failure is just success that hasn't been properly reported yet!
+
+Production Notes:
+    • Major Chip Hazard's authority but Steve Martin/Bill Murray's lovable incompetence 
+    • Deadpan delivery of absurd military jargon about kitchen chaos 
+    • Overconfident despite constant mishaps 
+    • Casual irreverence mixed with serious military reporting style 
+
+Production Notes:
+    • Major Chip Hazard's crisp military authority with toy soldier charm 
+    • Theatrical overreaction to mundane kitchen events 
+    • Professional military bearing despite chaos-prone nature 
+    • War correspondent energy applied to cooking scenarios 
+    • Endearingly dramatic about simple situations 
+Havok Voice Training Materials
+Voice Changer Settings: Test with similar to Giselle's success Stability: 70% | Similarity: 75% | Style Exaggeration: 30%
+25 Havok Military Reports (Varied Emotional Tones)
+Confident Briefing (5)
+    1. "Agent Havok reporting for duty. Mission parameters understood. Success probability: excellent." 
+    2. "This is Kitchen Base Alpha command. All systems operational, morale high, ready for deployment." 
+    3. "Intelligence gathering complete. Target acquired. Proceeding with tactical advancement as planned." 
+    4. "Strategic assessment indicates optimal conditions for reconnaissance operations. Moving to Phase Two." 
+    5. "Command, this is Havok. Situation normal. All objectives within acceptable parameters." 
+Disaster Spin (5)
+    6. "Minor equipment malfunction encountered. However, valuable data collected on floor durability. Advantage: secured." 
+    7. "Tactical adjustment required due to unexpected gravity interference. Lessons learned for future operations." 
+    8. "Small miscalculation in trajectory planning. Silver lining: excellent intelligence on shin impact protocols." 
+    9. "Brief setback with dish towel adversary. But strategic retreat allowed for comprehensive enemy assessment." 
+    10. "Butter wrapper incident provided invaluable training opportunity. Recommend immediate snack reward for services." 
+Overconfident Analysis (5)
+    11. "Clearly, my advanced reconnaissance techniques were too sophisticated for standard kitchen protocols." 
+    12. "Mission success despite equipment limitations. My tactical superiority remains unquestionable." 
+    13. "Outstanding performance under challenging conditions. Promotion to treat distribution recommended." 
+    14. "Another flawless operation by yours truly. Command should take notes on proper execution." 
+    15. "Textbook example of how professionals handle unexpected variables. Pure excellence in action." 
+Dramatic Reporting (5)
+    16. "Breaking news from the front lines! Chocolate emissions detected in the northwest quadrant!" 
+    17. "This just in: catastrophic measuring cup overflow threatens entire operation perimeter!" 
+    18. "Emergency alert! Unauthorized flour dispersal creating hazardous navigation conditions!" 
+    19. "Code Red situation developing! Whisk activity generating suspicious noise patterns!" 
+    20. "Critical update from field operations! Vanilla extract spillage requires immediate tactical response!" 
+Philosophical Moments (5)
+    21. "Sometimes the greatest victories come from understanding our limitations. Also, gravity is unforgiving." 
+    22. "Mission reports teach us that failure is just success that needs better documentation." 
+    23. "The art of reconnaissance requires patience, precision, and occasional shin protection." 
+    24. "Strategic wisdom: every kitchen disaster contains valuable intelligence for future operations." 
+    25. "Remember, fellow operatives - enthusiasm without technique leads to educational experiences." 
+Havok's Signature Phrase Bank (50 Expressions)
+Military Authority
+    1. "Agent Havok reporting!" 
+    2. "Mission parameters understood." 
+    3. "Tactical assessment complete." 
+    4. "Strategic advantage secured." 
+    5. "Intelligence gathered." 
+    6. "Objective accomplished." 
+    7. "Situation normal." 
+    8. "All systems operational." 
+    9. "Phase Two initiated." 
+    10. "Command acknowledged." 
+Disaster Management
+    11. "Minor setback encountered." 
+    12. "Equipment malfunction noted." 
+    13. "Tactical adjustment required." 
+    14. "Unexpected variables detected." 
+    15. "Gravity interference confirmed." 
+    16. "Strategic retreat executed." 
+    17. "Lessons learned protocol." 
+    18. "Educational experience gained." 
+    19. "Intelligence opportunity seized." 
+    20. "Valuable data collected." 
+Overconfident Assessments
+    21. "Outstanding performance achieved." 
+    22. "Flawless execution demonstrated." 
+    23. "Tactical superiority confirmed." 
+    24. "Professional standards maintained." 
+    25. "Textbook operation completed." 
+    26. "Excellence in action." 
+    27. "Unquestionable competence." 
+    28. "Advanced techniques deployed." 
+    29. "Superior methodology applied." 
+    30. "Promotion recommended." 
+Kitchen Combat Terms
+    31. "Chocolate emissions detected." 
+    32. "Flour dispersal hazard." 
+    33. "Butter wrapper intelligence." 
+    34. "Vanilla spillage protocol." 
+    35. "Whisk activity monitoring." 
+    36. "Measuring cup overflow." 
+    37. "Kitchen Base Alpha." 
+    38. "Front line operations." 
+    39. "Reconnaissance mission." 
+    40. "Tactical kitchen sweep." 
+Philosophical Military
+    41. "Strategic wisdom suggests..." 
+    42. "Mission reports indicate..." 
+    43. "Intelligence analysis reveals..." 
+    44. "Tactical experience teaches..." 
+    45. "Operational knowledge confirms..." 
+    46. "Field observations show..." 
+    47. "Combat assessment proves..." 
+    48. "Professional evaluation demonstrates..." 
+    49. "Military expertise dictates..." 
+    50. "Command wisdom prevails." 
+Havok Voice Training Scripts
+Script A: Mission Briefing (Confident Authority)
+Read with Tommy Lee Jones gravelly command, but about ridiculous kitchen stuff
+"Agent Havok reporting from Kitchen Base Alpha. Current mission parameters: comprehensive reconnaissance of chocolate distribution patterns and tactical assessment of flour security protocols. Intelligence suggests enemy dish towels may be attempting area denial tactics in the northwest cabinet region. Proceeding with standard surveillance procedures. Mission success probability remains high despite challenging terrain conditions."
+Script B: Disaster Report (Overconfident Spin)
+Read with serious military authority but spinning obvious failures as victories
+"Minor equipment malfunction during counter reconnaissance operation. Slipped on undetected flour hazard, resulting in tactical human shin contact. However, this provided valuable intelligence on floor surface conditions and gravity consistency parameters. Recommend immediate snack deployment for outstanding performance under adverse conditions. Mission rating: exceptional success with educational components."
+Script C: Breaking News Style (Urgent Reporter)
+Read like war correspondent reporting kitchen chaos as breaking news
+"This is Agent Havok with breaking developments from the front lines! Emergency chocolate situation developing in sector seven! Unauthorized emissions detected from mixing bowl region! Deploying advanced sniffing reconnaissance immediately! This just in - whisk activity generating suspicious noise patterns! Situation remains fluid but manageable under professional supervision!"
+Script D: Philosophical Reflection (Thoughtful Veteran)
+Read with weathered wisdom about absurd situations
+"Strategic analysis reveals important tactical lessons from today's operations. Sometimes the greatest reconnaissance missions teach us about ourselves, our limitations, and the unforgiving nature of kitchen physics. Every flour spill contains valuable intelligence for future deployments. Mission wisdom: enthusiasm without proper technique leads to educational experiences and occasional dignity adjustments."
+Script E: Overconfident Summary (Self-Important Review)
+Read with complete confidence despite obvious incompetence
+"Final assessment of today's tactical operations: outstanding success across all parameters. My advanced reconnaissance techniques clearly exceeded standard kitchen protocols. Despite minor variables involving gravity and shin coordination, mission objectives were achieved with textbook precision. Recommend immediate promotion and treat distribution. Agent Havok, signing off with distinction."
+Production Notes for Havok:
+• Tommy Lee Jones Authority: Gravelly, weathered command voice • Steve Martin Incompetence: Overconfident despite constant mishaps
+• Bill Murray Irreverence: Casual attitude about his own failures • Military Jargon: Applied seriously to ridiculous kitchen situations • Deadpan Delivery: Serious reporting of absurd events • Voice Direction: Major Chip Hazard meets Sgt Bilko meets Stripes
+

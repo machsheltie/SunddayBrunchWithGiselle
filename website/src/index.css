@@ -1,0 +1,73 @@
+/* 
+  Theme: Cozy Whimsy / Vintage Storybook
+  Fonts: Cormorant Garamond (Headings), Alegreya (Body)
+  Palette: Berry & Biscuit + Lavender
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FFF8DC;
+  --color-terracotta: #E5B49A;
+  --color-copper: #C26953;
+  --color-lavender: #D8A1C4;
+  --color-brown: #5D4037;
+  --color-brown-light: #8D7B75;
+
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Alegreya', serif;
+
+  --shadow-soft: 0 4px 20px rgba(93, 64, 55, 0.08);
+  --shadow-card: 0 8px 30px rgba(93, 64, 55, 0.12);
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-brown font-body text-lg antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold text-brown mb-4;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  a {
+    @apply text-copper transition-colors duration-200 hover:text-lavender;
+  }
+
+  button {
+    @apply font-heading font-semibold transition-all duration-300;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-terracotta);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-copper);
+}

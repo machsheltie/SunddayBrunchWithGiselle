@@ -1,0 +1,97 @@
+.sheltie-tip {
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+    margin: var(--space-8) 0;
+    position: relative;
+    /* Remove old border style */
+    border-left: none;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.sheltie-tip:hover .sheltie-tip__avatar {
+    transform: rotate(5deg) scale(1.1);
+}
+
+.sheltie-tip__avatar-wrapper {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.sheltie-tip__avatar {
+    width: 100%;
+    height: 100%;
+    /* Drop shadow for depth */
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.15));
+    transition: transform var(--transition-base);
+}
+
+.sheltie-tip__body {
+    position: relative;
+    background: var(--warm-white);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    flex-grow: 1;
+    border: 2px solid;
+    /* Color driven by modifier */
+}
+
+/* Speech bubble triangle */
+.sheltie-tip__body::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 30px;
+    width: 20px;
+    height: 20px;
+    background: var(--warm-white);
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    border-color: inherit;
+    /* Inherits from body border */
+    transform: rotate(45deg);
+}
+
+.sheltie-tip__header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+    border-bottom: 1px dashed rgba(62, 39, 35, 0.2);
+    padding-bottom: var(--space-2);
+}
+
+/* Maintain character specific colors for the border and internal text */
+.sheltie-tip--giselle .sheltie-tip__body {
+    border-color: var(--giselle-color);
+    background: #fdfaff;
+}
+
+.sheltie-tip--phaedra .sheltie-tip__body {
+    border-color: var(--phaedra-color);
+    background: #fafdff;
+}
+
+.sheltie-tip--tiana .sheltie-tip__body {
+    border-color: var(--tiana-color);
+    background: #fffff8;
+}
+
+.sheltie-tip--havok .sheltie-tip__body {
+    border-color: var(--havok-color);
+    background: #fffcfc;
+}
+
+
+@media print {
+    .sheltie-tip {
+        border: 1px solid #ddd;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+}

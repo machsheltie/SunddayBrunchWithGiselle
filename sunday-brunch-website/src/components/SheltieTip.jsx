@@ -1,7 +1,11 @@
+import React, { useEffect, useRef, useState } from 'react'
 import './SheltieTip.css'
 import { GiselleAvatar, PhaedraAvatar, TianaAvatar, HavokAvatar } from './illustrations/SheltieAvatars'
 
 function SheltieTip({ character = 'giselle', children }) {
+    const [hasWiggled, setHasWiggled] = useState(false);
+    const tipRef = useRef(null);
+
     const characterConfig = {
         giselle: { name: 'Giselle', title: 'The Queen', Avatar: GiselleAvatar },
         phaedra: { name: 'Phaedra', title: 'The Science Dogter', Avatar: PhaedraAvatar },
@@ -11,8 +15,28 @@ function SheltieTip({ character = 'giselle', children }) {
 
     const { name, title, Avatar } = characterConfig[character] || characterConfig.giselle
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !hasWiggled) {
+                    setHasWiggled(true);
+                }
+            },
+            { threshold: 0.5 }
+        );
+
+        if (tipRef.current) {
+            observer.observe(tipRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [hasWiggled]);
+
     return (
-        <div className={`sheltie-tip sheltie-tip--${character}`}>
+        <div
+            ref={tipRef}
+            className={`sheltie-tip sheltie-tip--${character} ${hasWiggled ? 'should-wiggle' : ''}`}
+        >
             <div className="sheltie-tip__avatar-wrapper">
                 <Avatar className="sheltie-tip__avatar" />
             </div>

@@ -1,0 +1,24 @@
+.whimsy-layer {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: var(--z-background);
+    overflow: hidden;
+}
+
+.whimsy-item {
+    position: absolute;
+}
+
+.whimsy-paw {
+    width: 60px;
+    height: 60px;
+}
+
+.whimsy-blob {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}

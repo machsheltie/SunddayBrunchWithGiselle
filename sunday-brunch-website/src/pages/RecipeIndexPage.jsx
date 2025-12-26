@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { getRecipes } from '../lib/content'
 import { applyMeta } from '../lib/seo'
+import PinterestButton from '../components/PinterestButton'
 import './RecipeIndexPage.css'
 
 function RecipeIndexPage() {
@@ -19,7 +20,8 @@ function RecipeIndexPage() {
     const [collapsed, setCollapsed] = useState({
         types: false,
         level: false,
-        dietary: false
+        dietary: false,
+        occasion: true // Collapsed by default to save space
     })
 
     const toggleCollapse = (section) => {
@@ -157,29 +159,43 @@ function RecipeIndexPage() {
                         className="sidebar-group-header"
                         onClick={() => toggleCollapse('dietary')}
                     >
-                        <h3 className="sidebar-group-title">Dietary & Occasion</h3>
+                        <h3 className="sidebar-group-title">Dietary Needs</h3>
                         <span className={`chevron ${collapsed.dietary ? '' : 'is-open'}`}>▾</span>
                     </button>
                     {!collapsed.dietary && (
                         <div className="filter-chips">
-                            {filterOptions.dietary.slice(0, 4).map(d => (
+                            {filterOptions.dietary.map(d => (
                                 <button
                                     key={d}
                                     onClick={() => setActiveDietary(activeDietary === d ? 'all' : d)}
-                                    className={`chip ${activeDietary === d ? 'is-active' : ''}`}
+                                    className={`chip chip--dietary ${activeDietary === d ? 'is-active' : ''}`}
                                 >
                                     {d}
                                 </button>
                             ))}
-                            {/* More compact button for the rest */}
-                            <select
-                                className="filter-select"
-                                value={activeOccasion}
-                                onChange={(e) => setActiveOccasion(e.target.value)}
-                            >
-                                <option value="all">Any Occasion</option>
-                                {filterOptions.occasion.map(o => <option key={o} value={o}>{o}</option>)}
-                            </select>
+                        </div>
+                    )}
+                </div>
+
+                <div className="sidebar-group">
+                    <button
+                        className="sidebar-group-header"
+                        onClick={() => toggleCollapse('occasion')}
+                    >
+                        <h3 className="sidebar-group-title">By Occasion</h3>
+                        <span className={`chevron ${collapsed.occasion ? '' : 'is-open'}`}>▾</span>
+                    </button>
+                    {!collapsed.occasion && (
+                        <div className="filter-chips">
+                            {filterOptions.occasion.map(o => (
+                                <button
+                                    key={o}
+                                    onClick={() => setActiveOccasion(activeOccasion === o ? 'all' : o)}
+                                    className={`chip chip--occasion ${activeOccasion === o ? 'is-active' : ''}`}
+                                >
+                                    {o}
+                                </button>
+                            ))}
                         </div>
                     )}
                 </div>
@@ -218,6 +234,11 @@ function RecipeIndexPage() {
                                                 className="recipe-index-card"
                                             >
                                                 <div className="recipe-index-card__img-placeholder">
+                                                    <PinterestButton
+                                                        url={`${window.location.origin}/recipes/${recipe.slug}`}
+                                                        description={`Check out this ${recipe.title} from Sunday Brunch With Giselle!`}
+                                                        image={recipe.image}
+                                                    />
                                                     {recipe.image ? (
                                                         <img src={recipe.image} alt={recipe.title} className="recipe-img" />
                                                     ) : (

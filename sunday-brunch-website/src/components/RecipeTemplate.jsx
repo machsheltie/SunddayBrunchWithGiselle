@@ -3,7 +3,10 @@ import ToolsUsed from './ToolsUsed'
 import RelatedContent from './RelatedContent'
 import JumpToRecipe from './JumpToRecipe'
 import SheltieTip from './SheltieTip'
+import RecipeCalculator from './RecipeCalculator'
 import { WashiTape, PawPrint } from './illustrations/Decorations'
+import PinterestButton from './PinterestButton'
+import RecipeReviews from './RecipeReviews'
 import { trackPrint, trackCopy } from '../lib/analytics'
 import './RecipeTemplate.css'
 
@@ -49,6 +52,11 @@ function RecipeTemplate({ recipe }) {
 
                 <div className="recipe scrapbook-paper" id="jump-to-recipe">
                     <WashiTape className="tape-top-center" color="var(--pastel-lavender)" />
+                    <PinterestButton
+                        url={window.location.href}
+                        description={`Check out this amazing ${recipe.title} from Sunday Brunch With Giselle!`}
+                        image={recipe.image}
+                    />
 
                     <div className="recipe__header">
                         <div>
@@ -70,6 +78,19 @@ function RecipeTemplate({ recipe }) {
                         </div>
                     )}
 
+                    {/* Baker's Prep / Mise en Place */}
+                    <div className="bakers-prep">
+                        <div className="bakers-prep__header">
+                            <PawPrint width="20" height="20" color="var(--terracotta-spark)" />
+                            <h4>Baker's Prep</h4>
+                        </div>
+                        <ul className="bakers-prep__list">
+                            <li>Ensure all ingredients marked "room temperature" are properly softened.</li>
+                            <li>Preheat your oven 20 minutes before baking.</li>
+                            <li>Measure ingredients accurately (we recommend using the Metric/Weight toggle!).</li>
+                        </ul>
+                    </div>
+
                     {/* Example Sheltie Tip - can be customized per recipe */}
                     <SheltieTip character="giselle">
                         <p>Darling, if you're going to make this, do it properly. No shortcuts. We're not animals... well, <em>I</em> am, but I have standards.</p>
@@ -85,18 +106,10 @@ function RecipeTemplate({ recipe }) {
                     <div className="recipe__two-col">
                         <div>
                             <h4>Ingredients</h4>
-                            <ul className="recipe__list">
-                                {recipe.ingredients.map((item, idx) => (
-                                    <li
-                                        key={idx}
-                                        className={checkedIngredients[idx] ? 'is-checked' : ''}
-                                        onClick={() => toggleIngredient(idx)}
-                                        style={{ cursor: 'pointer' }}
-                                    >
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
+                            <RecipeCalculator
+                                initialIngredients={recipe.ingredients}
+                                initialYield={recipe.yield}
+                            />
                         </div>
                         <div>
                             <h4>Steps</h4>
@@ -115,6 +128,8 @@ function RecipeTemplate({ recipe }) {
 
                     <div className="recipe__extras">
                     </div>
+
+                    <RecipeReviews recipeSlug={recipe.slug} />
                 </div>
 
                 <div className="recipe__extras">

@@ -1,6 +1,6 @@
 .jump-to-recipe {
     position: fixed;
-    bottom: var(--space-8);
+    bottom: calc(var(--space-8) + 70px);
     right: var(--space-8);
     background: var(--midnight-lavender);
     color: var(--pale-buttercream);

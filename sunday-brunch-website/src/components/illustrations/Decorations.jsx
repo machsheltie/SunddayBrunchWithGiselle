@@ -40,7 +40,6 @@ export const HandDrawnBorder = ({ className }) => (
         bottom: 0,
         pointerEvents: 'none',
         border: '3px solid var(--midnight-lavender)',
-        borderRadius: 'var(--radius-lg)',
         mask: 'url(#rough-edge)',
         borderStyle: 'solid',
         borderColor: 'var(--midnight-lavender)',
@@ -70,5 +69,17 @@ export const MixingBowl = ({ className }) => (
         <ellipse cx="50" cy="20" rx="40" ry="10" fill="var(--warm-white)" stroke="var(--giselle-color)" strokeWidth="2" />
         {/* Spoon */}
         <path d="M70 10 L45 50" stroke="var(--dusty-plum)" strokeWidth="6" strokeLinecap="round" />
+    </svg>
+);
+
+export const SheltieSilhouette = ({ color = "var(--midnight-lavender)", className, style }) => (
+    <svg viewBox="0 0 100 80" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+        <title>Sheltie leading the way</title>
+        <path
+            d="M20,60 Q25,65 30,60 L40,40 Q45,20 55,25 L65,15 Q70,10 75,15 L80,30 Q95,35 90,50 Q85,60 70,55 L50,70 Q40,75 30,70 Z"
+            fill={color}
+        />
+        <path d="M52,22 L50,15 L55,18 Z" fill={color} />
+        <path d="M62,18 L60,11 L65,14 Z" fill={color} />
     </svg>
 );

@@ -1,0 +1,38 @@
+.pinterest-pin-it {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    background: #E60023;
+    /* Pinterest Red */
+    color: white;
+    border: none;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+}
+
+.recipe:hover .pinterest-pin-it,
+.recipe-index__card:hover .pinterest-pin-it {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pinterest-pin-it:hover {
+    background: #ad001a;
+    transform: scale(1.05);
+}
+
+.pinterest-pin-it svg {
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+}

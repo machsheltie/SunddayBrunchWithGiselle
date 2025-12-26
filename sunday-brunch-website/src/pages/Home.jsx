@@ -28,6 +28,8 @@ function Home() {
         <div className="home">
             <WhimsicalHero />
 
+
+
             <section className="section" id="recipes">
                 <div className="section__header">
                     <h2 className="section__title">Featured Recipe</h2>

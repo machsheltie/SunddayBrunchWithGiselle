@@ -21,14 +21,26 @@
     --glass-blur: blur(12px);
 
     /* Character Colors (Harmonized with new palette) */
-    --giselle-color: #9B59B6;
-    --giselle-light: rgba(155, 89, 182, 0.1);
-    --phaedra-color: #3498DB;
-    --phaedra-light: rgba(52, 152, 219, 0.1);
-    --tiana-color: #F39C12;
-    --tiana-light: rgba(243, 156, 18, 0.1);
-    --havok-color: #E74C3C;
-    --havok-light: rgba(231, 76, 60, 0.1);
+    --stacey-color: var(--midnight-lavender);
+    --giselle-color: #D6BCFA;
+    /* Soft Purple */
+    --phaedra-color: #BEE3F8;
+    /* Soft Blue */
+    --tiana-color: #FAF089;
+    /* Soft Gold */
+    --havok-color: #FED7D7;
+    /* Soft Red/Pink */
+
+    /* Storybook Elements */
+    --paper-grain: rgba(46, 26, 71, 0.05);
+    --deckle-edge: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0,5 Q5,10 10,5 T20,5 T30,5 T40,5 T50,5 T60,5 T70,5 T80,5 T90,5 T100,5' fill='none' stroke='%23E9D5FF' stroke-width='0.5'/%3E%3C/svg%3E");
+
+    /* Depth Layers */
+    --z-background: -10;
+    --z-base: 1;
+    --z-subject: 10;
+    --z-foreground: 20;
+    --z-overlay: 100;
 
     /* ===== UNIQUE TYPOGRAPHY ===== */
     --font-display: 'Italiana', serif;
@@ -84,6 +96,19 @@
     --transition-base: 300ms ease;
     --transition-slow: 500ms ease;
 
+    /* ===== MULTICHROMATIC PASTEL WASHES ===== */
+    --sakura-wash: linear-gradient(135deg, #FCE7F3 0%, #FEE2E2 50%, #FDF4FF 100%);
+    --sky-wash: linear-gradient(135deg, #E0F2FE 0%, #E9D5FF 50%, #FCE7F3 100%);
+    --lavender-wash: linear-gradient(135deg, #E9D5FF 0%, #FCE7F3 50%, #FFFBEB 100%);
+    --lemon-wash: linear-gradient(135deg, #FEF9C3 0%, #FFFBEB 50%, #FCE7F3 100%);
+
+    /* ===== THE DECKLE EDGE SYSTEM ===== */
+    --mask-deckle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z M0,2 Q5,0 10,2 T20,2 T30,2 T40,2 T50,2 T60,2 T70,2 T80,2 T90,2 T100,2 L100,0 L0,0 Z' fill='white'/%3E%3C/svg%3E");
+    --mask-torn-paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L100,0 L100,100 Q95,98 90,100 T80,100 T70,100 T60,100 T50,100 T40,100 T30,100 T20,100 T10,100 T0,100 Z' fill='white'/%3E%3C/svg%3E");
+
+    /* ===== PAWPRINT SHAPE ===== */
+    --paw-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='30' cy='30' r='15'/%3E%3Ccircle cx='70' cy='30' r='15'/%3E%3Ccircle cx='15' cy='55' r='15'/%3E%3Ccircle cx='85' cy='55' r='15'/%3E%3Cellipse cx='50' cy='75' rx='30' ry='25'/%3E%3C/svg%3E");
+
     /* ===== ROOT SETTINGS ===== */
     font-family: var(--font-body);
     line-height: var(--leading-relaxed);
@@ -103,6 +128,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* Film Grain Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: var(--z-overlay);
+    mix-blend-mode: multiply;
 }
 
 body {

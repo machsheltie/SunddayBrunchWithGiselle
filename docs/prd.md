@@ -45,18 +45,19 @@ Sunday Brunch With Giselle is a cozy, story-rich baking podcast and companion re
 
 ### What Makes This Special
 
-- Unique voice: AI-voiced Sheltie co-hosts with sharply defined personas deliver humor, science, and joy alongside Stacey's vulnerable, sensory-rich narration.
-- Sensory sanctuary: "Cozy chaos" sound design, alchemy/magic framing of baking, and emotionally grounded stories about self-worth and being "too much" for the wrong crowd.
-- Repeatable ritual: Predictable episode spine (Before We Bake -> Story -> Recipe Walkthrough -> Sheltie segments -> Next Week -> Outro) mirrored on the site via consistent episode/recipe layouts and CTAs (listen -> recipe -> save/print/share -> signup).
-- Cross-medium depth: Companion site pages, social clips, and branded visuals extend the worldbuilding (kitchen as sanctuary, Shelties as microcosm of humanity), with accessibility baked in (transcripts, captions, alt text) and structured recipe presentation (story + jump-to-recipe + print/save).
+- **Unique Voice & Logic**: The "Cozy Logic" system (Sheltie Logic) allows Stacey & Giselle to break down complex baking science into whimsical, character-driven narratives.
+- **Sensory Sanctuary**: "Soft Sakura" aesthetic, glassmorphism, and watercolor textures create an immersive, calming digital space.
+- **Baking as Storytelling**: Every recipe is anchored in a narrative—Stacey's emotional journey or Giselle's chaotic wisdom—before getting to the technical steps.
+- **Repeatable Ritual**: Predictable episode spine (Before We Bake -> Story -> Recipe Walkthrough -> Sheltie segments -> Next Week -> Outro).
+- **Cross-medium Depth**: Companion site pages, social clips, and branded visuals extend the worldbuilding.
 
 ## Project Classification
 
-**Technical Type:** web_app (content/podcast + recipe blog with episodes, recipes, signup)  
-**Domain:** general (media/podcast/recipes)  
-**Complexity:** low
+**Technical Type:** web_app (Story-driven baking blog + podcast hub)
+**Domain:** media/lifestyle/culinary
+**Complexity:** low-medium (standard CMS features + high-end interactive UI/UX)
 
-Classification signals observed: podcast + episode scripts, React/Vite site, recipe-blog structure (long-form + structured recipe schema), recipe/CTA flows (ConvertKit), no regulated data; emphasis on storytelling, audio, and content publishing, with an AI voice/sound workflow, plus standard web concerns (responsive layout, SEO, performance, accessibility, print/save/share).
+Classification signals observed: High emphasis on visual storytelling (animations, glassmorphism), character personas (Stacey, Giselle, Havok), and accessible, interactive recipe consumption (jump-to, cook mode, scaling).
 
 ## Success Criteria
 

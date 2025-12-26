@@ -1,0 +1,152 @@
+.whimsical-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-8);
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.whimsical-button--primary {
+    background: var(--lavender-wash);
+    color: var(--midnight-lavender);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.1);
+}
+
+.whimsical-button--secondary {
+    background: white;
+    color: var(--midnight-lavender);
+    border: 2px solid var(--pastel-lavender);
+}
+
+.whimsical-button--nav {
+    background: transparent;
+    border: none;
+    padding: var(--space-2);
+    min-width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--midnight-lavender);
+    border-radius: 0;
+    /* Paw mask will handle shape */
+}
+
+.whimsical-button__nav-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    filter: drop-shadow(0 4px 6px rgba(46, 26, 71, 0.2));
+    /* Refined visibility shadow */
+}
+
+.whimsical-button--nav .whimsical-button__text {
+    z-index: 2;
+    font-size: var(--text-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    text-decoration: none;
+    /* No underlines in the sanctuary */
+}
+
+.whimsical-button--nav:hover .whimsical-button__nav-bg {
+    transform: scale(1.15) rotate(5deg);
+    filter: drop-shadow(0 0 15px var(--pastel-lavender)) drop-shadow(0 0 5px var(--soft-sakura));
+    /* Enhanced hover glow */
+}
+
+.whimsical-button--nav:hover .whimsical-button__nav-bg svg {
+    fill: var(--pastel-lavender) !important;
+}
+
+.whimsical-button__paw-container {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.whimsical-button__paw {
+    width: 100%;
+    height: 100%;
+}
+
+.whimsical-button__watercolor-wash {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(214, 188, 250, 0.2) 0%, rgba(252, 231, 243, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.whimsical-button:hover .whimsical-button__watercolor-wash {
+    opacity: 1;
+}
+
+.whimsical-button:active {
+    transform: scale(0.98);
+}
+
+/* Specific styling for the paw mask effect if desired */
+.whimsical-button--primary::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background: var(--giselle-color);
+    opacity: 0.1;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* ===== SPARKLE ANIMATION ===== */
+.sparkle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    animation: sparkle-fade 0.6s ease-out forwards;
+}
+
+@keyframes sparkle-fade {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(180deg);
+        opacity: 0;
+    }
+}
+.flour-particle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    animation: sparkle-fade 0.8s ease-out forwards;
+}

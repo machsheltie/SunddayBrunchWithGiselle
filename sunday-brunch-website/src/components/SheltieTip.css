@@ -95,3 +95,14 @@
         page-break-inside: avoid;
     }
 }
+.should-wiggle .sheltie-tip__avatar-wrapper {
+    animation: sheltie-wiggle 1s ease-in-out;
+}
+
+@keyframes sheltie-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-10deg) scale(1.1); }
+    40% { transform: rotate(10deg) scale(1.1); }
+    60% { transform: rotate(-10deg) scale(1.1); }
+    80% { transform: rotate(10deg) scale(1.1); }
+}

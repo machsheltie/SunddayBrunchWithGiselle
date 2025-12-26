@@ -1,17 +1,19 @@
 .whimsical-hero {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
     align-items: center;
-    gap: var(--space-8);
-    background: linear-gradient(135deg, var(--pale-buttercream) 0%, var(--light-lemon) 100%);
-    border-radius: var(--radius-xl);
-    padding: var(--space-12);
-    margin: var(--space-8) 0;
+    background: transparent;
+    border-radius: 0;
+    padding: var(--space-20) var(--space-12);
+    margin: 0;
     position: relative;
-    box-shadow:
-        inset 0 0 60px rgba(255, 255, 255, 0.5),
-        var(--shadow-lg);
-    border: 1px solid var(--glass-border);
-    overflow: hidden;
+    box-shadow: none;
+    border: none;
+    overflow: visible;
+    min-height: 80vh;
+    mask-image: var(--mask-torn-paper);
+    -webkit-mask-image: var(--mask-torn-paper);
+    mask-size: 100% 100%;
 }
 
 .whimsical-hero::before {
@@ -44,18 +46,25 @@
 }
 
 .whimsical-hero__content {
-    flex: 1.2;
-    z-index: 2;
-    animation: slideInLeft 0.8s ease-out;
+    grid-column: 1 / 8;
+    z-index: var(--z-foreground);
+    animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
+    background: transparent;
+    padding: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
 }
 
 .whimsical-hero__title {
     font-family: var(--font-display);
-    font-size: var(--text-5xl);
-    line-height: 1;
+    font-size: 8rem;
+    line-height: 0.9;
     color: var(--midnight-lavender);
-    margin-bottom: var(--space-6);
-    letter-spacing: -0.02em;
+    margin-bottom: var(--space-8);
+    letter-spacing: -0.04em;
+    font-weight: 700;
 }
 
 .script-accent {
@@ -68,13 +77,65 @@
     margin: 0 0.1em;
 }
 
+.whimsical-hero__quote-wrapper {
+    position: relative;
+    padding: var(--space-6) var(--space-8);
+    margin-bottom: var(--space-10);
+    max-width: 550px;
+    z-index: 1;
+    overflow: visible;
+}
+
+.whimsical-hero__quote-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+
+    /* Watercolor splatter effect via CSS mask */
+    mask-image: radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
+    -webkit-mask-image: radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
+
+    /* Gradient fade to transparent behind the quote */
+    opacity: 0.8;
+}
+
+/* Subtle watercolor splatter accent */
+.whimsical-hero__quote-wrapper::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100px;
+    height: 100px;
+    background: var(--soft-sakura);
+    filter: blur(30px);
+    opacity: 0.4;
+    z-index: -2;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q50,0 70,20 T90,50 T70,80 T30,80 T10,50 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q50,0 70,20 T90,50 T70,80 T30,80 T10,50 Z' fill='black'/%3E%3C/svg%3E");
+}
+
 .whimsical-hero__text {
     font-family: var(--font-body);
-    font-size: var(--text-xl);
-    color: var(--dusty-plum);
-    margin-bottom: var(--space-8);
-    line-height: var(--leading-relaxed);
-    max-width: 520px;
+    font-size: var(--text-2xl);
+    color: var(--midnight-lavender);
+    line-height: 1.4;
+    font-style: italic;
+    margin: 0;
+    /* Margin handled by wrapper */
+    opacity: 1;
+    position: relative;
+    z-index: 2;
 }
 
 .whimsical-hero__cta-group {
@@ -102,35 +163,41 @@
 }
 
 .whimsical-hero__visual {
-    flex: 1;
-    position: relative;
+    grid-column: 6 / 13;
+    position: absolute;
+    right: 0;
+    top: 15%;
+    width: 55%;
+    z-index: var(--z-subject);
     display: flex;
-    justify-content: center;
-    animation: fadeIn 1.2s ease-out;
+    justify-content: flex-end;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .photo-frame {
     background: #fff;
-    padding: var(--space-4) var(--space-4) var(--space-16) var(--space-4);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transform: rotate(2deg);
+    padding: var(--space-4);
+    box-shadow: 0 10px 40px rgba(46, 26, 71, 0.08);
     position: relative;
     transition: all var(--transition-slow);
 }
 
 .photo-frame:hover {
-    transform: rotate(0deg) scale(1.03);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(46, 26, 71, 0.15);
 }
 
 .photo-container {
     width: 100%;
-    max-width: 400px;
-    aspect-ratio: 1/1;
+    max-width: 600px;
+    aspect-ratio: 4/5;
     overflow: hidden;
     background: var(--pale-buttercream);
-    border: 1px solid #f0f0f0;
     position: relative;
+    mask-image: var(--mask-torn-paper);
+    -webkit-mask-image: var(--mask-torn-paper);
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
 }
 
 .hero-watercolor-img {
@@ -140,18 +207,6 @@
     display: block;
 }
 
-.glimmer-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.4) 0%,
-            transparent 50%,
-            rgba(255, 255, 255, 0.2) 100%);
-    pointer-events: none;
-}
 
 .hero-decor-paw {
     position: absolute;

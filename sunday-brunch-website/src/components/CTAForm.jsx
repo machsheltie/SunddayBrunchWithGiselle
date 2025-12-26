@@ -124,11 +124,13 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={loading}
                     required
+                    aria-invalid={message.type === 'error' ? 'true' : 'false'}
+                    aria-describedby={message.text ? 'cta-message' : undefined}
                 />
                 <button type="submit" disabled={loading}>{loading ? 'Signing up...' : 'Get updates'}</button>
             </form>
             {message.text && (
-                <div className={`cta__message cta__message--${message.type}`} aria-live="polite">
+                <div id="cta-message" className={`cta__message cta__message--${message.type}`} aria-live="polite">
                     {message.text}
                 </div>
             )}

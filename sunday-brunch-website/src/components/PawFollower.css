@@ -1,0 +1,19 @@
+.paw-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: var(--z-overlay);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(1px);
+}
+
+.paw-follower.is-visible {
+    opacity: 1;
+}
+
+.paw-follower svg {
+    filter: drop-shadow(0 0 12px rgba(46, 26, 71, 0.6));
+}

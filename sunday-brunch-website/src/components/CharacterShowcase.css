@@ -1,0 +1,114 @@
+.character-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-12);
+    padding: var(--space-16) var(--space-4);
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.character-card {
+    text-align: center;
+    padding: var(--space-10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: var(--radius-lg);
+    max-width: 320px;
+    flex: 1 1 300px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--pastel-lavender);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.character-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(155, 89, 182, 0.08);
+    border-color: var(--soft-sakura);
+}
+
+.character-avatar-frame {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: var(--space-8);
+    padding: 8px;
+    background: white;
+    border: 2px solid var(--pastel-lavender);
+    z-index: 2;
+}
+
+.character-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 3;
+}
+
+/* Backing splasg - Sitting strictly BEHIND the image */
+.watercolor-splash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+    z-index: 1;
+    filter: blur(20px);
+    opacity: 0.15;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.character-name {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--midnight-lavender);
+    margin-bottom: var(--space-1);
+    line-height: 1;
+    position: relative;
+    z-index: 4;
+}
+
+.character-role {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dusty-plum);
+    margin-bottom: var(--space-6);
+    position: relative;
+    z-index: 4;
+}
+
+.character-bio {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-8);
+    color: var(--midnight-lavender);
+    max-width: 260px;
+    font-weight: 500;
+    position: relative;
+    z-index: 4;
+}
+
+.character-quote {
+    font-family: var(--font-script);
+    font-size: 2.5rem;
+    color: var(--dusty-plum);
+    line-height: 0.9;
+    max-width: 240px;
+    margin-top: auto;
+    position: relative;
+    z-index: 4;
+}

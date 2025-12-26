@@ -1,0 +1,81 @@
+.recipe-calculator {
+    background: var(--glass-bg);
+    border: 1px dashed var(--pastel-lavender);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.calculator-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.control-label {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--dusty-plum);
+}
+
+.scale-buttons,
+.unit-toggle {
+    display: flex;
+    gap: var(--space-1);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2px;
+    border-radius: var(--radius-full);
+}
+
+.calc-btn {
+    background: transparent;
+    border: none;
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--midnight-lavender);
+}
+
+.calc-btn.is-active {
+    background: var(--pastel-lavender);
+    box-shadow: var(--shadow-sm);
+}
+
+.ingredient-item {
+    display: grid;
+    grid-template-columns: 40px 60px 1fr;
+    gap: var(--space-2);
+    align-items: baseline;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.ing-amount {
+    font-weight: 700;
+    text-align: right;
+    color: var(--midnight-lavender);
+}
+
+.ing-unit {
+    font-style: italic;
+    font-size: var(--text-sm);
+    color: var(--dusty-plum);
+}
+
+.ing-name {
+    color: var(--midnight-lavender);
+}

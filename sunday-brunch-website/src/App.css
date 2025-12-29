@@ -13,10 +13,44 @@ html {
     min-height: 100vh;
 }
 
+.app main {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
 .layout {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-6) var(--space-20);
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: min-content;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Chaos Collage Utilities */
+.chaos-layer {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    position: relative;
+    padding: var(--space-10) var(--space-6);
+}
+
+.collage-item {
+    position: relative;
+    z-index: var(--z-base);
+}
+
+.overlap-top {
+    z-index: var(--z-foreground);
+    margin-top: -5vh;
+}
+
+.overlap-bottom {
+    z-index: var(--z-background);
+    margin-bottom: -10vh;
 }
 
 /* ===== HEADER & NAVIGATION ===== */
@@ -248,9 +282,10 @@ html {
 }
 
 .footer {
+    grid-column: 1 / -1;
     background: linear-gradient(to top, var(--soft-sakura), transparent);
     padding: var(--space-20) var(--space-10);
-    margin: 0 calc(var(--space-6) * -1) 0;
+    margin: 0;
     position: relative;
     display: flex;
     flex-direction: column;

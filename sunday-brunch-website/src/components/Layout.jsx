@@ -5,6 +5,8 @@ import WatercolorFilters from './illustrations/WatercolorFilters'
 import WhimsyLayer from './WhimsyLayer'
 import WhimsicalButton from './WhimsicalButton'
 import PawFollower from './PawFollower'
+import EphemeraEngine from './EphemeraEngine'
+import PrismLayer from './PrismLayer'
 import FloatingActionButtons from './FloatingActionButtons'
 import '../App.css'
 
@@ -20,6 +22,8 @@ function Layout({ children }) {
             <WatercolorFilters />
             <WatercolorCanvas />
             <WhimsyLayer />
+            <EphemeraEngine />
+            <PrismLayer />
             <PawFollower />
             <FloatingActionButtons />
 

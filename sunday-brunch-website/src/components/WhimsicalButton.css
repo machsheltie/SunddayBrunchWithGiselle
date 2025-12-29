@@ -28,8 +28,9 @@
 }
 
 .whimsical-button--nav {
-    background: transparent;
-    border: none;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
     padding: var(--space-2);
     min-width: 80px;
     height: 80px;

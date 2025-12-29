@@ -1,0 +1,97 @@
+.ephemera-engine {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: var(--z-foreground);
+    overflow: hidden;
+}
+
+.ephemera-item {
+    position: absolute;
+    padding: var(--space-4) var(--space-6);
+    pointer-events: auto;
+    cursor: pointer;
+    backdrop-filter: var(--glass-blur);
+    border: var(--crystal-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ephemera-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+}
+
+.ephemera-text {
+    font-family: var(--font-script);
+    font-size: var(--text-lg);
+    color: var(--midnight-lavender);
+    text-align: center;
+    line-height: 1.2;
+    z-index: 1;
+}
+
+.ephemera-scroll {
+    border-radius: 2px 2px 20px 20px;
+    border-left: 8px solid rgba(255, 215, 0, 0.3);
+    clip-path: var(--glass-fracture);
+}
+
+.ephemera-badge {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+}
+
+.ephemera-lantern {
+    border-radius: var(--radius-xl);
+    box-shadow: 0 0 30px rgba(233, 213, 255, 0.3);
+}
+
+.ephemera-glimmer {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ephemera-item:hover .ephemera-glimmer {
+    opacity: 1;
+}
+
+/* Particles */
+.particle-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50% 0 50% 50%;
+    background: var(--soft-sakura);
+    opacity: 0.6;
+}
+
+.petal {
+    width: 15px;
+    height: 15px;
+}

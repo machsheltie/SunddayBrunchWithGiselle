@@ -1,70 +1,68 @@
 .whimsical-hero {
+    min-height: 80vh;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
     background: transparent;
-    border-radius: 0;
     padding: var(--space-20) var(--space-12);
-    margin: 0;
     position: relative;
-    box-shadow: none;
-    border: none;
     overflow: visible;
-    min-height: 80vh;
-    mask-image: var(--mask-torn-paper);
-    -webkit-mask-image: var(--mask-torn-paper);
-    mask-size: 100% 100%;
-}
-
-.whimsical-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 12px;
-    background: repeating-linear-gradient(45deg,
-            var(--pastel-lavender),
-            var(--pastel-lavender) 15px,
-            var(--soft-sakura) 15px,
-            var(--soft-sakura) 30px,
-            var(--pastel-sky) 30px,
-            var(--pastel-sky) 45px);
-    opacity: 0.7;
-    z-index: 5;
-}
-
-/* Glassmorphism Card Effect */
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-8);
-    box-shadow: var(--shadow-md);
 }
 
 .whimsical-hero__content {
     grid-column: 1 / 8;
-    z-index: var(--z-foreground);
-    animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
-    background: transparent;
-    padding: 0;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: none;
-    box-shadow: none;
+    grid-row: 1;
+    z-index: 10;
+    max-width: 600px;
+    mix-blend-mode: multiply;
+}
+
+.whimsical-hero__visual {
+    grid-column: 6 / 13;
+    grid-row: 1;
+    z-index: 5;
+    position: relative;
+    transform: rotate(2deg);
 }
 
 .whimsical-hero__title {
     font-family: var(--font-display);
-    font-size: 8rem;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
     line-height: 0.9;
     color: var(--midnight-lavender);
-    margin-bottom: var(--space-8);
-    letter-spacing: -0.04em;
-    font-weight: 700;
+    margin-bottom: var(--space-6);
+}
+
+.hero-alchemy-graphic {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 300px;
+    height: 300px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.2;
+}
+
+.alchemy-circle {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed var(--pastel-lavender);
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--soft-sakura) 0%, transparent 70%);
+    animation: rotateCircle 20s linear infinite;
+}
+
+@keyframes rotateCircle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .script-accent {

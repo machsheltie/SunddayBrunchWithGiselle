@@ -1,0 +1,43 @@
+.prism-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: var(--z-foreground);
+    overflow: hidden;
+}
+
+.prism-shard {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: var(--prism-blur);
+    -webkit-backdrop-filter: var(--prism-blur);
+    border: var(--crystal-border);
+    clip-path: var(--glass-fracture);
+}
+
+.shard-1 {
+    width: 40vw;
+    height: 60vh;
+    top: -10vh;
+    left: -5vw;
+    opacity: 0.6;
+}
+
+.shard-2 {
+    width: 50vw;
+    height: 40vh;
+    bottom: -5vh;
+    right: -10vw;
+    opacity: 0.4;
+}
+
+.prism-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 40%, rgba(233, 213, 255, 0.05) 100%);
+    pointer-events: none;
+    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.2);
+}

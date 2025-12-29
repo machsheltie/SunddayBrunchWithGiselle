@@ -2,27 +2,21 @@ import React, { useEffect, useRef } from 'react'
 import { WashiTape, PawPrint } from './illustrations/Decorations'
 import { AuteurMotion } from '../lib/AuteurMotion'
 import WhimsicalButton from './WhimsicalButton'
+import { motion } from 'framer-motion'
 import './WhimsicalHero.css'
 
 function WhimsicalHero() {
     const titleRef = useRef(null);
     const visualRef = useRef(null);
 
-    useEffect(() => {
-        // Unmask the massive editorial title
-        if (titleRef.current) {
-            AuteurMotion.revealText(titleRef.current);
-        }
-
-        // Apply physical depth to the photo frame
-        if (visualRef.current) {
-            AuteurMotion.applyDepth(visualRef.current, -0.1);
-        }
-    }, []);
-
     return (
-        <section className="whimsical-hero">
-            <div className="whimsical-hero__content">
+        <section className="whimsical-hero chaos-layer">
+            <motion.div
+                className="whimsical-hero__content collage-item overlap-top"
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+            >
                 <h1 className="whimsical-hero__title" ref={titleRef}>
                     Sunday Brunch <span className="script-accent">with</span> Giselle
                 </h1>
@@ -35,9 +29,15 @@ function WhimsicalHero() {
                     <WhimsicalButton type="primary">Latest Episode</WhimsicalButton>
                     <WhimsicalButton type="secondary" showPaw={false}>Browse Recipes</WhimsicalButton>
                 </div>
-            </div>
+            </motion.div>
 
-            <div className="whimsical-hero__visual" ref={visualRef}>
+            <motion.div
+                className="whimsical-hero__visual collage-item overlap-bottom"
+                ref={visualRef}
+                initial={{ scale: 0.9, opacity: 0, rotate: 5 }}
+                animate={{ scale: 1, opacity: 1, rotate: -2 }}
+                transition={{ duration: 1.2, delay: 0.3 }}
+            >
                 <div className="photo-frame">
                     <WashiTape className="tape-corner" color="var(--pastel-lavender)" />
                     <div className="photo-container">
@@ -50,7 +50,16 @@ function WhimsicalHero() {
                     </div>
                 </div>
                 <PawPrint className="hero-decor-paw" />
-            </div>
+            </motion.div>
+
+            {/* Decorative Alchemical Graphic */}
+            <motion.div
+                className="hero-alchemy-graphic"
+                animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+                <div className="alchemy-circle"></div>
+            </motion.div>
         </section>
     )
 }

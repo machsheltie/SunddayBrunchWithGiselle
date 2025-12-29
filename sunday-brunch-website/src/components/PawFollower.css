@@ -1,19 +1,49 @@
-.paw-follower {
+.paw-follower-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: var(--z-overlay);
+    mix-blend-mode: multiply;
+}
+
+.trail-point {
     position: fixed;
     width: 40px;
     height: 40px;
+    transform-origin: center;
+    animation: fadePaint 30s forwards ease-out;
     pointer-events: none;
-    z-index: var(--z-overlay);
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    filter: blur(1px);
 }
 
-.paw-follower.is-visible {
+.paw-cursor {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.paw-cursor.is-visible {
     opacity: 1;
 }
 
-.paw-follower svg {
-    filter: drop-shadow(0 0 12px rgba(46, 26, 71, 0.6));
+@keyframes fadePaint {
+    0% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    5% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    80% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.2) rotate(20deg);
+    }
 }

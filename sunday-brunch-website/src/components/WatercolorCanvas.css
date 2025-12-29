@@ -10,7 +10,12 @@
     background: var(--pale-buttercream);
 }
 
-.watercolor-canvas::before {
+.watercolor-canvas canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.grain-overlay {
     content: '';
     position: absolute;
     top: 0;
@@ -19,82 +24,5 @@
     height: 100%;
     background-image: var(--paper-grain);
     z-index: 10;
-}
-
-.blob {
-    position: absolute;
-    filter: url(#watercolor-wash) blur(40px);
-    opacity: 0.15;
-    border-radius: 50%;
-    animation: drift 25s infinite alternate ease-in-out;
-}
-
-.blob-1 {
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, var(--soft-sakura) 0%, transparent 70%);
-    top: -200px;
-    left: -200px;
-}
-
-.blob-2 {
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, var(--pastel-lavender) 0%, transparent 70%);
-    bottom: -250px;
-    right: -200px;
-    animation-delay: -5s;
-}
-
-.blob-3 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, var(--pastel-sky) 0%, transparent 70%);
-    top: 20%;
-    right: 10%;
-    animation-duration: 35s;
-}
-
-.blob-4 {
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, var(--light-lemon) 0%, transparent 70%);
-    bottom: 15%;
-    left: 5%;
-    animation-delay: -10s;
-}
-
-.sheltie-blob {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    background: var(--midnight-lavender);
-    opacity: 0.03;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z'/%3E%3C/svg%3E");
-    /* Simple triangle placeholder */
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    filter: blur(2px);
-}
-
-.sheltie-1 {
-    top: 15%;
-    left: 5%;
-    transform: rotate(-15deg);
-}
-
-.sheltie-2 {
-    bottom: 10%;
-    right: 5%;
-    transform: rotate(10deg);
-}
-
-@keyframes drift {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-
-    to {
-        transform: translate(30px, 20px) scale(1.1);
-    }
+    pointer-events: none;
 }

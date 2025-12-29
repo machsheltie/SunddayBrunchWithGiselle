@@ -42,7 +42,7 @@ function Layout({ children }) {
                         <Link to="/episodes/the-pie-that-started-a-dynasty" onClick={() => handleNavClick('Episodes', '/episodes/the-pie-that-started-a-dynasty')}>
                             <WhimsicalButton variant="nav">Episodes</WhimsicalButton>
                         </Link>
-                        <Link to="/#signup" onClick={() => handleNavClick('Newsletter', '/#signup')}>
+                        <Link to="/newsletter" onClick={() => handleNavClick('Newsletter', '/newsletter')}>
                             <WhimsicalButton variant="nav">Newsletter</WhimsicalButton>
                         </Link>
                         <Link to="/recipes">

@@ -7,6 +7,7 @@ import RecipeIndexPage from './pages/RecipeIndexPage'
 import EpisodePage from './pages/EpisodePage'
 import MediaKitPage from './pages/MediaKitPage'
 import TeamPage from './pages/TeamPage'
+import NewsletterPage from './pages/NewsletterPage'
 import NotFound from './pages/NotFound'
 import { trackPageView } from './lib/analytics'
 
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/episodes/:slug" element={<EpisodePage />} />
                 <Route path="/media-kit" element={<MediaKitPage />} />
                 <Route path="/team" element={<TeamPage />} />
+                <Route path="/newsletter" element={<NewsletterPage />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Layout>

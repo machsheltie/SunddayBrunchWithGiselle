@@ -1,108 +1,141 @@
 .sheltie-tip {
     display: flex;
-    gap: var(--space-5);
-    align-items: flex-start;
+    gap: var(--space-6);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
     margin: var(--space-8) 0;
     position: relative;
-    /* Remove old border style */
-    border-left: none;
-    border-radius: 0;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
+    overflow: hidden;
+    transition: transform 0.6s var(--transition-bounce);
+}
+
+.sheltie-tip.should-wiggle {
+    animation: tipEntrance 0.8s var(--transition-bounce);
+}
+
+/* Character Specific Textures & Accents */
+
+/* Giselle: The Queen - Velvet & Gold */
+.sheltie-tip--giselle {
+    border-left: 8px solid #FFD700 !important;
+    box-shadow: 0 10px 30px rgba(184, 134, 11, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 223, 196, 0.8)) !important;
+}
+
+.sheltie-tip--giselle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0z' fill='none'/%3E%3Ccircle cx='10' cy='10' r='1' fill='rgba(255,215,0,0.1)'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Havok: The Knight - Metal & Shield */
+.sheltie-tip--havok {
+    border-left: 8px solid var(--sage-mist) !important;
+    background: linear-gradient(135deg, #f0f0f0, #dcdcdc) !important;
+    border-radius: 4px 20px 4px 20px !important;
+}
+
+.sheltie-tip--havok::after {
+    content: 'RECON';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-family: var(--font-display);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.1);
+}
+
+/* Tiana: The Princess - Sparkle & Pink */
+.sheltie-tip--tiana {
+    border-left: 8px solid var(--soft-sakura) !important;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.2);
+}
+
+.sheltie-tip--tiana .sheltie-tip__avatar-wrapper::after {
+    content: '✨';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 20px;
+}
+
+/* Phaedra: The Sage - Lantern Glow */
+.sheltie-tip--phaedra {
+    border-left: 8px solid var(--pastel-lavender) !important;
+    box-shadow: inset 0 0 50px rgba(233, 213, 255, 0.3);
+}
+
+.sheltie-tip__avatar-wrapper {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.sheltie-tip__avatar {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(var(--shadow-sm));
+    transition: transform var(--transition-base);
 }
 
 .sheltie-tip:hover .sheltie-tip__avatar {
     transform: rotate(5deg) scale(1.1);
 }
 
-.sheltie-tip__avatar-wrapper {
-    flex-shrink: 0;
-    width: 100px;
-    height: 100px;
-}
-
-.sheltie-tip__avatar {
-    width: 100%;
-    height: 100%;
-    /* Drop shadow for depth */
-    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.15));
-    transition: transform var(--transition-base);
-}
-
 .sheltie-tip__body {
-    position: relative;
-    background: var(--warm-white);
-    padding: var(--space-5);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
     flex-grow: 1;
-    border: 2px solid;
-    /* Color driven by modifier */
-}
-
-/* Speech bubble triangle */
-.sheltie-tip__body::before {
-    content: '';
-    position: absolute;
-    left: -12px;
-    top: 30px;
-    width: 20px;
-    height: 20px;
-    background: var(--warm-white);
-    border-left: 2px solid;
-    border-bottom: 2px solid;
-    border-color: inherit;
-    /* Inherits from body border */
-    transform: rotate(45deg);
+    position: relative;
+    z-index: 2;
 }
 
 .sheltie-tip__header {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-3);
     margin-bottom: var(--space-2);
-    border-bottom: 1px dashed rgba(62, 39, 35, 0.2);
-    padding-bottom: var(--space-2);
 }
 
-/* Maintain character specific colors for the border and internal text */
-.sheltie-tip--giselle .sheltie-tip__body {
-    border-color: var(--giselle-color);
-    background: #fdfaff;
+.sheltie-tip__name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--midnight-lavender);
+    line-height: 1;
 }
 
-.sheltie-tip--phaedra .sheltie-tip__body {
-    border-color: var(--phaedra-color);
-    background: #fafdff;
+.sheltie-tip__title {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dusty-plum);
 }
 
-.sheltie-tip--tiana .sheltie-tip__body {
-    border-color: var(--tiana-color);
-    background: #fffff8;
+.sheltie-tip__content {
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--midnight-lavender);
 }
 
-.sheltie-tip--havok .sheltie-tip__body {
-    border-color: var(--havok-color);
-    background: #fffcfc;
+.sheltie-tip__content p {
+    margin: 0;
 }
 
-
-@media print {
-    .sheltie-tip {
-        border: 1px solid #ddd;
-        box-shadow: none;
-        page-break-inside: avoid;
+@keyframes tipEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) rotate(2deg);
     }
-}
-.should-wiggle .sheltie-tip__avatar-wrapper {
-    animation: sheltie-wiggle 1s ease-in-out;
-}
 
-@keyframes sheltie-wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    20% { transform: rotate(-10deg) scale(1.1); }
-    40% { transform: rotate(10deg) scale(1.1); }
-    60% { transform: rotate(-10deg) scale(1.1); }
-    80% { transform: rotate(10deg) scale(1.1); }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
 }

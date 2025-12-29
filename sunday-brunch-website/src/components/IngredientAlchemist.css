@@ -1,0 +1,126 @@
+.ingredient-alchemist {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    margin: var(--space-12) 0;
+}
+
+.alchemist-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.alchemist-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--space-2);
+}
+
+.alchemist-header h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--midnight-lavender);
+    margin: 0;
+}
+
+.alchemist-subtitle {
+    font-family: var(--font-script);
+    font-size: var(--text-xl);
+    color: var(--dusty-plum);
+}
+
+.alchemist-search {
+    margin-bottom: var(--space-8);
+}
+
+.alchemist-search input {
+    width: 100%;
+    padding: var(--space-4);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--midnight-lavender);
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.alchemist-search input:focus {
+    box-shadow: 0 0 15px rgba(233, 213, 255, 0.4);
+}
+
+.alchemist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-4);
+}
+
+.sub-card {
+    background: white;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    cursor: pointer;
+    transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s ease;
+}
+
+.sub-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.sub-card.is-selected {
+    grid-column: 1 / -1;
+    cursor: default;
+    transform: none;
+}
+
+.original-name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--midnight-lavender);
+    display: block;
+}
+
+.sub-card__details {
+    margin-top: var(--space-4);
+    border-top: 1px dashed var(--glass-border);
+    padding-top: var(--space-4);
+    overflow: hidden;
+}
+
+.alt-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.alt-name {
+    font-weight: 700;
+    color: var(--midnight-lavender);
+}
+
+.alt-ratio {
+    color: var(--dusty-plum);
+    font-size: var(--text-sm);
+    font-style: italic;
+}
+
+.alchemist-tip {
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    background: var(--pale-buttercream);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    color: var(--midnight-lavender);
+    line-height: var(--leading-relaxed);
+}
+
+.alchemist-tip strong {
+    color: #b8860b;
+}

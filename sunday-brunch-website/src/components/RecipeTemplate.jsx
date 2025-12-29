@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import ToolsUsed from './ToolsUsed'
 import RelatedContent from './RelatedContent'
 import JumpToRecipe from './JumpToRecipe'
@@ -7,12 +7,42 @@ import RecipeCalculator from './RecipeCalculator'
 import { WashiTape, PawPrint } from './illustrations/Decorations'
 import PinterestButton from './PinterestButton'
 import RecipeReviews from './RecipeReviews'
+import ProcessStep from './ProcessStep'
+import IngredientAlchemist from './IngredientAlchemist'
 import { trackPrint, trackCopy } from '../lib/analytics'
 import './RecipeTemplate.css'
 
 function RecipeTemplate({ recipe }) {
     const [copied, setCopied] = useState(false)
     const [checkedIngredients, setCheckedIngredients] = useState({})
+
+    const recipeSchema = useMemo(() => {
+        return {
+            "@context": "https://schema.org/",
+            "@type": "Recipe",
+            "name": recipe.title,
+            "image": [recipe.image],
+            "author": {
+                "@type": "Person",
+                "name": "Sunday Brunch with Giselle"
+            },
+            "datePublished": recipe.date || "2024-12-29",
+            "description": recipe.story ? recipe.story[0] : "",
+            "prepTime": recipe.times?.prepISO || "PT20M",
+            "cookTime": recipe.times?.cookISO || "PT30M",
+            "totalTime": recipe.times?.totalISO || "PT50M",
+            "recipeYield": recipe.yield,
+            "recipeCategory": "Dessert",
+            "recipeCuisine": "Whimsical",
+            "recipeIngredient": recipe.ingredients.map(ing =>
+                `${ing.amount} ${ing.unit} ${ing.name}`
+            ),
+            "recipeInstructions": recipe.steps.map(step => ({
+                "@type": "HowToStep",
+                "text": step
+            }))
+        };
+    }, [recipe]);
 
     const toggleIngredient = (idx) => {
         setCheckedIngredients(prev => ({
@@ -39,6 +69,9 @@ function RecipeTemplate({ recipe }) {
 
     return (
         <>
+            <script type="application/ld+json">
+                {JSON.stringify(recipeSchema)}
+            </script>
             <JumpToRecipe />
             <div className="recipe-container">
                 {/* Magical Watercolor Floaters */}
@@ -110,14 +143,20 @@ function RecipeTemplate({ recipe }) {
                                 initialIngredients={recipe.ingredients}
                                 initialYield={recipe.yield}
                             />
+                            <IngredientAlchemist />
                         </div>
                         <div>
                             <h4>Steps</h4>
-                            <ol className="recipe__steps">
+                            <div className="recipe__steps-container">
                                 {recipe.steps.map((step, idx) => (
-                                    <li key={idx}>{step}</li>
+                                    <ProcessStep
+                                        key={idx}
+                                        stepNumber={idx + 1}
+                                        content={typeof step === 'string' ? step : step.content}
+                                        image={step.image}
+                                    />
                                 ))}
-                            </ol>
+                            </div>
                         </div>
                     </div>
 

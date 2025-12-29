@@ -1,45 +1,55 @@
-import { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { formatAlchemicalAmount, getAlchemistReaction } from '../lib/culinaryUtils';
 import './RecipeCalculator.css';
 
 const RecipeCalculator = ({ initialIngredients, initialYield = 1 }) => {
     const [scale, setScale] = useState(1);
     const [isMetric, setIsMetric] = useState(false);
+    const sliderRef = useRef(null);
+    const ingredientsRef = useRef(null);
 
-    const formatAmount = (amount) => {
-        if (typeof amount !== 'number') return amount;
-        const scaled = amount * scale;
-        // Simple decimal to fraction or 2 decimal places
-        return Number(scaled.toFixed(2)).toString();
-    };
+    // Animate ingredients when scale changes
+    useEffect(() => {
+        if (ingredientsRef.current) {
+            gsap.fromTo(ingredientsRef.current.querySelectorAll('.ingredient-item'),
+                { opacity: 0.5, x: -5 },
+                { opacity: 1, x: 0, duration: 0.4, stagger: 0.05, ease: 'back.out(2)' }
+            );
+        }
+    }, [scale, isMetric]);
 
     return (
-        <div className="recipe-calculator">
-            <div className="calculator-controls">
+        <div className="recipe-calculator alchemist-card">
+            <div className="alchemist-controls">
                 <div className="control-group">
-                    <span className="control-label">Scale:</span>
-                    <div className="scale-buttons">
-                        {[0.5, 1, 2].map((s) => (
-                            <button
-                                key={s}
-                                className={`calc-btn ${scale === s ? 'is-active' : ''}`}
-                                onClick={() => setScale(s)}
-                            >
-                                {s}x
-                            </button>
-                        ))}
+                    <label className="alchemist-label">Alchemical Scale</label>
+                    <div className="slider-container">
+                        <input
+                            ref={sliderRef}
+                            type="range"
+                            min="0.5"
+                            max="3"
+                            step="0.5"
+                            value={scale}
+                            onChange={(e) => setScale(parseFloat(e.target.value))}
+                            className="alchemist-slider"
+                        />
+                        <div className="scale-display">{scale}x</div>
                     </div>
                 </div>
+
                 <div className="control-group">
-                    <span className="control-label">Units:</span>
-                    <div className="unit-toggle">
+                    <label className="alchemist-label">Unit System</label>
+                    <div className="alchemist-toggle">
                         <button
-                            className={`calc-btn ${!isMetric ? 'is-active' : ''}`}
+                            className={`alchemist-btn ${!isMetric ? 'is-active' : ''}`}
                             onClick={() => setIsMetric(false)}
                         >
-                            US
+                            Imperial
                         </button>
                         <button
-                            className={`calc-btn ${isMetric ? 'is-active' : ''}`}
+                            className={`alchemist-btn ${isMetric ? 'is-active' : ''}`}
                             onClick={() => setIsMetric(true)}
                         >
                             Metric
@@ -48,17 +58,23 @@ const RecipeCalculator = ({ initialIngredients, initialYield = 1 }) => {
                 </div>
             </div>
 
-            <ul className="recipe__list">
-                {initialIngredients.map((ing, idx) => {
-                    // Fallback for old string format
-                    if (typeof ing === 'string') return <li key={idx}>{ing}</li>;
+            {/* Persona Reaction Box */}
+            <div className="alchemist-reaction">
+                <div className="reaction-bubble">
+                    <p>{getAlchemistReaction(scale)}</p>
+                </div>
+            </div>
 
+            <ul className="recipe__list alchemist-list" ref={ingredientsRef}>
+                {initialIngredients.map((ing, idx) => {
                     const amount = isMetric ? ing.metricAmount : ing.amount;
                     const unit = isMetric ? ing.metricUnit : ing.unit;
 
+                    if (!amount) return <li key={idx} className="ingredient-item">{ing.name || ing}</li>;
+
                     return (
                         <li key={idx} className="ingredient-item">
-                            <span className="ing-amount">{formatAmount(amount)}</span>
+                            <span className="ing-amount">{formatAlchemicalAmount(amount * scale)}</span>
                             <span className="ing-unit">{unit}</span>
                             <span className="ing-name">{ing.name}</span>
                         </li>

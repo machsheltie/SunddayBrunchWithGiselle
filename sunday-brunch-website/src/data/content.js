@@ -1,21 +1,39 @@
 export const recipes = [
     {
-        slug: 'placeholder-cake-1',
-        title: 'Your Delicious Cake Recipe',
+        slug: 'giselles-royal-velvet-cake',
+        title: "Giselle's Royal Velvet Cake",
         category: 'Cakes',
         skill: 'Intermediate',
         dietary: ['Vegetarian'],
         occasion: 'Birthdays',
         tags: ['Chocolate', 'Celebration', 'Layer Cake'],
-        image: '/images/recipes/whimsical-layer-cake.png',
-        story: ['Placeholder for your whimsical story.'],
-        times: { prep: '--', cook: '--', total: '--' },
-        yield: '--',
-        ingredients: ['Ingredient 1', 'Ingredient 2'],
-        steps: ['Step 1', 'Step 2'],
-        tools: [],
+        image: '/images/recipes/royal-velvet-cake.png',
+        story: [
+            "Darling, a Velvet Cake isn't just a dessert; it's a declaration of standards. It must be as smooth as silk and twice as dramatic.",
+            "This recipe uses a touch extra cocoa and just the right amount of alchemical precision to ensure every crumb is worthy of a crown."
+        ],
+        times: { prep: '25 min', cook: '35 min', total: '1 hr' },
+        prepISO: 'PT25M',
+        cookISO: 'PT35M',
+        totalISO: 'PT1H',
+        yield: '12 servings',
+        ingredients: [
+            { name: "Cake Flour", amount: 2.5, unit: "cups", metricAmount: 315, metricUnit: "g" },
+            { name: "Unsweetened Cocoa Powder", amount: 2, unit: "tbsp", metricAmount: 15, metricUnit: "g" },
+            { name: "Baking Soda", amount: 1, unit: "tsp", metricAmount: 5, metricUnit: "g" },
+            { name: "Unsalted Butter, softened", amount: 0.5, unit: "cups", metricAmount: 115, metricUnit: "g" },
+            { name: "Granulated Sugar", amount: 1.5, unit: "cups", metricAmount: 300, metricUnit: "g" },
+            { name: "Large Eggs", amount: 2, unit: "pcs", metricAmount: 2, metricUnit: "pcs" },
+            { name: "Buttermilk", amount: 1, unit: "cups", metricAmount: 240, metricUnit: "ml" }
+        ],
+        steps: [
+            { content: "Preheat your oven to 350°F (175°C) and grease two 9-inch round cake pans. Sift together the cake flour, cocoa, and baking soda.", image: "/images/recipes/process/sifting.png" },
+            { content: "In a standing mixer, cream the butter and sugar until light and fluffy. Add eggs one at a time, ensuring a regal emulsion.", image: "/images/recipes/process/creaming.png" },
+            { content: "Gradually add the dry ingredients alternately with the buttermilk, beginning and ending with the flour mixture.", image: "/images/recipes/process/mixing.png" }
+        ],
+        tools: ['Standing Mixer', 'Sifter', '9-inch Cake Pans'],
         related: [],
-        meta: { description: 'Placeholder' }
+        meta: { description: "Giselle's signature Royal Velvet Cake recipe – artistic, sophisticated, and utterly delicious." }
     },
     {
         slug: 'placeholder-cookie-1',

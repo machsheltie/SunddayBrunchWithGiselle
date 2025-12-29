@@ -287,7 +287,70 @@
     .recipe__two-col {
         gap: var(--space-6);
     }
+
+    /* Hide non-recipe elements */
+    .header,
+    .footer,
+    .nav,
+    .whimsy-layer,
+    .paw-follower-layer,
+    .ephemera-engine,
+    .prism-layer,
+    .watercolor-canvas,
+    .jump-to-recipe,
+    .floating-action-buttons,
+    .pins-wrapper,
+    .recipe__actions,
+    .recipe-reviews,
+    .recipe__extras {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .recipe-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .recipe {
+        box-shadow: none !important;
+        border: 1px solid #eee !important;
+        padding: 2cm !important;
+        width: 100% !important;
+        min-height: auto !important;
+        background: white !important;
+    }
+
+    .recipe__title {
+        font-size: 24pt !important;
+        color: black !important;
+    }
+
+    .alchemist-card {
+        border: 1px solid #eee !important;
+        background: white !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+
+    .alchemist-controls,
+    .alchemist-reaction {
+        display: none !important;
+    }
+
+    /* Deckle edge simulation for print */
+    .recipe {
+        position: relative;
+        border: 1px solid #000;
+    }
 }
+
 /* Baker's Prep Styles */
 .bakers-prep {
     background: rgba(226, 114, 91, 0.05);

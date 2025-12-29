@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import './JumpToRecipe.css'
 
 function JumpToRecipe({ targetId = 'jump-to-recipe' }) {
@@ -6,10 +7,8 @@ function JumpToRecipe({ targetId = 'jump-to-recipe' }) {
 
     useEffect(() => {
         const handleScroll = () => {
-            // Show button after scrolling 300px
-            setIsVisible(window.scrollY > 300)
+            setIsVisible(window.scrollY > 400)
         }
-
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
@@ -24,15 +23,21 @@ function JumpToRecipe({ targetId = 'jump-to-recipe' }) {
     if (!isVisible) return null
 
     return (
-        <button
-            className="jump-to-recipe"
-            data-paw-color="light"
+        <motion.button
+            className="jump-to-recipe alchemist-jump"
             onClick={handleClick}
+            initial={{ opacity: 0, scale: 0.5, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            whileHover={{
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                boxShadow: "0 0 20px rgba(233, 213, 255, 0.6)"
+            }}
             aria-label="Jump to recipe"
         >
-            <span className="jump-to-recipe__icon">↓</span>
-            <span className="jump-to-recipe__text">Jump to Recipe</span>
-        </button>
+            <span className="alchemist-jump__icon">📜</span>
+            <span className="alchemist-jump__text">Jump to Spell</span>
+        </motion.button>
     )
 }
 

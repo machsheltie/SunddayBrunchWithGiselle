@@ -1,73 +1,144 @@
-.recipe-calculator {
+.alchemist-card {
     background: var(--glass-bg);
-    border: 1px dashed var(--pastel-lavender);
-    border-radius: var(--radius-md);
-    padding: var(--space-4);
-    margin-bottom: var(--space-6);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
 }
 
-.calculator-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-6);
-    margin-bottom: var(--space-6);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid var(--glass-border);
+.alchemist-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
 }
 
-.control-group {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-}
-
-.control-label {
+.alchemist-label {
+    display: block;
     font-family: var(--font-display);
     font-size: var(--text-sm);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--dusty-plum);
+    letter-spacing: 0.1em;
+    color: var(--midnight-lavender);
+    margin-bottom: var(--space-4);
 }
 
-.scale-buttons,
-.unit-toggle {
+/* Custom Range Slider */
+.alchemist-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--pastel-lavender);
+    border-radius: 2px;
+    outline: none;
+}
+
+.alchemist-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--soft-sakura);
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease;
+}
+
+.alchemist-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.scale-display {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--midnight-lavender);
+    text-align: center;
+    margin-top: var(--space-2);
+}
+
+/* Alchemist Toggle */
+.alchemist-toggle {
     display: flex;
-    gap: var(--space-1);
-    background: rgba(255, 255, 255, 0.3);
-    padding: 2px;
-    border-radius: var(--radius-full);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px;
+    border-radius: 30px;
 }
 
-.calc-btn {
-    background: transparent;
+.alchemist-btn {
+    flex: 1;
     border: none;
-    padding: var(--space-1) var(--space-4);
-    border-radius: var(--radius-full);
+    background: transparent;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 25px;
     font-family: var(--font-body);
+    font-weight: 600;
     font-size: var(--text-xs);
     cursor: pointer;
-    transition: all 0.2s ease;
-    color: var(--midnight-lavender);
+    transition: all 0.3s ease;
 }
 
-.calc-btn.is-active {
-    background: var(--pastel-lavender);
+.alchemist-btn.is-active {
+    background: white;
+    color: var(--midnight-lavender);
     box-shadow: var(--shadow-sm);
 }
 
+/* Reaction Bubble */
+.alchemist-reaction {
+    margin-bottom: var(--space-6);
+}
+
+.reaction-bubble {
+    background: var(--pale-buttercream);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--pastel-lavender);
+    position: relative;
+}
+
+.reaction-bubble p {
+    margin: 0;
+    font-family: var(--font-script);
+    font-size: var(--text-lg);
+    color: var(--midnight-lavender);
+}
+
+.reaction-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 20px;
+    width: 15px;
+    height: 15px;
+    background: var(--pale-buttercream);
+    border-right: 1px dashed var(--pastel-lavender);
+    border-bottom: 1px dashed var(--pastel-lavender);
+    transform: rotate(45deg);
+}
+
+.alchemist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .ingredient-item {
-    display: grid;
-    grid-template-columns: 40px 60px 1fr;
-    gap: var(--space-2);
-    align-items: baseline;
     padding: var(--space-2) 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: var(--space-2);
+    font-family: var(--font-body);
 }
 
 .ing-amount {
     font-weight: 700;
-    text-align: right;
     color: var(--midnight-lavender);
+    min-width: 40px;
 }
 
 .ing-unit {

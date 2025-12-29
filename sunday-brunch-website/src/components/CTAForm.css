@@ -72,35 +72,8 @@
     min-height: 100px;
 }
 
-.cta__form button {
-    background: var(--midnight-lavender);
-    color: var(--pale-buttercream);
-    border: none;
-    padding: var(--space-3) var(--space-6);
-    border-radius: var(--radius-full);
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    font-weight: 700;
-    cursor: pointer;
-    transition: all var(--transition-base);
-    box-shadow: 0 4px 0 var(--pastel-lavender);
+.cta__form .whimsical-button {
     white-space: nowrap;
-}
-
-.cta__form button:hover:not(:disabled) {
-    background: #1e1130;
-    box-shadow: 0 6px 0 var(--pastel-lavender);
-    transform: translateY(-2px);
-}
-
-.cta__form button:active:not(:disabled) {
-    transform: translateY(2px);
-    box-shadow: none;
-}
-
-.cta__form button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .cta__message {

@@ -102,6 +102,7 @@ const WhimsicalButton = ({
         <button
             ref={buttonRef}
             className={`whimsical-button whimsical-button--${type} whimsical-button--${variant} ${className}`}
+            data-paw-color={type === 'primary' ? 'light' : 'dark'}
             onClick={handleClick}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

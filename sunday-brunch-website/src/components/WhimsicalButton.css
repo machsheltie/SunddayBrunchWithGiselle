@@ -16,15 +16,16 @@
 }
 
 .whimsical-button--primary {
-    background: var(--lavender-wash);
-    color: var(--midnight-lavender);
-    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.1);
+    background: var(--midnight-lavender);
+    color: var(--pale-buttercream);
+    box-shadow: 0 4px 15px rgba(46, 26, 71, 0.2);
 }
 
 .whimsical-button--secondary {
     background: white;
     color: var(--midnight-lavender);
     border: 2px solid var(--pastel-lavender);
+    box-shadow: 0 2px 8px rgba(155, 89, 182, 0.05);
 }
 
 .whimsical-button--nav {
@@ -38,7 +39,6 @@
     justify-content: center;
     color: var(--midnight-lavender);
     border-radius: 0;
-    /* Paw mask will handle shape */
 }
 
 .whimsical-button__nav-bg {
@@ -144,6 +144,7 @@
         opacity: 0;
     }
 }
+
 .flour-particle {
     position: absolute;
     pointer-events: none;

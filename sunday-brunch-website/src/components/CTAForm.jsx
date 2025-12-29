@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { subscribeToNewsletter } from '../services/convertkit'
 import { sendSponsorInquiry } from '../services/sponsor'
 import { trackEvent } from '../lib/analytics'
+import WhimsicalButton from './WhimsicalButton'
 import './CTAForm.css'
 
 function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday letters, early drops.', mode = 'subscribe' }) {
@@ -98,7 +99,9 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
                         required
                         disabled={loading}
                     />
-                    <button type="submit" disabled={loading}>{loading ? 'Sending...' : 'Send'}</button>
+                    <WhimsicalButton type="primary" disabled={loading}>
+                        {loading ? 'Sending...' : 'Send'}
+                    </WhimsicalButton>
                 </form>
                 {message.text && (
                     <div className={`cta__message cta__message--${message.type}`} aria-live="polite">
@@ -127,7 +130,9 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
                     aria-invalid={message.type === 'error' ? 'true' : 'false'}
                     aria-describedby={message.text ? 'cta-message' : undefined}
                 />
-                <button type="submit" disabled={loading}>{loading ? 'Signing up...' : 'Get updates'}</button>
+                <WhimsicalButton type="primary" disabled={loading}>
+                    {loading ? 'Signing up...' : 'Get updates'}
+                </WhimsicalButton>
             </form>
             {message.text && (
                 <div id="cta-message" className={`cta__message cta__message--${message.type}`} aria-live="polite">

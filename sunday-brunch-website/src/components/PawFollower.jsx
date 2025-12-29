@@ -42,7 +42,11 @@ const PawFollower = () => {
             className={`paw-follower ${isVisible ? 'is-visible' : ''}`}
             aria-hidden="true"
         >
-            <PawPrint color={pawColor} opacity="0.9" />
+            <PawPrint
+                color={pawColor}
+                opacity="0.9"
+                style={{ transition: 'fill 0.3s ease' }}
+            />
         </div>
     );
 };

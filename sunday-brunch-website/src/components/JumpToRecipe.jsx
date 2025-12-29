@@ -26,6 +26,7 @@ function JumpToRecipe({ targetId = 'jump-to-recipe' }) {
     return (
         <button
             className="jump-to-recipe"
+            data-paw-color="light"
             onClick={handleClick}
             aria-label="Jump to recipe"
         >

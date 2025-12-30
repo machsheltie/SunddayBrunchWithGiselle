@@ -9,6 +9,20 @@
     pointer-events: none;
 }
 
+.hubbub-toggle {
+    background: var(--glass-bg);
+}
+
+.hubbub-toggle.is-active {
+    background: var(--pale-buttercream);
+    box-shadow: 0 0 15px var(--soft-sakura);
+    border-color: var(--soft-sakura);
+}
+
+.hubbub-icon {
+    font-size: 1.5rem;
+}
+
 .floating-actions.is-visible {
     opacity: 1;
     transform: translateY(0);

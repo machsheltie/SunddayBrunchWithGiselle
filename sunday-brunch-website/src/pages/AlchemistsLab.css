@@ -1,0 +1,75 @@
+.alchemists-lab {
+    padding-top: var(--space-20);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.lab-hero {
+    text-align: center;
+    position: relative;
+    margin-bottom: var(--space-16);
+    padding: var(--space-12) 0;
+}
+
+.lab-tape {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.lab-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: var(--midnight-lavender);
+    line-height: 0.9;
+    margin-bottom: var(--space-4);
+}
+
+.lab-subtitle {
+    font-family: var(--font-script);
+    font-size: var(--text-2xl);
+    color: var(--dusty-plum);
+}
+
+.lab-decor-whisk {
+    position: absolute;
+    right: -50px;
+    bottom: 0;
+    width: 100px;
+    opacity: 0.1;
+    transform: rotate(15deg);
+}
+
+.lab-intro {
+    background: var(--pale-buttercream);
+    border: 1px dashed var(--pastel-lavender);
+    padding: var(--space-8);
+    margin-bottom: var(--space-12);
+}
+
+.baking-science-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+.science-card {
+    padding: var(--space-8);
+    position: relative;
+}
+
+.card-icon {
+    width: 80px;
+    opacity: 0.1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+@media (max-width: 768px) {
+    .baking-science-cards {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,20 @@
+.sheltie-sightings {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100px;
+    pointer-events: none;
+    z-index: var(--z-background);
+    overflow: hidden;
+}
+
+.sighting-wrapper {
+    position: absolute;
+    bottom: -10px;
+}
+
+.sighting-silhouette {
+    width: 120px;
+    height: 100px;
+}

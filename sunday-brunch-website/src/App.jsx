@@ -8,6 +8,7 @@ import EpisodePage from './pages/EpisodePage'
 import MediaKitPage from './pages/MediaKitPage'
 import TeamPage from './pages/TeamPage'
 import NewsletterPage from './pages/NewsletterPage'
+import AlchemistsLab from './pages/AlchemistsLab'
 import NotFound from './pages/NotFound'
 import { trackPageView } from './lib/analytics'
 
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/media-kit" element={<MediaKitPage />} />
                 <Route path="/team" element={<TeamPage />} />
                 <Route path="/newsletter" element={<NewsletterPage />} />
+                <Route path="/lab" element={<AlchemistsLab />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Layout>

@@ -8,6 +8,7 @@ import PawFollower from './PawFollower'
 import EphemeraEngine from './EphemeraEngine'
 import PrismLayer from './PrismLayer'
 import FloatingActionButtons from './FloatingActionButtons'
+import SheltieSightings from './SheltieSightings'
 import '../App.css'
 
 function Layout({ children }) {
@@ -24,6 +25,7 @@ function Layout({ children }) {
             <WhimsyLayer />
             <EphemeraEngine />
             <PrismLayer />
+            <SheltieSightings />
             <PawFollower />
             <FloatingActionButtons />
 
@@ -48,6 +50,9 @@ function Layout({ children }) {
                         </Link>
                         <Link to="/newsletter" onClick={() => handleNavClick('Newsletter', '/newsletter')}>
                             <WhimsicalButton variant="nav">Newsletter</WhimsicalButton>
+                        </Link>
+                        <Link to="/lab" onClick={() => handleNavClick('The Lab', '/lab')}>
+                            <WhimsicalButton variant="nav">The Lab</WhimsicalButton>
                         </Link>
                         <Link to="/recipes">
                             <WhimsicalButton

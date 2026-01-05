@@ -6,9 +6,10 @@ import SheltieTip from './SheltieTip'
 import RecipeCalculator from './RecipeCalculator'
 import { WashiTape, PawPrint } from './illustrations/Decorations'
 import PinterestButton from './PinterestButton'
-import RecipeReviews from './RecipeReviews'
+import GiselleGuestbook from './GiselleGuestbook'
 import ProcessStep from './ProcessStep'
 import IngredientAlchemist from './IngredientAlchemist'
+import ThePantry from './ThePantry'
 import { trackPrint, trackCopy } from '../lib/analytics'
 import './RecipeTemplate.css'
 
@@ -138,6 +139,7 @@ function RecipeTemplate({ recipe }) {
 
                     <div className="recipe__two-col">
                         <div>
+                            <ThePantry ingredients={recipe.ingredients} />
                             <h4>Ingredients</h4>
                             <RecipeCalculator
                                 initialIngredients={recipe.ingredients}
@@ -168,7 +170,7 @@ function RecipeTemplate({ recipe }) {
                     <div className="recipe__extras">
                     </div>
 
-                    <RecipeReviews recipeSlug={recipe.slug} />
+                    <GiselleGuestbook recipeSlug={recipe.slug} />
                 </div>
 
                 <div className="recipe__extras">

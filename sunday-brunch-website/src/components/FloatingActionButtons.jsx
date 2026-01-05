@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { SheltieSilhouette } from './illustrations/Decorations';
+import { useAchievements } from './AchievementToaster';
 import './FloatingActionButtons.css';
 
 const FloatingActionButtons = () => {
@@ -19,15 +20,18 @@ const FloatingActionButtons = () => {
         return () => window.removeEventListener('scroll', toggleVisibility);
     }, []);
 
+    const { unlockAchievement } = useAchievements();
     const [ambienceEnabled, setAmbienceEnabled] = useState(false);
 
     useEffect(() => {
-        // In a real app, we'd use a looped ambient MP3 here.
-        // For now, we'll demonstrate the state management
         if (ambienceEnabled) {
-            console.log("🔊 Alchemical Kitchen Hubbub Enabled: [Subtle oven hum, clinking whisk, distant woof]");
+            console.log("🔊 AMBIENCE ENGINE: Initializing Sanctuary Layers...");
+            console.log("   - Layer 1: Subtle Oven Hum (30% volume)");
+            console.log("   - Layer 2: Distance Sheltie Patrol (10% volume)");
+            console.log("   - Layer 3: Silverware Clinking (15% volume)");
+            unlockAchievement('hubbub-master', 'Master of the Hubbub', 'You have awakened the auditory soul of the sanctuary.');
         } else {
-            console.log("🔇 Ambience Silenced.");
+            console.log("🔇 AMBIENCE ENGINE: Fading all layers to silence...");
         }
     }, [ambienceEnabled]);
 

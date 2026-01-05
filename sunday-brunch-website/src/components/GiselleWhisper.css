@@ -1,80 +1,78 @@
 .giselle-whisper {
+    position: absolute;
+    width: 250px;
+    z-index: 100;
+}
+
+.whisper--right {
+    right: -100px;
+    top: 50px;
+}
+
+.whisper--left {
+    left: -100px;
+    top: 150px;
+}
+
+.whisper-paper {
+    background: #fff;
+    padding: var(--space-4);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transform: perspective(1000px) rotateY(-5deg);
+    position: relative;
+}
+
+.whisper-header {
     display: flex;
-    align-items: flex-end;
-    gap: var(--space-4);
-    z-index: var(--z-foreground);
-    pointer-events: auto;
-    filter: drop-shadow(0 10px 20px rgba(46, 26, 71, 0.15));
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px dashed var(--pastel-lavender);
+    padding-bottom: var(--space-2);
 }
 
-.giselle-whisper__avatar-wrap {
-    width: 80px;
-    height: 80px;
-    position: relative;
-    border: 3px solid var(--white);
-    border-radius: 50%;
-    box-shadow: var(--shadow-md);
-    flex-shrink: 0;
+.whisper-avatar {
+    width: 32px;
+    height: 32px;
 }
 
-.giselle-whisper__avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.giselle-whisper__badge {
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--terracotta-spark);
-    color: white;
-    font-size: 0.65rem;
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: var(--radius-full);
-    white-space: nowrap;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.giselle-whisper__bubble {
-    background: var(--white);
-    padding: var(--space-4) var(--space-6);
-    border-radius: 20px 20px 20px 0;
-    max-width: 250px;
-    position: relative;
-    border: 2px solid var(--pastel-lavender);
-}
-
-.giselle-whisper__text {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    line-height: var(--leading-snug);
+.whisper-label {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
     color: var(--midnight-lavender);
-    margin: 0;
-    font-style: italic;
+    text-transform: uppercase;
 }
 
-.giselle-whisper__tail {
+.whisper-content {
+    font-family: var(--font-script);
+    font-size: var(--text-lg);
+    color: var(--dusty-plum);
+    line-height: 1.3;
+}
+
+.whisper-tape {
     position: absolute;
-    bottom: -2px;
-    left: -10px;
-    width: 20px;
+    top: -15px;
+    left: 40%;
+    width: 60px;
     height: 20px;
-    background: var(--white);
-    border-left: 2px solid var(--pastel-lavender);
-    border-bottom: 2px solid var(--pastel-lavender);
-    transform: skewX(45deg);
-    border-radius: 0 0 0 5px;
-    z-index: -1;
+    background: var(--soft-sakura);
+    opacity: 0.6;
+    transform: rotate(-2deg);
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
     .giselle-whisper {
-        display: none;
-        /* Hide on small screens to avoid clutter */
+        position: relative;
+        width: 100%;
+        right: 0;
+        left: 0;
+        top: 0;
+        margin: var(--space-6) 0;
+    }
+
+    .whisper-paper {
+        transform: none;
     }
 }

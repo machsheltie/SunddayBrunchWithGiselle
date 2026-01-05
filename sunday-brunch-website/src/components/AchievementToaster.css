@@ -1,0 +1,81 @@
+.achievement-container {
+    position: fixed;
+    top: var(--space-8);
+    right: var(--space-8);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    pointer-events: none;
+}
+
+.achievement-toast {
+    background: var(--midnight-lavender);
+    color: white;
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    box-shadow:
+        0 10px 25px -5px rgba(0, 0, 0, 0.3),
+        0 8px 10px -6px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    min-width: 300px;
+    pointer-events: auto;
+}
+
+.toast-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--terracotta-spark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.toast-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.toast-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.toast-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    font-weight: 700;
+}
+
+.ach-name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    margin: 0;
+    color: var(--soft-sakura);
+}
+
+.ach-desc {
+    font-size: var(--text-xs);
+    margin: 0;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .achievement-container {
+        top: auto;
+        bottom: var(--space-4);
+        right: var(--space-4);
+        left: var(--space-4);
+    }
+
+    .achievement-toast {
+        min-width: 0;
+    }
+}

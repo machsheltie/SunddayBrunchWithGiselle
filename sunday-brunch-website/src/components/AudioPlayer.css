@@ -1,60 +1,152 @@
-.audio {
-    border: 1px solid var(--pastel-sky);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
-    margin-bottom: var(--space-4);
+.alchemical-tuner {
+    margin: var(--space-8) 0;
+    max-width: 500px;
+}
+
+.tuner-glass {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
 }
 
-.audio__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--space-2);
+.tuner-header {
+    text-align: center;
+    margin-bottom: var(--space-4);
 }
 
-.audio__title {
-    font-size: var(--text-lg);
-    margin: 0;
-    color: var(--midnight-lavender);
+.tuner-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dusty-plum);
+    opacity: 0.7;
+}
+
+.tuner-title {
     font-family: var(--font-display);
-}
-
-.audio__player {
-    width: 100%;
-}
-
-.audio__fallback {
-    background: var(--pastel-sky);
-    border: 1px dashed var(--pastel-lavender);
-    border-radius: var(--radius-md);
-    padding: var(--space-3);
+    font-size: var(--text-2xl);
     color: var(--midnight-lavender);
-    font-size: var(--text-sm);
+    margin: 0;
 }
 
-.audio__links a {
-    margin-right: var(--space-4);
-    font-weight: 600;
-    color: var(--midnight-lavender);
-    text-decoration: underline;
-    text-decoration-color: var(--soft-sakura);
-    transition: all var(--transition-fast);
+.tuner-main {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-bottom: var(--space-4);
 }
 
-.audio__links a:hover {
-    color: var(--dusty-plum);
-    text-decoration-color: var(--pastel-sky);
-}
-
-.audio__transcript {
-    margin-top: var(--space-3);
-}
-
-.audio__transcript summary {
+.play-toggle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background: white;
     cursor: pointer;
-    font-weight: 600;
-    color: var(--dusty-plum);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.play-toggle:hover {
+    transform: scale(1.05);
+}
+
+.play-toggle .icon {
+    font-size: 2rem;
+    color: var(--midnight-lavender);
+    z-index: 2;
+}
+
+.play-ring {
+    position: absolute;
+    inset: -5px;
+    width: 90px;
+    height: 90px;
+    transform: rotate(-90deg);
+}
+
+.tuner-display {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wave-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 40px;
+}
+
+.wave-bar {
+    width: 4px;
+    background: var(--soft-sakura);
+    border-radius: 2px;
+}
+
+.time-display {
+    display: flex;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
     font-family: var(--font-body);
+    color: var(--dusty-plum);
+    margin-top: var(--space-2);
+    justify-content: flex-end;
+}
+
+.tuner-seek {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    outline: none;
+}
+
+.tuner-seek::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--midnight-lavender);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--soft-sakura);
+}
+
+.tuner-transcript {
+    margin-top: var(--space-4);
+    cursor: pointer;
+}
+
+.tuner-transcript summary {
+    font-size: var(--text-sm);
+    color: var(--midnight-lavender);
+    padding: var(--space-2);
+    outline: none;
+}
+
+.transcript-content {
+    background: var(--pale-buttercream);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    max-height: 200px;
+    overflow-y: auto;
 }

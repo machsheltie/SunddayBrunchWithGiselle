@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import CTAForm from '../components/CTAForm'
 import { WashiTape, PawPrint } from '../components/illustrations/Decorations'
+import WashiTapeStack from '../components/WashiTapeStack'
 import { applyMeta } from '../lib/seo'
 import './NewsletterPage.css'
 
@@ -19,7 +20,7 @@ function NewsletterPage() {
                 <div className="envelope-top"></div>
 
                 <div className="letter-body">
-                    <WashiTape className="letter-tape" color="var(--pastel-lavender)" />
+                    <WashiTapeStack count={3} className="letter-tape-stack" />
 
                     <header className="letter-header">
                         <span className="letter-date">{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>

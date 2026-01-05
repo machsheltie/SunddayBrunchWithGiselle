@@ -12,12 +12,12 @@ export const WashiTape = ({ color = "var(--pastel-lavender)", className, style }
     </svg>
 );
 
-export const PawPrint = ({ color = "var(--pastel-sky)", className, style }) => (
-    <svg viewBox="0 0 100 100" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 10 Q40 5 50 10 Q60 5 70 10 Q80 20 75 35 Q65 50 50 45 Q35 50 25 35 Q20 20 30 10" fill={color} opacity="0.6" />
-        <ellipse cx="20" cy="50" rx="10" ry="15" transform="rotate(-30 20 50)" fill={color} opacity="0.6" />
-        <ellipse cx="80" cy="50" rx="10" ry="15" transform="rotate(30 80 50)" fill={color} opacity="0.6" />
-        <ellipse cx="50" cy="75" rx="25" ry="20" fill={color} opacity="0.7" />
+export const PawPrint = ({ color = "var(--pastel-sky)", className, style, opacity = 0.6, width, height }) => (
+    <svg viewBox="0 0 100 100" className={className} style={style} width={width} height={height} xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 10 Q40 5 50 10 Q60 5 70 10 Q80 20 75 35 Q65 50 50 45 Q35 50 25 35 Q20 20 30 10" fill={color} opacity={opacity} />
+        <ellipse cx="20" cy="50" rx="10" ry="15" transform="rotate(-30 20 50)" fill={color} opacity={opacity} />
+        <ellipse cx="80" cy="50" rx="10" ry="15" transform="rotate(30 80 50)" fill={color} opacity={opacity} />
+        <ellipse cx="50" cy="75" rx="25" ry="20" fill={color} opacity={opacity * 1.1} />
     </svg>
 );
 
@@ -81,5 +81,18 @@ export const SheltieSilhouette = ({ color = "var(--midnight-lavender)", classNam
         />
         <path d="M52,22 L50,15 L55,18 Z" fill={color} />
         <path d="M62,18 L60,11 L65,14 Z" fill={color} />
+    </svg>
+);
+
+export const CrystalRating = ({ filled, className }) => (
+    <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" style={{ width: '1.8rem', height: '1.8rem' }}>
+        <path
+            d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z"
+            fill={filled ? "var(--terracotta-spark)" : "none"}
+            stroke="var(--terracotta-spark)"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+        />
+        {filled && <path d="M12 5 L12 19 M7 8 L17 16 M17 8 L7 16" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />}
     </svg>
 );

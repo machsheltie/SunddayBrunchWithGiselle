@@ -11,6 +11,7 @@ import NewsletterPage from './pages/NewsletterPage'
 import AlchemistsLab from './pages/AlchemistsLab'
 import NotFound from './pages/NotFound'
 import { trackPageView } from './lib/analytics'
+import { AchievementProvider } from './components/AchievementToaster'
 
 function App() {
     const location = useLocation()
@@ -21,19 +22,21 @@ function App() {
     }, [location.pathname])
 
     return (
-        <Layout>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/recipes" element={<RecipeIndexPage />} />
-                <Route path="/recipes/:slug" element={<RecipePage />} />
-                <Route path="/episodes/:slug" element={<EpisodePage />} />
-                <Route path="/media-kit" element={<MediaKitPage />} />
-                <Route path="/team" element={<TeamPage />} />
-                <Route path="/newsletter" element={<NewsletterPage />} />
-                <Route path="/lab" element={<AlchemistsLab />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </Layout>
+        <AchievementProvider>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/recipes" element={<RecipeIndexPage />} />
+                    <Route path="/recipes/:slug" element={<RecipePage />} />
+                    <Route path="/episodes/:slug" element={<EpisodePage />} />
+                    <Route path="/media-kit" element={<MediaKitPage />} />
+                    <Route path="/team" element={<TeamPage />} />
+                    <Route path="/newsletter" element={<NewsletterPage />} />
+                    <Route path="/lab" element={<AlchemistsLab />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </Layout>
+        </AchievementProvider>
     )
 }
 

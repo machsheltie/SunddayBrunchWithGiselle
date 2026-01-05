@@ -1,0 +1,173 @@
+.recipe-reviews {
+    margin-top: var(--space-20);
+    padding: var(--space-12);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    position: relative;
+}
+
+.guestbook-subtitle {
+    text-align: center;
+    font-family: var(--font-script);
+    font-size: var(--text-lg);
+    color: var(--dusty-plum);
+    margin-bottom: var(--space-8);
+}
+
+.crystal-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-1);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.crystal-btn:hover {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.rating-label {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--midnight-lavender);
+    margin-left: var(--space-4);
+    opacity: 0.8;
+}
+
+.review-form {
+    margin-bottom: var(--space-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.review-form textarea {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--pastel-lavender);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    font-family: var(--font-body);
+    min-height: 100px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.review-form textarea:focus {
+    border-color: var(--terracotta-spark);
+    box-shadow: 0 0 10px rgba(226, 114, 91, 0.2);
+}
+
+.review-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-8);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    border-left: 4px solid var(--soft-sakura);
+}
+
+.review-crystal {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+}
+
+.review-user {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--midnight-lavender);
+}
+
+.review-text {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--midnight-lavender);
+    margin: var(--space-4) 0;
+    font-style: italic;
+}
+
+.review-date {
+    font-size: var(--text-xs);
+    color: var(--sage-mist);
+    display: block;
+    text-align: right;
+}
+
+/* Character Replies */
+.character-reply {
+    margin-top: var(--space-6);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-md);
+    position: relative;
+    padding-left: var(--space-12);
+}
+
+.reply-arrow {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.reply-character {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--text-xs);
+    display: block;
+    margin-bottom: var(--space-1);
+    letter-spacing: 0.1em;
+}
+
+.reply-text {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    margin: 0;
+}
+
+.reply--giselle {
+    background: var(--pale-buttercream);
+    border: 1px solid var(--soft-sakura);
+    color: var(--midnight-lavender);
+}
+
+.reply--giselle .reply-arrow {
+    border-bottom: 10px solid var(--soft-sakura);
+}
+
+.reply--giselle .reply-character {
+    color: var(--terracotta-spark);
+}
+
+.reply--havok {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+}
+
+.reply--havok .reply-arrow {
+    border-bottom: 10px solid #cbd5e1;
+}
+
+.reply--havok .reply-character {
+    color: #475569;
+}
+
+.reply--phaedra {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
+.reply--phaedra .reply-arrow {
+    border-bottom: 10px solid #bbf7d0;
+}
+
+.reply--phaedra .reply-character {
+    color: #15803d;
+}

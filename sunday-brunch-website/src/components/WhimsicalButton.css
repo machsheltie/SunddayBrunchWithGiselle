@@ -38,7 +38,7 @@
     align-items: center;
     justify-content: center;
     color: var(--midnight-lavender);
-    border-radius: 0;
+    border-radius: var(--radius-full);
 }
 
 .whimsical-button__nav-bg {
@@ -49,8 +49,6 @@
     align-items: center;
     justify-content: center;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    filter: drop-shadow(0 4px 6px rgba(46, 26, 71, 0.2));
-    /* Refined visibility shadow */
 }
 
 .whimsical-button--nav .whimsical-button__text {

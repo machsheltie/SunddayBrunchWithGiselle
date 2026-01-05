@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { PawPrint } from './illustrations/Decorations';
 import './PawFollower.css';
@@ -66,19 +67,25 @@ const PawFollower = () => {
     return (
         <div className="paw-follower-layer" aria-hidden="true">
             {/* The Trail */}
-            {trail.map(point => (
-                <div
-                    key={point.id}
-                    className="trail-point"
-                    style={{
-                        left: point.x,
-                        top: point.y,
-                        transform: `translate(-50%, -50%) rotate(${point.rotation}deg)`
-                    }}
-                >
-                    <PawPrint color={point.color} opacity="0.3" />
-                </div>
-            ))}
+            <AnimatePresence>
+                {trail.map(point => (
+                    <motion.div
+                        key={point.id}
+                        className="trail-point"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.2, filter: 'blur(10px)' }}
+                        transition={{ duration: 0.8 }}
+                        style={{
+                            left: point.x,
+                            top: point.y,
+                            transform: `translate(-50%, -50%) rotate(${point.rotation}deg)`
+                        }}
+                    >
+                        <PawPrint color={point.color} opacity="0.3" />
+                    </motion.div>
+                ))}
+            </AnimatePresence>
 
             {/* The Active Paw */}
             <div

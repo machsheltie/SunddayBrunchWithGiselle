@@ -1,9 +1,9 @@
 # Sunday Brunch with Giselle - Implementation Roadmap
 
-**Version:** 2.0
+**Version:** 3.0
 **Created:** 2026-01-06
 **Last Updated:** 2026-01-07
-**Status:** Active Development - Sprint 2 Complete ✅
+**Status:** Active Development - Sprint 2 Complete ✅ | Deployed to Production ✅ | Ready for Sprint 3
 **Approach:** Test-Driven Development (TDD)
 **Target:** Transform static site into competitive full-stack recipe platform
 
@@ -70,6 +70,32 @@
 - Auto-scaling with serving size
 - SEO-optimized schema markup
 - User data template for nutrition input
+
+---
+
+### ✅ Deployment to Production (Week 2.5)
+**Status:** Complete | **Site:** https://calm-centaur-ad0abf.netlify.app
+
+**Completed:**
+- [x] Created comprehensive netlify.toml configuration
+- [x] Added security headers (X-Frame-Options, XSS Protection, Content-Type-Options)
+- [x] Configured SPA redirect rules for client-side routing
+- [x] Added cache optimization for static assets (1-year max-age)
+- [x] Verified local production build (7.93s build time)
+- [x] Tested production preview locally
+- [x] Deployed to Netlify via GitHub integration
+- [x] Tested all Sprint 1 features (search, filters, pagination, keyboard shortcuts)
+- [x] Tested all Sprint 2 features (nutrition labels, dietary badges, allergen warnings)
+- [x] Verified mobile responsiveness
+- [x] Verified accessibility (WCAG 2.1 AA)
+- [x] Created NETLIFY_DEPLOYMENT_GUIDE.md for future deployments
+
+**Deliverables:**
+- Live production site with search and nutrition features
+- Automatic deployments on git push
+- Production-grade security headers
+- Optimized asset caching
+- Comprehensive deployment documentation
 
 ---
 
@@ -262,16 +288,16 @@ Transform Sunday Brunch with Giselle from a static recipe showcase into a compet
 - Requires $50+/month
 
 #### 6. Hosting & Deployment
-**DECISION: Vercel (frontend) + DigitalOcean (backend)**
+**DECISION: Netlify (frontend) + Supabase (backend) ✅ APPROVED**
 
 | Component | Provider | Cost | Justification |
 |-----------|----------|------|---------------|
-| Frontend | **Vercel** | $0-20/mo | Free tier, excellent DX |
-| Backend API | **DigitalOcean App Platform** | $12/mo | Managed, easy scaling |
-| Database | **DigitalOcean Managed PostgreSQL** | $15/mo | Automated backups |
-| Redis Cache | **Upstash** | $0-10/mo | Serverless, pay-per-use |
-| CDN | **CloudFlare** | $0 | Free plan sufficient |
-| **TOTAL** | | **$27-57/mo** | MVP pricing |
+| Frontend | **Netlify** | $0-19/mo | Free tier, excellent DX, auto-deploy ✅ |
+| Backend API | **Supabase** | $0-25/mo | PostgreSQL + Auth + Storage + Realtime |
+| Database | **Supabase PostgreSQL** | Included | Automated backups, row-level security |
+| Auth | **Supabase Auth** | Included | JWT tokens, OAuth providers |
+| Storage | **Supabase Storage** | Included | Image/file uploads |
+| **TOTAL** | | **$0-44/mo** | MVP pricing (better than original!) |
 
 ---
 

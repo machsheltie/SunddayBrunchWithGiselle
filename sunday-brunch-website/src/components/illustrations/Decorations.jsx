@@ -63,7 +63,7 @@ export const MixingBowl = ({ className }) => (
     <svg viewBox="0 0 100 80" className={className} xmlns="http://www.w3.org/2000/svg">
         <title>Mixing Bowl</title>
         {/* Bowl */}
-        <path d="M10 20 L90 20 Q85 75 50 75 Q15 75 10 20" fill="var(--soft-lavender)" stroke="var(--giselle-color)" strokeWidth="2" />
+        <path d="M10 20 L90 20 Q85 75 50 75 Q15 75 10 20" fill="var(--pastel-lavender)" stroke="var(--giselle-color)" strokeWidth="2" />
         {/* Rim */}
         <path d="M10 20 Q50 30 90 20" fill="none" stroke="var(--giselle-color)" strokeWidth="2" />
         <ellipse cx="50" cy="20" rx="40" ry="10" fill="var(--warm-white)" stroke="var(--giselle-color)" strokeWidth="2" />
@@ -94,5 +94,25 @@ export const CrystalRating = ({ filled, className }) => (
             strokeLinejoin="round"
         />
         {filled && <path d="M12 5 L12 19 M7 8 L17 16 M17 8 L7 16" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />}
+    </svg>
+);
+
+export const MagicWand = ({ className, color = "var(--midnight-lavender)" }) => (
+    <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+        <title>Magic Wand</title>
+        {/* Wand stick */}
+        <path d="M3 21 L15 9" stroke={color} strokeWidth="2" strokeLinecap="round" />
+        {/* Star at top */}
+        <path
+            d="M17 3 L18.5 6.5 L22 8 L18.5 9.5 L17 13 L15.5 9.5 L12 8 L15.5 6.5 Z"
+            fill={color}
+            stroke={color}
+            strokeWidth="1"
+            strokeLinejoin="round"
+        />
+        {/* Sparkles */}
+        <circle cx="8" cy="16" r="1" fill="var(--pastel-lavender)" />
+        <circle cx="11" cy="13" r="0.8" fill="var(--soft-sakura)" />
+        <circle cx="6" cy="18" r="0.6" fill="var(--pastel-sky)" />
     </svg>
 );

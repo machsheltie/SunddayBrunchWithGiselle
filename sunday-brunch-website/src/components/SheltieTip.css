@@ -18,11 +18,11 @@
 
 /* Character Specific Textures & Accents */
 
-/* Giselle: The Queen - Velvet & Gold */
+/* Giselle: The Queen - Velvet & Lavender */
 .sheltie-tip--giselle {
-    border-left: 8px solid #FFD700 !important;
+    border-left: 8px solid #D6BCFA !important;
     box-shadow: 0 10px 30px rgba(184, 134, 11, 0.1);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 223, 196, 0.8)) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgb(214 188 250)) !important;
 }
 
 .sheltie-tip--giselle::before {

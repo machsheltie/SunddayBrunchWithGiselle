@@ -16,11 +16,11 @@ const WhimsicalButton = ({
     const pawRef = useRef(null);
 
     useEffect(() => {
-        // Apply magnetic effect from AuteurMotion
-        if (buttonRef.current) {
+        // Apply magnetic effect only for nav buttons
+        if (buttonRef.current && variant === 'nav') {
             AuteurMotion.makeMagnetic(buttonRef.current);
         }
-    }, []);
+    }, [variant]);
 
     const handleMouseEnter = () => {
         if (pawRef.current && variant !== 'nav') {
@@ -109,7 +109,10 @@ const WhimsicalButton = ({
         >
             {variant === 'nav' && (
                 <div className="whimsical-button__nav-bg">
-                    <PawPrint color="var(--pastel-lavender)" opacity="0.3" />
+                    <PawPrint
+                        color="var(--midnight-lavender)"
+                        opacity={type === 'primary' ? '0.25' : '0.15'}
+                    />
                 </div>
             )}
             <span className="whimsical-button__text">{children}</span>

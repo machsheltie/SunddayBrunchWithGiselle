@@ -19,16 +19,11 @@
     padding: var(--space-10) var(--space-8);
     position: relative;
     z-index: 5;
-    transition: transform var(--transition-slow);
     border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.scrapbook-paper:hover {
-    transform: rotate(0deg) scale(1.01);
-}
-
-/* Tape decoration */
-.tape-top-center {
+/* Tape decoration with pawprints */
+.tape-top-center-wrapper {
     position: absolute;
     top: -15px;
     left: 50%;
@@ -36,8 +31,49 @@
     width: 150px;
     height: 40px;
     z-index: 10;
+}
+
+.tape-top-center {
+    width: 100%;
+    height: 100%;
     opacity: 0.9;
     filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Scattered pawprints on tape */
+.tape-paw {
+    position: absolute;
+    pointer-events: none;
+}
+
+.tape-paw.paw-1 {
+    top: 8px;
+    left: 20px;
+    transform: rotate(-15deg);
+}
+
+.tape-paw.paw-2 {
+    top: 15px;
+    left: 45px;
+    transform: rotate(25deg);
+}
+
+.tape-paw.paw-3 {
+    top: 5px;
+    left: 75px;
+    transform: rotate(-8deg);
+}
+
+.tape-paw.paw-4 {
+    top: 18px;
+    left: 105px;
+    transform: rotate(18deg);
+}
+
+.tape-paw.paw-5 {
+    top: 10px;
+    left: 130px;
+    transform: rotate(-22deg);
 }
 
 .tape-bottom-center {
@@ -141,6 +177,35 @@
     margin-bottom: var(--space-4);
     border-bottom: 1px solid var(--soft-sakura);
     display: inline-block;
+}
+
+.recipe__steps-container {
+    padding-left: 3rem;
+    width: 100%;
+    list-style: none !important;
+    counter-reset: none !important;
+}
+
+/* Disable ALL pseudo-elements and counters for ProcessStep components */
+.recipe__steps-container *,
+.recipe__steps-container *::before,
+.recipe__steps-container *::after {
+    counter-increment: none !important;
+}
+
+.recipe__steps-container .process-step,
+.recipe__steps-container .process-step *,
+.recipe__steps-container div,
+.recipe__steps-container div * {
+    list-style: none !important;
+}
+
+.recipe__steps-container .process-step::before,
+.recipe__steps-container .process-step::after,
+.recipe__steps-container div::before,
+.recipe__steps-container div::after {
+    display: none !important;
+    content: none !important;
 }
 
 .recipe__list,
@@ -353,8 +418,8 @@
 
 /* Baker's Prep Styles */
 .bakers-prep {
-    background: rgba(226, 114, 91, 0.05);
-    border: 1px solid var(--terracotta-spark);
+    background: var(--soft-sakura);
+    border: 1px solid var(--midnight-lavender);
     border-radius: var(--radius-md);
     padding: var(--space-4);
     margin: var(--space-6) 0;
@@ -365,7 +430,7 @@
     align-items: center;
     gap: var(--space-2);
     margin-bottom: var(--space-3);
-    color: var(--terracotta-spark);
+    color: var(--midnight-lavender);
 }
 
 .bakers-prep__header h4 {
@@ -374,6 +439,7 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: var(--text-sm);
+    color: var(--midnight-lavender);
 }
 
 .bakers-prep__list {
@@ -384,15 +450,70 @@
 
 .bakers-prep__list li {
     font-size: var(--text-sm);
-    color: var(--dusty-plum);
+    color: var(--midnight-lavender);
     padding-left: var(--space-5);
     position: relative;
     margin-bottom: var(--space-2);
 }
 
 .bakers-prep__list li::before {
-    content: '?';
+    content: '✦';
     position: absolute;
     left: 0;
-    color: var(--terracotta-spark);
+    color: var(--midnight-lavender);
+}
+
+/* Collapsible Sections */
+.collapsible-section {
+    margin: var(--space-6) 0;
+}
+
+.collapsible-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--soft-sakura);
+    padding: var(--space-3) 0;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.collapsible-header:hover {
+    border-bottom-color: var(--pastel-lavender);
+}
+
+.collapsible-header h4 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    color: var(--midnight-lavender);
+    text-align: left;
+}
+
+.collapsible-header .chevron {
+    font-size: 0.875rem;
+    color: var(--midnight-lavender);
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.collapsible-header .chevron.open {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+.collapsible-content.open {
+    max-height: 5000px;
+    opacity: 1;
+    transition: max-height 0.6s ease-in, opacity 0.4s ease-in;
 }

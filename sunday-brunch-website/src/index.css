@@ -46,6 +46,8 @@
     --font-display: 'Italiana', serif;
     --font-body: 'Fraunces', serif;
     --font-script: 'Pinyon Script', cursive;
+    --font-nav: 'Righteous', cursive; /* Very bold, thick, retro nav font */
+    /* Other options: 'Lilita One', 'Fredoka One', 'Comfortaa' */
 
     /* Font Sizes */
     --text-xs: 0.75rem;

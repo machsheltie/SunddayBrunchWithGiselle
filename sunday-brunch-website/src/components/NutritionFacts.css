@@ -1,0 +1,152 @@
+/* Nutrition Facts - FDA-Style with Whimsical Twist */
+
+.nutrition-facts {
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: white;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+}
+
+.nutrition-facts__toggle {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background: var(--pastel-lavender, #e6d7ff);
+  border: 2px solid var(--pastel-sky, #b3d9ff);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nutrition-facts__toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nutrition-facts__content.is-collapsed {
+  display: none;
+}
+
+.nutrition-facts__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  border-bottom: 12px solid #1a1a1a;
+  padding-bottom: 0.5rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nutrition-facts__serving {
+  padding: 0.5rem 0;
+  border-bottom: 4px solid #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.nutrition-facts__serving-size {
+  font-size: 0.875rem;
+}
+
+.nutrition-facts__servings-per {
+  font-size: 0.875rem;
+}
+
+.nutrition-facts__scaled-note {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.nutrition-facts__calories {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 8px solid #1a1a1a;
+  padding: 0.5rem 0;
+  margin-bottom: 0.25rem;
+}
+
+.nutrition-facts__calories-label {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.nutrition-facts__calories-value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.nutrition-facts__daily-value-header {
+  font-size: 0.75rem;
+  text-align: right;
+  font-weight: bold;
+  padding: 0.25rem 0;
+  border-bottom: 4px solid #1a1a1a;
+}
+
+.nutrition-facts__nutrient {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #999;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.nutrition-facts__nutrient--major {
+  border-bottom: 4px solid #1a1a1a;
+  font-weight: bold;
+}
+
+.nutrition-facts__nutrient--indented {
+  padding-left: 1rem;
+  font-size: 0.8125rem;
+}
+
+.nutrition-facts__footnote {
+  font-size: 0.625rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 4px solid #1a1a1a;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* Print Styles */
+@media print {
+  .nutrition-facts {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 2px solid #000;
+  }
+
+  .nutrition-facts .nutrition-facts__toggle {
+    display: none;
+  }
+
+  .nutrition-facts .nutrition-facts__content.is-collapsed {
+    display: block;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .nutrition-facts {
+    max-width: 100%;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+
+  .nutrition-facts__title {
+    font-size: 2rem;
+  }
+
+  .nutrition-facts__calories-value {
+    font-size: 1.75rem;
+  }
+}

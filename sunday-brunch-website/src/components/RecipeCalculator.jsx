@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { formatAlchemicalAmount, getAlchemistReaction } from '../lib/culinaryUtils';
 import './RecipeCalculator.css';
 
-const RecipeCalculator = ({ initialIngredients, initialYield = 1 }) => {
+const RecipeCalculator = ({ initialIngredients, initialYield = 1, onScaleChange }) => {
     const [scale, setScale] = useState(1);
     const [isMetric, setIsMetric] = useState(false);
     const sliderRef = useRef(null);
@@ -18,6 +18,13 @@ const RecipeCalculator = ({ initialIngredients, initialYield = 1 }) => {
             );
         }
     }, [scale, isMetric]);
+
+    // Notify parent component when scale changes
+    useEffect(() => {
+        if (onScaleChange) {
+            onScaleChange(scale);
+        }
+    }, [scale, onScaleChange]);
 
     return (
         <div className="recipe-calculator alchemist-card">

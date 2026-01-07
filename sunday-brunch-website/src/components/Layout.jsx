@@ -5,8 +5,8 @@ import WatercolorFilters from './illustrations/WatercolorFilters'
 import WhimsyLayer from './WhimsyLayer'
 import WhimsicalButton from './WhimsicalButton'
 import PawFollower from './PawFollower'
-import EphemeraEngine from './EphemeraEngine'
-import PrismLayer from './PrismLayer'
+// import EphemeraEngine from './EphemeraEngine' // Removed - floating quotes were distracting
+// import PrismLayer from './PrismLayer' // Removed - glassmorphism shards made content hard to read
 import FloatingActionButtons from './FloatingActionButtons'
 import SheltieSightings from './SheltieSightings'
 import '../App.css'
@@ -23,8 +23,6 @@ function Layout({ children }) {
             <WatercolorFilters />
             <WatercolorCanvas />
             <WhimsyLayer />
-            <EphemeraEngine />
-            <PrismLayer />
             <SheltieSightings />
             <PawFollower />
             <FloatingActionButtons />
@@ -57,6 +55,7 @@ function Layout({ children }) {
                         <Link to="/recipes">
                             <WhimsicalButton
                                 type="primary"
+                                variant="nav"
                                 className="nav-cta"
                                 onClick={() => handleNavClick('Recipes CTA', '/recipes')}
                             >

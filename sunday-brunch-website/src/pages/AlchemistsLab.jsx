@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import IngredientAlchemist from '../components/IngredientAlchemist';
 import WashiTapeStack from '../components/WashiTapeStack';
-import { WhiskIcon, RollingPin } from '../components/illustrations/Decorations';
+import { WhiskIcon, MixingBowl } from '../components/illustrations/Decorations';
 import './AlchemistsLab.css';
 
 /**
@@ -42,7 +42,7 @@ const AlchemistsLab = () => {
                         <p>Phaedra's Note: Baking soda needs an acid (like buttermilk or lemon) to react. Without it, your cake will be as flat as a Sheltie's pancake.</p>
                     </div>
                     <div className="science-card glass-card">
-                        <RollingPin className="card-icon" />
+                        <MixingBowl className="card-icon" />
                         <h3>Temperature Transmutations</h3>
                         <p>Butter at 65°F is the 'Golden Mean'. Too cold, and it won't aerate; too warm, and it will weep. Respect the melt, darling.</p>
                     </div>

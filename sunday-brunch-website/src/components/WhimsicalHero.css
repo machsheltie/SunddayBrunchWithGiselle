@@ -5,10 +5,24 @@
     align-items: center;
     gap: var(--space-4);
     margin-top: var(--space-8);
+    margin-bottom: var(--space-20);
     background: transparent;
     padding: var(--space-20) var(--space-12);
     position: relative;
     overflow: visible;
+}
+
+/* Decorative line above hero section */
+.whimsical-hero::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 12px;
+    opacity: 0.7;
+    z-index: 5;
+    background: repeating-linear-gradient(45deg, var(--pastel-lavender), var(--pastel-lavender) 15px, var(--soft-sakura) 15px, var(--soft-sakura) 30px, var(--pastel-sky) 30px, var(--pastel-sky) 45px);
 }
 
 .whimsical-hero__content {
@@ -164,7 +178,7 @@
     grid-column: 6 / 13;
     position: absolute;
     right: 0;
-    top: 15%;
+    top: -5%;
     width: 55%;
     z-index: var(--z-subject);
     display: flex;

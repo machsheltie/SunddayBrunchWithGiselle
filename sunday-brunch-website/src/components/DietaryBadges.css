@@ -1,0 +1,219 @@
+/* Dietary Badges - Whimsical Color-Coded Pills */
+
+:root {
+  --badge-animation-delay-base: 0.05s;
+  --badge-animation-duration: 0.3s;
+}
+
+.dietary-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dietary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: white;
+}
+
+.dietary-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dietary-badge:focus {
+  outline: 3px solid var(--pastel-sky, #3b82f6);
+  outline-offset: 2px;
+}
+
+.dietary-badge__icon {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.dietary-badge__label {
+  line-height: 1;
+}
+
+.dietary-badge__tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dietary-badge__tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1a1a1a;
+}
+
+/* Badge Color Variants */
+
+.dietary-badge--vegan {
+  background: linear-gradient(135deg, #86efac, #22c55e);
+  color: #1a1a1a;
+}
+
+.dietary-badge--gluten-free {
+  background: linear-gradient(135deg, #93c5fd, #3b82f6);
+  color: white;
+}
+
+.dietary-badge--dairy-free {
+  background: linear-gradient(135deg, #fde68a, #f59e0b);
+  color: #1a1a1a;
+}
+
+.dietary-badge--nut-free {
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  color: #1a1a1a;
+}
+
+.dietary-badge--egg-free {
+  background: linear-gradient(135deg, #fef3c7, #eab308);
+  color: #1a1a1a;
+}
+
+.dietary-badge--sugar-free {
+  background: linear-gradient(135deg, #fecaca, #ef4444);
+  color: white;
+}
+
+.dietary-badge--keto {
+  background: linear-gradient(135deg, #d9f99d, #84cc16);
+  color: #1a1a1a;
+}
+
+.dietary-badge--low-carb {
+  background: linear-gradient(135deg, #bfdbfe, #60a5fa);
+  color: #1a1a1a;
+}
+
+.dietary-badge--vegetarian {
+  background: linear-gradient(135deg, #E9D5FF, #D6BCFA);
+  color: #1a1a1a;
+}
+
+.dietary-badge--paleo {
+  background: linear-gradient(135deg, #cbd5e1, #64748b);
+  color: white;
+}
+
+.dietary-badge--low-sodium {
+  background: linear-gradient(135deg, #e0e7ff, #818cf8);
+  color: #1a1a1a;
+}
+
+.dietary-badge--heart-healthy {
+  background: linear-gradient(135deg, #fecdd3, #fb7185);
+  color: white;
+}
+
+.dietary-badge--default {
+  background: linear-gradient(135deg, #f3f4f6, #d1d5db);
+  color: #1a1a1a;
+}
+
+.dietary-badge--more {
+  background: var(--pastel-lavender, #e6d7ff);
+  color: #1a1a1a;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: 2px solid var(--pastel-sky, #b3d9ff);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.dietary-badge--more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation */
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dietary-badge.animate-in {
+  animation: slideIn var(--badge-animation-duration) ease-out forwards;
+}
+
+.dietary-badge:nth-child(1).animate-in { animation-delay: calc(var(--badge-animation-delay-base) * 0); }
+.dietary-badge:nth-child(2).animate-in { animation-delay: calc(var(--badge-animation-delay-base) * 1); }
+.dietary-badge:nth-child(3).animate-in { animation-delay: calc(var(--badge-animation-delay-base) * 2); }
+.dietary-badge:nth-child(4).animate-in { animation-delay: calc(var(--badge-animation-delay-base) * 3); }
+.dietary-badge:nth-child(5).animate-in { animation-delay: calc(var(--badge-animation-delay-base) * 4); }
+
+/* Mobile Responsive */
+
+.dietary-badges.is-responsive {
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .dietary-badges {
+    gap: 0.5rem;
+  }
+
+  .dietary-badge {
+    font-size: 0.8125rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .dietary-badge__icon {
+    font-size: 1rem;
+  }
+}
+
+/* Print Styles */
+
+@media print {
+  .dietary-badge {
+    box-shadow: none;
+    border: 1px solid #000;
+    break-inside: avoid;
+  }
+
+  .dietary-badge__tooltip {
+    display: none;
+  }
+}

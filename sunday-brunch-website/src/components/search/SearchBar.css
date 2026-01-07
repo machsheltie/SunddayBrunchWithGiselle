@@ -1,0 +1,153 @@
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  background: linear-gradient(135deg, #faf8f5 0%, #fff 100%);
+  border: 2px solid var(--pastel-lavender, #e6d7ff);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-bar:hover {
+  border-color: var(--soft-sakura, #ffd1dc);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.12),
+    0 3px 6px rgba(0, 0, 0, 0.06);
+}
+
+.search-bar:focus-within {
+  border-color: var(--pastel-sky, #b3d9ff);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 0 0 3px rgba(179, 217, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.search-bar__icon {
+  flex-shrink: 0;
+  color: var(--pastel-lavender, #e6d7ff);
+  margin-right: 0.75rem;
+  transition: color 0.2s;
+}
+
+.search-bar:focus-within .search-bar__icon {
+  color: var(--pastel-sky, #b3d9ff);
+}
+
+.search-bar__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  font-family: 'Georgia', serif;
+}
+
+.search-bar__input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.search-bar__clear {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  color: #999;
+  transition: all 0.2s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar__clear:hover {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  transform: scale(1.1);
+}
+
+.search-bar__clear:focus {
+  outline: 2px solid var(--pastel-sky, #b3d9ff);
+  outline-offset: 2px;
+}
+
+.search-bar__hint {
+  position: absolute;
+  bottom: -1.5rem;
+  right: 0;
+  font-size: 0.75rem;
+  color: #999;
+  display: none;
+  font-family: 'Courier New', monospace;
+}
+
+.search-bar__hint kbd {
+  display: inline-block;
+  padding: 0.125rem 0.375rem;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Show hint on desktop */
+@media (min-width: 768px) {
+  .search-bar__hint {
+    display: block;
+  }
+}
+
+/* Whimsical animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+.search-bar:hover .search-bar__icon {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+  .search-bar {
+    max-width: 100%;
+    padding: 0.625rem 1rem;
+    border-radius: 40px;
+  }
+
+  .search-bar__input {
+    font-size: 0.9rem;
+  }
+
+  .search-bar__icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Accessibility */
+.search-bar__input:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-bar,
+  .search-bar__icon,
+  .search-bar__clear {
+    transition: none;
+    animation: none;
+  }
+}

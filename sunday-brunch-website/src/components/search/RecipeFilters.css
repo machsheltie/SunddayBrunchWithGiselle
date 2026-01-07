@@ -1,0 +1,288 @@
+.recipe-filters {
+  background: linear-gradient(135deg, #faf8f5 0%, #fff 100%);
+  border: 2px solid var(--pastel-lavender, #e6d7ff);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.recipe-filters__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed var(--pastel-lavender, #e6d7ff);
+}
+
+.recipe-filters__title {
+  font-size: 1.5rem;
+  font-family: 'Georgia', serif;
+  color: #333;
+  margin: 0;
+}
+
+.recipe-filters__badge {
+  background: linear-gradient(135deg, var(--pastel-sky, #b3d9ff), var(--soft-sakura, #ffd1dc));
+  color: white;
+  font-weight: bold;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 20px;
+  min-width: 24px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.recipe-filters__section {
+  margin-bottom: 1.5rem;
+}
+
+.recipe-filters__section:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.recipe-filters__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-family: 'Georgia', serif;
+  transition: color 0.2s;
+}
+
+.recipe-filters__section-header:hover {
+  color: var(--pastel-sky, #b3d9ff);
+}
+
+.recipe-filters__section-header h3 {
+  font-size: 1.125rem;
+  margin: 0;
+  color: #555;
+}
+
+.chevron {
+  font-size: 1.25rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--pastel-lavender, #e6d7ff);
+}
+
+.chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.recipe-filters__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.filter-button {
+  background: white;
+  border: 2px solid var(--pastel-lavender, #e6d7ff);
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-family: 'Georgia', serif;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.filter-button:hover::before {
+  left: 100%;
+}
+
+.filter-button:hover {
+  border-color: var(--pastel-sky, #b3d9ff);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-button.is-active {
+  background: linear-gradient(135deg, var(--pastel-sky, #b3d9ff), var(--soft-sakura, #ffd1dc));
+  border-color: var(--pastel-sky, #b3d9ff);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(179, 217, 255, 0.4);
+}
+
+.filter-button:focus {
+  outline: 2px solid var(--pastel-sky, #b3d9ff);
+  outline-offset: 2px;
+}
+
+.recipe-filters__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.filter-chip {
+  background: white;
+  border: 2px solid var(--pastel-lavender, #e6d7ff);
+  border-radius: 20px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.85rem;
+  font-family: 'Georgia', serif;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  border-color: var(--soft-sakura, #ffd1dc);
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-chip.is-active {
+  background: linear-gradient(135deg, var(--soft-sakura, #ffd1dc), var(--pastel-lavender, #e6d7ff));
+  border-color: var(--soft-sakura, #ffd1dc);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(255, 209, 220, 0.4);
+}
+
+.filter-chip:focus {
+  outline: 2px solid var(--soft-sakura, #ffd1dc);
+  outline-offset: 2px;
+}
+
+.recipe-filters__select {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  font-size: 0.9rem;
+  font-family: 'Georgia', serif;
+  border: 2px solid var(--pastel-lavender, #e6d7ff);
+  border-radius: 12px;
+  background: white;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+}
+
+.recipe-filters__select:hover {
+  border-color: var(--pastel-sky, #b3d9ff);
+}
+
+.recipe-filters__select:focus {
+  outline: none;
+  border-color: var(--pastel-sky, #b3d9ff);
+  box-shadow: 0 0 0 3px rgba(179, 217, 255, 0.2);
+}
+
+.recipe-filters__reset {
+  width: 100%;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.recipe-filters__reset:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+}
+
+.recipe-filters__reset:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(255, 107, 107, 0.3);
+}
+
+.recipe-filters__reset:disabled {
+  background: #ddd;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.recipe-filters__reset:focus {
+  outline: 2px solid #ff6b6b;
+  outline-offset: 2px;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+  .recipe-filters {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    z-index: 1000;
+    overflow-y: auto;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0;
+    border-right: 2px solid var(--pastel-lavender, #e6d7ff);
+  }
+
+  .recipe-filters.is-open {
+    left: 0;
+  }
+
+  .recipe-filters__buttons,
+  .recipe-filters__chips {
+    gap: 0.375rem;
+  }
+
+  .filter-button,
+  .filter-chip {
+    font-size: 0.85rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .recipe-filters,
+  .filter-button,
+  .filter-chip,
+  .chevron,
+  .recipe-filters__reset {
+    transition: none;
+  }
+
+  .filter-button::before {
+    display: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .recipe-filters {
+    display: none;
+  }
+}

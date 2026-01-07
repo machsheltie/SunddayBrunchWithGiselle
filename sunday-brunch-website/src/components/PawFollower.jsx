@@ -17,6 +17,17 @@ const PawFollower = () => {
             setIsInside(true);
             const { clientX: x, clientY: y } = e;
 
+            // Use elementFromPoint to get the actual element under cursor
+            const elementUnderCursor = document.elementFromPoint(x, y);
+            // Only lighten pawprint for dark buttons (primary buttons and recipe action buttons)
+            const darkButton = elementUnderCursor?.closest('.whimsical-button--primary:not(.whimsical-button--nav), .recipe__action');
+
+            if (darkButton) {
+                setPawColor('#FFFFFF'); // Bright white for visibility on dark buttons
+            } else {
+                setPawColor('var(--midnight-lavender)');
+            }
+
             // Move the main paw
             gsap.to(pawRef.current, {
                 x,
@@ -45,14 +56,26 @@ const PawFollower = () => {
         const handleMouseEnter = () => setIsInside(true);
         const handleMouseLeave = () => setIsInside(false);
 
+        const handleClick = (e) => {
+            const { clientX: x, clientY: y } = e;
+            const elementUnderCursor = document.elementFromPoint(x, y);
+            const darkButton = elementUnderCursor?.closest('.whimsical-button--primary:not(.whimsical-button--nav), .recipe__action');
+
+            if (darkButton) {
+                setPawColor('#FFFFFF'); // Bright white for visibility on dark buttons
+            }
+        };
+
         window.addEventListener('mousemove', movePaw);
         window.addEventListener('mouseenter', handleMouseEnter);
         window.addEventListener('mouseleave', handleMouseLeave);
+        window.addEventListener('click', handleClick);
 
         return () => {
             window.removeEventListener('mousemove', movePaw);
             window.removeEventListener('mouseenter', handleMouseEnter);
             window.removeEventListener('mouseleave', handleMouseLeave);
+            window.removeEventListener('click', handleClick);
         };
     }, []);
 
@@ -65,7 +88,13 @@ const PawFollower = () => {
     }, []);
 
     return (
-        <div className="paw-follower-layer" aria-hidden="true">
+        <div
+            className="paw-follower-layer"
+            aria-hidden="true"
+            style={{
+                mixBlendMode: pawColor === '#FFFFFF' ? 'normal' : 'multiply'
+            }}
+        >
             {/* The Trail */}
             <AnimatePresence>
                 {trail.map(point => (
@@ -91,11 +120,19 @@ const PawFollower = () => {
             <div
                 ref={pawRef}
                 className={`paw-cursor ${isInside ? 'is-visible' : ''}`}
-                style={{ position: 'fixed', top: 0, left: 0, pointerEvents: 'none', zIndex: 9999 }}
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    pointerEvents: 'none',
+                    zIndex: 99999,
+                    filter: pawColor === '#FFFFFF' ? 'drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 6px rgba(255,255,255,0.6))' : 'none',
+                    willChange: 'transform'
+                }}
             >
                 <PawPrint
                     color={pawColor}
-                    opacity="0.9"
+                    opacity={1}
                     style={{ transform: 'translate(-50%, -50%)', width: '32px', height: '32px' }}
                 />
             </div>

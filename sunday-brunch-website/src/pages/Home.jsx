@@ -28,12 +28,12 @@ function Home() {
         <div className="home">
             <WhimsicalHero />
 
-
+            {/* Decorative divider between hero and content */}
+            <div className="hero-content-divider"></div>
 
             <section className="section" id="recipes">
                 <div className="section__header">
                     <h2 className="section__title">Featured Recipe</h2>
-                    <span className="pill">{loading ? 'Loading' : 'Updated'}</span>
                 </div>
                 <div className="card">
                     {loading && <LoadingSkeleton type="recipe" />}

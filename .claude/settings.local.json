@@ -10,7 +10,22 @@
       "Bash(npm install)",
       "Bash(psql:*)",
       "Bash(pg_config:*)",
-      "Bash(npm run db:migrate:*)"
+      "Bash(npm run db:migrate:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint)",
+      "Bash(grep:*)",
+      "Bash(curl:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "WebSearch",
+      "WebFetch(domain:calm-centaur-ad0abf.netlify.app)",
+      "Bash(if [ ! -d \".claude/skills\" ])",
+      "Bash(then mkdir -p .claude/skills)",
+      "Bash(npm test:*)",
+      "Bash(timeout 15 npm run dev:*)",
+      "Bash(npm run preview:*)"
     ]
   }
 }

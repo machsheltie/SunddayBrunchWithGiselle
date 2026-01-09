@@ -429,4 +429,98 @@ describe('useRecipeSearch Hook', () => {
 
     expect(result.current.loading).toBe(true)
   })
+
+  it('should sort results by oldest first', () => {
+    const recipesWithDates = [
+      { ...mockRecipes[0], date: '2024-03-15' },
+      { ...mockRecipes[1], date: '2024-01-10' },
+      { ...mockRecipes[2], date: '2024-05-20' }
+    ]
+
+    const { result } = renderHook(() =>
+      useRecipeSearch(recipesWithDates, {
+        searchQuery: '',
+        category: 'all',
+        dietary: [],
+        season: 'all',
+        difficulty: 'all',
+        cookTime: 'all',
+        tags: [],
+        sortBy: 'oldest'
+      })
+    )
+
+    expect(result.current.results[0].date).toBe('2024-01-10')
+    expect(result.current.results[2].date).toBe('2024-05-20')
+  })
+
+  it('should sort results alphabetically (Z-A)', () => {
+    const { result } = renderHook(() =>
+      useRecipeSearch(mockRecipes, {
+        searchQuery: '',
+        category: 'all',
+        dietary: [],
+        season: 'all',
+        difficulty: 'all',
+        cookTime: 'all',
+        tags: [],
+        sortBy: 'z-a'
+      })
+    )
+
+    expect(result.current.results[0].title).toBe('Fudgy Vegan Brownies')
+    expect(result.current.results[3].title).toBe('Artisan Sourdough Bread')
+  })
+
+  it('should sort results by cook time (complex first)', () => {
+    const { result } = renderHook(() =>
+      useRecipeSearch(mockRecipes, {
+        searchQuery: '',
+        category: 'all',
+        dietary: [],
+        season: 'all',
+        difficulty: 'all',
+        cookTime: 'all',
+        tags: [],
+        sortBy: 'complex-first'
+      })
+    )
+
+    expect(result.current.results[0].cookTime).toBe(180)
+    expect(result.current.results[3].cookTime).toBe(25)
+  })
+
+  it('should handle invalid sortBy with default case', () => {
+    const { result } = renderHook(() =>
+      useRecipeSearch(mockRecipes, {
+        searchQuery: '',
+        category: 'all',
+        dietary: [],
+        season: 'all',
+        difficulty: 'all',
+        cookTime: 'all',
+        tags: [],
+        sortBy: 'invalid-sort-option'
+      })
+    )
+
+    expect(result.current.results).toHaveLength(4)
+  })
+
+  it('should handle searchQuery with less than 2 characters', () => {
+    const { result } = renderHook(() =>
+      useRecipeSearch(mockRecipes, {
+        searchQuery: 'a',
+        category: 'all',
+        dietary: [],
+        season: 'all',
+        difficulty: 'all',
+        cookTime: 'all',
+        tags: [],
+        sortBy: 'newest'
+      })
+    )
+
+    expect(result.current.results).toHaveLength(4)
+  })
 })

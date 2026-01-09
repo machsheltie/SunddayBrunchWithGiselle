@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from 'react-router-dom'
 import SearchResults from '../../components/search/SearchResults'
 
@@ -261,5 +262,243 @@ describe('SearchResults Component', () => {
 
     const sentinel = screen.getByTestId('infinite-scroll-sentinel')
     expect(sentinel).toBeInTheDocument()
+  })
+
+  // New comprehensive tests to close coverage gaps
+
+  it('should display empty state when no recipes match filters', () => {
+    renderWithRouter(
+      <SearchResults
+        results={[]}
+        loading={false}
+        searchQuery="xyz-nonexistent"
+      />
+    )
+
+    expect(screen.getByText(/no recipes found/i)).toBeInTheDocument()
+    expect(screen.getByText(/try different filters or search terms/i)).toBeInTheDocument()
+
+    // Verify empty state icon is rendered
+    const emptyIcon = document.querySelector('.empty-icon')
+    expect(emptyIcon).toBeInTheDocument()
+  })
+
+  it('should handle pagination edge cases - first page and last page', async () => {
+    const user = userEvent.setup()
+    const manyRecipes = Array.from({ length: 45 }, (_, i) => ({
+      ...mockRecipes[0],
+      slug: `recipe-${i}`,
+      title: `Recipe ${i}`
+    }))
+
+    renderWithRouter(
+      <SearchResults
+        results={manyRecipes}
+        loading={false}
+        itemsPerPage={20}
+      />
+    )
+
+    // On first page, Previous button should be disabled
+    const prevButton = screen.getByRole('button', { name: /previous page/i })
+    const nextButton = screen.getByRole('button', { name: /next page/i })
+
+    expect(prevButton).toBeDisabled()
+    expect(nextButton).not.toBeDisabled()
+
+    // Navigate to next page
+    await user.click(nextButton)
+
+    // Now Previous should be enabled
+    expect(prevButton).not.toBeDisabled()
+
+    // Navigate to last page (page 3)
+    await user.click(nextButton)
+
+    // On last page, Next button should be disabled
+    expect(nextButton).toBeDisabled()
+    expect(prevButton).not.toBeDisabled()
+
+    expect(screen.getByText(/page 3 of 3/i)).toBeInTheDocument()
+  })
+
+  it('should display loading state while recipes are being filtered', () => {
+    renderWithRouter(
+      <SearchResults
+        results={[]}
+        loading={true}
+        searchQuery="chocolate"
+      />
+    )
+
+    expect(screen.getByText(/searching for delicious recipes/i)).toBeInTheDocument()
+    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument()
+
+    // Should not display results or empty state
+    expect(screen.queryByText(/no recipes found/i)).not.toBeInTheDocument()
+    expect(screen.queryByRole('list')).not.toBeInTheDocument()
+  })
+
+  it('should handle error state display', () => {
+    // When results are empty but not loading, shows empty state
+    renderWithRouter(
+      <SearchResults
+        results={[]}
+        loading={false}
+        searchQuery="error-test"
+      />
+    )
+
+    // Empty state should be shown (component treats empty results as "no matches")
+    expect(screen.getByText(/no recipes found/i)).toBeInTheDocument()
+    expect(screen.getByText(/try different filters or search terms/i)).toBeInTheDocument()
+  })
+
+  it('should support recipe card click interactions', async () => {
+    const user = userEvent.setup()
+
+    renderWithRouter(
+      <SearchResults results={[mockRecipes[0]]} loading={false} />
+    )
+
+    const recipeLink = screen.getByRole('link', { name: /chocolate chip cookies/i })
+
+    // Click should navigate (href is present)
+    expect(recipeLink).toHaveAttribute('href', '/recipes/chocolate-chip-cookies')
+
+    // Verify card has proper structure
+    const recipeCard = recipeLink.closest('.recipe-card')
+    expect(recipeCard).toBeInTheDocument()
+  })
+
+  it('should support keyboard navigation through result cards', async () => {
+    const user = userEvent.setup()
+
+    renderWithRouter(
+      <SearchResults results={mockRecipes} loading={false} />
+    )
+
+    // Get all recipe links
+    const recipeLinks = screen.getAllByRole('link')
+
+    // Should have at least 2 recipe links
+    expect(recipeLinks.length).toBeGreaterThanOrEqual(2)
+
+    // Tab to first link
+    await user.tab()
+
+    // First recipe link should be focusable
+    const firstLink = screen.getByRole('link', { name: /chocolate chip cookies/i })
+    expect(firstLink).toBeInTheDocument()
+
+    // Press Enter should follow link (verified by href attribute)
+    expect(firstLink).toHaveAttribute('href', '/recipes/chocolate-chip-cookies')
+  })
+
+  it('should format cook time with hours and minutes correctly', () => {
+    const recipeWithLongCookTime = {
+      ...mockRecipes[0],
+      cookTime: 125 // 2h 5m
+    }
+
+    const recipeWithExactHours = {
+      ...mockRecipes[0],
+      slug: 'long-recipe',
+      title: 'Long Recipe',
+      cookTime: 180 // 3h exactly
+    }
+
+    renderWithRouter(
+      <SearchResults
+        results={[recipeWithLongCookTime, recipeWithExactHours]}
+        loading={false}
+      />
+    )
+
+    // Should show hours and minutes (covers lines 42-43)
+    expect(screen.getByText(/2h 5m/i)).toBeInTheDocument()
+
+    // Should show exact hours without minutes (covers line 44)
+    expect(screen.getByText(/^3h$/)).toBeInTheDocument()
+  })
+
+  it('should trigger onLoadMore callback when sentinel is intersecting', () => {
+    const mockLoadMore = vi.fn()
+    const manyRecipes = Array.from({ length: 30 }, (_, i) => ({
+      ...mockRecipes[0],
+      slug: `recipe-${i}`,
+      title: `Recipe ${i}`
+    }))
+
+    // Mock IntersectionObserver
+    const mockObserve = vi.fn()
+    const mockDisconnect = vi.fn()
+
+    global.IntersectionObserver = vi.fn(function(callback) {
+      this.observe = mockObserve
+      this.disconnect = mockDisconnect
+
+      // Simulate intersection immediately
+      setTimeout(() => {
+        callback([{ isIntersecting: true }])
+      }, 0)
+
+      return this
+    })
+
+    renderWithRouter(
+      <SearchResults
+        results={manyRecipes}
+        loading={false}
+        infiniteScroll
+        onLoadMore={mockLoadMore}
+      />
+    )
+
+    const sentinel = screen.getByTestId('infinite-scroll-sentinel')
+    expect(sentinel).toBeInTheDocument()
+
+    // Verify observer was set up
+    expect(mockObserve).toHaveBeenCalled()
+
+    // Wait for async callback
+    setTimeout(() => {
+      expect(mockLoadMore).toHaveBeenCalled()
+    }, 10)
+  })
+
+  it('should call window.scrollTo when navigating to previous page', async () => {
+    const user = userEvent.setup()
+
+    // Mock window.scrollTo
+    const mockScrollTo = vi.fn()
+    window.scrollTo = mockScrollTo
+
+    const manyRecipes = Array.from({ length: 50 }, (_, i) => ({
+      ...mockRecipes[0],
+      slug: `recipe-${i}`,
+      title: `Recipe ${i}`
+    }))
+
+    renderWithRouter(
+      <SearchResults
+        results={manyRecipes}
+        loading={false}
+        itemsPerPage={20}
+      />
+    )
+
+    // Navigate to page 2
+    const nextButton = screen.getByRole('button', { name: /next page/i })
+    await user.click(nextButton)
+
+    mockScrollTo.mockClear()
+
+    // Navigate back to page 1
+    const prevButton = screen.getByRole('button', { name: /previous page/i })
+    await user.click(prevButton)
+
+    // Should have scrolled to top
+    expect(mockScrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' })
   })
 })

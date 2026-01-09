@@ -88,8 +88,8 @@ export const CrystalRating = ({ filled, className }) => (
     <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" style={{ width: '1.8rem', height: '1.8rem' }}>
         <path
             d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z"
-            fill={filled ? "var(--terracotta-spark)" : "none"}
-            stroke="var(--terracotta-spark)"
+            fill={filled ? "#D6BCFA" : "none"}
+            stroke="#D6BCFA"
             strokeWidth="1.5"
             strokeLinejoin="round"
         />

@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import * as THREE from 'three'
+import { Vector2 } from 'three'
 import './WatercolorCanvas.css'
 
 const vertexShader = `
@@ -75,13 +75,13 @@ function FluidBackground() {
     const { size } = useThree();
     const uniforms = useMemo(() => ({
         uTime: { value: 0 },
-        uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-        uResolution: { value: new THREE.Vector2(size.width, size.height) }
+        uMouse: { value: new Vector2(0.5, 0.5) },
+        uResolution: { value: new Vector2(size.width, size.height) }
     }), [size]);
 
     useFrame((state) => {
         uniforms.uTime.value = state.clock.getElapsedTime();
-        uniforms.uMouse.value.lerp(new THREE.Vector2(state.mouse.x * 0.5 + 0.5, state.mouse.y * 0.5 + 0.5), 0.1);
+        uniforms.uMouse.value.lerp(new Vector2(state.mouse.x * 0.5 + 0.5, state.mouse.y * 0.5 + 0.5), 0.1);
     });
 
     return (

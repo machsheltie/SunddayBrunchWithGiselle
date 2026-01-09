@@ -18,6 +18,7 @@
     background: var(--midnight-lavender);
     color: var(--pale-buttercream);
     box-shadow: 0 4px 15px rgba(46, 26, 71, 0.2);
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, filter 0.3s ease;
 }
 
 .whimsical-button--secondary {
@@ -25,6 +26,7 @@
     color: var(--midnight-lavender);
     border: 2px solid var(--pastel-lavender);
     box-shadow: 0 2px 8px rgba(155, 89, 182, 0.05);
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, filter 0.3s ease;
 }
 
 .whimsical-button--nav {
@@ -76,20 +78,21 @@
     transform: scale(1.15) rotate(5deg);
 }
 
-/* Primary button pawprint turns light on hover with bright glow */
-.whimsical-button--nav.whimsical-button--primary:hover .whimsical-button__nav-bg svg {
-    filter: brightness(2) drop-shadow(0 0 20px var(--pastel-lavender)) drop-shadow(0 0 10px var(--soft-sakura)) drop-shadow(0 0 5px white);
+.whimsical-button--nav:hover .whimsical-button__text {
+    color: var(--midnight-lavender) !important;
+    text-shadow: none;
 }
 
-.whimsical-button--nav.whimsical-button--primary:hover .whimsical-button__nav-bg svg path,
-.whimsical-button--nav.whimsical-button--primary:hover .whimsical-button__nav-bg svg ellipse {
+.whimsical-button--nav:hover .whimsical-button__nav-paw,
+.whimsical-button--nav:hover .whimsical-button__nav-paw path,
+.whimsical-button--nav:hover .whimsical-button__nav-paw ellipse {
     fill: var(--pastel-lavender) !important;
     opacity: 0.9 !important;
 }
 
-/* Regular nav buttons get subtle darker glow */
-.whimsical-button--nav:not(.whimsical-button--primary):hover .whimsical-button__nav-bg {
-    filter: drop-shadow(0 0 10px var(--midnight-lavender)) drop-shadow(0 0 5px var(--dusty-plum));
+.whimsical-button--nav:hover .whimsical-button__nav-paw {
+    /* Exact Netlify Triple-Layer Glow */
+    filter: brightness(2) drop-shadow(0 0 20px var(--pastel-lavender)) drop-shadow(0 0 10px var(--soft-sakura)) drop-shadow(0 0 5px white);
 }
 
 .whimsical-button__paw-container {
@@ -121,13 +124,19 @@
     opacity: 1;
 }
 
-.whimsical-button--primary:hover {
+.whimsical-button--primary:not(.whimsical-button--nav):hover {
     transform: scale(1.05);
+    background: #3d2659;
+    color: var(--pale-buttercream);
+    filter: brightness(1.3) drop-shadow(0 0 20px var(--pastel-sky)) drop-shadow(0 0 10px rgba(179, 217, 255, 0.6)) drop-shadow(0 0 5px rgba(214, 188, 250, 0.8));
 }
 
 .whimsical-button--secondary:hover {
     transform: scale(1.05);
-    filter: drop-shadow(0 0 20px var(--pastel-lavender)) drop-shadow(0 0 10px rgba(214, 188, 250, 0.6)) drop-shadow(0 0 5px rgba(214, 188, 250, 0.8));
+    background: #E9D5FF;
+    color: var(--midnight-lavender);
+    border-color: #E9D5FF;
+    filter: brightness(1.2) drop-shadow(0 0 20px var(--pastel-lavender)) drop-shadow(0 0 10px rgba(214, 188, 250, 0.6)) drop-shadow(0 0 5px rgba(214, 188, 250, 0.8));
 }
 
 .whimsical-button:active {

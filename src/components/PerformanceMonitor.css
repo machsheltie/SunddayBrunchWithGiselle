@@ -1,0 +1,110 @@
+/* Performance Monitor Styles */
+.perf-monitor {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  z-index: 99999;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  transition: opacity 0.3s ease;
+}
+
+.perf-monitor__toggle {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.perf-monitor__toggle:hover {
+  color: #ef4444;
+}
+
+.perf-monitor__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.perf-monitor__metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.perf-monitor__label {
+  color: #9ca3af;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.perf-monitor__value {
+  font-weight: bold;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+
+.perf-monitor__timing {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.perf-monitor__timing-item {
+  color: #9ca3af;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .perf-monitor {
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    min-width: 160px;
+  }
+
+  .perf-monitor__grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+/* Animation for value changes */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.perf-monitor__value {
+  animation: pulse 0.3s ease-in-out;
+}

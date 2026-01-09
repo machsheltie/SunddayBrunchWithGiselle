@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import CTAForm from '../components/CTAForm'
-import RecipeTemplate from '../components/RecipeTemplate'
+import FeaturedRecipeCard from '../components/FeaturedRecipeCard'
 import EpisodeTemplate from '../components/EpisodeTemplate'
 import ShareBar from '../components/ShareBar'
 import LoadingSkeleton from '../components/LoadingSkeleton'
@@ -35,17 +35,17 @@ function Home() {
                 <div className="section__header">
                     <h2 className="section__title">Featured Recipe</h2>
                 </div>
-                <div className="card">
-                    {loading && <LoadingSkeleton type="recipe" />}
-                    {!loading && featured.recipe && (
-                        <>
-                            <RecipeTemplate recipe={featured.recipe} />
+                {loading && <LoadingSkeleton type="recipe" />}
+                {!loading && featured.recipe && (
+                    <>
+                        <FeaturedRecipeCard recipe={featured.recipe} />
+                        <div className="card" style={{ marginTop: 'var(--space-8)' }}>
                             <ShareBar />
                             <CTAForm id="signup" headline="Get recipes, Sunday letters, early drops" />
-                        </>
-                    )}
-                    {!loading && !featured.recipe && <p className="small-muted">No recipe available yet.</p>}
-                </div>
+                        </div>
+                    </>
+                )}
+                {!loading && !featured.recipe && <p className="small-muted">No recipe available yet.</p>}
             </section>
 
             <section className="section" id="episodes">

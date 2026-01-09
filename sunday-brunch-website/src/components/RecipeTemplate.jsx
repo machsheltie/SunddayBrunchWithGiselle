@@ -16,7 +16,7 @@ import ThePantry from './ThePantry'
 import { trackPrint, trackCopy } from '../lib/analytics'
 import './RecipeTemplate.css'
 
-function RecipeTemplate({ recipe }) {
+function RecipeTemplate({ recipe, expandedImage }) {
     const [copied, setCopied] = useState(false)
     const [checkedIngredients, setCheckedIngredients] = useState({})
     const [servingMultiplier, setServingMultiplier] = useState(1)
@@ -132,6 +132,13 @@ function RecipeTemplate({ recipe }) {
                         description={`Check out this amazing ${recipe.title} from Sunday Brunch With Giselle!`}
                         image={recipe.image}
                     />
+
+                    {/* Expanded Recipe Image */}
+                    {expandedImage && (
+                        <div className="recipe__hero-image">
+                            <img src={expandedImage} alt={recipe.title} />
+                        </div>
+                    )}
 
                     <div className="recipe__header">
                         <div>

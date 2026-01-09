@@ -25,7 +25,26 @@
       "Bash(then mkdir -p .claude/skills)",
       "Bash(npm test:*)",
       "Bash(timeout 15 npm run dev:*)",
-      "Bash(npm run preview:*)"
+      "Bash(npm run preview:*)",
+      "Bash(git push:*)",
+      "Bash(timeout 15 npm run preview:*)",
+      "Bash(netlify login:*)",
+      "Bash(netlify sites:list:*)",
+      "Bash(netlify link:*)",
+      "Bash(netlify status:*)",
+      "Bash(if [ -d \"C:/Users/heirr/OneDrive/Desktop/Hope2_Studio/SundayBrunchWithGiselle/docs\" ])",
+      "Bash(then ls -la \"C:/Users/heirr/OneDrive/Desktop/Hope2_Studio/SundayBrunchWithGiselle/docs/\")",
+      "Bash(else echo \"docs directory does not exist\")",
+      "Bash(dir:*)",
+      "Bash(npm run test:coverage:*)",
+      "Bash(du:*)",
+      "Bash(find:*)",
+      "Bash(npm run test)",
+      "Bash(npx netlify:*)",
+      "Bash(node test-serverless-function.js:*)",
+      "Bash(sort:*)",
+      "Bash(test:*)",
+      "Bash(npm audit fix:*)"
     ]
   }
 }

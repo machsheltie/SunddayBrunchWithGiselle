@@ -49,7 +49,7 @@ const GiselleGuestbook = ({ recipeSlug }) => {
 
     return (
         <div className="recipe-reviews giselle-guestbook">
-            <h4 className="reviews-title script-accent">Giselle's Guestbook</h4>
+            <h4 className="reviews-title script-accent">Giselle's Royal Reviews</h4>
             <p className="guestbook-subtitle">Leave your mark on the sanctuary. Rare crystals for rare bakes.</p>
 
             <form className="review-form" onSubmit={handleSubmit}>
@@ -76,9 +76,11 @@ const GiselleGuestbook = ({ recipeSlug }) => {
                     required
                 />
 
-                <WhimsicalButton type="primary" className="submit-review">
-                    Sign the Guestbook
-                </WhimsicalButton>
+                <div className="submit-review-container">
+                    <WhimsicalButton type="primary" className="submit-review">
+                        Leave A Royal Review
+                    </WhimsicalButton>
+                </div>
             </form>
 
             <div className="reviews-list">

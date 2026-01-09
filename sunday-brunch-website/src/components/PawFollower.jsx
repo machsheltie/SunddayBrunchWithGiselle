@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { gsap } from 'gsap';
 import { PawPrint } from './illustrations/Decorations';
 import './PawFollower.css';
 
 const TRAIL_LIFETIME = 30000; // 30 seconds
 
 const PawFollower = () => {
-    const pawRef = useRef(null);
+    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
     const [trail, setTrail] = useState([]);
     const [pawColor, setPawColor] = useState('var(--midnight-lavender)');
     const [isInside, setIsInside] = useState(false);
@@ -28,13 +27,8 @@ const PawFollower = () => {
                 setPawColor('var(--midnight-lavender)');
             }
 
-            // Move the main paw
-            gsap.to(pawRef.current, {
-                x,
-                y,
-                duration: 0.1,
-                ease: 'none'
-            });
+            // Update cursor position for Framer Motion
+            setCursorPos({ x, y });
 
             // Add to trail if mouse moved enough
             setTrail(prev => {
@@ -116,10 +110,11 @@ const PawFollower = () => {
                 ))}
             </AnimatePresence>
 
-            {/* The Active Paw */}
-            <div
-                ref={pawRef}
+            {/* The Active Paw - Now using Framer Motion instead of GSAP */}
+            <motion.div
                 className={`paw-cursor ${isInside ? 'is-visible' : ''}`}
+                animate={{ x: cursorPos.x, y: cursorPos.y }}
+                transition={{ duration: 0.1, ease: 'linear' }}
                 style={{
                     position: 'fixed',
                     top: 0,
@@ -135,7 +130,7 @@ const PawFollower = () => {
                     opacity={1}
                     style={{ transform: 'translate(-50%, -50%)', width: '32px', height: '32px' }}
                 />
-            </div>
+            </motion.div>
         </div>
     );
 };

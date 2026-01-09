@@ -1,52 +1,48 @@
 import axios from 'axios'
 
-const CONVERTKIT_FORM_ID = import.meta.env.VITE_CONVERTKIT_FORM_ID
-const CONVERTKIT_API_KEY = import.meta.env.VITE_CONVERTKIT_API_KEY
-
 /**
- * Subscribe email to ConvertKit form
+ * Subscribe email to ConvertKit newsletter via Netlify serverless function
+ *
+ * SECURITY NOTE: This function now calls a Netlify serverless function that
+ * securely handles ConvertKit API credentials server-side. No API keys are
+ * exposed in the client bundle.
+ *
  * @param {string} email - Email address to subscribe
  * @param {string} firstName - Optional first name
- * @returns {Promise} - API response
+ * @returns {Promise<Object>} - Response object with success status and data/error
  */
 export const subscribeToNewsletter = async (email, firstName = '') => {
-    if (!CONVERTKIT_FORM_ID || !CONVERTKIT_API_KEY) {
-        return {
-            success: false,
-            error: 'ConvertKit credentials are not configured. Add VITE_CONVERTKIT_FORM_ID and VITE_CONVERTKIT_API_KEY to .env.'
-        }
-    }
-
     try {
+        // Call Netlify serverless function instead of ConvertKit API directly
+        // This function will be available at /.netlify/functions/subscribe
         const response = await axios.post(
-            `https://api.convertkit.com/v3/forms/${CONVERTKIT_FORM_ID}/subscribe`,
+            '/.netlify/functions/subscribe',
             {
-                api_key: CONVERTKIT_API_KEY,
                 email: email,
-                first_name: firstName
+                firstName: firstName
             },
             {
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                timeout: 15000 // 15 second timeout
             }
         )
 
-        return {
-            success: true,
-            data: response.data
-        }
+        // Serverless function returns consistent response format
+        return response.data
     } catch (error) {
-        console.error('ConvertKit subscription error:', error)
+        console.error('Newsletter subscription error:', error)
 
         if (error.response) {
-            // Server responded with error
+            // Serverless function responded with error
+            const errorData = error.response.data
             return {
                 success: false,
-                error: error.response.data.message || 'Subscription failed. Please try again.'
+                error: errorData.error || 'Subscription failed. Please try again.'
             }
         } else if (error.request) {
-            // Request made but no response
+            // Request made but no response (network error)
             return {
                 success: false,
                 error: 'Network error. Please check your connection and try again.'

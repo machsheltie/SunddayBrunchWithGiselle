@@ -10,7 +10,7 @@ export const recipes = [
         tags: ['Chocolate', 'Celebration', 'Layer Cake'],
         season: 'All Seasons',
         cookTime: 60,
-        image: '/images/recipes/royal-velvet-cake.png',
+        image: '/src/assets/photos/redvelvet.jpg',
         story: [
             "Darling, a Velvet Cake isn't just a dessert; it's a declaration of standards. It must be as smooth as silk and twice as dramatic.",
             "This recipe uses a touch extra cocoa and just the right amount of alchemical precision to ensure every crumb is worthy of a crown."

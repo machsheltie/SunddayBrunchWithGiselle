@@ -10,7 +10,8 @@ const WhimsicalButton = ({
     type = 'primary',
     variant = 'default', // 'default' or 'nav'
     showPaw = true,
-    className = ''
+    className = '',
+    disabled = false
 }) => {
     const buttonRef = useRef(null);
     const pawRef = useRef(null);
@@ -106,12 +107,14 @@ const WhimsicalButton = ({
             onClick={handleClick}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            disabled={disabled}
         >
             {variant === 'nav' && (
                 <div className="whimsical-button__nav-bg">
                     <PawPrint
+                        className="whimsical-button__nav-paw"
                         color="var(--midnight-lavender)"
-                        opacity={type === 'primary' ? '0.25' : '0.15'}
+                        opacity="0.25"
                     />
                 </div>
             )}

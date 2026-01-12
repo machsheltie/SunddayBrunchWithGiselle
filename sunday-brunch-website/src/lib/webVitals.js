@@ -3,13 +3,15 @@
  *
  * Tracks Core Web Vitals metrics and sends them to analytics:
  * - LCP (Largest Contentful Paint): <2.5s good, <4s needs improvement
- * - FID (First Input Delay): <100ms good, <300ms needs improvement
+ * - INP (Interaction to Next Paint): <200ms good, <500ms needs improvement
  * - CLS (Cumulative Layout Shift): <0.1 good, <0.25 needs improvement
  * - FCP (First Contentful Paint): <1.8s good, <3s needs improvement
  * - TTFB (Time to First Byte): <800ms good, <1800ms needs improvement
+ *
+ * Note: INP replaced FID (First Input Delay) in web-vitals v3+
  */
 
-import { onCLS, onFID, onFCP, onLCP, onTTFB } from 'web-vitals'
+import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals'
 import { trackEvent } from './analytics'
 
 /**
@@ -17,7 +19,7 @@ import { trackEvent } from './analytics'
  */
 const THRESHOLDS = {
     LCP: { good: 2500, needsImprovement: 4000 },
-    FID: { good: 100, needsImprovement: 300 },
+    INP: { good: 200, needsImprovement: 500 },
     CLS: { good: 0.1, needsImprovement: 0.25 },
     FCP: { good: 1800, needsImprovement: 3000 },
     TTFB: { good: 800, needsImprovement: 1800 }
@@ -74,7 +76,7 @@ export function initWebVitals() {
     try {
         // Track Core Web Vitals
         onCLS(sendToAnalytics)
-        onFID(sendToAnalytics)
+        onINP(sendToAnalytics)
         onLCP(sendToAnalytics)
 
         // Track additional metrics

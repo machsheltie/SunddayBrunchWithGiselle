@@ -1,18 +1,22 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { trackEvent } from '../lib/analytics'
+import { useAuth } from '../hooks/useAuth'
 import WatercolorCanvas from './WatercolorCanvas'
 import WatercolorFilters from './illustrations/WatercolorFilters'
 import WhimsyLayer from './WhimsyLayer'
 import WhimsicalButton from './WhimsicalButton'
 import PawFollower from './PawFollower'
-// import EphemeraEngine from './EphemeraEngine' // Removed - floating quotes were distracting
-// import PrismLayer from './PrismLayer' // Removed - glassmorphism shards made content hard to read
 import FloatingActionButtons from './FloatingActionButtons'
 import SheltieSightings from './SheltieSightings'
+import UserMenu from './UserMenu'
+import { AuthModal } from './auth'
 import '../App.css'
 
 function Layout({ children }) {
     const location = useLocation()
+    const { user } = useAuth()
+    const [authModalOpen, setAuthModalOpen] = useState(false)
 
     const handleNavClick = (label, href) => {
         trackEvent('nav_click', { label, href, from: location.pathname })
@@ -62,6 +66,21 @@ function Layout({ children }) {
                                 Get recipes
                             </WhimsicalButton>
                         </Link>
+
+                        {/* Authentication UI */}
+                        {user ? (
+                            <UserMenu />
+                        ) : (
+                            <WhimsicalButton
+                                variant="secondary"
+                                onClick={() => {
+                                    setAuthModalOpen(true)
+                                    trackEvent('auth_modal_open', { from: location.pathname })
+                                }}
+                            >
+                                Sign In
+                            </WhimsicalButton>
+                        )}
                     </nav>
                 </header>
 
@@ -84,6 +103,13 @@ function Layout({ children }) {
                     <p>&copy; 2024 Sunday Brunch With Giselle. Recipes, stories, and Sheltie side-eye.</p>
                 </footer>
             </div>
+
+            {/* Authentication Modal */}
+            <AuthModal
+                isOpen={authModalOpen}
+                onClose={() => setAuthModalOpen(false)}
+                initialView="login"
+            />
         </div>
     )
 }

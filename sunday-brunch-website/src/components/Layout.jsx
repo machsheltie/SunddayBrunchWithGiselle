@@ -33,6 +33,23 @@ function Layout({ children }) {
 
             <div className="layout">
                 <header className="header premium-masthead">
+                    {/* Authentication UI - Upper Right Corner */}
+                    <div className="header-auth">
+                        {user ? (
+                            <UserMenu />
+                        ) : (
+                            <button
+                                className="auth-button"
+                                onClick={() => {
+                                    setAuthModalOpen(true)
+                                    trackEvent('auth_modal_open', { from: location.pathname })
+                                }}
+                            >
+                                Sign In
+                            </button>
+                        )}
+                    </div>
+
                     <div className="brand">
                         <Link to="/" className="brand-link">
                             <span className="brand__title">Sunday Brunch <span className="script-accent-masthead">with</span> Giselle</span>
@@ -66,21 +83,6 @@ function Layout({ children }) {
                                 Get recipes
                             </WhimsicalButton>
                         </Link>
-
-                        {/* Authentication UI */}
-                        {user ? (
-                            <UserMenu />
-                        ) : (
-                            <WhimsicalButton
-                                variant="secondary"
-                                onClick={() => {
-                                    setAuthModalOpen(true)
-                                    trackEvent('auth_modal_open', { from: location.pathname })
-                                }}
-                            >
-                                Sign In
-                            </WhimsicalButton>
-                        )}
                     </nav>
                 </header>
 

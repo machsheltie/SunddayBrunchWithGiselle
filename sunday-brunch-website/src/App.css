@@ -184,6 +184,40 @@ html {
     border-radius: 4px;
 }
 
+/* ===== HEADER AUTH (UPPER RIGHT) ===== */
+
+.header-auth {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-6);
+    z-index: 100;
+}
+
+.auth-button {
+    padding: var(--space-2) var(--space-5);
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--pastel-lavender);
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--midnight-lavender);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: 0 2px 8px rgba(46, 26, 71, 0.1);
+}
+
+.auth-button:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: var(--midnight-lavender);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(46, 26, 71, 0.2);
+}
+
+.auth-button:active {
+    transform: scale(0.98);
+}
+
 /* ===== DECORATIVE HERO-CONTENT DIVIDER ===== */
 
 .hero-content-divider {

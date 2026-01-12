@@ -435,16 +435,33 @@ CREATE TRIGGER update_reviews_updated_at
 
 ### 5.2 Set Up Storage Policies
 
+Storage policies control who can perform operations on files. Each policy specifies:
+- **Operation:** select, insert, update, delete
+- **Target Role:** authenticated (logged in), anon (not logged in), or public (everyone)
+
 1. Click on the `review-images` bucket
 2. Go to **Policies** tab
 3. Click "New Policy"
-4. Create policies for authenticated users:
+4. Create the following 4 policies:
 
-**Policy 1: Upload Images**
+---
+
+#### **Policy 1: Upload Images (INSERT)**
+
+**Purpose:** Allow authenticated users to upload images to their own folder
+
+**Configuration:**
+- **Policy Name:** `Authenticated users can upload images`
+- **Allowed Operation:** `INSERT`
+- **Target Role:** `authenticated`
+- **SQL:**
+
 ```sql
--- Allow authenticated users to upload images
+-- Allow authenticated users to upload images to their own folder
+-- Files must be stored in: review-images/{user_id}/filename.jpg
 CREATE POLICY "Authenticated users can upload images"
   ON storage.objects FOR INSERT
+  TO authenticated
   WITH CHECK (
     bucket_id = 'review-images'
     AND auth.uid() IS NOT NULL
@@ -452,11 +469,29 @@ CREATE POLICY "Authenticated users can upload images"
   );
 ```
 
-**Policy 2: Update Images**
+**What this does:**
+- ✅ Users must be logged in
+- ✅ Users can only upload to folders named with their user ID
+- ✅ Prevents users from uploading to other users' folders
+- ✅ File path structure: `review-images/{user_id}/{filename}`
+
+---
+
+#### **Policy 2: Update Images (UPDATE)**
+
+**Purpose:** Allow users to update/replace their own images
+
+**Configuration:**
+- **Policy Name:** `Users can update their own images`
+- **Allowed Operation:** `UPDATE`
+- **Target Role:** `authenticated`
+- **SQL:**
+
 ```sql
--- Allow users to update their own images
+-- Allow users to update/replace images in their own folder
 CREATE POLICY "Users can update their own images"
   ON storage.objects FOR UPDATE
+  TO authenticated
   USING (
     bucket_id = 'review-images'
     AND auth.uid() IS NOT NULL
@@ -464,11 +499,29 @@ CREATE POLICY "Users can update their own images"
   );
 ```
 
-**Policy 3: Delete Images**
+**What this does:**
+- ✅ Users must be logged in
+- ✅ Users can only update files in their own folder
+- ✅ Prevents users from modifying other users' images
+- ✅ Useful for replacing outdated review images
+
+---
+
+#### **Policy 3: Delete Images (DELETE)**
+
+**Purpose:** Allow users to delete their own images
+
+**Configuration:**
+- **Policy Name:** `Users can delete their own images`
+- **Allowed Operation:** `DELETE`
+- **Target Role:** `authenticated`
+- **SQL:**
+
 ```sql
--- Allow users to delete their own images
+-- Allow users to delete images from their own folder
 CREATE POLICY "Users can delete their own images"
   ON storage.objects FOR DELETE
+  TO authenticated
   USING (
     bucket_id = 'review-images'
     AND auth.uid() IS NOT NULL
@@ -476,13 +529,54 @@ CREATE POLICY "Users can delete their own images"
   );
 ```
 
-**Policy 4: Read Images**
+**What this does:**
+- ✅ Users must be logged in
+- ✅ Users can only delete files from their own folder
+- ✅ Prevents users from deleting other users' images
+- ✅ Important for review deletion/editing
+
+---
+
+#### **Policy 4: Read Images (SELECT)**
+
+**Purpose:** Allow everyone to view images (public bucket)
+
+**Configuration:**
+- **Policy Name:** `Images are publicly accessible`
+- **Allowed Operation:** `SELECT`
+- **Target Role:** `public` (authenticated + anon)
+- **SQL:**
+
 ```sql
--- Allow everyone to read images (public bucket)
+-- Allow everyone (logged in or not) to view images
 CREATE POLICY "Images are publicly accessible"
   ON storage.objects FOR SELECT
+  TO public
   USING (bucket_id = 'review-images');
 ```
+
+**What this does:**
+- ✅ Anyone can view images (no login required)
+- ✅ Necessary for displaying review images on recipe pages
+- ✅ Does NOT allow anonymous users to upload/modify/delete
+- ✅ Public read access is safe for review images
+
+---
+
+### 5.3 Policy Summary
+
+| Policy | Operation | Role | Purpose |
+|--------|-----------|------|---------|
+| Upload Images | INSERT | authenticated | Users upload to their own folder |
+| Update Images | UPDATE | authenticated | Users replace their own images |
+| Delete Images | DELETE | authenticated | Users delete their own images |
+| Read Images | SELECT | public | Everyone can view images |
+
+**Security Model:**
+- 🔒 Only authenticated users can upload/modify/delete
+- 🔒 Users can only manage files in their own folder (user_id)
+- 🌐 Everyone can view images (needed for public recipe pages)
+- 🚫 Anonymous users cannot upload or modify anything
 
 ---
 

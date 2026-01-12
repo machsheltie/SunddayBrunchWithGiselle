@@ -11,6 +11,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import './UserMenu.css'
 
@@ -86,6 +87,26 @@ export default function UserMenu() {
               <p className="user-menu__email">{user.email}</p>
             </div>
           </div>
+
+          <div className="user-menu__divider" />
+
+          <Link
+            to="/profile"
+            className="user-menu__item"
+            onClick={() => setIsOpen(false)}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2ZM10 12C12.7614 12 15 12.8954 15 14V16H5V14C5 12.8954 7.23858 12 10 12Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+              />
+            </svg>
+            My Profile
+          </Link>
 
           <div className="user-menu__divider" />
 

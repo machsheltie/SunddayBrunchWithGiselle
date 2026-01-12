@@ -44,7 +44,12 @@
       "Bash(node test-serverless-function.js:*)",
       "Bash(sort:*)",
       "Bash(test:*)",
-      "Bash(npm audit fix:*)"
+      "Bash(npm audit fix:*)",
+      "Bash(echo:*)",
+      "Bash(export VITE_SUPABASE_URL:*)",
+      "Bash(export VITE_SUPABASE_ANON_KEY:*)",
+      "Bash(copy .env.local sunday-brunch-website.env.local)",
+      "Bash(cat:*)"
     ]
   }
 }

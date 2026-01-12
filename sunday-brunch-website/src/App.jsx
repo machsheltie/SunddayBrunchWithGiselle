@@ -7,6 +7,7 @@ import { trackPageView } from './lib/analytics'
 import { initWebVitals } from './lib/webVitals'
 import { AchievementProvider } from './components/AchievementToaster'
 import { AuthProvider } from './contexts/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
 
 // Code splitting: Lazy load pages that aren't immediately needed
 // This reduces initial bundle size while keeping ALL magic intact
@@ -17,6 +18,7 @@ const MediaKitPage = lazy(() => import('./pages/MediaKitPage'))
 const TeamPage = lazy(() => import('./pages/TeamPage'))
 const NewsletterPage = lazy(() => import('./pages/NewsletterPage'))
 const AlchemistsLab = lazy(() => import('./pages/AlchemistsLab'))
+const ProfilePage = lazy(() => import('./pages/ProfilePage'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
@@ -47,6 +49,14 @@ function App() {
                             <Route path="/team" element={<TeamPage />} />
                             <Route path="/newsletter" element={<NewsletterPage />} />
                             <Route path="/lab" element={<AlchemistsLab />} />
+                            <Route
+                                path="/profile"
+                                element={
+                                    <ProtectedRoute>
+                                        <ProfilePage />
+                                    </ProtectedRoute>
+                                }
+                            />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                     </Suspense>

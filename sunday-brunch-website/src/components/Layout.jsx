@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { trackEvent } from '../lib/analytics'
 import { useAuth } from '../hooks/useAuth'
@@ -17,6 +17,17 @@ function Layout({ children }) {
     const location = useLocation()
     const { user } = useAuth()
     const [authModalOpen, setAuthModalOpen] = useState(false)
+
+    // Auto-open auth modal when redirected from a protected route
+    useEffect(() => {
+        if (location.state?.requiresAuth && !user) {
+            setAuthModalOpen(true)
+            trackEvent('auth_required', {
+                from: location.state.from?.pathname || 'unknown',
+                to: location.pathname
+            })
+        }
+    }, [location, user])
 
     const handleNavClick = (label, href) => {
         trackEvent('nav_click', { label, href, from: location.pathname })

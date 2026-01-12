@@ -439,10 +439,9 @@ Storage policies control who can perform operations on files. Each policy specif
 - **Operation:** select, insert, update, delete
 - **Target Role:** authenticated (logged in), anon (not logged in), or public (everyone)
 
-1. Click on the `review-images` bucket
-2. Go to **Policies** tab
-3. Click "New Policy"
-4. Create the following 4 policies:
+**Two Methods Available:**
+- **Method 1: Using UI (Recommended)** - Use the policy builder in Supabase dashboard
+- **Method 2: Using SQL Editor** - Run SQL commands directly (for advanced users)
 
 ---
 
@@ -450,21 +449,37 @@ Storage policies control who can perform operations on files. Each policy specif
 
 **Purpose:** Allow authenticated users to upload images to their own folder
 
-**Configuration:**
+##### Method 1: Using Supabase UI (Recommended)
+
+1. Click on the `review-images` bucket
+2. Go to **Policies** tab
+3. Click "New Policy" → "Create a policy from scratch"
+4. Fill in the form:
+
+**Policy Definition Fields:**
 - **Policy Name:** `Authenticated users can upload images`
-- **Allowed Operation:** `INSERT`
-- **Target Role:** `authenticated`
-- **SQL:**
+- **Allowed Operation:** Select `INSERT` from dropdown
+- **Target Roles:** Check `authenticated` only
+- **Policy Definition:** Paste this expression ONLY:
 
 ```sql
--- Allow authenticated users to upload images to their own folder
--- Files must be stored in: review-images/{user_id}/filename.jpg
+bucket_id = 'review-images' AND (storage.foldername(name))[1] = auth.uid()::text
+```
+
+5. Click "Review" then "Save Policy"
+
+##### Method 2: Using SQL Editor (Alternative)
+
+1. Go to **SQL Editor**
+2. Click "New Query"
+3. Paste and run:
+
+```sql
 CREATE POLICY "Authenticated users can upload images"
   ON storage.objects FOR INSERT
   TO authenticated
   WITH CHECK (
     bucket_id = 'review-images'
-    AND auth.uid() IS NOT NULL
     AND (storage.foldername(name))[1] = auth.uid()::text
   );
 ```
@@ -481,20 +496,31 @@ CREATE POLICY "Authenticated users can upload images"
 
 **Purpose:** Allow users to update/replace their own images
 
-**Configuration:**
+##### Method 1: Using Supabase UI (Recommended)
+
+1. Click "New Policy" → "Create a policy from scratch"
+2. Fill in the form:
+
+**Policy Definition Fields:**
 - **Policy Name:** `Users can update their own images`
-- **Allowed Operation:** `UPDATE`
-- **Target Role:** `authenticated`
-- **SQL:**
+- **Allowed Operation:** Select `UPDATE` from dropdown
+- **Target Roles:** Check `authenticated` only
+- **Policy Definition:** Paste this expression ONLY:
 
 ```sql
--- Allow users to update/replace images in their own folder
+bucket_id = 'review-images' AND (storage.foldername(name))[1] = auth.uid()::text
+```
+
+3. Click "Review" then "Save Policy"
+
+##### Method 2: Using SQL Editor (Alternative)
+
+```sql
 CREATE POLICY "Users can update their own images"
   ON storage.objects FOR UPDATE
   TO authenticated
   USING (
     bucket_id = 'review-images'
-    AND auth.uid() IS NOT NULL
     AND (storage.foldername(name))[1] = auth.uid()::text
   );
 ```
@@ -511,20 +537,31 @@ CREATE POLICY "Users can update their own images"
 
 **Purpose:** Allow users to delete their own images
 
-**Configuration:**
+##### Method 1: Using Supabase UI (Recommended)
+
+1. Click "New Policy" → "Create a policy from scratch"
+2. Fill in the form:
+
+**Policy Definition Fields:**
 - **Policy Name:** `Users can delete their own images`
-- **Allowed Operation:** `DELETE`
-- **Target Role:** `authenticated`
-- **SQL:**
+- **Allowed Operation:** Select `DELETE` from dropdown
+- **Target Roles:** Check `authenticated` only
+- **Policy Definition:** Paste this expression ONLY:
 
 ```sql
--- Allow users to delete images from their own folder
+bucket_id = 'review-images' AND (storage.foldername(name))[1] = auth.uid()::text
+```
+
+3. Click "Review" then "Save Policy"
+
+##### Method 2: Using SQL Editor (Alternative)
+
+```sql
 CREATE POLICY "Users can delete their own images"
   ON storage.objects FOR DELETE
   TO authenticated
   USING (
     bucket_id = 'review-images'
-    AND auth.uid() IS NOT NULL
     AND (storage.foldername(name))[1] = auth.uid()::text
   );
 ```
@@ -541,14 +578,26 @@ CREATE POLICY "Users can delete their own images"
 
 **Purpose:** Allow everyone to view images (public bucket)
 
-**Configuration:**
+##### Method 1: Using Supabase UI (Recommended)
+
+1. Click "New Policy" → "Create a policy from scratch"
+2. Fill in the form:
+
+**Policy Definition Fields:**
 - **Policy Name:** `Images are publicly accessible`
-- **Allowed Operation:** `SELECT`
-- **Target Role:** `public` (authenticated + anon)
-- **SQL:**
+- **Allowed Operation:** Select `SELECT` from dropdown
+- **Target Roles:** Check BOTH `authenticated` AND `anon` (or select `public` if available)
+- **Policy Definition:** Paste this expression ONLY:
 
 ```sql
--- Allow everyone (logged in or not) to view images
+bucket_id = 'review-images'
+```
+
+3. Click "Review" then "Save Policy"
+
+##### Method 2: Using SQL Editor (Alternative)
+
+```sql
 CREATE POLICY "Images are publicly accessible"
   ON storage.objects FOR SELECT
   TO public
@@ -577,6 +626,36 @@ CREATE POLICY "Images are publicly accessible"
 - 🔒 Users can only manage files in their own folder (user_id)
 - 🌐 Everyone can view images (needed for public recipe pages)
 - 🚫 Anonymous users cannot upload or modify anything
+
+---
+
+### 5.3 Storage Policy Troubleshooting
+
+#### Error: "syntax error at end of input"
+
+**Cause:** You pasted the full `CREATE POLICY` statement into the UI
+
+**Solution:**
+- In the Supabase UI policy builder, paste ONLY the condition expression (the part inside `WITH CHECK()` or `USING()`)
+- Do NOT include `CREATE POLICY`, `ON storage.objects`, `FOR`, or `TO` - these are set via dropdowns
+- ✅ Correct: `bucket_id = 'review-images' AND (storage.foldername(name))[1] = auth.uid()::text`
+- ❌ Wrong: `CREATE POLICY "name" ON storage.objects FOR INSERT...`
+
+#### Error: "column auth.uid does not exist"
+
+**Cause:** Missing parentheses around `auth.uid()`
+
+**Solution:**
+- ✅ Correct: `auth.uid()` (with parentheses)
+- ❌ Wrong: `auth.uid` (missing parentheses)
+
+#### Policy Not Working
+
+**Solution:**
+1. Verify the bucket name is exactly `review-images`
+2. Check that target roles are selected correctly
+3. Test with SQL Editor method if UI method fails
+4. Verify RLS is enabled on `storage.objects` table
 
 ---
 

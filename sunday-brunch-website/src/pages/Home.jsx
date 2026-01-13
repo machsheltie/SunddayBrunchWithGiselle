@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import CTAForm from '../components/CTAForm'
 import FeaturedRecipeCard from '../components/FeaturedRecipeCard'
-import EpisodeTemplate from '../components/EpisodeTemplate'
+import FeaturedEpisodeCard from '../components/FeaturedEpisodeCard'
 import ShareBar from '../components/ShareBar'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 import WhimsicalHero from '../components/WhimsicalHero'
@@ -50,7 +50,7 @@ function Home() {
                     {loading && <LoadingSkeleton type="episode" />}
                     {!loading && featured.episode && (
                         <>
-                            <EpisodeTemplate episode={featured.episode} />
+                            <FeaturedEpisodeCard episode={featured.episode} />
                             <CTAForm headline="Get recipes, Sunday letters, early drops" />
                         </>
                     )}

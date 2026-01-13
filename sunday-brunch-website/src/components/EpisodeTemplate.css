@@ -20,6 +20,7 @@
 .episode-tape-paw {
     position: absolute;
     pointer-events: none;
+    z-index: 20;
 }
 
 .episode-tape-paw.paw-1 {

@@ -85,6 +85,7 @@ html {
 
 .brand {
     text-align: center;
+    padding-top: var(--space-12);
 }
 
 .brand__title {
@@ -188,7 +189,7 @@ html {
 
 .header-auth {
     position: fixed;
-    top: var(--space-6);
+    top: var(--space-4);
     right: var(--space-6);
     z-index: 100;
     max-width: 200px;

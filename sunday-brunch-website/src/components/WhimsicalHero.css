@@ -5,7 +5,7 @@
     align-items: center;
     gap: var(--space-4);
     margin-top: var(--space-8);
-    margin-bottom: var(--space-20);
+    margin-bottom: var(--space-4);
     background: transparent;
     padding: var(--space-20) var(--space-12);
     position: relative;

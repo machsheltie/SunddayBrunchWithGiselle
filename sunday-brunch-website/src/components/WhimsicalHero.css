@@ -7,7 +7,7 @@
     margin-top: var(--space-8);
     margin-bottom: var(--space-4);
     background: transparent;
-    padding: var(--space-20) var(--space-12);
+    padding: var(--space-20) var(--space-12) var(--space-4) var(--space-12);
     position: relative;
     overflow: visible;
 }

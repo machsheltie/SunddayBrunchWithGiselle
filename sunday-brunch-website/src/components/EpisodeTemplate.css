@@ -15,6 +15,27 @@
     top: -20px;
     left: 50%;
     transform: translateX(-50%);
+    width: 200px;
+    height: 40px;
+}
+
+.episode-header-tape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.episode-header-tape.tape-1 {
+    transform: rotate(-2deg) translateY(10px);
+    z-index: 2;
+}
+
+.episode-header-tape.tape-2 {
+    transform: rotate(1deg) translateY(2px);
+    z-index: 1;
 }
 
 .episode-tape-paw {

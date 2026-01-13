@@ -1,9 +1,8 @@
 import AudioPlayer from './AudioPlayer'
 import RelatedContent from './RelatedContent'
 import GiselleWhisper from './GiselleWhisper'
-import WashiTapeStack from './WashiTapeStack'
 import SheltieSoundboard from './SheltieSoundboard'
-import { PawPrint } from './illustrations/Decorations'
+import { WashiTape, PawPrint } from './illustrations/Decorations'
 import './EpisodeTemplate.css'
 
 function EpisodeTemplate({ episode }) {
@@ -11,7 +10,8 @@ function EpisodeTemplate({ episode }) {
         <div className="episode-alchemist">
             <div className="episode-header">
                 <div className="episode-header-tape-wrapper">
-                    <WashiTapeStack count={2} className="episode-header-tape" />
+                    <WashiTape className="episode-header-tape tape-1" color="var(--pastel-lavender)" />
+                    <WashiTape className="episode-header-tape tape-2" color="var(--soft-sakura)" />
                     {/* Scattered pawprints on the tape for scrapbook charm */}
                     <PawPrint className="episode-tape-paw paw-1" color="var(--midnight-lavender)" opacity="0.25" width="12" height="12" />
                     <PawPrint className="episode-tape-paw paw-2" color="var(--midnight-lavender)" opacity="0.2" width="10" height="10" />

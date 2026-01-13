@@ -83,8 +83,8 @@ export default function ProfilePage() {
                 <li>✨ Edit profile information</li>
                 <li>🖼️ Upload profile picture</li>
                 <li>⚙️ Notification preferences</li>
-                <li>🌙 Dark mode settings</li>
                 <li>📧 Email preferences</li>
+                <li>💾 Manage saved recipes</li>
               </ul>
             </div>
           </section>

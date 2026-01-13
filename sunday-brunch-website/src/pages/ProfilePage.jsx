@@ -66,7 +66,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="activity-stat">
                   <span className="activity-stat__value">0</span>
-                  <span className="activity-stat__label">Helpful Votes</span>
+                  <span className="activity-stat__label">Recipes Saved</span>
                 </div>
               </div>
               <p className="activity-note">

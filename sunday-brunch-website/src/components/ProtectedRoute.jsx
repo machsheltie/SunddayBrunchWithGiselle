@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
-import Loading from './Loading'
+import WhimsicalLoader from './WhimsicalLoader'
 
 /**
  * ProtectedRoute Component
@@ -19,7 +19,7 @@ export default function ProtectedRoute({ children }) {
 
   // Show loading state while checking authentication
   if (loading) {
-    return <Loading />
+    return <WhimsicalLoader />
   }
 
   // Redirect to home if not authenticated

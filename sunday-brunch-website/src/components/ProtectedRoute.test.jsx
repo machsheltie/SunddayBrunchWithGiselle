@@ -46,7 +46,7 @@ describe('ProtectedRoute', () => {
         </MemoryRouter>
       )
 
-      expect(screen.getByTestId('loading-fullscreen')).toBeInTheDocument()
+      expect(screen.getByTestId('whimsical-loader')).toBeInTheDocument()
       expect(screen.queryByTestId('protected-content')).not.toBeInTheDocument()
     })
   })
@@ -216,7 +216,7 @@ describe('ProtectedRoute', () => {
         </MemoryRouter>
       )
 
-      expect(screen.getByTestId('loading-fullscreen')).toBeInTheDocument()
+      expect(screen.getByTestId('whimsical-loader')).toBeInTheDocument()
 
       // Transition to not authenticated
       useAuth.mockReturnValue({
@@ -240,7 +240,7 @@ describe('ProtectedRoute', () => {
         </MemoryRouter>
       )
 
-      expect(screen.queryByTestId('loading-fullscreen')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('whimsical-loader')).not.toBeInTheDocument()
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
     })
 
@@ -288,7 +288,7 @@ describe('ProtectedRoute', () => {
         </MemoryRouter>
       )
 
-      expect(screen.getByTestId('loading-fullscreen')).toBeInTheDocument()
+      expect(screen.getByTestId('whimsical-loader')).toBeInTheDocument()
 
       // Transition to authenticated
       useAuth.mockReturnValue({
@@ -312,7 +312,7 @@ describe('ProtectedRoute', () => {
         </MemoryRouter>
       )
 
-      expect(screen.queryByTestId('loading-fullscreen')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('whimsical-loader')).not.toBeInTheDocument()
       expect(screen.getByTestId('protected-content')).toBeInTheDocument()
     })
   })

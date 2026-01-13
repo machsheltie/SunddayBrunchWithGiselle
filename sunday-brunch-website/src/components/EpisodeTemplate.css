@@ -10,11 +10,46 @@
     padding-top: var(--space-10);
 }
 
-.episode-header-tape {
+.episode-header-tape-wrapper {
     position: absolute;
     top: -20px;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.episode-tape-paw {
+    position: absolute;
+    pointer-events: none;
+}
+
+.episode-tape-paw.paw-1 {
+    top: 8px;
+    left: 20px;
+    transform: rotate(-15deg);
+}
+
+.episode-tape-paw.paw-2 {
+    top: 15px;
+    left: 45px;
+    transform: rotate(25deg);
+}
+
+.episode-tape-paw.paw-3 {
+    top: 5px;
+    left: 75px;
+    transform: rotate(-8deg);
+}
+
+.episode-tape-paw.paw-4 {
+    top: 18px;
+    left: 105px;
+    transform: rotate(18deg);
+}
+
+.episode-tape-paw.paw-5 {
+    top: 10px;
+    left: 130px;
+    transform: rotate(-22deg);
 }
 
 .episode__title {

@@ -3,13 +3,22 @@ import RelatedContent from './RelatedContent'
 import GiselleWhisper from './GiselleWhisper'
 import WashiTapeStack from './WashiTapeStack'
 import SheltieSoundboard from './SheltieSoundboard'
+import { PawPrint } from './illustrations/Decorations'
 import './EpisodeTemplate.css'
 
 function EpisodeTemplate({ episode }) {
     return (
         <div className="episode-alchemist">
             <div className="episode-header">
-                <WashiTapeStack count={2} className="episode-header-tape" />
+                <div className="episode-header-tape-wrapper">
+                    <WashiTapeStack count={2} className="episode-header-tape" />
+                    {/* Scattered pawprints on the tape for scrapbook charm */}
+                    <PawPrint className="episode-tape-paw paw-1" color="var(--midnight-lavender)" opacity="0.25" width="12" height="12" />
+                    <PawPrint className="episode-tape-paw paw-2" color="var(--midnight-lavender)" opacity="0.2" width="10" height="10" />
+                    <PawPrint className="episode-tape-paw paw-3" color="var(--midnight-lavender)" opacity="0.3" width="14" height="14" />
+                    <PawPrint className="episode-tape-paw paw-4" color="var(--midnight-lavender)" opacity="0.22" width="11" height="11" />
+                    <PawPrint className="episode-tape-paw paw-5" color="var(--midnight-lavender)" opacity="0.28" width="13" height="13" />
+                </div>
                 <h3 className="episode__title">{episode.title}</h3>
                 <p className="episode-meta">Aired on {episode.date || "Sunday Morning"}</p>
             </div>

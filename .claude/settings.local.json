@@ -49,7 +49,11 @@
       "Bash(export VITE_SUPABASE_URL:*)",
       "Bash(export VITE_SUPABASE_ANON_KEY:*)",
       "Bash(copy .env.local sunday-brunch-website.env.local)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(taskkill:*)",
+      "Bash(timeout /t 3)",
+      "Bash(findstr:*)",
+      "Bash(del .\\\\nul)"
     ]
   }
 }

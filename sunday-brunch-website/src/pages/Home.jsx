@@ -37,13 +37,7 @@ function Home() {
                 </div>
                 {loading && <LoadingSkeleton type="recipe" />}
                 {!loading && featured.recipe && (
-                    <>
-                        <FeaturedRecipeCard recipe={featured.recipe} />
-                        <div className="card" style={{ marginTop: 'var(--space-8)' }}>
-                            <ShareBar />
-                            <CTAForm id="signup" headline="Get recipes, Sunday letters, early drops" />
-                        </div>
-                    </>
+                    <FeaturedRecipeCard recipe={featured.recipe} />
                 )}
                 {!loading && !featured.recipe && <p className="small-muted">No recipe available yet.</p>}
             </section>
@@ -58,7 +52,7 @@ function Home() {
                     {!loading && featured.episode && (
                         <>
                             <EpisodeTemplate episode={featured.episode} />
-                            <CTAForm headline="Stay in the loop" />
+                            <CTAForm headline="Get recipes, Sunday letters, early drops" />
                         </>
                     )}
                     {!loading && !featured.episode && <p className="small-muted">No episode available yet.</p>}

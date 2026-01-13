@@ -11,7 +11,10 @@ import './WhimsicalLoader.css';
  */
 const WhimsicalLoader = ({ fullscreen = false }) => {
     return (
-        <div className={`whimsical-loader ${fullscreen ? 'whimsical-loader--fullscreen' : ''}`}>
+        <div
+            className={`whimsical-loader ${fullscreen ? 'whimsical-loader--fullscreen' : ''}`}
+            data-testid="whimsical-loader"
+        >
             <div className="whimsical-loader__content">
                 {/* Animated paw prints */}
                 <div className="whimsical-loader__paws">

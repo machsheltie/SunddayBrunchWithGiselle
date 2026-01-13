@@ -4,7 +4,7 @@ import { initWebVitals, getPerformanceMetrics } from '../../lib/webVitals'
 // Mock web-vitals package
 vi.mock('web-vitals', () => ({
     onCLS: vi.fn(),
-    onFID: vi.fn(),
+    onINP: vi.fn(),
     onLCP: vi.fn(),
     onFCP: vi.fn(),
     onTTFB: vi.fn()
@@ -16,7 +16,7 @@ vi.mock('../../lib/analytics', () => ({
 }))
 
 // Import mocked modules after vi.mock calls
-import { onCLS, onFID, onLCP, onFCP, onTTFB } from 'web-vitals'
+import { onCLS, onINP, onLCP, onFCP, onTTFB } from 'web-vitals'
 import { trackEvent } from '../../lib/analytics'
 
 describe('Web Vitals Service', () => {
@@ -60,7 +60,7 @@ describe('Web Vitals Service', () => {
 
         // Reset web-vitals mocks to default (no-op)
         onCLS.mockImplementation(() => {})
-        onFID.mockImplementation(() => {})
+        onINP.mockImplementation(() => {})
         onLCP.mockImplementation(() => {})
         onFCP.mockImplementation(() => {})
         onTTFB.mockImplementation(() => {})
@@ -78,13 +78,13 @@ describe('Web Vitals Service', () => {
     })
 
     describe('initWebVitals()', () => {
-        it('should initialize all metric listeners (onCLS, onFID, onLCP, onFCP, onTTFB)', () => {
+        it('should initialize all metric listeners (onCLS, onINP, onLCP, onFCP, onTTFB)', () => {
             // Act
             initWebVitals()
 
             // Assert
             expect(onCLS).toHaveBeenCalledTimes(1)
-            expect(onFID).toHaveBeenCalledTimes(1)
+            expect(onINP).toHaveBeenCalledTimes(1)
             expect(onLCP).toHaveBeenCalledTimes(1)
             expect(onFCP).toHaveBeenCalledTimes(1)
             expect(onTTFB).toHaveBeenCalledTimes(1)
@@ -144,7 +144,7 @@ describe('Web Vitals Service', () => {
 
             // Assert - No web vitals listeners should be initialized
             expect(onCLS).not.toHaveBeenCalled()
-            expect(onFID).not.toHaveBeenCalled()
+            expect(onINP).not.toHaveBeenCalled()
             expect(onLCP).not.toHaveBeenCalled()
             expect(onFCP).not.toHaveBeenCalled()
             expect(onTTFB).not.toHaveBeenCalled()
@@ -158,14 +158,14 @@ describe('Web Vitals Service', () => {
             }
 
             const mockMetric = {
-                name: 'FID',
+                name: 'INP',
                 value: 50,
                 rating: 'good',
                 delta: 50,
                 id: 'v3-fid-123'
             }
 
-            onFID.mockImplementation(callback => callback(mockMetric))
+            onINP.mockImplementation(callback => callback(mockMetric))
 
             // Act
             initWebVitals()
@@ -321,12 +321,12 @@ describe('Web Vitals Service', () => {
         })
 
         it('should calculate correct ratings for all Core Web Vitals thresholds', () => {
-            // Test FID good threshold (<100ms)
-            const fidGoodMetric = { name: 'FID', value: 50, rating: 'good', delta: 50, id: 'fid-1' }
-            onFID.mockImplementation(callback => callback(fidGoodMetric))
+            // Test INP good threshold (<200ms)
+            const inpGoodMetric = { name: 'INP', value: 50, rating: 'good', delta: 50, id: 'inp-1' }
+            onINP.mockImplementation(callback => callback(inpGoodMetric))
             initWebVitals()
             expect(trackEvent).toHaveBeenCalledWith('web_vitals', expect.objectContaining({
-                metric_name: 'FID',
+                metric_name: 'INP',
                 metric_rating: 'good'
             }))
 
@@ -567,11 +567,11 @@ describe('Web Vitals Service', () => {
         it('should handle multiple metrics being reported simultaneously', () => {
             // Arrange
             const clsMetric = { name: 'CLS', value: 0.05, rating: 'good', delta: 0.05, id: 'cls-1' }
-            const fidMetric = { name: 'FID', value: 50, rating: 'good', delta: 50, id: 'fid-1' }
+            const inpMetric = { name: 'INP', value: 50, rating: 'good', delta: 50, id: 'inp-1' }
             const lcpMetric = { name: 'LCP', value: 2000, rating: 'good', delta: 2000, id: 'lcp-1' }
 
             onCLS.mockImplementation(callback => callback(clsMetric))
-            onFID.mockImplementation(callback => callback(fidMetric))
+            onINP.mockImplementation(callback => callback(inpMetric))
             onLCP.mockImplementation(callback => callback(lcpMetric))
 
             // Act
@@ -583,7 +583,7 @@ describe('Web Vitals Service', () => {
                 metric_name: 'CLS'
             }))
             expect(trackEvent).toHaveBeenCalledWith('web_vitals', expect.objectContaining({
-                metric_name: 'FID'
+                metric_name: 'INP'
             }))
             expect(trackEvent).toHaveBeenCalledWith('web_vitals', expect.objectContaining({
                 metric_name: 'LCP'

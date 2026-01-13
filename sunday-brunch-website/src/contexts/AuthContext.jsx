@@ -30,6 +30,7 @@ export const AuthContext = createContext({
   signUp: async () => {},
   signIn: async () => {},
   signOut: async () => {},
+  resetPassword: async () => {},
   updateProfile: async () => {},
   isConfigured: false,
 })
@@ -159,6 +160,29 @@ export function AuthProvider({ children }) {
   }, [configured])
 
   /**
+   * Send password reset email
+   * @param {string} email - User's email address
+   * @returns {Promise<{error}>}
+   */
+  const resetPassword = useCallback(
+    async (email) => {
+      if (!configured) {
+        return { error: new Error('Supabase not configured') }
+      }
+
+      try {
+        const { error } = await supabase.auth.resetPasswordForEmail(email)
+        if (error) throw error
+        return { error: null }
+      } catch (error) {
+        console.error('Reset password error:', error)
+        return { error }
+      }
+    },
+    [configured]
+  )
+
+  /**
    * Update user profile metadata
    * @param {Object} updates - Profile fields to update
    * @returns {Promise<{user, error}>}
@@ -192,6 +216,7 @@ export function AuthProvider({ children }) {
     signUp,
     signIn,
     signOut,
+    resetPassword,
     updateProfile,
     isConfigured: configured,
   }

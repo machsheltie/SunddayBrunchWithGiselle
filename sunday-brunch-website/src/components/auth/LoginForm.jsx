@@ -43,7 +43,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
       const { error: signInError } = await signIn(email, password)
 
       if (signInError) {
-        if (signInError.message.includes('Invalid login credentials')) {
+        if (signInError.message && signInError.message.includes('Invalid login credentials')) {
           setError('Invalid email or password')
         } else {
           setError(signInError.message || 'Failed to sign in. Please try again.')

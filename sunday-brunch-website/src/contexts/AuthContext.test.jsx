@@ -15,7 +15,8 @@ vi.mock('../lib/supabase', () => ({
       signOut: vi.fn(),
       resetPasswordForEmail: vi.fn()
     }
-  }
+  },
+  isSupabaseConfigured: vi.fn(() => true)
 }))
 
 // Test consumer component

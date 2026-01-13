@@ -84,6 +84,9 @@ function Layout({ children }) {
                         <Link to="/lab" onClick={() => handleNavClick('The Lab', '/lab')}>
                             <WhimsicalButton variant="nav">The Lab</WhimsicalButton>
                         </Link>
+                        <Link to="/media-kit" onClick={() => handleNavClick('Media Kit', '/media-kit')}>
+                            <WhimsicalButton variant="nav">Media Kit</WhimsicalButton>
+                        </Link>
                         <Link to="/recipes">
                             <WhimsicalButton
                                 type="primary"

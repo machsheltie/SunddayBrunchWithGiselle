@@ -250,29 +250,13 @@ describe('ProtectedRoute', () => {
         email: 'test@example.com'
       }
 
-      const { rerender } = render(
-        <MemoryRouter initialEntries={['/protected']}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/protected"
-              element={
-                <ProtectedRoute>
-                  <ProtectedContent />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </MemoryRouter>
-      )
-
-      // Start with loading state
+      // Start with loading state BEFORE first render
       useAuth.mockReturnValue({
         user: null,
         loading: true
       })
 
-      rerender(
+      const { rerender } = render(
         <MemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />

@@ -45,7 +45,6 @@ function Home() {
             <section className="section" id="episodes">
                 <div className="section__header">
                     <h2 className="section__title">Latest Episode</h2>
-                    <span className="pill">Audio + transcript</span>
                 </div>
                 <div className="card">
                     {loading && <LoadingSkeleton type="episode" />}

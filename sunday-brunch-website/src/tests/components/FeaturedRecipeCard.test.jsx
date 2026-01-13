@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import FeaturedRecipeCard from '../../components/FeaturedRecipeCard';
+import { getRecipeRatings } from '../../lib/ratings';
 
 // Mock child components
 vi.mock('../../components/RecipeTemplate', () => ({
@@ -33,8 +34,22 @@ vi.mock('../../components/DietaryBadges', () => ({
     )
 }));
 
+vi.mock('../../components/StarRating', () => ({
+    default: ({ value, count, size }) => (
+        <div data-testid="star-rating" data-value={value} data-count={count} data-size={size}>
+            {value} stars ({count} ratings)
+        </div>
+    )
+}));
+
+// Mock ratings API
+vi.mock('../../lib/ratings', () => ({
+    getRecipeRatings: vi.fn()
+}));
+
 // Mock CSS imports
 vi.mock('../../components/FeaturedRecipeCard.css', () => ({}));
+vi.mock('../../components/StarRating.css', () => ({}));
 
 describe('FeaturedRecipeCard', () => {
     const mockRecipe = {
@@ -56,6 +71,15 @@ describe('FeaturedRecipeCard', () => {
 
     beforeEach(() => {
         vi.clearAllMocks();
+        // Default mock: recipe has ratings
+        getRecipeRatings.mockResolvedValue({
+            data: {
+                recipe_slug: 'blueberry-muffins',
+                average_rating: 4.5,
+                rating_count: 128
+            },
+            error: null
+        });
     });
 
     afterEach(() => {
@@ -294,6 +318,115 @@ describe('FeaturedRecipeCard', () => {
             expect(badges.textContent).toContain('Gluten-Free');
             expect(badges.textContent).toContain('Dairy-Free');
             expect(badges.textContent).not.toContain('Nut-Free');
+        });
+    });
+
+    // ==========================================
+    // RATINGS DISPLAY TESTS
+    // ==========================================
+
+    describe('Ratings Display', () => {
+        it('should fetch and display recipe ratings', async () => {
+            // Arrange & Act
+            render(<FeaturedRecipeCard recipe={mockRecipe} />);
+
+            // Assert - Wait for ratings to load
+            await waitFor(() => {
+                expect(getRecipeRatings).toHaveBeenCalledWith('blueberry-muffins');
+            });
+
+            const starRating = await screen.findByTestId('star-rating');
+            expect(starRating).toBeInTheDocument();
+            expect(starRating).toHaveAttribute('data-value', '4.5');
+            expect(starRating).toHaveAttribute('data-count', '128');
+            expect(starRating).toHaveAttribute('data-size', 'medium');
+        });
+
+        it('should display zero ratings for recipe with no ratings', async () => {
+            // Arrange
+            getRecipeRatings.mockResolvedValue({
+                data: {
+                    recipe_slug: 'blueberry-muffins',
+                    average_rating: 0,
+                    rating_count: 0
+                },
+                error: null
+            });
+
+            // Act
+            render(<FeaturedRecipeCard recipe={mockRecipe} />);
+
+            // Assert
+            await waitFor(() => {
+                expect(getRecipeRatings).toHaveBeenCalledWith('blueberry-muffins');
+            });
+
+            const starRating = await screen.findByTestId('star-rating');
+            expect(starRating).toHaveAttribute('data-value', '0');
+            expect(starRating).toHaveAttribute('data-count', '0');
+        });
+
+        it('should handle rating fetch error gracefully', async () => {
+            // Arrange
+            getRecipeRatings.mockResolvedValue({
+                data: null,
+                error: { message: 'Database connection failed' }
+            });
+
+            // Act
+            render(<FeaturedRecipeCard recipe={mockRecipe} />);
+
+            // Assert - Component should still render without ratings
+            expect(screen.getByText('Blueberry Muffins')).toBeInTheDocument();
+
+            // Wait for API call to complete
+            await waitFor(() => {
+                expect(getRecipeRatings).toHaveBeenCalledWith('blueberry-muffins');
+            });
+
+            // No star rating should be displayed
+            expect(screen.queryByTestId('star-rating')).not.toBeInTheDocument();
+        });
+
+        it('should not show star rating while ratings are loading', () => {
+            // Arrange
+            getRecipeRatings.mockImplementation(() => new Promise(() => {})); // Never resolves
+
+            // Act
+            render(<FeaturedRecipeCard recipe={mockRecipe} />);
+
+            // Assert - Star rating should not be visible immediately
+            expect(screen.queryByTestId('star-rating')).not.toBeInTheDocument();
+        });
+
+        it('should refetch ratings when recipe slug changes', async () => {
+            // Arrange
+            const { rerender } = render(<FeaturedRecipeCard recipe={mockRecipe} />);
+
+            // Assert - First recipe ratings fetched
+            await waitFor(() => {
+                expect(getRecipeRatings).toHaveBeenCalledWith('blueberry-muffins');
+            });
+
+            // Act - Change recipe
+            const newRecipe = { ...mockRecipe, slug: 'chocolate-cake', title: 'Chocolate Cake' };
+            rerender(<FeaturedRecipeCard recipe={newRecipe} />);
+
+            // Assert - New recipe ratings fetched
+            await waitFor(() => {
+                expect(getRecipeRatings).toHaveBeenCalledWith('chocolate-cake');
+            });
+        });
+
+        it('should not fetch ratings if recipe has no slug', () => {
+            // Arrange
+            const recipeNoSlug = { ...mockRecipe, slug: null };
+
+            // Act
+            render(<FeaturedRecipeCard recipe={recipeNoSlug} />);
+
+            // Assert - API should not be called
+            expect(getRecipeRatings).not.toHaveBeenCalled();
         });
     });
 });

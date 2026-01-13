@@ -1,11 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RecipeTemplate from './RecipeTemplate';
 import WhimsicalButton from './WhimsicalButton';
 import DietaryBadges from './DietaryBadges';
+import StarRating from './StarRating';
+import { getRecipeRatings } from '../lib/ratings';
 import './FeaturedRecipeCard.css';
 
 const FeaturedRecipeCard = ({ recipe }) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [ratings, setRatings] = useState(null);
+    const [ratingsLoading, setRatingsLoading] = useState(true);
+
+    useEffect(() => {
+        // Fetch ratings for this recipe
+        if (recipe?.slug) {
+            setRatingsLoading(true);
+            getRecipeRatings(recipe.slug)
+                .then(({ data, error }) => {
+                    if (data && !error) {
+                        setRatings(data);
+                    } else {
+                        setRatings(null);
+                    }
+                })
+                .finally(() => {
+                    setRatingsLoading(false);
+                });
+        }
+    }, [recipe?.slug]);
 
     if (isExpanded) {
         return (
@@ -39,6 +61,16 @@ const FeaturedRecipeCard = ({ recipe }) => {
 
             <div className="featured-recipe-card__content">
                 <h3 className="featured-recipe-card__title">{recipe.title}</h3>
+
+                {!ratingsLoading && ratings && (
+                    <div className="featured-recipe-card__rating">
+                        <StarRating
+                            value={ratings.average_rating}
+                            count={ratings.rating_count}
+                            size="medium"
+                        />
+                    </div>
+                )}
 
                 {recipe.dietary && recipe.dietary.length > 0 && (
                     <DietaryBadges dietary={recipe.dietary} maxVisible={3} />

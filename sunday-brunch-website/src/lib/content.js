@@ -17,3 +17,24 @@ export const getAllSlugs = () => ({
     recipes: recipes.map((r) => r.slug),
     episodes: episodes.map((e) => e.slug)
 })
+
+/**
+ * Get recent recipes sorted by published date
+ * @param {number} limit - Number of recipes to return (default: 8)
+ * @returns {Promise<Array>} Array of most recent recipes
+ */
+export const getRecentRecipes = async (limit = 8) => {
+    const allRecipes = await getRecipes()
+
+    return delay(
+        allRecipes
+            .filter(recipe => !recipe.slug.includes('placeholder')) // Exclude placeholders
+            .sort((a, b) => {
+                // Sort by publishedDate if exists, otherwise fallback
+                const dateA = new Date(a.publishedDate || '2024-01-01')
+                const dateB = new Date(b.publishedDate || '2024-01-01')
+                return dateB - dateA // Most recent first
+            })
+            .slice(0, limit)
+    )
+}

@@ -10,6 +10,7 @@
  */
 
 import { supabase } from './supabase'
+import { getRecipeBySlug } from './content'
 
 /**
  * Submit or update a rating for a recipe
@@ -210,5 +211,65 @@ export async function deleteRating(recipeSlug) {
       data: null,
       error: { message: error.message }
     }
+  }
+}
+
+/**
+ * Get recent high-rated reviews with comments for social proof section
+ *
+ * Fetches reviews with ratings >= minRating that include text comments,
+ * enriched with recipe data (title, slug, image). Returns empty array
+ * if database query fails or no reviews exist.
+ *
+ * @param {number} limit - Number of reviews to return (default: 4)
+ * @param {number} minRating - Minimum rating to include (default: 5)
+ * @returns {Promise<Array>} Array of enriched review objects
+ *
+ * @example
+ * const reviews = await getRecentHighRatedReviews(4, 5)
+ * reviews.forEach(review => {
+ *   console.log(`${review.user_name} rated ${review.recipeTitle}: ${review.rating} stars`)
+ *   console.log(`Comment: ${review.comment}`)
+ * })
+ */
+export async function getRecentHighRatedReviews(limit = 4, minRating = 5) {
+  try {
+    // Fetch high-rated reviews with comments
+    const { data: reviews, error } = await supabase
+      .from('ratings')
+      .select('*')
+      .gte('rating', minRating)
+      .not('comment', 'is', null) // Only reviews with comments
+      .order('created_at', { ascending: false })
+      .limit(limit)
+
+    if (error) {
+      console.error('Error fetching reviews:', error)
+      return []
+    }
+
+    // Handle case where no reviews exist yet
+    if (!reviews || reviews.length === 0) {
+      return []
+    }
+
+    // Enrich with recipe data (title, slug, image)
+    const enriched = await Promise.all(
+      reviews.map(async (review) => {
+        const recipe = await getRecipeBySlug(review.recipe_slug)
+        return {
+          ...review,
+          recipeTitle: recipe?.title || 'Unknown Recipe',
+          recipeSlug: recipe?.slug,
+          recipeImage: recipe?.image
+        }
+      })
+    )
+
+    // Remove any reviews where recipe enrichment failed
+    return enriched.filter(r => r.recipeSlug)
+  } catch (error) {
+    console.error('Error in getRecentHighRatedReviews:', error)
+    return []
   }
 }

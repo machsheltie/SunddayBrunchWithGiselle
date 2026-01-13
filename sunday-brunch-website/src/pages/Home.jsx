@@ -5,6 +5,10 @@ import FeaturedEpisodeCard from '../components/FeaturedEpisodeCard'
 import ShareBar from '../components/ShareBar'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 import WhimsicalHero from '../components/WhimsicalHero'
+import EmailCTAInline from '../components/EmailCTAInline'
+import RecipeCollectionsSection from '../components/RecipeCollectionsSection'
+import SocialProofSection from '../components/SocialProofSection'
+import RecentRecipesGallery from '../components/RecentRecipesGallery'
 import { getFeatured } from '../lib/content'
 import { applyMeta } from '../lib/seo'
 
@@ -28,6 +32,9 @@ function Home() {
         <div className="home">
             <WhimsicalHero />
 
+            {/* Inline email CTA - subtle hero conversion touchpoint */}
+            <EmailCTAInline message="Get weekly recipes in your inbox" />
+
             {/* Decorative divider between hero and content */}
             <div className="hero-content-divider"></div>
 
@@ -41,6 +48,12 @@ function Home() {
                 )}
                 {!loading && !featured.recipe && <p className="small-muted">No recipe available yet.</p>}
             </section>
+
+            {/* Recipe Collections - curated discovery paths */}
+            <RecipeCollectionsSection />
+
+            {/* Social Proof - community testimonials */}
+            <SocialProofSection />
 
             <section className="section" id="episodes">
                 <div className="section__header">
@@ -57,6 +70,9 @@ function Home() {
                     {!loading && !featured.episode && <p className="small-muted">No episode available yet.</p>}
                 </div>
             </section>
+
+            {/* Recent Recipes Gallery - newest additions */}
+            <RecentRecipesGallery limit={8} />
 
             <section className="section" id="media-kit">
                 <div className="section__header">

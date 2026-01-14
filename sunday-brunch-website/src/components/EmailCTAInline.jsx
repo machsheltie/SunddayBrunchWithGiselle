@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { subscribeToNewsletter } from '../lib/newsletter'
+import { subscribeToNewsletter } from '../services/convertkit'
 import { trackEmailSignup } from '../lib/analytics'
 import './EmailCTAInline.css'
 

@@ -187,3 +187,56 @@
     z-index: 10;
     animation: sparkle-fade 0.8s ease-out forwards;
 }
+
+/* ===== MOBILE RESPONSIVE NAV BUTTONS ===== */
+/* Keep the whimsical paw prints, but make them readable! */
+
+/* Tablet and large phones (iPad Mini, iPhone 12 Pro Max landscape) */
+@media (max-width: 768px) {
+    .whimsical-button--nav {
+        width: 60px;
+        height: 60px;
+        padding: var(--space-1);
+    }
+
+    .whimsical-button--nav .whimsical-button__text {
+        /* Switch to system font for readability on mobile */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.7rem;           /* 11.2px */
+        font-weight: 700;             /* Keep bold */
+        letter-spacing: 0.02em;       /* Tighter spacing */
+        line-height: 1.1;
+        white-space: normal;          /* Allow wrapping in small buttons */
+    }
+
+    .whimsical-button__nav-paw {
+        opacity: 0.5 !important;      /* Reduce paw visibility for text clarity */
+    }
+}
+
+/* iPhone 12, iPhone 13, Pixel 5 (390px - 414px) */
+@media (max-width: 430px) {
+    .whimsical-button--nav {
+        width: 54px;
+        height: 54px;
+    }
+
+    .whimsical-button--nav .whimsical-button__text {
+        font-size: 0.65rem;          /* 10.4px */
+        letter-spacing: 0.01em;
+    }
+}
+
+/* iPhone SE, Galaxy S8 (smaller phones, 375px) */
+@media (max-width: 375px) {
+    .whimsical-button--nav {
+        width: 48px;
+        height: 48px;
+    }
+
+    .whimsical-button--nav .whimsical-button__text {
+        font-size: 0.6rem;           /* 9.6px */
+        letter-spacing: 0;
+        line-height: 1;
+    }
+}

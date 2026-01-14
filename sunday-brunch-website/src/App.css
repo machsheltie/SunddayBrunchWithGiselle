@@ -358,21 +358,100 @@ html {
         text-align: center;
     }
 
-    .header-auth {
-        top: var(--space-3);
-        right: var(--space-3);
-        max-width: 160px;
+    /* Reduce header padding for mobile */
+    .premium-masthead {
+        padding: var(--space-6) var(--space-3);   /* 1.5rem 0.75rem = 24px 12px */
+        gap: var(--space-4);                      /* 1rem = 16px */
+        margin: 0 0 var(--space-6);               /* Reduce bottom margin */
     }
 
+    /* Reduce brand header size */
+    .brand {
+        padding-top: var(--space-6);              /* 1.5rem = 24px (down from 3rem) */
+    }
+
+    .brand__title {
+        font-size: var(--text-3xl);               /* 1.875rem = 30px (down from 3rem = 48px) */
+        letter-spacing: 0.05em;                   /* Tighter tracking */
+    }
+
+    .brand__subtitle {
+        font-size: var(--text-lg);                /* 1.125rem = 18px (down from 1.5rem = 24px) */
+        margin-top: var(--space-1);
+    }
+
+    .brand-divider {
+        width: 180px;                             /* Narrower divider */
+        height: 20px;
+        margin: var(--space-3) auto;
+    }
+
+    /* Compact auth button */
+    .header-auth {
+        top: var(--space-2);
+        right: var(--space-2);
+        max-width: 100px;                         /* Smaller button */
+    }
+
+    .auth-button {
+        padding: var(--space-1) var(--space-3);   /* Reduce padding */
+        font-size: var(--text-xs);                /* 0.75rem = 12px */
+    }
+
+    /* Tighter navigation spacing */
     .nav {
-        gap: var(--space-4);
+        gap: var(--space-2);                      /* 0.5rem = 8px (down from 2rem = 32px) */
         flex-wrap: wrap;
         justify-content: center;
+        padding: 0 var(--space-2);                /* Side padding to prevent overflow */
     }
 
     .section__header {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-2);
+    }
+}
+
+/* iPhone 12, Pixel 5, and similar (390px - 430px) */
+@media (max-width: 430px) {
+    .brand__title {
+        font-size: var(--text-2xl);               /* 1.5rem = 24px (more aggressive reduction) */
+        letter-spacing: 0.03em;
+    }
+
+    .brand__subtitle {
+        font-size: var(--text-base);              /* 1rem = 16px */
+    }
+
+    .nav {
+        gap: var(--space-1);                      /* 0.25rem = 4px (very tight for small screens) */
+    }
+}
+
+/* iPhone SE, Galaxy S8 (375px and below) */
+@media (max-width: 375px) {
+    .premium-masthead {
+        padding: var(--space-4) var(--space-2);   /* 1rem 0.5rem = 16px 8px */
+        gap: var(--space-3);
+    }
+
+    .brand {
+        padding-top: var(--space-4);              /* 1rem = 16px */
+    }
+
+    .brand__title {
+        font-size: var(--text-xl);                /* 1.25rem = 20px */
+        letter-spacing: 0.02em;
+    }
+
+    .brand__subtitle {
+        font-size: var(--text-sm);                /* 0.875rem = 14px */
+    }
+
+    .brand-divider {
+        width: 140px;
+        height: 16px;
+        margin: var(--space-2) auto;
     }
 }

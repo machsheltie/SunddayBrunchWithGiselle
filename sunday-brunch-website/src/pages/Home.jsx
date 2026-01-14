@@ -73,22 +73,6 @@ function Home() {
 
             {/* Recent Recipes Gallery - newest additions */}
             <RecentRecipesGallery limit={8} />
-
-            <section className="section" id="media-kit">
-                <div className="section__header">
-                    <h2 className="section__title">Media Kit (on-brand only)</h2>
-                    <span className="pill">Sponsors</span>
-                </div>
-                <div className="card stack">
-                    <p className="small-muted">We are cozy, baking-first, pet-loving, and tea/coffee friendly. We decline diet fads, off-brand finance, or low-quality gadgets.</p>
-                    <ul className="media-kit__list">
-                        <li>Inventory: site placements, email mentions, audio reads.</li>
-                        <li>Allow: baking/kitchen gear, ingredients, tea/coffee, cozy home, pet/Sheltie.</li>
-                        <li>Deny: diet fads, off-brand finance, low-quality gadgets.</li>
-                    </ul>
-                    <CTAForm headline="Request a bundle" subcopy="Tell us what you need and we will reply quickly." mode="contact" />
-                </div>
-            </section>
         </div>
     )
 }

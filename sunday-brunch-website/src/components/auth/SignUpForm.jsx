@@ -75,7 +75,7 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
       const { error: signUpError } = await signUp(email, password, metadata)
 
       if (signUpError) {
-        if (signUpError.message.includes('already registered')) {
+        if (signUpError.message && signUpError.message.includes('already registered')) {
           setError('This email is already registered. Please sign in instead.')
         } else {
           setError(signUpError.message || 'Failed to create account. Please try again.')

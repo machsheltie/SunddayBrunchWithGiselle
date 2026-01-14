@@ -31,12 +31,12 @@ describe('SignUpForm', () => {
         />
       )
 
-      expect(screen.getByText('Join the Brunch Club!')).toBeInTheDocument()
+      expect(screen.getByText('Join the Brunch!')).toBeInTheDocument()
       expect(screen.getByLabelText(/display name/i)).toBeInTheDocument()
-      expect(screen.getByLabelText(/^email$/i)).toBeInTheDocument()
-      expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/email address/i)).toBeInTheDocument()
+      expect(screen.getByLabelText(/^password\s*\*/i)).toBeInTheDocument()
       expect(screen.getByLabelText(/confirm password/i)).toBeInTheDocument()
-      expect(screen.getByRole('button', { name: /sign up/i })).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: /create account/i })).toBeInTheDocument()
     })
 
     it('should render login link', () => {
@@ -63,7 +63,7 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Please fill in all required fields')).toBeInTheDocument()
@@ -82,10 +82,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'notanemail')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'notanemail')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument()
@@ -106,10 +106,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Pass1')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Pass1')
       await user.type(screen.getByLabelText(/confirm password/i), 'Pass1')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Password must be at least 8 characters')).toBeInTheDocument()
@@ -128,10 +128,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Password must contain at least one uppercase letter')).toBeInTheDocument()
@@ -150,10 +150,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'PASSWORD123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'PASSWORD123')
       await user.type(screen.getByLabelText(/confirm password/i), 'PASSWORD123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Password must contain at least one lowercase letter')).toBeInTheDocument()
@@ -172,10 +172,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Password must contain at least one number')).toBeInTheDocument()
@@ -194,10 +194,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password456')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Passwords do not match')).toBeInTheDocument()
@@ -221,10 +221,10 @@ describe('SignUpForm', () => {
       )
 
       await user.type(screen.getByLabelText(/display name/i), 'Test User')
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(mockSignUp).toHaveBeenCalledWith(
@@ -247,10 +247,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(mockSignUp).toHaveBeenCalledWith(
@@ -273,10 +273,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(mockOnSuccess).toHaveBeenCalled()
@@ -294,10 +294,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(mockSignUp).toHaveBeenCalled()
@@ -322,10 +322,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'existing@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'existing@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('This email is already registered. Please sign in instead.')).toBeInTheDocument()
@@ -348,10 +348,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Network error')).toBeInTheDocument()
@@ -374,10 +374,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('Failed to create account. Please try again.')).toBeInTheDocument()
@@ -396,10 +396,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('An unexpected error occurred. Please try again.')).toBeInTheDocument()
@@ -420,11 +420,11 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
 
-      const button = screen.getByRole('button', { name: /sign up/i })
+      const button = screen.getByRole('button', { name: /create account/i })
       await user.click(button)
 
       expect(button).toBeDisabled()
@@ -447,7 +447,7 @@ describe('SignUpForm', () => {
         />
       )
 
-      expect(screen.getByRole('button', { name: /sign up/i })).toBeDisabled()
+      expect(screen.getByRole('button', { name: /creat.*account/i })).toBeDisabled()
     })
   })
 
@@ -499,10 +499,10 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/^email$/i), 'existing@example.com')
-      await user.type(screen.getByLabelText(/^password$/i), 'Password123')
+      await user.type(screen.getByLabelText(/email address/i), 'existing@example.com')
+      await user.type(screen.getByLabelText(/^password/i), 'Password123')
       await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.getByText('This email is already registered. Please sign in instead.')).toBeInTheDocument()
@@ -511,9 +511,9 @@ describe('SignUpForm', () => {
       // Submit again with different email
       mockSignUp.mockResolvedValueOnce({ error: null })
 
-      await user.clear(screen.getByLabelText(/^email$/i))
-      await user.type(screen.getByLabelText(/^email$/i), 'newemail@example.com')
-      await user.click(screen.getByRole('button', { name: /sign up/i }))
+      await user.clear(screen.getByLabelText(/email address/i))
+      await user.type(screen.getByLabelText(/email address/i), 'newemail@example.com')
+      await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
         expect(screen.queryByText('This email is already registered. Please sign in instead.')).not.toBeInTheDocument()

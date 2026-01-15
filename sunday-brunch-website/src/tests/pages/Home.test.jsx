@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
 import Home from '../../pages/Home'
 import { getFeatured } from '../../lib/content'
 import { applyMeta } from '../../lib/seo'
@@ -68,6 +69,11 @@ describe('Home Page', () => {
         }
     }
 
+    // Helper to render with Router context
+    const renderWithRouter = (component) => {
+        return render(<BrowserRouter>{component}</BrowserRouter>)
+    }
+
     beforeEach(() => {
         vi.clearAllMocks()
         // Default successful data fetch
@@ -81,7 +87,7 @@ describe('Home Page', () => {
     describe('Rendering Tests', () => {
         it('should render WhimsicalHero component', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -91,7 +97,7 @@ describe('Home Page', () => {
 
         it('should render all 3 sections (Featured Recipe, Latest Episode, Media Kit)', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -103,7 +109,7 @@ describe('Home Page', () => {
 
         it('should render section headers with correct titles', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -117,7 +123,7 @@ describe('Home Page', () => {
 
         it('should render sponsor pill in media kit section', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -127,7 +133,7 @@ describe('Home Page', () => {
 
         it('should render Audio + transcript pill in episode section', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -142,7 +148,7 @@ describe('Home Page', () => {
             getFeatured.mockReturnValue(new Promise(() => {})) // Never resolves
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             expect(screen.getByTestId('loading-skeleton-recipe')).toBeInTheDocument()
@@ -153,7 +159,7 @@ describe('Home Page', () => {
             getFeatured.mockReturnValue(new Promise(() => {})) // Never resolves
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             expect(screen.getByTestId('loading-skeleton-episode')).toBeInTheDocument()
@@ -161,7 +167,7 @@ describe('Home Page', () => {
 
         it('should display FeaturedRecipeCard when recipe data available', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -172,7 +178,7 @@ describe('Home Page', () => {
 
         it('should display EpisodeTemplate when episode data available', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -186,7 +192,7 @@ describe('Home Page', () => {
             getFeatured.mockResolvedValue({ recipe: null, episode: mockFeaturedData.episode })
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -200,7 +206,7 @@ describe('Home Page', () => {
             getFeatured.mockResolvedValue({ recipe: mockFeaturedData.recipe, episode: null })
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -211,7 +217,7 @@ describe('Home Page', () => {
 
         it('should call getFeatured on component mount', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -223,7 +229,7 @@ describe('Home Page', () => {
     describe('SEO Tests', () => {
         it('should call applyMeta with correct title and description on mount', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -236,7 +242,7 @@ describe('Home Page', () => {
 
         it('should verify SEO meta data for homepage', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -251,7 +257,7 @@ describe('Home Page', () => {
     describe('CTAForm Integration', () => {
         it('should render CTAForm in recipe section with correct props', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -265,7 +271,7 @@ describe('Home Page', () => {
 
         it('should render CTAForm in episode section', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -279,7 +285,7 @@ describe('Home Page', () => {
 
         it('should render CTAForm in media kit section with contact mode', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -297,7 +303,7 @@ describe('Home Page', () => {
             getFeatured.mockResolvedValue({ recipe: null, episode: mockFeaturedData.episode })
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -314,7 +320,7 @@ describe('Home Page', () => {
             getFeatured.mockResolvedValue({ recipe: mockFeaturedData.recipe, episode: null })
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -330,7 +336,7 @@ describe('Home Page', () => {
     describe('ShareBar Integration', () => {
         it('should render ShareBar in recipe section', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -343,7 +349,7 @@ describe('Home Page', () => {
             getFeatured.mockResolvedValue({ recipe: null, episode: mockFeaturedData.episode })
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -355,7 +361,7 @@ describe('Home Page', () => {
     describe('Section Structure Tests', () => {
         it('should render recipe section with #recipes id', async () => {
             // Arrange & Act
-            const { container } = render(<Home />)
+            const { container } = renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -367,7 +373,7 @@ describe('Home Page', () => {
 
         it('should render episode section with #episodes id', async () => {
             // Arrange & Act
-            const { container } = render(<Home />)
+            const { container } = renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -379,7 +385,7 @@ describe('Home Page', () => {
 
         it('should render media kit section with #media-kit id', async () => {
             // Arrange & Act
-            const { container } = render(<Home />)
+            const { container } = renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -391,7 +397,7 @@ describe('Home Page', () => {
 
         it('should render media kit content with brand guidelines', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -406,7 +412,7 @@ describe('Home Page', () => {
     describe('Loading State Transitions', () => {
         it('should transition from loading to ready state', async () => {
             // Arrange & Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert - Initially loading
             expect(screen.getByTestId('loading-skeleton-recipe')).toBeInTheDocument()
@@ -426,7 +432,7 @@ describe('Home Page', () => {
             getFeatured.mockResolvedValue({ recipe: mockFeaturedData.recipe, episode: null })
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -441,7 +447,7 @@ describe('Home Page', () => {
             getFeatured.mockResolvedValue({ recipe: null, episode: mockFeaturedData.episode })
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
@@ -456,7 +462,7 @@ describe('Home Page', () => {
             getFeatured.mockResolvedValue({ recipe: null, episode: null })
 
             // Act
-            render(<Home />)
+            renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {

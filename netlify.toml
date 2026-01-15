@@ -5,8 +5,8 @@
   # Directory with your source code
   base = "sunday-brunch-website"
 
-  # Build command
-  command = "npm run build"
+  # Build command - Run tests before build to prevent broken code deployment
+  command = "npm test && npm run build"
 
   # Directory with built files (Vite outputs to dist/)
   publish = "dist"
@@ -14,6 +14,21 @@
 # Environment variables
 [build.environment]
   NODE_VERSION = "18"
+
+# Production context
+[context.production]
+  command = "npm test && npm run build"
+  publish = "dist"
+
+# Staging/Deploy Preview context
+[context.deploy-preview]
+  command = "npm test && npm run build"
+  publish = "dist"
+
+# Branch deploys (for feature branches)
+[context.branch-deploy]
+  command = "npm run build"
+  publish = "dist"
 
 # Serverless Functions Configuration
 [functions]
@@ -30,7 +45,7 @@
   to = "/index.html"
   status = 200
 
-# Security headers
+# Security headers - Enhanced for production security
 [[headers]]
   for = "/*"
   [headers.values]
@@ -38,6 +53,10 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # HSTS - Force HTTPS for 1 year
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    # CSP - Content Security Policy to prevent XSS attacks
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://*.convertkit.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
 
 # Cache optimization for static assets
 [[headers]]

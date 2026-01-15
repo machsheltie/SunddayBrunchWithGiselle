@@ -22,6 +22,7 @@
 
 import React, { createContext, useState, useEffect, useCallback } from 'react'
 import { supabase, isSupabaseConfigured } from '../lib/supabase'
+import { useRateLimit } from '../hooks/useRateLimit'
 
 export const AuthContext = createContext({
   user: null,
@@ -40,6 +41,13 @@ export function AuthProvider({ children }) {
   const [session, setSession] = useState(null)
   const [loading, setLoading] = useState(true)
   const configured = isSupabaseConfigured()
+
+  // Rate limiting for auth endpoints (prevents brute-force attacks)
+  const { checkRateLimit, resetRateLimit } = useRateLimit({
+    maxAttempts: 5,
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    backoffMs: [1000, 2000, 5000, 10000, 30000] // Exponential backoff
+  })
 
   /**
    * Initialize auth state on mount
@@ -88,6 +96,9 @@ export function AuthProvider({ children }) {
       }
 
       try {
+        // Check rate limit before attempting signup
+        checkRateLimit('signup')
+
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
@@ -98,13 +109,16 @@ export function AuthProvider({ children }) {
 
         if (error) throw error
 
+        // Reset rate limit on successful signup
+        resetRateLimit('signup')
+
         return { user: data.user, session: data.session, error: null }
       } catch (error) {
         console.error('Sign up error:', error)
         return { user: null, session: null, error }
       }
     },
-    [configured]
+    [configured, checkRateLimit, resetRateLimit]
   )
 
   /**
@@ -124,6 +138,9 @@ export function AuthProvider({ children }) {
       }
 
       try {
+        // Check rate limit before attempting signin
+        checkRateLimit('signin')
+
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -131,13 +148,16 @@ export function AuthProvider({ children }) {
 
         if (error) throw error
 
+        // Reset rate limit on successful signin
+        resetRateLimit('signin')
+
         return { user: data.user, session: data.session, error: null }
       } catch (error) {
         console.error('Sign in error:', error)
         return { user: null, session: null, error }
       }
     },
-    [configured]
+    [configured, checkRateLimit, resetRateLimit]
   )
 
   /**
@@ -171,15 +191,22 @@ export function AuthProvider({ children }) {
       }
 
       try {
+        // Check rate limit before attempting password reset
+        checkRateLimit('reset-password')
+
         const { error } = await supabase.auth.resetPasswordForEmail(email)
         if (error) throw error
+
+        // Reset rate limit on successful password reset request
+        resetRateLimit('reset-password')
+
         return { error: null }
       } catch (error) {
         console.error('Reset password error:', error)
         return { error }
       }
     },
-    [configured]
+    [configured, checkRateLimit, resetRateLimit]
   )
 
   /**

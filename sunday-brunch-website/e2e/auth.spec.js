@@ -39,19 +39,25 @@ test.describe('Authentication Flow', () => {
     // Wait for modal to appear
     await page.waitForTimeout(500)
 
-    // Try to submit empty form (find submit button within modal)
-    const modal = page.locator('[role="dialog"], .auth-modal, .modal')
-    const submitButton = modal.getByRole('button', { name: /log in|login|sign in|submit/i })
+    // Get modal and form elements
+    const modal = page.locator('[data-testid="auth-modal"]')
+    const loginForm = modal.locator('[data-testid="login-form"]')
 
-    if (await submitButton.count() > 0) {
-      await submitButton.click()
+    // Remove HTML5 required validation to test JavaScript validation
+    const emailInput = loginForm.locator('[data-testid="login-email"]')
+    const passwordInput = loginForm.locator('[data-testid="login-password"]')
 
-      // Should show validation errors
-      const errorMessage = modal.locator('.error, [role="alert"], .error-message')
-      await expect(errorMessage.first()).toBeVisible({ timeout: 3000 })
-    } else {
-      test.skip() // Skip if modal structure is different
-    }
+    await emailInput.evaluate(el => el.removeAttribute('required'))
+    await passwordInput.evaluate(el => el.removeAttribute('required'))
+
+    // Submit form without filling anything
+    const submitButton = loginForm.locator('[data-testid="login-submit"]')
+    await submitButton.click()
+
+    // Should show validation errors
+    const errorMessage = loginForm.locator('[data-testid="login-error"]')
+    await expect(errorMessage).toBeVisible({ timeout: 3000 })
+    await expect(errorMessage).toContainText(/fill in all/i)
   })
 
   test('should show validation error for invalid email format', async ({ page }) => {
@@ -60,25 +66,27 @@ test.describe('Authentication Flow', () => {
     await loginButton.click()
     await page.waitForTimeout(500)
 
-    // Fill form with invalid email within modal
-    const modal = page.locator('[role="dialog"], .auth-modal, .modal')
-    const emailInput = modal.locator('input[type="email"]').first()
-    const passwordInput = modal.locator('input[type="password"]').first()
+    // Get modal and form elements
+    const modal = page.locator('[data-testid="auth-modal"]')
+    const loginForm = modal.locator('[data-testid="login-form"]')
+    const emailInput = loginForm.locator('[data-testid="login-email"]')
+    const passwordInput = loginForm.locator('[data-testid="login-password"]')
 
-    if (await emailInput.count() > 0) {
-      await emailInput.fill('invalid-email')
-      await passwordInput.fill('password123')
+    // Remove HTML5 validation to test JavaScript validation
+    await emailInput.evaluate(el => el.type = 'text')
 
-      // Submit form
-      const submitButton = modal.getByRole('button', { name: /log in|sign in|submit/i })
-      await submitButton.click()
+    // Fill form with invalid email
+    await emailInput.fill('invalid-email')
+    await passwordInput.fill('password123')
 
-      // Should show email validation error
-      const errorMessage = modal.locator('.error, [role="alert"], .error-message')
-      await expect(errorMessage.first()).toBeVisible({ timeout: 3000 })
-    } else {
-      test.skip()
-    }
+    // Submit form
+    const submitButton = loginForm.locator('[data-testid="login-submit"]')
+    await submitButton.click()
+
+    // Should show email validation error
+    const errorMessage = loginForm.locator('[data-testid="login-error"]')
+    await expect(errorMessage).toBeVisible({ timeout: 3000 })
+    await expect(errorMessage).toContainText(/valid email/i)
   })
 
   test('should show rate limiting message after multiple failed attempts', async ({ page }) => {
@@ -174,33 +182,36 @@ test.describe('Authentication Flow', () => {
 
     // Get signup form elements
     const signupForm = page.locator('[data-testid="signup-form"]')
-    const submitButton = signupForm.locator('[data-testid="signup-submit"]')
-
-    // Test 1: Empty form submission
-    await submitButton.click()
-    const errorMessage = signupForm.locator('[data-testid="signup-error"]')
-    await expect(errorMessage).toBeVisible()
-    await expect(errorMessage).toContainText(/fill in all/i)
-
-    // Test 2: Invalid email format
     const emailInput = signupForm.locator('[data-testid="signup-email"]')
     const passwordInput = signupForm.locator('[data-testid="signup-password"]')
     const confirmPasswordInput = signupForm.locator('[data-testid="signup-confirm-password"]')
+    const submitButton = signupForm.locator('[data-testid="signup-submit"]')
+    const errorMessage = signupForm.locator('[data-testid="signup-error"]')
 
+    // Remove HTML5 required validation to test JavaScript validation
+    await emailInput.evaluate(el => el.removeAttribute('required'))
+    await passwordInput.evaluate(el => el.removeAttribute('required'))
+    await confirmPasswordInput.evaluate(el => el.removeAttribute('required'))
+
+    // Test 1: Empty form submission
+    await submitButton.click()
+    await expect(errorMessage).toBeVisible({ timeout: 3000 })
+    await expect(errorMessage).toContainText(/fill in all/i)
+
+    // Test 2: Invalid email format
+    await emailInput.evaluate(el => el.type = 'text')
     await emailInput.fill('invalid-email')
     await passwordInput.fill('Password123')
     await confirmPasswordInput.fill('Password123')
     await submitButton.click()
-    await page.waitForTimeout(300)
-    await expect(errorMessage).toContainText(/valid email/i)
+    await expect(errorMessage).toContainText(/valid email/i, { timeout: 3000 })
 
     // Test 3: Password mismatch
     await emailInput.fill('test@example.com')
     await passwordInput.fill('Password123')
     await confirmPasswordInput.fill('DifferentPassword456')
     await submitButton.click()
-    await page.waitForTimeout(300)
-    await expect(errorMessage).toContainText(/do not match|passwords/i)
+    await expect(errorMessage).toContainText(/do not match|passwords/i, { timeout: 3000 })
   })
 
   test('should show password strength requirements on signup', async ({ page }) => {

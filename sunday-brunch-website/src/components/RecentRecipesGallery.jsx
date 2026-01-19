@@ -57,7 +57,7 @@ function RecentRecipesGallery({ limit = 8 }) {
 
     if (loading) {
         return (
-            <div className="recent-recipes-gallery">
+            <div className="recent-recipes-gallery" data-testid="recent-recipes">
                 <div className="recent-recipes-grid">
                     {Array.from({ length: limit }).map((_, i) => (
                         <div key={i} className="recent-recipe-card skeleton">

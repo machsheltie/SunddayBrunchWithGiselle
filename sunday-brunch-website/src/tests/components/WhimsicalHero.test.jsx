@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import WhimsicalHero from '../../components/WhimsicalHero';
 
 // Mock framer-motion
@@ -52,6 +53,11 @@ vi.mock('../../lib/AuteurMotion', () => ({
 // Mock CSS imports
 vi.mock('../../components/WhimsicalHero.css', () => ({}));
 
+// Helper to render with Router context
+const renderWithRouter = (component) => {
+    return render(<BrowserRouter>{component}</BrowserRouter>);
+};
+
 describe('WhimsicalHero', () => {
     beforeEach(() => {
         vi.clearAllMocks();
@@ -68,7 +74,7 @@ describe('WhimsicalHero', () => {
     describe('Rendering', () => {
         it('should render hero title with correct text', () => {
             // Arrange & Act
-            render(<WhimsicalHero />);
+            renderWithRouter(<WhimsicalHero />);
 
             // Assert
             const title = screen.getByRole('heading', { level: 1 });
@@ -81,7 +87,7 @@ describe('WhimsicalHero', () => {
 
         it('should render hero description/quote', () => {
             // Arrange & Act
-            render(<WhimsicalHero />);
+            renderWithRouter(<WhimsicalHero />);
 
             // Assert
             const quote = screen.getByText(
@@ -93,7 +99,7 @@ describe('WhimsicalHero', () => {
 
         it('should render two WhimsicalButton CTAs', () => {
             // Arrange & Act
-            render(<WhimsicalHero />);
+            renderWithRouter(<WhimsicalHero />);
 
             // Assert
             const buttons = screen.getAllByTestId('whimsical-button');
@@ -104,7 +110,7 @@ describe('WhimsicalHero', () => {
 
         it('should render hero image with correct alt text', () => {
             // Arrange & Act
-            render(<WhimsicalHero />);
+            renderWithRouter(<WhimsicalHero />);
 
             // Assert
             const image = screen.getByAltText('Stacey and Giselle baking in a whimsical kitchen');
@@ -121,7 +127,7 @@ describe('WhimsicalHero', () => {
     describe('Animation Tests', () => {
         it('should apply framer-motion animations to content', () => {
             // Arrange & Act
-            const { container } = render(<WhimsicalHero />);
+            const { container } = renderWithRouter(<WhimsicalHero />);
             const contentDiv = container.querySelector('.whimsical-hero__content');
 
             // Assert
@@ -145,7 +151,7 @@ describe('WhimsicalHero', () => {
 
         it('should apply framer-motion animations to visual element', () => {
             // Arrange & Act
-            const { container } = render(<WhimsicalHero />);
+            const { container } = renderWithRouter(<WhimsicalHero />);
             const visualDiv = container.querySelector('.whimsical-hero__visual');
 
             // Assert
@@ -177,7 +183,7 @@ describe('WhimsicalHero', () => {
     describe('Button Rendering', () => {
         it('should render "Latest Episode" primary button', () => {
             // Arrange & Act
-            render(<WhimsicalHero />);
+            renderWithRouter(<WhimsicalHero />);
             const buttons = screen.getAllByTestId('whimsical-button');
             const latestEpisodeButton = buttons[0];
 
@@ -191,7 +197,7 @@ describe('WhimsicalHero', () => {
 
         it('should render "Browse Recipes" secondary button without paw', () => {
             // Arrange & Act
-            render(<WhimsicalHero />);
+            renderWithRouter(<WhimsicalHero />);
             const buttons = screen.getAllByTestId('whimsical-button');
             const browseRecipesButton = buttons[1];
 
@@ -209,7 +215,7 @@ describe('WhimsicalHero', () => {
     describe('Decorative Elements', () => {
         it('should render WashiTape decorations', () => {
             // Arrange & Act
-            render(<WhimsicalHero />);
+            renderWithRouter(<WhimsicalHero />);
             const washiTapes = screen.getAllByTestId('washi-tape');
 
             // Assert
@@ -220,7 +226,7 @@ describe('WhimsicalHero', () => {
 
         it('should render PawPrint decoration', () => {
             // Arrange & Act
-            render(<WhimsicalHero />);
+            renderWithRouter(<WhimsicalHero />);
             const pawPrints = screen.getAllByTestId('paw-print');
 
             // Assert
@@ -233,7 +239,7 @@ describe('WhimsicalHero', () => {
 
         it('should render alchemical graphic with animation', () => {
             // Arrange & Act
-            const { container } = render(<WhimsicalHero />);
+            const { container } = renderWithRouter(<WhimsicalHero />);
             const alchemyGraphic = container.querySelector('.hero-alchemy-graphic');
 
             // Assert
@@ -267,7 +273,7 @@ describe('WhimsicalHero', () => {
     describe('Structure', () => {
         it('should have correct CSS classes for layout', () => {
             // Arrange & Act
-            const { container } = render(<WhimsicalHero />);
+            const { container } = renderWithRouter(<WhimsicalHero />);
 
             // Assert
             const section = container.querySelector('section');
@@ -285,7 +291,7 @@ describe('WhimsicalHero', () => {
 
         it('should have photo-frame structure for image', () => {
             // Arrange & Act
-            const { container } = render(<WhimsicalHero />);
+            const { container } = renderWithRouter(<WhimsicalHero />);
 
             // Assert
             const photoFrame = container.querySelector('.photo-frame');
@@ -300,7 +306,7 @@ describe('WhimsicalHero', () => {
 
         it('should wrap quote in proper semantic elements', () => {
             // Arrange & Act
-            const { container } = render(<WhimsicalHero />);
+            const { container } = renderWithRouter(<WhimsicalHero />);
 
             // Assert
             const quoteWrapper = container.querySelector('.whimsical-hero__quote-wrapper');

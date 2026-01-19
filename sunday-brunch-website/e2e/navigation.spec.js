@@ -158,13 +158,12 @@ test.describe('Navigation', () => {
     // Navigate to non-existent route
     await page.goto('/this-page-does-not-exist-12345')
 
-    // Should show 404 message or redirect to home
-    const response = await page.waitForLoadState('networkidle')
+    // Wait for NotFound component to render (through Suspense boundary)
+    await page.waitForSelector('text=/not found|could not find/i', { timeout: 5000 })
 
-    // Either shows 404 text or redirects to home
-    const has404Text = await page.getByText(/404|not found|page.*not.*exist/i).count()
-    const isHomePage = page.url().match(/\/$|\/index|\/home/i)
-
-    expect(has404Text > 0 || isHomePage).toBeTruthy()
+    // Verify NotFound page content is displayed
+    await expect(page.getByRole('heading', { name: /could not find that page/i })).toBeVisible()
+    await expect(page.getByText(/check the url or head back/i)).toBeVisible()
+    await expect(page.getByRole('link', { name: /return home/i })).toBeVisible()
   })
 })

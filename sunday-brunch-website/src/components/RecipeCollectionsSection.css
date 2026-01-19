@@ -1,44 +1,492 @@
-.recipe-collections-section {
-    margin: var(--space-16) 0;
-    padding: 0 var(--space-6);
+/* ============================================
+   RECIPE SANCTUARY - Strict Parity with preview-magical.html
+   ============================================ */
+
+.recipe-sanctuary {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 32px;
+    padding: 3rem;
+    margin: 3rem 0;
+    position: relative;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    overflow: visible;
 }
 
-.section__subtitle {
-    font-family: var(--font-script);
-    font-size: var(--text-lg);
-    color: var(--dusty-plum);
-    font-style: italic;
-    margin: var(--space-2) 0 0 0;
-    text-align: center;
+/* Organic watercolor splatter behind recipe sanctuary */
+.recipe-sanctuary::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: #dff0ea;
+    filter: blur(50px);
+    opacity: 0.3;
+    z-index: -1;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,30 Q40,10 60,30 T80,60 Q90,80 70,90 T30,90 Q10,80 20,60 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,30 Q40,10 60,30 T80,60 Q90,80 70,90 T30,90 Q10,80 20,60 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: contain;
+    -webkit-mask-size: contain;
 }
+
+/* Gradient border via mask composite */
+.recipe-sanctuary::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 32px;
+    padding: 3px;
+    background: linear-gradient(135deg, #e8dff5, #fce1e4, #dff0ea, #e8dff5);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+}
+
+/* Header */
+.sanctuary-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.sanctuary-header h2 {
+    font-family: 'Italiana', serif;
+    font-size: 2.5rem;
+    color: #2e1a47;
+    margin-bottom: 0.5rem;
+}
+
+.sanctuary-subtitle {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.5rem;
+    color: #9b7ab8;
+}
+
+/* ============================================
+   GRID & CARDS
+   ============================================ */
 
 .recipe-collections-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    margin-top: var(--space-8);
+    gap: 1.5rem;
 }
 
-/* Recipe Collection Card */
-.recipe-collection-card {
+.collection-portal {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    /* Ensure link behaves as block */
+}
+
+/* Conic gradient portal effect */
+.collection-portal::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, var(--portal-color, #dff0ea), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.collection-portal:hover::before {
+    opacity: 0.15;
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.collection-portal:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(46, 26, 71, 0.2);
+    border-color: var(--portal-color, #9b7ab8);
+}
+
+.portal-content {
+    position: relative;
+    z-index: 1;
+}
+
+.portal-header {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    padding: var(--space-6);
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 2px 8px rgba(46, 26, 71, 0.06);
-    transition: all var(--transition-base);
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.portal-icon {
+    font-size: 2.5rem;
+}
+
+.portal-title {
+    font-family: 'Italiana', serif;
+    font-size: 1.3rem;
+    color: #2e1a47;
+}
+
+.portal-subtitle {
+    font-size: 0.9rem;
+    color: #9b7ab8;
+    font-weight: 600;
+}
+
+/* Preview Thumbnails */
+.portal-preview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.preview-thumb {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.preview-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collection-portal:hover .preview-thumb {
+    transform: scale(1.05);
+}
+
+.portal-count {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #9b7ab8;
+    font-weight: 600;
+}
+
+.portal-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.collection-portal:hover .portal-arrow {
+    transform: translateX(6px);
+}
+
+/* Loading Skeletons */
+.recipe-collection-card.skeleton {
+    background: rgba(255, 255, 255, 0.5);
+    height: 300px;
+    border-radius: 24px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .recipe-collections-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-sanctuary {
+        padding: 1.5rem;
+    }
+}
+
+/* Organic watercolor splatter behind recipe sanctuary */
+.recipe-sanctuary::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: #dff0ea;
+    filter: blur(50px);
+    opacity: 0.3;
+    z-index: -1;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,30 Q40,10 60,30 T80,60 Q90,80 70,90 T30,90 Q10,80 20,60 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,30 Q40,10 60,30 T80,60 Q90,80 70,90 T30,90 Q10,80 20,60 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: contain;
+    -webkit-mask-size: contain;
+}
+
+.recipe-sanctuary::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 32px;
+    padding: 3px;
+    background: linear-gradient(135deg, #e8dff5, #fce1e4, #dff0ea, #e8dff5);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+}
+
+.sanctuary-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.sanctuary-header h2 {
+    font-family: 'Italiana', serif;
+    font-size: 2.5rem;
+    color: #2e1a47;
+    margin-bottom: 0.5rem;
+}
+
+.sanctuary-subtitle {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.5rem;
+    color: #9b7ab8;
+}
+
+/* Collections - Magical Portals from Preview */
+.recipe-collections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.collection-portal {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
+    display: block;
+    /* Ensure link behaves as block */
+}
+
+.collection-portal::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, var(--portal-color, #dff0ea), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.collection-portal:hover::before {
+    opacity: 0.15;
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.collection-portal:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(46, 26, 71, 0.2);
+    border-color: var(--portal-color, #dff0ea);
+}
+
+.portal-content {
+    position: relative;
+    z-index: 1;
+}
+
+.portal-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.portal-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.portal-title {
+    font-family: 'Italiana', serif;
+    font-size: 1.3rem;
+    color: #2e1a47;
+    margin: 0 0 0.2rem 0;
+}
+
+.portal-subtitle {
+    font-size: 0.9rem;
+    color: #9b7ab8;
+    font-weight: 600;
+    margin: 0;
+}
+
+.portal-preview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.preview-thumb {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.preview-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collection-portal:hover .preview-thumb {
+    transform: scale(1.05);
+}
+
+.portal-count {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #9b7ab8;
+    font-weight: 600;
+}
+
+.portal-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.collection-portal:hover .portal-arrow {
+    transform: translateX(6px);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .recipe-collections-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+}
+
+
+/* Recipe Collection Card with glassmorphism */
+.recipe-collection-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    position: relative;
     cursor: pointer;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 4px 16px rgba(46, 26, 71, 0.08);
+}
+
+/* Conic gradient border effect on hover - matching preview-magical.html */
+.recipe-collection-card::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 24px;
+    padding: 3px;
+    background: conic-gradient(from 0deg at 50% 50%,
+            var(--collection-color, var(--pastel-lavender)) 0deg,
+            var(--soft-sakura) 90deg,
+            var(--pastel-sky) 180deg,
+            var(--mint-cream) 270deg,
+            var(--collection-color, var(--pastel-lavender)) 360deg);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
 }
 
 .recipe-collection-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(46, 26, 71, 0.12);
-    border-color: var(--collection-color, var(--pastel-lavender));
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(46, 26, 71, 0.15);
+}
+
+.recipe-collection-card:hover::before {
+    opacity: 1;
+    animation: rotateBorder 3s linear infinite;
+}
+
+@keyframes rotateBorder {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }
 
 .recipe-collection-card__header {
@@ -161,6 +609,7 @@
     0% {
         background-position: -200% 0;
     }
+
     100% {
         background-position: 200% 0;
     }

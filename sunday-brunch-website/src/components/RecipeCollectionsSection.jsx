@@ -91,7 +91,11 @@ function RecipeCollectionsSection() {
     }
 
     return (
-        <div className="recipe-collections-section" data-testid="recipe-collections">
+        <section className="recipe-sanctuary" data-testid="recipe-collections">
+            <div className="sanctuary-header">
+                <h2>The Recipe Sanctuary</h2>
+                <p className="sanctuary-subtitle">Curated for every mood & moment</p>
+            </div>
             <div className="recipe-collections-grid">
                 {collections.map(collection => (
                     <RecipeCollectionCard
@@ -101,7 +105,7 @@ function RecipeCollectionsSection() {
                     />
                 ))}
             </div>
-        </div>
+        </section>
     )
 }
 

@@ -7,6 +7,33 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Newsletter Signup', () => {
   test.beforeEach(async ({ page }) => {
+    // Mock the newsletter subscription API endpoint
+    await page.route('**/.netlify/functions/subscribe', route => {
+      const postData = route.request().postDataJSON()
+
+      // Validate email format
+      if (!postData.email || !postData.email.includes('@')) {
+        return route.fulfill({
+          status: 400,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            success: false,
+            error: 'Please enter a valid email address.'
+          })
+        })
+      }
+
+      // Success response
+      return route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          message: 'Successfully subscribed!'
+        })
+      })
+    })
+
     await page.goto('/')
   })
 
@@ -38,19 +65,23 @@ test.describe('Newsletter Signup', () => {
       test.skip()
     }
 
+    // Remove HTML5 validation to test JavaScript validation
+    await emailInput.first().evaluate(el => el.type = 'text')
+    await emailInput.first().evaluate(el => el.removeAttribute('required'))
+
     // Enter invalid email
     await emailInput.first().fill('invalid-email')
 
     // Find and click submit button
     const submitButton = emailInput.first().locator('..').getByRole('button').or(
-      page.getByRole('button', { name: /subscribe|sign up|join/i })
+      page.getByRole('button', { name: /subscribe|sign up|join|get updates/i })
     )
 
     if (await submitButton.count() > 0) {
       await submitButton.first().click()
 
       // Should show validation error
-      const errorMessage = page.locator('.error, [role="alert"], .error-message, [data-testid="error"]')
+      const errorMessage = page.locator('[role="alert"], [data-testid="error"]')
       await expect(errorMessage.first()).toBeVisible({ timeout: 3000 })
     }
   })
@@ -151,9 +182,11 @@ test.describe('Newsletter Signup', () => {
   })
 
   test('should handle network errors gracefully', async ({ page }) => {
-    // Intercept network request and force it to fail
-    await page.route('**/api/**', route => route.abort())
-    await page.route('**/subscribe**', route => route.abort())
+    // Override the beforeEach mock to simulate network failure
+    await page.unroute('**/.netlify/functions/subscribe')
+    await page.route('**/.netlify/functions/subscribe', route => route.abort())
+
+    await page.goto('/')
 
     // Scroll to footer
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
@@ -170,14 +203,14 @@ test.describe('Newsletter Signup', () => {
     await emailInput.first().fill('test@example.com')
 
     const submitButton = emailInput.first().locator('..').getByRole('button').or(
-      page.getByRole('button', { name: /subscribe|sign up|join/i })
+      page.getByRole('button', { name: /subscribe|sign up|join|get updates/i })
     )
 
     if (await submitButton.count() > 0) {
       await submitButton.first().click()
 
       // Should show error message for network failure
-      const errorMessage = page.getByText(/error|failed|try again|problem/i)
+      const errorMessage = page.getByText(/error|failed|try again|problem|later/i)
       await expect(errorMessage).toBeVisible({ timeout: 5000 })
     }
   })

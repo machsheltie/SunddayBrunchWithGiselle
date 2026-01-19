@@ -22,7 +22,7 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
         try {
             const result = await subscribeToNewsletter(email)
             if (result.success) {
-                setMessage({ type: 'success', text: 'You are in! Check your email for confirmation.' })
+                setMessage({ type: 'success', text: 'Thank you! You are subscribed. Check your email for confirmation.' })
                 setEmail('')
                 trackEvent('cta_subscribe', { status: 'success' })
             } else {
@@ -114,11 +114,11 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
     }
 
     return (
-        <div className="cta" id={formId}>
+        <div className="cta newsletter" id={formId} data-testid="newsletter" aria-label="Newsletter signup">
             <h3>{headline}</h3>
             {subcopy && <p className="cta__subcopy">{subcopy}</p>}
             <form className="cta__form" onSubmit={onSubscribe}>
-                <label className="sr-only" htmlFor="cta-email">Email address</label>
+                <label className="sr-only" htmlFor="cta-email">Email address for newsletter</label>
                 <input
                     id="cta-email"
                     type="email"
@@ -129,13 +129,14 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
                     required
                     aria-invalid={message.type === 'error' ? 'true' : 'false'}
                     aria-describedby={message.text ? 'cta-message' : undefined}
+                    aria-label="Email for newsletter"
                 />
-                <WhimsicalButton type="primary" disabled={loading}>
+                <WhimsicalButton type="primary" disabled={loading} aria-label="Subscribe to newsletter">
                     {loading ? 'Signing up...' : 'Get updates'}
                 </WhimsicalButton>
             </form>
             {message.text && (
-                <div id="cta-message" className={`cta__message cta__message--${message.type}`} aria-live="polite">
+                <div id="cta-message" className={`cta__message cta__message--${message.type}`} aria-live="polite" role="alert" data-testid={message.type === 'error' ? 'error' : 'message'}>
                     {message.text}
                 </div>
             )}

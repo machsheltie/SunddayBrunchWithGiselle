@@ -97,7 +97,7 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
   const isLoading = loading || authLoading
 
   return (
-    <div className="signup-form">
+    <div className="signup-form" data-testid="signup-form">
       <div className="signup-form__header">
         <h2 className="signup-form__title">Join the Brunch!</h2>
         <p className="signup-form__subtitle">Create your account to get started</p>
@@ -105,7 +105,7 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
 
       <form onSubmit={handleSubmit} className="signup-form__form">
         {error && (
-          <div className="signup-form__error" role="alert">
+          <div className="signup-form__error" role="alert" data-testid="signup-error">
             {error}
           </div>
         )}
@@ -124,6 +124,7 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
             disabled={isLoading}
             autoComplete="email"
             required
+            data-testid="signup-email"
           />
         </div>
 
@@ -141,6 +142,7 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
             disabled={isLoading}
             autoComplete="name"
             maxLength={50}
+            data-testid="signup-display-name"
           />
         </div>
 
@@ -158,8 +160,9 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
             disabled={isLoading}
             autoComplete="new-password"
             required
+            data-testid="signup-password"
           />
-          <p className="signup-form__hint">
+          <p className="signup-form__hint" data-testid="password-requirements">
             At least 8 characters with uppercase, lowercase, and number
           </p>
         </div>
@@ -178,6 +181,7 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
             disabled={isLoading}
             autoComplete="new-password"
             required
+            data-testid="signup-confirm-password"
           />
         </div>
 
@@ -185,6 +189,7 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
           type="submit"
           className="signup-form__submit"
           disabled={isLoading}
+          data-testid="signup-submit"
         >
           {isLoading ? 'Creating account...' : 'Create Account'}
         </button>
@@ -197,6 +202,7 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
               onClick={onSwitchToLogin}
               className="signup-form__switch-link"
               disabled={isLoading}
+              data-testid="switch-to-login"
             >
               Sign in
             </button>

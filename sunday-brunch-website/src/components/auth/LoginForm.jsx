@@ -65,7 +65,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
   const isLoading = loading || authLoading
 
   return (
-    <div className="login-form">
+    <div className="login-form" data-testid="login-form">
       <div className="login-form__header">
         <h2 className="login-form__title">Welcome Back!</h2>
         <p className="login-form__subtitle">Sign in to access your account</p>
@@ -73,7 +73,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
 
       <form onSubmit={handleSubmit} className="login-form__form">
         {error && (
-          <div className="login-form__error" role="alert">
+          <div className="login-form__error" role="alert" data-testid="login-error">
             {error}
           </div>
         )}
@@ -92,6 +92,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
             disabled={isLoading}
             autoComplete="email"
             required
+            data-testid="login-email"
           />
         </div>
 
@@ -109,6 +110,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
             disabled={isLoading}
             autoComplete="current-password"
             required
+            data-testid="login-password"
           />
         </div>
 
@@ -117,6 +119,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
           onClick={onSwitchToForgotPassword}
           className="login-form__forgot-link"
           disabled={isLoading}
+          data-testid="forgot-password-link"
         >
           Forgot password?
         </button>
@@ -125,6 +128,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
           type="submit"
           className="login-form__submit"
           disabled={isLoading}
+          data-testid="login-submit"
         >
           {isLoading ? 'Signing in...' : 'Sign In'}
         </button>
@@ -137,6 +141,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
               onClick={onSwitchToSignUp}
               className="login-form__switch-link"
               disabled={isLoading}
+              data-testid="switch-to-signup"
             >
               Sign up
             </button>

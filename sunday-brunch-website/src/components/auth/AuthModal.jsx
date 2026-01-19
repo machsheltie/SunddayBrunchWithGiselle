@@ -63,13 +63,14 @@ export default function AuthModal({ isOpen, onClose, initialView = 'login' }) {
   if (!isOpen) return null
 
   return (
-    <div className="auth-modal" onClick={handleBackdropClick} role="dialog" aria-modal="true">
+    <div className="auth-modal" onClick={handleBackdropClick} role="dialog" aria-modal="true" data-testid="auth-modal">
       <div className="auth-modal__backdrop" />
-      <div className="auth-modal__content">
+      <div className="auth-modal__content" data-testid="auth-modal-content">
         <button
           className="auth-modal__close"
           onClick={onClose}
           aria-label="Close authentication modal"
+          data-testid="auth-modal-close"
         >
           ×
         </button>

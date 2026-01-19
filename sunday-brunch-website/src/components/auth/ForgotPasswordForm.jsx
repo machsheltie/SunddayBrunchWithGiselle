@@ -64,8 +64,8 @@ export default function ForgotPasswordForm({ onSuccess, onSwitchToLogin }) {
 
   if (success) {
     return (
-      <div className="forgot-password-form">
-        <div className="forgot-password-form__success">
+      <div className="forgot-password-form" data-testid="forgot-password-form">
+        <div className="forgot-password-form__success" data-testid="forgot-password-success">
           <div className="forgot-password-form__success-icon">✉️</div>
           <h2 className="forgot-password-form__success-title">Check Your Email!</h2>
           <p className="forgot-password-form__success-text">
@@ -76,6 +76,7 @@ export default function ForgotPasswordForm({ onSuccess, onSwitchToLogin }) {
             type="button"
             onClick={onSwitchToLogin}
             className="forgot-password-form__back-button"
+            data-testid="back-to-login"
           >
             Back to Sign In
           </button>
@@ -85,7 +86,7 @@ export default function ForgotPasswordForm({ onSuccess, onSwitchToLogin }) {
   }
 
   return (
-    <div className="forgot-password-form">
+    <div className="forgot-password-form" data-testid="forgot-password-form">
       <div className="forgot-password-form__header">
         <h2 className="forgot-password-form__title">Forgot Password?</h2>
         <p className="forgot-password-form__subtitle">
@@ -95,7 +96,7 @@ export default function ForgotPasswordForm({ onSuccess, onSwitchToLogin }) {
 
       <form onSubmit={handleSubmit} className="forgot-password-form__form">
         {error && (
-          <div className="forgot-password-form__error" role="alert">
+          <div className="forgot-password-form__error" role="alert" data-testid="forgot-password-error">
             {error}
           </div>
         )}
@@ -115,6 +116,7 @@ export default function ForgotPasswordForm({ onSuccess, onSwitchToLogin }) {
             autoComplete="email"
             required
             autoFocus
+            data-testid="forgot-password-email"
           />
         </div>
 
@@ -122,6 +124,7 @@ export default function ForgotPasswordForm({ onSuccess, onSwitchToLogin }) {
           type="submit"
           className="forgot-password-form__submit"
           disabled={loading}
+          data-testid="forgot-password-submit"
         >
           {loading ? 'Sending...' : 'Send Reset Link'}
         </button>
@@ -132,6 +135,7 @@ export default function ForgotPasswordForm({ onSuccess, onSwitchToLogin }) {
             onClick={onSwitchToLogin}
             className="forgot-password-form__back-link"
             disabled={loading}
+            data-testid="back-to-login"
           >
             ← Back to Sign In
           </button>

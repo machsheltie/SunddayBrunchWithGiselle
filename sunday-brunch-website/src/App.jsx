@@ -16,6 +16,7 @@ const RecipeIndexPage = lazy(() => import('./pages/RecipeIndexPage'))
 const EpisodePage = lazy(() => import('./pages/EpisodePage'))
 const MediaKitPage = lazy(() => import('./pages/MediaKitPage'))
 const TeamPage = lazy(() => import('./pages/TeamPage'))
+const AboutPage = lazy(() => import('./pages/About'))
 const NewsletterPage = lazy(() => import('./pages/NewsletterPage'))
 const AlchemistsLab = lazy(() => import('./pages/AlchemistsLab'))
 const ProfilePage = lazy(() => import('./pages/ProfilePage'))
@@ -45,6 +46,7 @@ function App() {
                             <Route path="/recipes" element={<RecipeIndexPage />} />
                             <Route path="/recipes/:slug" element={<RecipePage />} />
                             <Route path="/episodes/:slug" element={<EpisodePage />} />
+                            <Route path="/about" element={<AboutPage />} />
                             <Route path="/media-kit" element={<MediaKitPage />} />
                             <Route path="/team" element={<TeamPage />} />
                             <Route path="/newsletter" element={<NewsletterPage />} />

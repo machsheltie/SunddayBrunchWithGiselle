@@ -85,6 +85,14 @@ function Layout({ children }) {
                             Episodes
                         </NavLink>
                         <NavLink
+                            to="/about"
+                            className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
+                            aria-current={location.pathname === '/about' ? 'page' : undefined}
+                            onClick={() => handleNavClick('About', '/about')}
+                        >
+                            About
+                        </NavLink>
+                        <NavLink
                             to="/team"
                             className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
                             aria-current={location.pathname === '/team' ? 'page' : undefined}

@@ -57,10 +57,7 @@ function RecentRecipesGallery({ limit = 8 }) {
 
     if (loading) {
         return (
-            <section className="recent-recipes-gallery">
-                <div className="section__header">
-                    <h2 className="section__title">Fresh From The Oven</h2>
-                </div>
+            <div className="recent-recipes-gallery">
                 <div className="recent-recipes-grid">
                     {Array.from({ length: limit }).map((_, i) => (
                         <div key={i} className="recent-recipe-card skeleton">
@@ -72,7 +69,7 @@ function RecentRecipesGallery({ limit = 8 }) {
                         </div>
                     ))}
                 </div>
-            </section>
+            </div>
         )
     }
 
@@ -81,10 +78,10 @@ function RecentRecipesGallery({ limit = 8 }) {
     }
 
     return (
-        <section className="recent-recipes-gallery">
-            <div className="section__header">
-                <h2 className="section__title">Fresh From The Oven</h2>
-                <p className="section__subtitle">Our newest recipe additions</p>
+        <div className="recent-recipes-gallery" data-testid="recent-recipes">
+            <div className="recent-recipes-gallery__header">
+                <h2 className="recent-recipes-gallery__title">Fresh From The Oven</h2>
+                <p className="recent-recipes-gallery__subtitle">Newest additions to the collection</p>
             </div>
 
             <div className="recent-recipes-grid">
@@ -93,6 +90,7 @@ function RecentRecipesGallery({ limit = 8 }) {
                         key={recipe.slug}
                         to={`/recipes/${recipe.slug}`}
                         className="recent-recipe-card"
+                        data-testid="recipe-card"
                         onClick={() => handleRecipeClick(recipe.slug, index)}
                     >
                         <div className="recent-recipe-card__image-container">
@@ -153,7 +151,7 @@ function RecentRecipesGallery({ limit = 8 }) {
                     </WhimsicalButton>
                 </Link>
             </div>
-        </section>
+        </div>
     )
 }
 

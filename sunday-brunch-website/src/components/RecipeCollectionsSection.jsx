@@ -76,10 +76,7 @@ function RecipeCollectionsSection() {
 
     if (loading) {
         return (
-            <section className="recipe-collections-section">
-                <div className="section__header">
-                    <h2 className="section__title">Discover Recipes</h2>
-                </div>
+            <div className="recipe-collections-section" data-testid="recipe-collections">
                 <div className="recipe-collections-grid">
                     {[1, 2, 3, 4].map(i => (
                         <div key={i} className="recipe-collection-card skeleton">
@@ -89,16 +86,12 @@ function RecipeCollectionsSection() {
                         </div>
                     ))}
                 </div>
-            </section>
+            </div>
         )
     }
 
     return (
-        <section className="recipe-collections-section">
-            <div className="section__header">
-                <h2 className="section__title">Discover Recipes</h2>
-                <p className="section__subtitle">Curated collections to help you find your next bake</p>
-            </div>
+        <div className="recipe-collections-section" data-testid="recipe-collections">
             <div className="recipe-collections-grid">
                 {collections.map(collection => (
                     <RecipeCollectionCard
@@ -108,7 +101,7 @@ function RecipeCollectionsSection() {
                     />
                 ))}
             </div>
-        </section>
+        </div>
     )
 }
 

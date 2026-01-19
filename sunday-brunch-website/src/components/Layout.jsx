@@ -1,11 +1,12 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { trackEvent } from '../lib/analytics'
 import { useAuth } from '../hooks/useAuth'
 
 // Lazy load Three.js-heavy component (855KB) to improve initial bundle size by 50%
 const WatercolorCanvas = lazy(() => import('./WatercolorCanvas'))
 import WatercolorFilters from './illustrations/WatercolorFilters'
+import GrainOverlay from './GrainOverlay'
 import WhimsyLayer from './WhimsyLayer'
 import WhimsicalButton from './WhimsicalButton'
 import PawFollower from './PawFollower'
@@ -13,6 +14,7 @@ import FloatingActionButtons from './FloatingActionButtons'
 import SheltieSightings from './SheltieSightings'
 import UserMenu from './UserMenu'
 import { AuthModal } from './auth'
+import './Header.css'
 import '../App.css'
 
 function Layout({ children }) {
@@ -41,68 +43,73 @@ function Layout({ children }) {
             <Suspense fallback={<div className="watercolor-canvas-placeholder" aria-hidden="true" />}>
                 <WatercolorCanvas />
             </Suspense>
+            <GrainOverlay />
             <WhimsyLayer />
             <SheltieSightings />
             <PawFollower />
             <FloatingActionButtons />
 
-            <div className="layout">
-                <header className="header premium-masthead">
-                    {/* Authentication UI - Upper Right Corner */}
-                    <div className="header-auth">
+            {/* Header - Glassmorphism from preview-magical */}
+            <header className="header">
+                <div className="header-content">
+                    <div>
+                        <h1 className="brand-title">
+                            Sunday Brunch <span className="brand-accent">with</span> Giselle
+                        </h1>
+                        <div className="brand-divider"></div>
+                        <p className="brand-subtitle">Whimsy, warmth, and wags</p>
+                    </div>
+                    <nav className="nav-buttons">
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
+                            aria-current={location.pathname === '/' ? 'page' : undefined}
+                            onClick={() => handleNavClick('Home', '/')}
+                        >
+                            Home
+                        </NavLink>
+                        <NavLink
+                            to="/recipes"
+                            className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
+                            aria-current={location.pathname === '/recipes' ? 'page' : undefined}
+                            onClick={() => handleNavClick('Recipes', '/recipes')}
+                        >
+                            Recipes
+                        </NavLink>
+                        <NavLink
+                            to="/episodes/the-pie-that-started-a-dynasty"
+                            className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
+                            aria-current={location.pathname === '/episodes/the-pie-that-started-a-dynasty' ? 'page' : undefined}
+                            onClick={() => handleNavClick('Episodes', '/episodes')}
+                        >
+                            Episodes
+                        </NavLink>
+                        <NavLink
+                            to="/team"
+                            className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
+                            aria-current={location.pathname === '/team' ? 'page' : undefined}
+                            onClick={() => handleNavClick('Team', '/team')}
+                        >
+                            Team
+                        </NavLink>
                         {user ? (
                             <UserMenu />
                         ) : (
                             <button
-                                className="auth-button"
+                                className="nav-button"
                                 onClick={() => {
                                     setAuthModalOpen(true)
                                     trackEvent('auth_modal_open', { from: location.pathname })
                                 }}
                             >
-                                Sign In
+                                Login
                             </button>
                         )}
-                    </div>
-
-                    <div className="brand">
-                        <Link to="/" className="brand-link">
-                            <span className="brand__title">Sunday Brunch <span className="script-accent-masthead">with</span> Giselle</span>
-                            <div className="brand-divider"></div>
-                            <span className="brand__subtitle">Whimsy, warmth, and wags</span>
-                        </Link>
-                    </div>
-                    <nav className="nav" aria-label="Primary">
-                        <Link to="/" onClick={() => handleNavClick('Home', '/')}>
-                            <WhimsicalButton variant="nav">Home</WhimsicalButton>
-                        </Link>
-                        <Link to="/team" onClick={() => handleNavClick('Team', '/team')}>
-                            <WhimsicalButton variant="nav">Team</WhimsicalButton>
-                        </Link>
-                        <Link to="/episodes/the-pie-that-started-a-dynasty" onClick={() => handleNavClick('Episodes', '/episodes/the-pie-that-started-a-dynasty')}>
-                            <WhimsicalButton variant="nav">Episodes</WhimsicalButton>
-                        </Link>
-                        <Link to="/newsletter" onClick={() => handleNavClick('Newsletter', '/newsletter')}>
-                            <WhimsicalButton variant="nav">Newsletter</WhimsicalButton>
-                        </Link>
-                        <Link to="/lab" onClick={() => handleNavClick('The Lab', '/lab')}>
-                            <WhimsicalButton variant="nav">The Lab</WhimsicalButton>
-                        </Link>
-                        <Link to="/media-kit" onClick={() => handleNavClick('Media Kit', '/media-kit')}>
-                            <WhimsicalButton variant="nav">Media Kit</WhimsicalButton>
-                        </Link>
-                        <Link to="/recipes">
-                            <WhimsicalButton
-                                type="primary"
-                                variant="nav"
-                                className="nav-cta"
-                                onClick={() => handleNavClick('Recipes CTA', '/recipes')}
-                            >
-                                Get recipes
-                            </WhimsicalButton>
-                        </Link>
                     </nav>
-                </header>
+                </div>
+            </header>
+
+            <div className="layout">
 
                 <main>
                     {children}

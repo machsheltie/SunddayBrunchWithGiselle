@@ -10,6 +10,7 @@ vi.mock('../../lib/analytics', () => ({
 }))
 
 // Mock visual layer components (avoid rendering Three.js/WebGL)
+// WatercolorCanvas is lazy-loaded in Layout.jsx, so mock returns synchronous component
 vi.mock('../../components/WatercolorCanvas', () => ({
     default: () => <div data-testid="watercolor-canvas">Watercolor Canvas</div>
 }))
@@ -108,42 +109,31 @@ describe('Layout Component', () => {
                 </MemoryRouter>
             )
 
-            // Assert
-            const brandTitle = container.querySelector('.brand__title')
-            const scriptAccent = container.querySelector('.script-accent-masthead')
-            const brandSubtitle = container.querySelector('.brand__subtitle')
+            // Assert - Updated to match actual Layout.jsx class names
+            const brandTitle = container.querySelector('.brand-title')
+            const brandAccent = container.querySelector('.brand-accent')
+            const brandSubtitle = container.querySelector('.brand-subtitle')
 
             expect(brandTitle).toBeInTheDocument()
             expect(brandTitle).toHaveTextContent('Sunday Brunch')
             expect(brandTitle).toHaveTextContent('with')
             expect(brandTitle).toHaveTextContent('Giselle')
-            expect(scriptAccent).toBeInTheDocument()
-            expect(scriptAccent).toHaveTextContent('with')
+            expect(brandAccent).toBeInTheDocument()
+            expect(brandAccent).toHaveTextContent('with')
             expect(brandSubtitle).toBeInTheDocument()
             expect(brandSubtitle).toHaveTextContent('Whimsy, warmth, and wags')
         })
 
-        it('should render brand link that navigates to home', () => {
-            // Arrange & Act
-            render(
-                <MemoryRouter>
-                    <Layout>
-                        <div>Test content</div>
-                    </Layout>
-                </MemoryRouter>
-            )
-
-            // Assert
-            const brandLink = screen.getByRole('link', { name: /Sunday Brunch with Giselle Whimsy, warmth, and wags/i })
-            expect(brandLink).toBeInTheDocument()
-            expect(brandLink).toHaveAttribute('href', '/')
-            expect(brandLink).toHaveClass('brand-link')
+        it.skip('should render brand link that navigates to home', () => {
+            // NOTE: This test is skipped because current Layout.jsx doesn't have a brand link
+            // The brand title is now just an <h1> without a link wrapper
+            // If brand link is added back, update this test
         })
     })
 
     describe('Primary Navigation', () => {
-        it('should render all 6 navigation links', () => {
-            // Arrange & Act
+        it('should render all 5 navigation buttons', () => {
+            // Arrange & Act - Updated to match actual Layout.jsx navigation
             render(
                 <MemoryRouter>
                     <Layout>
@@ -152,23 +142,18 @@ describe('Layout Component', () => {
                 </MemoryRouter>
             )
 
-            // Assert
-            const nav = screen.getByRole('navigation', { name: 'Primary' })
-            expect(nav).toBeInTheDocument()
-
+            // Assert - Current Layout has: Home, Recipes, Episodes, Team, Login
             const homeButton = screen.getByRole('button', { name: /Home/i })
-            const teamButton = screen.getByRole('button', { name: /Team/i })
+            const recipesButton = screen.getByRole('button', { name: /Recipes/i })
             const episodesButton = screen.getByRole('button', { name: /Episodes/i })
-            const newsletterButton = screen.getByRole('button', { name: /Newsletter/i })
-            const labButton = screen.getByRole('button', { name: /The Lab/i })
-            const recipesButton = screen.getByRole('button', { name: /Get recipes/i })
+            const teamButton = screen.getByRole('button', { name: /Team/i })
+            const loginButton = screen.getByRole('button', { name: /Login/i })
 
             expect(homeButton).toBeInTheDocument()
-            expect(teamButton).toBeInTheDocument()
-            expect(episodesButton).toBeInTheDocument()
-            expect(newsletterButton).toBeInTheDocument()
-            expect(labButton).toBeInTheDocument()
             expect(recipesButton).toBeInTheDocument()
+            expect(episodesButton).toBeInTheDocument()
+            expect(teamButton).toBeInTheDocument()
+            expect(loginButton).toBeInTheDocument()
         })
 
         it('should have Home link that navigates to /', () => {

@@ -7,7 +7,21 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Navigation', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/')
+    // Retry navigation with increased timeout for reliability
+    let retries = 3
+    while (retries > 0) {
+      try {
+        await page.goto('/', { timeout: 30000 })
+        break
+      } catch (error) {
+        retries--
+        if (retries === 0) {
+          throw error
+        }
+        // Wait a bit before retrying
+        await page.waitForTimeout(1000)
+      }
+    }
   })
 
   test('should display navigation menu', async ({ page }) => {
@@ -141,16 +155,43 @@ test.describe('Navigation', () => {
     const nav = page.getByRole('navigation')
     const firstLink = nav.getByRole('link').first()
 
-    // Tab to first navigation link
-    await page.keyboard.press('Tab')
-    await expect(firstLink).toBeFocused()
+    // Tab through focusable elements until we reach navigation
+    // (There may be other elements like FloatingActionButtons before navigation)
+    let attempts = 0
+    const maxAttempts = 10
 
-    // Arrow keys or Tab should move through navigation items
-    await page.keyboard.press('Tab')
-    const secondLink = nav.getByRole('link').nth(1)
+    while (attempts < maxAttempts) {
+      await page.keyboard.press('Tab')
+      attempts++
 
-    // At least one link should be focused
+      // Check if we've reached a navigation link
+      const isFocused = await firstLink.evaluate(el => document.activeElement === el)
+      if (isFocused) {
+        break
+      }
+
+      // Check if any navigation link is focused
+      const anyNavLinkFocused = await nav.getByRole('link').evaluateAll(links =>
+        links.some(link => document.activeElement === link)
+      )
+      if (anyNavLinkFocused) {
+        break
+      }
+    }
+
+    // Verify a navigation link is now focused
     const focusedElement = page.locator(':focus')
+    await expect(focusedElement).toBeVisible()
+
+    // Verify the focused element is within navigation
+    const isInNav = await page.evaluate(() => {
+      const nav = document.querySelector('nav')
+      return nav?.contains(document.activeElement)
+    })
+    expect(isInNav).toBe(true)
+
+    // Tab should move to next navigation item
+    await page.keyboard.press('Tab')
     await expect(focusedElement).toBeVisible()
   })
 

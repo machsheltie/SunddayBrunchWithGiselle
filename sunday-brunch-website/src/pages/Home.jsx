@@ -54,6 +54,9 @@ function Home() {
                     {/* Recipe Collections - Curated discovery paths */}
                     <RecipeCollectionsSection />
 
+                    {/* Paw Divider */}
+                    <div className="paw-divider">🐾 🐾 🐾</div>
+
                     {/* Recent Recipes Gallery - Newest additions */}
                     <RecentRecipesGallery limit={8} />
                 </RecipeSanctuary>

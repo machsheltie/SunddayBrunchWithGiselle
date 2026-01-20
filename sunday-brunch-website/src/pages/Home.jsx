@@ -8,6 +8,8 @@ import WhimsicalHero from '../components/WhimsicalHero'
 import RecipeCollectionsSection from '../components/RecipeCollectionsSection'
 import SocialProofSection from '../components/SocialProofSection'
 import RecentRecipesGallery from '../components/RecentRecipesGallery'
+import RecipeSanctuary from '../components/RecipeSanctuary'
+import LatestEpisodeSection from '../components/LatestEpisodeSection'
 import { getFeatured } from '../lib/content'
 import { applyMeta } from '../lib/seo'
 import './Home.css'
@@ -30,44 +32,47 @@ function Home() {
 
     return (
         <div className="home">
-            {/* Hero Section - Matches preview-magical.html exactly */}
-            <WhimsicalHero />
+            {/* Outer container wrapping ALL content - matches preview-magical.html */}
+            <div className="container">
+                {/* Hero Section */}
+                <WhimsicalHero />
 
-            {/* Gradient divider between hero and content sections */}
-            <div className="hero-content-divider"></div>
+                {/* Recipe Sanctuary - Unified section with gradient border */}
+                <RecipeSanctuary>
+                    {/* Featured Recipe */}
+                    <section className="section featured-recipe-section" data-testid="featured-recipe">
+                        {loading && <LoadingSkeleton type="recipe" />}
+                        {!loading && featured.recipe && (
+                            <FeaturedRecipeCard recipe={featured.recipe} />
+                        )}
+                        {!loading && !featured.recipe && <p className="small-muted">No recipe available yet.</p>}
+                    </section>
 
-            {/* Featured Recipe Section */}
-            <section className="section featured-recipe-section" data-testid="featured-recipe">
-                {loading && <LoadingSkeleton type="recipe" />}
-                {!loading && featured.recipe && (
-                    <FeaturedRecipeCard recipe={featured.recipe} />
-                )}
-                {!loading && !featured.recipe && <p className="small-muted">No recipe available yet.</p>}
-            </section>
+                    {/* Paw Divider */}
+                    <div className="paw-divider">🐾 🐾 🐾</div>
 
-            {/* Recipe Collections - Curated discovery paths */}
-            <RecipeCollectionsSection />
+                    {/* Recipe Collections - Curated discovery paths */}
+                    <RecipeCollectionsSection />
 
-            {/* Recent Recipes Gallery - Newest additions */}
-            <RecentRecipesGallery limit={8} />
+                    {/* Recent Recipes Gallery - Newest additions */}
+                    <RecentRecipesGallery limit={8} />
+                </RecipeSanctuary>
 
-            {/* Latest Episode Section */}
-            <section className="section latest-episode-section">
-                <div className="section__header">
-                    <h2 className="section__title">Latest Episode</h2>
-                </div>
-                {loading && <LoadingSkeleton type="episode" />}
-                {!loading && featured.episode && (
-                    <>
-                        <FeaturedEpisodeCard episode={featured.episode} />
-                        <CTAForm headline="Get recipes, Sunday letters, early drops" />
-                    </>
-                )}
-                {!loading && !featured.episode && <p className="small-muted">No episode available yet.</p>}
-            </section>
+                {/* Latest Episode Section - With gradient border wrapper */}
+                <LatestEpisodeSection>
+                    {loading && <LoadingSkeleton type="episode" />}
+                    {!loading && featured.episode && (
+                        <>
+                            <FeaturedEpisodeCard episode={featured.episode} />
+                            <CTAForm headline="Get recipes, Sunday letters, early drops" />
+                        </>
+                    )}
+                    {!loading && !featured.episode && <p className="small-muted">No episode available yet.</p>}
+                </LatestEpisodeSection>
 
-            {/* Social Proof - Community testimonials */}
-            <SocialProofSection />
+                {/* Social Proof - Community testimonials */}
+                <SocialProofSection />
+            </div>
         </div>
     )
 }

@@ -1,75 +1,60 @@
-.whimsical-hero {
-    min-height: 80vh;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    align-items: center;
-    gap: var(--space-4);
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-4);
-    background: transparent;
-    padding: var(--space-20) var(--space-12) var(--space-4) var(--space-12);
+/* ============================================
+   HERO SECTION - Strict Parity with preview-magical.html
+   ============================================ */
+
+.hero {
     position: relative;
+    background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #dff0ea 100%);
+    border-radius: 16px;
+    border: 2px dashed #9b7ab8;
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
     overflow: visible;
+    min-height: 60vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
 }
 
-/* Decorative line above hero section */
-.whimsical-hero::before {
-    content: "";
+/* Glass Wrapper Container */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 8px 32px rgba(46, 26, 71, 0.1);
+}
+
+/* ============================================
+   ALCHEMY CIRCLE - Floating Background Element
+   ============================================ */
+/* Note: Preview doesn't strictly have this in CSS but it's part of the design intent. Keeping it but checking opacity/colors */
+.alchemy-circle-container {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    height: 12px;
-    opacity: 0.7;
-    z-index: 5;
-    background: repeating-linear-gradient(45deg, var(--pastel-lavender), var(--pastel-lavender) 15px, var(--soft-sakura) 15px, var(--soft-sakura) 30px, var(--pastel-sky) 30px, var(--pastel-sky) 45px);
-}
-
-.whimsical-hero__content {
-    grid-column: 1 / 8;
-    grid-row: 1;
-    z-index: 10;
-    max-width: 600px;
-    mix-blend-mode: multiply;
-}
-
-.whimsical-hero__visual {
-    grid-column: 6 / 13;
-    grid-row: 1;
-    z-index: 5;
-    position: relative;
-    transform: rotate(2deg);
-}
-
-.whimsical-hero__title {
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 8vw, 7.5rem);
-    line-height: 0.9;
-    color: var(--midnight-lavender);
-    margin-bottom: var(--space-6);
-}
-
-.hero-alchemy-graphic {
-    position: absolute;
-    top: 10%;
-    right: 5%;
-    width: 300px;
-    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
     pointer-events: none;
-    z-index: 2;
-    opacity: 0.2;
+    z-index: 1;
+    opacity: 0.15;
 }
 
 .alchemy-circle {
     width: 100%;
     height: 100%;
-    border: 2px dashed var(--pastel-lavender);
+    border: 3px dashed #9b7ab8;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--soft-sakura) 0%, transparent 70%);
-    animation: rotateCircle 20s linear infinite;
+    background: radial-gradient(circle, rgba(252, 225, 228, 0.3) 0%, transparent 70%);
+    animation: rotateAlchemyCircle 30s linear infinite;
 }
 
-@keyframes rotateCircle {
+@keyframes rotateAlchemyCircle {
     from {
         transform: rotate(0deg);
     }
@@ -79,162 +64,26 @@
     }
 }
 
-.script-accent {
-    font-family: var(--font-script);
-    font-size: 0.8em;
-    color: var(--midnight-lavender);
-    /* More readable on light yellow, lavender/pink used as glow */
-    text-shadow: 2px 2px var(--soft-sakura);
-    vertical-align: middle;
-    margin: 0 0.1em;
+/* ============================================
+   LEFT COLUMN - Hero Content
+   ============================================ */
+
+.hero-content {
+    z-index: 10;
+    padding-right: 1rem;
+    mix-blend-mode: multiply;
+    /* Collage-like depth */
 }
 
-.whimsical-hero__quote-wrapper {
-    position: relative;
-    padding: var(--space-6) var(--space-8);
-    margin-bottom: var(--space-10);
-    max-width: 550px;
-    z-index: 1;
-    overflow: visible;
-}
-
-.whimsical-hero__quote-wrapper::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-
-    /* Watercolor splatter effect via CSS mask */
-    mask-image: radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
-        radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
-    -webkit-mask-image: radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
-        radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
-
-    /* Gradient fade to transparent behind the quote */
-    opacity: 0.8;
-}
-
-/* Subtle watercolor splatter accent */
-.whimsical-hero__quote-wrapper::after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    width: 100px;
-    height: 100px;
-    background: var(--soft-sakura);
-    filter: blur(30px);
-    opacity: 0.4;
-    z-index: -2;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q50,0 70,20 T90,50 T70,80 T30,80 T10,50 Z' fill='black'/%3E%3C/svg%3E");
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q50,0 70,20 T90,50 T70,80 T30,80 T10,50 Z' fill='black'/%3E%3C/svg%3E");
-}
-
-.whimsical-hero__text {
-    font-family: var(--font-body);
-    font-size: var(--text-2xl);
-    color: var(--midnight-lavender);
-    line-height: 1.4;
-    font-style: italic;
-    margin: 0;
-    /* Margin handled by wrapper */
-    opacity: 1;
-    position: relative;
-    z-index: 2;
-}
-
-.whimsical-hero__cta-group {
-    display: flex;
-    align-items: center;
-    gap: var(--space-6);
-}
-
-.secondary-link {
-    background: transparent;
-    border: none;
-    color: var(--dusty-plum);
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: var(--text-base);
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    transition: color var(--transition-fast);
-}
-
-.secondary-link:hover {
-    color: var(--pastel-sky);
-    text-decoration-color: var(--soft-sakura);
-}
-
-.whimsical-hero__visual {
-    grid-column: 6 / 13;
-    position: absolute;
-    right: 0;
-    top: -5%;
-    width: 55%;
-    z-index: var(--z-subject);
-    display: flex;
-    justify-content: flex-end;
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-.photo-frame {
-    background: #fff;
-    padding: var(--space-4);
-    box-shadow: 0 10px 40px rgba(46, 26, 71, 0.08);
-    position: relative;
-    transition: all var(--transition-slow);
-}
-
-.photo-frame:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(46, 26, 71, 0.15);
-}
-
-.photo-container {
-    width: 100%;
-    max-width: 600px;
-    aspect-ratio: 4/5;
-    overflow: hidden;
-    background: var(--pale-buttercream);
-    position: relative;
-    mask-image: var(--mask-torn-paper);
-    -webkit-mask-image: var(--mask-torn-paper);
-    mask-size: 100% 100%;
-    -webkit-mask-size: 100% 100%;
-}
-
-.hero-watercolor-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-
-.hero-decor-paw {
-    position: absolute;
-    bottom: -10px;
-    right: -10px;
-    width: 100px;
-    height: 100px;
-    opacity: 0.15;
-    transform: rotate(15deg);
-    pointer-events: none;
+/* Entrance animation */
+.animate-slide-in-left {
+    animation: slideInLeft 1s ease-out;
 }
 
 @keyframes slideInLeft {
     from {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translateX(-50px);
     }
 
     to {
@@ -243,39 +92,816 @@
     }
 }
 
-@keyframes fadeIn {
+/* Hero Title - Strict sizing */
+.hero-title {
+    font-family: 'Italiana', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    color: #2e1a47;
+    margin-bottom: 0.5rem;
+}
+
+/* Script accent ("with") */
+.hero-script-accent {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 3rem;
+    /* Using rem equivalent of clamp/scaling if necessary, but 3rem is close to preview visual */
+    /* Preview uses css variable or separate class. preview lines 161-165 just say font-family. */
+    /* Let's stick to Pinyon */
+    color: #9b7ab8;
+    text-transform: lowercase;
+    display: inline-block;
+    margin: 0 0.5rem;
+}
+
+/* Whimsical wavy divider from actual website */
+.hero-divider {
+    width: 260px;
+    height: 30px;
+    margin: 1rem 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'%3E%3Cpath d='M0,10 Q50,0 100,10 T200,10' fill='none' stroke='%235D4D7A' stroke-width='1'/%3E%3Ccircle cx='100' cy='10' r='2' fill='%235D4D7A'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.8rem;
+    color: #9b7ab8;
+    margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   QUOTE WRAPPER - Watercolor Mask Effect
+   ============================================ */
+
+.hero-quote-wrapper {
+    position: relative;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2.5rem;
+    max-width: 550px;
+    z-index: 1;
+    overflow: visible;
+}
+
+/* Watercolor background with organic mask */
+.hero-quote-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(232, 223, 245, 0.3);
+    border-radius: 16px;
+
+    /* Organic watercolor mask */
+    mask-image: radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
+    -webkit-mask-image: radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
+    mask-composite: add;
+    -webkit-mask-composite: source-over;
+    opacity: 0.8;
+}
+
+/* SVG Watercolor Splatter Accent Behind Quote */
+.hero-quote-wrapper::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100px;
+    height: 100px;
+    background: #fce1e4;
+    filter: blur(30px);
+    opacity: 0.4;
+    z-index: -2;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q50,0 70,20 T90,50 T70,80 T30,80 T10,50 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q50,0 70,20 T90,50 T70,80 T30,80 T10,50 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: contain;
+    -webkit-mask-size: contain;
+}
+
+/* Quote text */
+.hero-quote {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #5a4668;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    font-style: italic;
+}
+
+/* ============================================
+   CTA BUTTONS GROUP
+   ============================================ */
+
+.hero-cta-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* ============================================
+   WHIMSICAL BUTTONS - Strict Parity
+   ============================================ */
+
+.whimsical-button {
+    display: inline-block;
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.6rem;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.whimsical-button--primary {
+    background: linear-gradient(135deg, #9b7ab8, #c59fdc);
+    color: white;
+    box-shadow: 0 8px 24px rgba(155, 122, 184, 0.3);
+}
+
+.whimsical-button--primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(155, 122, 184, 0.5);
+}
+
+.whimsical-button--secondary {
+    background: linear-gradient(135deg, #e8dff5, #f5ebff);
+    color: #2e1a47;
+    box-shadow: 0 6px 20px rgba(232, 223, 245, 0.4);
+    border: 2px solid rgba(155, 122, 184, 0.3);
+}
+
+.whimsical-button--secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(232, 223, 245, 0.6);
+}
+
+/* Glowing pawprint trails on hover */
+.whimsical-button::before {
+    content: '🐾';
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.whimsical-button:hover::before {
+    left: -15px;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+}
+
+.whimsical-button::after {
+    content: '🐾';
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.whimsical-button:hover::after {
+    right: -15px;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+}
+
+/* ============================================
+   RIGHT COLUMN - Hero Visual (Photo Frame)
+   ============================================ */
+
+.hero-visual {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Entrance animation */
+.animate-scale-rotate {
+    animation: scaleRotate 1.2s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+@keyframes scaleRotate {
     from {
         opacity: 0;
+        transform: scale(0.9) rotate(5deg);
     }
 
     to {
         opacity: 1;
+        transform: scale(1) rotate(-2deg);
     }
 }
 
-@media (max-width: 992px) {
-    .whimsical-hero {
-        flex-direction: column-reverse;
-        padding: var(--space-8);
+/* ============================================
+   PHOTO FRAME - White frame with torn paper mask
+   ============================================ */
+.photo-frame {
+    position: relative;
+    border-radius: 16px;
+    overflow: visible;
+    box-shadow: 0 12px 48px rgba(46, 26, 71, 0.2);
+    transform: rotate(-2deg);
+    max-width: 100%;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+
+    /* Torn Paper Mask Effect */
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cpath d='M0,0 L400,0 L400,500 Q390,495 380,500 Q370,505 360,500 Q350,495 340,500 Q330,505 320,500 Q310,495 300,500 Q290,505 280,500 Q270,495 260,500 Q250,505 240,500 Q230,495 220,500 Q210,505 200,500 Q190,495 180,500 Q170,505 160,500 Q150,495 140,500 Q130,505 120,500 Q110,495 100,500 Q90,505 80,500 Q70,495 60,500 Q50,505 40,500 Q30,495 20,500 Q10,505 0,500 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cpath d='M0,0 L400,0 L400,500 Q390,495 380,500 Q370,505 360,500 Q350,495 340,500 Q330,505 320,500 Q310,495 300,500 Q290,505 280,500 Q270,495 260,500 Q250,505 240,500 Q230,495 220,500 Q210,505 200,500 Q190,495 180,500 Q170,505 160,500 Q150,495 140,500 Q130,505 120,500 Q110,495 100,500 Q90,505 80,500 Q70,495 60,500 Q50,505 40,500 Q30,495 20,500 Q10,505 0,500 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+}
+
+.washi-tape {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 200px;
+    height: 30px;
+    z-index: 10;
+}
+
+.washi-tape svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 3rem 1.5rem;
         text-align: center;
-        gap: var(--space-10);
     }
 
-    .whimsical-hero__content {
-        width: 100%;
+    .hero-content {
+        max-width: 100%;
+        order: 2;
+        padding-right: 0;
     }
 
-    .whimsical-hero__text {
-        margin-left: auto;
-        margin-right: auto;
+    .hero-visual {
+        order: 1;
+        margin-bottom: 2rem;
     }
 
-    .whimsical-hero__cta-group {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-cta-group {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .photo-frame {
+        max-width: 400px;
+        transform: rotate(0deg);
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .whimsical-button {
+        font-size: 1.2rem;
+        padding: 0.8rem 2rem;
+    }
+
+    .photo-frame {
+        max-width: 100%;
+    }
+}
+
+/* Glass Wrapper Container */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 8px 32px rgba(46, 26, 71, 0.1);
+}
+
+/* ============================================
+   ALCHEMY CIRCLE - Floating Background Element
+   ============================================ */
+
+.alchemy-circle-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+.alchemy-circle {
+    width: 100%;
+    height: 100%;
+    border: 3px dashed #9b7ab8;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(252, 225, 228, 0.3) 0%, transparent 70%);
+    animation: rotateAlchemyCircle 30s linear infinite;
+}
+
+@keyframes rotateAlchemyCircle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   LEFT COLUMN - Hero Content
+   ============================================ */
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 550px;
+
+    /* Collage-like depth effect */
+    mix-blend-mode: multiply;
+}
+
+/* Entrance animation */
+.animate-slide-in-left {
+    animation: slideInLeft 1s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Hero Title */
+.hero-title {
+    font-family: 'Italiana', serif;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: #2e1a47;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0 0 1rem 0;
+}
+
+/* Script accent ("with") */
+.hero-script-accent {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 3rem;
+    color: #9b7ab8;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    display: inline-block;
+    margin: 0 0.5rem;
+}
+
+/* Whimsical wavy divider from actual website */
+.hero-divider {
+    width: 260px;
+    height: 30px;
+    margin: 1rem 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'%3E%3Cpath d='M0,10 Q50,0 100,10 T200,10' fill='none' stroke='%235D4D7A' stroke-width='1'/%3E%3Ccircle cx='100' cy='10' r='2' fill='%235D4D7A'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+/* ============================================
+   QUOTE WRAPPER - Watercolor Mask Effect
+   ============================================ */
+
+.hero-quote-wrapper {
+    position: relative;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2.5rem;
+    z-index: 1;
+    overflow: visible;
+}
+
+/* Watercolor background with organic mask */
+.hero-quote-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(232, 223, 245, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(232, 223, 245, 0.3);
+    border-radius: 16px;
+
+    /* Organic watercolor mask */
+    mask-image: radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
+    -webkit-mask-image: radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
+    mask-composite: add;
+    -webkit-mask-composite: source-over;
+    opacity: 0.8;
+}
+
+/* Watercolor splatter accent */
+.hero-quote-wrapper::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 120px;
+    height: 120px;
+    background: rgba(252, 225, 228, 0.4);
+    filter: blur(40px);
+    opacity: 0.5;
+    z-index: -2;
+    border-radius: 50%;
+}
+
+/* ============================================
+   CTA BUTTONS GROUP
+   ============================================ */
+
+.hero-cta-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* ============================================
+   WHIMSICAL BUTTONS - From preview-magical.html
+   ============================================ */
+
+/* ============================================
+   WHIMSICAL BUTTONS - From preview-magical.html
+   ============================================ */
+
+.whimsical-button {
+    display: inline-block;
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.6rem;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.whimsical-button--primary {
+    background: linear-gradient(135deg, #9b7ab8, #c59fdc);
+    color: white;
+    box-shadow: 0 8px 24px rgba(155, 122, 184, 0.3);
+}
+
+.whimsical-button--primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(155, 122, 184, 0.5);
+}
+
+.whimsical-button--secondary {
+    background: linear-gradient(135deg, #e8dff5, #f5ebff);
+    color: #2e1a47;
+    box-shadow: 0 6px 20px rgba(232, 223, 245, 0.4);
+    border: 2px solid rgba(155, 122, 184, 0.3);
+}
+
+.whimsical-button--secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(232, 223, 245, 0.6);
+}
+
+/* Glowing pawprint trails on hover */
+.whimsical-button::before {
+    content: '🐾';
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.whimsical-button:hover::before {
+    left: -15px;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+}
+
+.whimsical-button::after {
+    content: '🐾';
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.whimsical-button:hover::after {
+    right: -15px;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+}
+
+/* ============================================
+   RIGHT COLUMN - Hero Visual (Photo Frame)
+   ============================================ */
+
+.hero-visual {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Entrance animation */
+.animate-scale-rotate {
+    animation: scaleRotate 1.2s ease-out;
+}
+
+@keyframes scaleRotate {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(2deg);
+    }
+}
+
+/* ============================================
+   WATERCOLOR SPLATTERS - Behind photo frame
+   ============================================ */
+
+.watercolor-splatter {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.3;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.splatter-1 {
+    width: 200px;
+    height: 200px;
+    background: rgba(252, 225, 228, 0.6);
+    top: -50px;
+    left: -50px;
+}
+
+.splatter-2 {
+    width: 180px;
+    height: 180px;
+    background: rgba(155, 122, 184, 0.4);
+    bottom: -40px;
+    right: -40px;
+}
+
+/* ============================================
+   WASHI TAPE - Decorative tape at top
+   ============================================ */
+
+.washi-tape {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 200px;
+    height: 30px;
+    z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.washi-tape svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   HERO IMAGE - With torn paper mask
+   ============================================ */
+
+.photo-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+
+    /* Torn paper mask effect */
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cpath d='M0,0 L400,0 L400,480 Q390,485 380,482 T360,485 T340,480 T320,485 T300,482 T280,485 T260,480 T240,485 T220,482 T200,485 T180,480 T160,485 T140,482 T120,485 T100,480 T80,485 T60,482 T40,485 T20,480 Q10,485 0,480 Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cpath d='M0,0 L400,0 L400,480 Q390,485 380,482 T360,485 T340,480 T320,485 T300,482 T280,485 T260,480 T240,485 T220,482 T200,485 T180,480 T160,485 T140,482 T120,485 T100,480 T80,485 T60,482 T40,485 T20,480 Q10,485 0,480 Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+}
+
+/* ============================================
+   GLIMMER OVERLAY - Subtle shine effect (matches preview-magical.html)
+   ============================================ */
+
+.glimmer-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    animation: glimmer 3s ease-in-out infinite;
+    border-radius: inherit;
+    z-index: 2;
+}
+
+@keyframes glimmer {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 3rem 2rem;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        order: 2;
+    }
+
+    .hero-visual {
+        order: 1;
+        margin-bottom: 2rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-script-accent {
+        font-size: 2rem;
+    }
+
+    .hero-cta-group {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .photo-frame {
+        max-width: 400px;
+    }
+
+    .alchemy-circle-container {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-script-accent {
+        font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-quote {
+        font-size: 1.1rem;
+    }
+
+    .whimsical-button {
+        font-size: 0.9rem;
+        padding: 0.75rem 1.75rem;
+    }
+
+    .photo-frame {
+        padding: 1rem;
+        max-width: 300px;
+    }
+
+    .washi-tape {
+        height: 30px;
         width: 90%;
-        max-width: 350px;
+    }
+
+    .alchemy-circle-container {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+/* Large desktop (1400px and above) */
+@media (min-width: 1400px) {
+    .hero {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 5rem 4rem;
+    }
+
+    .hero-title {
+        font-size: 4.5rem;
+    }
+
+    .hero-script-accent {
+        font-size: 3.5rem;
+    }
+
+    .photo-frame {
+        max-width: 600px;
     }
 }

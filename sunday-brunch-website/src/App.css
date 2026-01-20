@@ -8,7 +8,7 @@ html {
 .app {
     font-family: var(--font-body);
     color: var(--midnight-lavender);
-    background: var(--pale-buttercream);
+    /* Background removed - using body gradient instead */
     line-height: var(--leading-relaxed);
     min-height: 100vh;
 }
@@ -57,19 +57,17 @@ html {
 
 .premium-masthead {
     grid-column: 1 / -1;
-    background: var(--sakura-wash);
-    padding: var(--space-10) var(--space-4);
-    margin: 0 0 var(--space-12);
-    position: relative;
+    background: linear-gradient(135deg, rgba(232, 223, 245, 0.4) 0%, rgba(252, 225, 228, 0.4) 100%);
+    backdrop-filter: blur(20px);
+    border-bottom: 2px solid rgba(232, 223, 245, 0.3);
+    padding: 1.5rem 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-8);
-    mask-image: var(--mask-deckle);
-    -webkit-mask-image: var(--mask-deckle);
-    mask-size: 100% 100%;
-    -webkit-mask-size: 100% 100%;
-    z-index: 50;
     /* Ensure masthead is always on top */
 }
 

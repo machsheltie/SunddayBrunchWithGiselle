@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './PinterestButton.css';
 
 const PinterestButton = ({ url, description, image }) => {
@@ -19,6 +20,12 @@ const PinterestButton = ({ url, description, image }) => {
             <span>Pin It</span>
         </button>
     );
+};
+
+PinterestButton.propTypes = {
+    url: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
 };
 
 export default PinterestButton;

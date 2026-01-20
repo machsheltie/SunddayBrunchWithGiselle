@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import AudioPlayer from './AudioPlayer'
 import RelatedContent from './RelatedContent'
 import GiselleWhisper from './GiselleWhisper'
@@ -68,6 +69,19 @@ function EpisodeTemplate({ episode }) {
             </div>
         </div>
     )
+}
+
+EpisodeTemplate.propTypes = {
+    episode: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        date: PropTypes.string,
+        audioUrl: PropTypes.string.isRequired,
+        transcript: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+        slug: PropTypes.string.isRequired,
+        notes: PropTypes.arrayOf(PropTypes.string),
+        relatedRecipes: PropTypes.array,
+        relatedEpisodes: PropTypes.array
+    }).isRequired
 }
 
 export default EpisodeTemplate

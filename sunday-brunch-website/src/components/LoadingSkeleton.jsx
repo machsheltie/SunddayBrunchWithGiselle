@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import './LoadingSkeleton.css'
 
 function LoadingSkeleton({ type = 'recipe' }) {
@@ -29,6 +30,10 @@ function LoadingSkeleton({ type = 'recipe' }) {
             <div className="skeleton__text skeleton__text--medium"></div>
         </div>
     )
+}
+
+LoadingSkeleton.propTypes = {
+    type: PropTypes.oneOf(['recipe', 'episode'])
 }
 
 export default LoadingSkeleton

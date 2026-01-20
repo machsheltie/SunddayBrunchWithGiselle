@@ -1,5 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { createLogger } from '../lib/logger'
 import './ErrorBoundary.css'
+
+const logger = createLogger('ErrorBoundary')
 
 class ErrorBoundary extends React.Component {
     constructor(props) {
@@ -12,7 +16,7 @@ class ErrorBoundary extends React.Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        console.error("Uncaught error:", error, errorInfo)
+        logger.error("Uncaught error:", error, errorInfo)
     }
 
     handleReset = () => {
@@ -38,6 +42,11 @@ class ErrorBoundary extends React.Component {
 
         return this.props.children
     }
+}
+
+ErrorBoundary.propTypes = {
+    children: PropTypes.node.isRequired,
+    fallback: PropTypes.node
 }
 
 export default ErrorBoundary

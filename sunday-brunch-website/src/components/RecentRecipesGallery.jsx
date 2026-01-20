@@ -57,12 +57,13 @@ function RecentRecipesGallery({ limit = 8 }) {
 
     if (loading) {
         return (
-            <div className="recent-recipes-gallery" data-testid="recent-recipes">
-                <div className="recent-recipes-grid">
+            <div className="recent-additions" data-testid="recent-recipes">
+                <h3>Fresh from the Oven</h3>
+                <div className="recent-grid">
                     {Array.from({ length: limit }).map((_, i) => (
-                        <div key={i} className="recent-recipe-card skeleton">
-                            <div className="skeleton-image"></div>
-                            <div className="skeleton-content">
+                        <div key={i} className="library-book skeleton">
+                            <div className="book-cover">📖</div>
+                            <div className="book-info">
                                 <div className="skeleton-line"></div>
                                 <div className="skeleton-line short"></div>
                             </div>
@@ -78,76 +79,40 @@ function RecentRecipesGallery({ limit = 8 }) {
     }
 
     return (
-        <div className="recent-recipes-gallery" data-testid="recent-recipes">
-            <div className="recent-recipes-gallery__header">
-                <h2 className="recent-recipes-gallery__title">Fresh From The Oven</h2>
-                <p className="recent-recipes-gallery__subtitle">Newest additions to the collection</p>
-            </div>
+        <div className="recent-additions" data-testid="recent-recipes">
+            <h3>Fresh from the Oven</h3>
 
-            <div className="recent-recipes-grid">
+            <div className="recent-grid">
                 {recipes.map((recipe, index) => (
                     <Link
                         key={recipe.slug}
                         to={`/recipes/${recipe.slug}`}
-                        className="recent-recipe-card"
+                        className="library-book"
                         data-testid="recipe-card"
                         onClick={() => handleRecipeClick(recipe.slug, index)}
                     >
-                        <div className="recent-recipe-card__image-container">
-                            <img
-                                src={recipe.image}
-                                alt={recipe.title}
-                                className="recent-recipe-card__image"
-                                loading="lazy"
-                            />
-                            {recipe.category && (
-                                <span className="recent-recipe-card__category">
-                                    {recipe.category}
-                                </span>
-                            )}
+                        <div className="book-cover">
+                            {recipe.emoji || '📖'}
                         </div>
-
-                        <div className="recent-recipe-card__content">
-                            <h3 className="recent-recipe-card__title">{recipe.title}</h3>
-
-                            <div className="recent-recipe-card__meta">
+                        <div className="book-info">
+                            <div className="book-title">{recipe.title}</div>
+                            <div className="book-meta">
                                 {recipe.averageRating > 0 && (
-                                    <div className="recent-recipe-card__rating">
-                                        <span className="rating-stars">
-                                            {'★'.repeat(Math.round(recipe.averageRating))}
-                                            {'☆'.repeat(5 - Math.round(recipe.averageRating))}
-                                        </span>
-                                        <span className="rating-count">
-                                            ({recipe.ratingCount})
-                                        </span>
-                                    </div>
+                                    <span>⭐ {recipe.averageRating.toFixed(1)}</span>
                                 )}
-
-                                {recipe.cookTime && (
-                                    <span className="recent-recipe-card__time">
-                                        ⏱️ {recipe.cookTime} min
-                                    </span>
+                                {recipe.times?.total && (
+                                    <span>⏱️ {recipe.times.total}</span>
                                 )}
                             </div>
-
-                            {recipe.dietary && recipe.dietary.length > 0 && (
-                                <div className="recent-recipe-card__badges">
-                                    {recipe.dietary.slice(0, 2).map(badge => (
-                                        <span key={badge} className="dietary-badge">
-                                            {badge}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
                         </div>
                     </Link>
                 ))}
             </div>
 
-            <div className="recent-recipes-gallery__footer">
+            <div className="browse-cta">
                 <Link to="/recipes" onClick={handleSeeAllClick}>
-                    <WhimsicalButton type="secondary" showPaw={false}>
-                        See All Recipes
+                    <WhimsicalButton type="primary" showPaw={false}>
+                        Browse the Full Collection →
                     </WhimsicalButton>
                 </Link>
             </div>

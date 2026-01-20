@@ -53,9 +53,15 @@ function Layout({ children }) {
             <header className="header">
                 <div className="header-content">
                     <div>
-                        <h1 className="brand-title">
-                            Sunday Brunch <span className="brand-accent">with</span> Giselle
-                        </h1>
+                        <NavLink
+                            to="/"
+                            className="brand-link"
+                            onClick={() => handleNavClick('Home (Brand)', '/')}
+                        >
+                            <h1 className="brand-title">
+                                Sunday Brunch <span className="brand-accent">with</span> Giselle
+                            </h1>
+                        </NavLink>
                         <div className="brand-divider"></div>
                         <p className="brand-subtitle">Whimsy, warmth, and wags</p>
                     </div>
@@ -83,14 +89,6 @@ function Layout({ children }) {
                             onClick={() => handleNavClick('Episodes', '/episodes')}
                         >
                             Episodes
-                        </NavLink>
-                        <NavLink
-                            to="/about"
-                            className={({ isActive }) => `nav-button ${isActive ? 'active' : ''}`}
-                            aria-current={location.pathname === '/about' ? 'page' : undefined}
-                            onClick={() => handleNavClick('About', '/about')}
-                        >
-                            About
                         </NavLink>
                         <NavLink
                             to="/team"

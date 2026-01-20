@@ -1,12 +1,18 @@
 :root {
     /* ===== UNIQUE BRAND COLORS ===== */
-    /* Softer, Pastel, Whimsical Palette */
+    /* Softer, Pastel, Whimsical Palette matching preview-magical.html */
     --pale-buttercream: #FFFDE7;
     --light-lemon: #FEF9C3;
     --pastel-lavender: #E9D5FF;
     --soft-sakura: #FCE7F3;
     --sage-mist: #D1D5DB;
     --pastel-sky: #E0F2FE;
+
+    /* Strict Parity Palette */
+    --magical-mint: #dff0ea;
+    --magical-pink: #fce1e4;
+    --magical-lavender: #e8dff5;
+    --magical-peach: #fff3e0;
 
     /* Text Colors - Deeper, Whimsical Purples (No brown!) */
     --midnight-lavender: #2E1A47;
@@ -46,20 +52,19 @@
     --font-display: 'Italiana', serif;
     --font-body: 'Fraunces', serif;
     --font-script: 'Pinyon Script', cursive;
-    --font-nav: 'Righteous', cursive; /* Very bold, thick, retro nav font */
-    /* Other options: 'Lilita One', 'Fredoka One', 'Comfortaa' */
+    --font-nav: 'Fredoka One', cursive;
+    /* Updated to match preview-magical.html */
 
     /* Font Sizes - Responsive with clamp() for fluid scaling */
-    /* Format: clamp(min, preferred (viewport-based), max) */
-    --text-xs: clamp(0.7rem, 2vw, 0.75rem);        /* 11.2px - 12px */
-    --text-sm: clamp(0.8rem, 2.2vw, 0.875rem);     /* 12.8px - 14px */
-    --text-base: clamp(0.9rem, 2.5vw, 1rem);       /* 14.4px - 16px */
-    --text-lg: clamp(1rem, 3vw, 1.125rem);         /* 16px - 18px */
-    --text-xl: clamp(1.1rem, 3.5vw, 1.25rem);      /* 17.6px - 20px */
-    --text-2xl: clamp(1.25rem, 4vw, 1.5rem);       /* 20px - 24px */
-    --text-3xl: clamp(1.5rem, 5vw, 1.875rem);      /* 24px - 30px */
-    --text-4xl: clamp(1.75rem, 6vw, 2.25rem);      /* 28px - 36px */
-    --text-5xl: clamp(2rem, 8vw, 3rem);            /* 32px - 48px */
+    --text-xs: clamp(0.7rem, 2vw, 0.75rem);
+    --text-sm: clamp(0.8rem, 2.2vw, 0.875rem);
+    --text-base: clamp(0.9rem, 2.5vw, 1rem);
+    --text-lg: clamp(1rem, 3vw, 1.125rem);
+    --text-xl: clamp(1.1rem, 3.5vw, 1.25rem);
+    --text-2xl: clamp(1.25rem, 4vw, 1.5rem);
+    --text-3xl: clamp(1.5rem, 5vw, 1.875rem);
+    --text-4xl: clamp(1.75rem, 6vw, 2.25rem);
+    --text-5xl: clamp(2rem, 8vw, 3rem);
 
     /* Line Heights */
     --leading-tight: 1.25;
@@ -133,32 +138,164 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* strict parity to preview-magical.html lines 16-26 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Film Grain Overlay */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: var(--z-overlay);
-    mix-blend-mode: multiply;
-}
-
 body {
-    min-height: 100vh;
-    background-color: var(--pale-buttercream);
+    font-family: 'Fraunces', serif;
+    background: linear-gradient(135deg, #f8f3f9 0%, #fef7f2 50%, #f9f5f8 100%);
+    color: #2e1a47;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    position: relative;
+    /* Remove antialiasing to match preview-magical.html font rendering */
 }
 
+/* React Root Wrapper */
 #root {
     min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Animations from Preview */
+@keyframes drift {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(20px, -10px) rotate(5deg);
+    }
+
+    50% {
+        transform: translate(-10px, 20px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translate(15px, 15px) rotate(8deg);
+    }
+}
+
+@keyframes sheltieWalk {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.15;
+    }
+
+    90% {
+        opacity: 0.15;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes rotateCircle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes floatAndRotate {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+}
+
+@keyframes glimmer {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleRotate {
+    from {
+        transform: scale(0.9) rotate(5deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(-2deg);
+        opacity: 1;
+    }
+}
+
+@keyframes sparkle-burst {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Base Classes for Global Animations that might still be used in JS */
+.animate-slide-in-left {
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.animate-scale-rotate {
+    animation: scaleRotate 1.2s ease-out 0.3s forwards;
+    opacity: 0;
 }

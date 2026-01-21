@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { GiselleAvatar } from './illustrations/SheltieAvatars';
 import './GiselleWhisper.css';
@@ -27,6 +28,11 @@ const GiselleWhisper = ({ children, position = "right" }) => {
             </div>
         </motion.div>
     );
+};
+
+GiselleWhisper.propTypes = {
+    children: PropTypes.node.isRequired,
+    position: PropTypes.oneOf(['left', 'right'])
 };
 
 export default GiselleWhisper;

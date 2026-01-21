@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { trackEvent } from '../lib/analytics'
 import './RelatedContent.css'
@@ -27,6 +28,17 @@ function RelatedContent({ related = [], seasonal = [] }) {
             {seasonal.length > 0 && renderList(seasonal, 'Seasonal')}
         </div>
     )
+}
+
+const relatedItemShape = PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+})
+
+RelatedContent.propTypes = {
+    related: PropTypes.arrayOf(relatedItemShape),
+    seasonal: PropTypes.arrayOf(relatedItemShape)
 }
 
 export default RelatedContent

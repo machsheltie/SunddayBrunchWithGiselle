@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import { subscribeToNewsletter } from '../services/convertkit'
 import { trackEmailSignup } from '../lib/analytics'
 import './EmailCTAInline.css'
@@ -106,6 +107,10 @@ function EmailCTAInline({ message = 'Get weekly recipes in your inbox' }) {
             </form>
         </div>
     )
+}
+
+EmailCTAInline.propTypes = {
+    message: PropTypes.string
 }
 
 export default EmailCTAInline

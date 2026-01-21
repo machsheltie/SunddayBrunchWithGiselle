@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
+import PropTypes from 'prop-types'
 import { NavLink, useLocation } from 'react-router-dom'
 import { trackEvent } from '../lib/analytics'
 import { useAuth } from '../hooks/useAuth'
@@ -145,6 +146,10 @@ function Layout({ children }) {
             />
         </div>
     )
+}
+
+Layout.propTypes = {
+    children: PropTypes.node.isRequired
 }
 
 export default Layout

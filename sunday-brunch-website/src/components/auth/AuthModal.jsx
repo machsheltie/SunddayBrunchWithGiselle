@@ -11,6 +11,7 @@
  */
 
 import { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 import ForgotPasswordForm from './ForgotPasswordForm'
@@ -101,4 +102,10 @@ export default function AuthModal({ isOpen, onClose, initialView = 'login' }) {
       </div>
     </div>
   )
+}
+
+AuthModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  initialView: PropTypes.oneOf(['login', 'signup', 'forgot-password'])
 }

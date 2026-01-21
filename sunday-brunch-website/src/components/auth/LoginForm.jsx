@@ -11,6 +11,7 @@
  */
 
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import { useAuth } from '../../hooks/useAuth'
 import './LoginForm.css'
 
@@ -150,4 +151,10 @@ export default function LoginForm({ onSuccess, onSwitchToSignUp, onSwitchToForgo
       </form>
     </div>
   )
+}
+
+LoginForm.propTypes = {
+  onSuccess: PropTypes.func,
+  onSwitchToSignUp: PropTypes.func.isRequired,
+  onSwitchToForgotPassword: PropTypes.func.isRequired
 }

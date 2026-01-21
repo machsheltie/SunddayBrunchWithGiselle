@@ -10,6 +10,7 @@
  */
 
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import { useAuth } from '../../hooks/useAuth'
 import './SignUpForm.css'
 
@@ -211,4 +212,9 @@ export default function SignUpForm({ onSuccess, onSwitchToLogin }) {
       </form>
     </div>
   )
+}
+
+SignUpForm.propTypes = {
+  onSuccess: PropTypes.func,
+  onSwitchToLogin: PropTypes.func.isRequired
 }

@@ -78,6 +78,12 @@ describe('LoginForm', () => {
         />
       )
 
+      // Bypass HTML5 validation to test component validation
+      const emailInput = screen.getByLabelText(/email/i)
+      const passwordInput = screen.getByLabelText(/password/i)
+      emailInput.removeAttribute('required')
+      passwordInput.removeAttribute('required')
+
       await user.click(screen.getByRole('button', { name: /sign.*in/i }))
 
       await waitFor(() => {
@@ -98,7 +104,13 @@ describe('LoginForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/password/i), 'password123')
+      // Bypass HTML5 validation to test component validation
+      const emailInput = screen.getByLabelText(/email/i)
+      const passwordInput = screen.getByLabelText(/password/i)
+      emailInput.removeAttribute('required')
+      passwordInput.removeAttribute('required')
+
+      await user.type(passwordInput, 'password123')
       await user.click(screen.getByRole('button', { name: /sign.*in/i }))
 
       await waitFor(() => {
@@ -119,7 +131,13 @@ describe('LoginForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/email/i), 'test@example.com')
+      // Bypass HTML5 validation to test component validation
+      const emailInput = screen.getByLabelText(/email/i)
+      const passwordInput = screen.getByLabelText(/password/i)
+      emailInput.removeAttribute('required')
+      passwordInput.removeAttribute('required')
+
+      await user.type(emailInput, 'test@example.com')
       await user.click(screen.getByRole('button', { name: /sign.*in/i }))
 
       await waitFor(() => {
@@ -140,8 +158,15 @@ describe('LoginForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/email/i), 'notanemail')
-      await user.type(screen.getByLabelText(/password/i), 'password123')
+      // Bypass HTML5 validation to test component validation
+      const emailInput = screen.getByLabelText(/email/i)
+      const passwordInput = screen.getByLabelText(/password/i)
+      emailInput.removeAttribute('required')
+      passwordInput.removeAttribute('required')
+      emailInput.removeAttribute('type') // Remove type="email" HTML5 validation
+
+      await user.type(emailInput, 'notanemail')
+      await user.type(passwordInput, 'password123')
       await user.click(screen.getByRole('button', { name: /sign.*in/i }))
 
       await waitFor(() => {

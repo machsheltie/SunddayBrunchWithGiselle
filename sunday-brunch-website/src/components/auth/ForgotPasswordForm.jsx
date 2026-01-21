@@ -10,6 +10,7 @@
  */
 
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import { supabase } from '../../lib/supabase'
 import './ForgotPasswordForm.css'
 
@@ -143,4 +144,9 @@ export default function ForgotPasswordForm({ onSuccess, onSwitchToLogin }) {
       </form>
     </div>
   )
+}
+
+ForgotPasswordForm.propTypes = {
+  onSuccess: PropTypes.func,
+  onSwitchToLogin: PropTypes.func.isRequired
 }

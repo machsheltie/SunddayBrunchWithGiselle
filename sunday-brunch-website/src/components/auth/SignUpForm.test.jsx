@@ -63,6 +63,14 @@ describe('SignUpForm', () => {
         />
       )
 
+      // Bypass HTML5 validation to test component validation
+      const emailInput = screen.getByLabelText(/email address/i)
+      const passwordInput = screen.getByLabelText(/^password/i)
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i)
+      emailInput.removeAttribute('required')
+      passwordInput.removeAttribute('required')
+      confirmPasswordInput.removeAttribute('required')
+
       await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {
@@ -82,9 +90,18 @@ describe('SignUpForm', () => {
         />
       )
 
-      await user.type(screen.getByLabelText(/email address/i), 'notanemail')
-      await user.type(screen.getByLabelText(/^password/i), 'Password123')
-      await user.type(screen.getByLabelText(/confirm password/i), 'Password123')
+      // Bypass HTML5 validation to test component validation
+      const emailInput = screen.getByLabelText(/email address/i)
+      const passwordInput = screen.getByLabelText(/^password/i)
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i)
+      emailInput.removeAttribute('required')
+      emailInput.removeAttribute('type') // Remove type="email" HTML5 validation
+      passwordInput.removeAttribute('required')
+      confirmPasswordInput.removeAttribute('required')
+
+      await user.type(emailInput, 'notanemail')
+      await user.type(passwordInput, 'Password123')
+      await user.type(confirmPasswordInput, 'Password123')
       await user.click(screen.getByRole('button', { name: /create account/i }))
 
       await waitFor(() => {

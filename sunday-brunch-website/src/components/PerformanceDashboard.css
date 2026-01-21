@@ -1,0 +1,304 @@
+/* Performance Dashboard Styles */
+
+.performance-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(to bottom, #FFFDD0 0%, #FFF 100%);
+  min-height: calc(100vh - 120px);
+}
+
+.performance-dashboard__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.performance-dashboard__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  color: #8A9A5B;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.performance-dashboard__subtitle {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.25rem;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+.performance-dashboard__notice {
+  font-family: 'Crimson Text', serif;
+  font-size: 1rem;
+  color: #E2725B;
+  margin: 1rem 0 0 0;
+  font-style: italic;
+}
+
+/* Loading State */
+.performance-dashboard__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loading-paw {
+  font-size: 4rem;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Metric Card */
+.metric-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.metric-card--good {
+  border-color: #8A9A5B;
+}
+
+.metric-card--needs-improvement {
+  border-color: #F4C2C2;
+}
+
+.metric-card--poor {
+  border-color: #E2725B;
+}
+
+.metric-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.metric-card__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: #4a4a4a;
+  margin: 0;
+  font-weight: 600;
+}
+
+.metric-card__badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-family: 'Crimson Text', serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.metric-card__badge--good {
+  background: #8A9A5B;
+  color: white;
+}
+
+.metric-card__badge--needs-improvement {
+  background: #F4C2C2;
+  color: #4a4a4a;
+}
+
+.metric-card__badge--poor {
+  background: #E2725B;
+  color: white;
+}
+
+.metric-card__value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #8A9A5B;
+  margin-bottom: 1rem;
+}
+
+.metric-card__info {
+  margin-bottom: 1.5rem;
+}
+
+.metric-card__name {
+  font-family: 'Crimson Text', serif;
+  font-size: 1rem;
+  color: #4a4a4a;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.metric-card__description {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Thresholds */
+.metric-card__thresholds {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.threshold {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+
+.threshold--good {
+  border: 2px solid #8A9A5B;
+}
+
+.threshold--needs-improvement {
+  border: 2px solid #F4C2C2;
+}
+
+.threshold__label {
+  display: block;
+  font-family: 'Crimson Text', serif;
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.threshold__value {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: #4a4a4a;
+  font-weight: 600;
+}
+
+/* Sheltie Comment */
+.metric-card__comment {
+  font-family: 'Pacifico', cursive;
+  font-size: 0.875rem;
+  color: #D4C5E2;
+  text-align: center;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #FFFDD0 0%, #F4C2C2 100%);
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+/* Empty State */
+.performance-dashboard__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.empty-state {
+  text-align: center;
+  max-width: 400px;
+}
+
+.empty-state__icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: #8A9A5B;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.empty-state__message {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.125rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Footer */
+.performance-dashboard__footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.footer-text {
+  font-family: 'Crimson Text', serif;
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.footer-link {
+  color: #8A9A5B;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.footer-link:hover {
+  border-bottom-color: #8A9A5B;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .performance-dashboard {
+    padding: 1rem;
+  }
+
+  .performance-dashboard__title {
+    font-size: 2rem;
+  }
+
+  .performance-dashboard__subtitle {
+    font-size: 1rem;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .metric-card__value {
+    font-size: 2.5rem;
+  }
+
+  .metric-card__thresholds {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

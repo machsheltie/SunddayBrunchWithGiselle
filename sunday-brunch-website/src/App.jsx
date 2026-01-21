@@ -20,6 +20,7 @@ const AboutPage = lazy(() => import('./pages/About'))
 const NewsletterPage = lazy(() => import('./pages/NewsletterPage'))
 const AlchemistsLab = lazy(() => import('./pages/AlchemistsLab'))
 const ProfilePage = lazy(() => import('./pages/ProfilePage'))
+const PerformanceDashboard = lazy(() => import('./components/PerformanceDashboard'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
@@ -56,6 +57,14 @@ function App() {
                                 element={
                                     <ProtectedRoute>
                                         <ProfilePage />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/performance"
+                                element={
+                                    <ProtectedRoute>
+                                        <PerformanceDashboard />
                                     </ProtectedRoute>
                                 }
                             />

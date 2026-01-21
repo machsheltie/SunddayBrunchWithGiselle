@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { TestMemoryRouter } from '../utils/test-router'
 import Layout from '../../components/Layout'
 import { trackEvent } from '../../lib/analytics'
 
@@ -72,11 +72,11 @@ describe('Layout Component', () => {
         it('should render all visual layer components', () => {
             // Arrange & Act
             const { container } = render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -93,11 +93,11 @@ describe('Layout Component', () => {
         it('should render children prop in main element', () => {
             // Arrange & Act
             render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div data-testid="test-child">Test child content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -113,11 +113,11 @@ describe('Layout Component', () => {
         it('should render brand title and subtitle', () => {
             // Arrange & Act
             const { container } = render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Updated to match actual Layout.jsx class names
@@ -135,26 +135,37 @@ describe('Layout Component', () => {
             expect(brandSubtitle).toHaveTextContent('Whimsy, warmth, and wags')
         })
 
-        it.skip('should render brand link that navigates to home', () => {
-            // NOTE: This test is skipped because current Layout.jsx doesn't have a brand link
-            // The brand title is now just an <h1> without a link wrapper
-            // If brand link is added back, update this test
+        it('should render brand link that navigates to home', () => {
+            // Arrange & Act
+            render(
+                <TestMemoryRouter>
+                    <Layout>
+                        <div>Test content</div>
+                    </Layout>
+                </TestMemoryRouter>
+            )
+
+            // Assert
+            const brandLink = screen.getByRole('link', { name: /Sunday Brunch with Giselle/i })
+            expect(brandLink).toBeInTheDocument()
+            expect(brandLink).toHaveAttribute('href', '/')
+            expect(brandLink).toHaveClass('brand-link')
         })
     })
 
     describe('Primary Navigation', () => {
-        it('should render all 5 navigation items', () => {
+        it('should render all navigation items', () => {
             // Arrange & Act - Updated to match actual Layout.jsx navigation
             render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Current Layout has: Home, Recipes, Episodes, Team (links), Login (button)
-            const homeLink = screen.getByRole('link', { name: /Home/i })
+            const homeLink = screen.getByRole('link', { name: /^Home$/i })
             const recipesLink = screen.getByRole('link', { name: /Recipes/i })
             const episodesLink = screen.getByRole('link', { name: /Episodes/i })
             const teamLink = screen.getByRole('link', { name: /Team/i })
@@ -170,11 +181,11 @@ describe('Layout Component', () => {
         it('should have Home link that navigates to /', () => {
             // Arrange & Act
             render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -185,11 +196,11 @@ describe('Layout Component', () => {
         it('should have Team link that navigates to /team', () => {
             // Arrange & Act
             render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -200,11 +211,11 @@ describe('Layout Component', () => {
         it('should have Episodes link that navigates to /episodes/*', () => {
             // Arrange & Act
             render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -212,28 +223,17 @@ describe('Layout Component', () => {
             expect(episodesLink).toHaveAttribute('href', '/episodes/the-pie-that-started-a-dynasty')
         })
 
-        it.skip('should have Newsletter link that navigates to /newsletter', () => {
-            // NOTE: Newsletter link not in current Layout.jsx navigation
-        })
-
-        it.skip('should have Lab link that navigates to /lab', () => {
-            // NOTE: Lab link not in current Layout.jsx navigation
-        })
-
-        it.skip('should have Recipes CTA link that navigates to /recipes', () => {
-            // NOTE: Current layout uses standard Recipes link, not CTA variant
-        })
     })
 
     describe('Analytics Tracking', () => {
         it('should call trackEvent when Home link is clicked', () => {
             // Arrange
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Act
@@ -251,11 +251,11 @@ describe('Layout Component', () => {
         it('should call trackEvent when Recipes link is clicked', () => {
             // Arrange - Updated to match current Layout implementation
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Act
@@ -273,11 +273,11 @@ describe('Layout Component', () => {
         it('should include correct label, href, and from (location) data in all nav clicks', () => {
             // Arrange - Updated to test actual navigation links
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Act - Click Home link
@@ -333,11 +333,11 @@ describe('Layout Component', () => {
         it('should render copyright text', () => {
             // Arrange & Act
             render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -349,11 +349,11 @@ describe('Layout Component', () => {
         it('should render pawprint decorations', () => {
             // Arrange & Act
             const { container } = render(
-                <MemoryRouter>
+                <TestMemoryRouter>
                     <Layout>
                         <div>Test content</div>
                     </Layout>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { gsap } from 'gsap';
 import { formatAlchemicalAmount, getAlchemistReaction } from '../lib/culinaryUtils';
 import './RecipeCalculator.css';
@@ -90,6 +91,21 @@ const RecipeCalculator = ({ initialIngredients, initialYield = 1, onScaleChange 
             </ul>
         </div>
     );
+};
+
+RecipeCalculator.propTypes = {
+    initialIngredients: PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+            unit: PropTypes.string,
+            metricAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+            metricUnit: PropTypes.string
+        })
+    ])).isRequired,
+    initialYield: PropTypes.number,
+    onScaleChange: PropTypes.func
 };
 
 export default RecipeCalculator;

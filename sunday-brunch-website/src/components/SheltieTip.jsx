@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
 import './SheltieTip.css'
 import { GiselleAvatar, PhaedraAvatar, TianaAvatar, HavokAvatar } from './illustrations/SheltieAvatars'
 
@@ -51,6 +52,11 @@ function SheltieTip({ character = 'giselle', children }) {
             </div>
         </div>
     )
+}
+
+SheltieTip.propTypes = {
+    character: PropTypes.oneOf(['giselle', 'phaedra', 'tiana', 'havok']),
+    children: PropTypes.node.isRequired
 }
 
 export default SheltieTip

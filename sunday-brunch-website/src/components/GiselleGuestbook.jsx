@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CrystalRating } from './illustrations/Decorations';
 import WhimsicalButton from './WhimsicalButton';
@@ -116,6 +117,10 @@ const GiselleGuestbook = ({ recipeSlug }) => {
             </div>
         </div>
     );
+};
+
+GiselleGuestbook.propTypes = {
+    recipeSlug: PropTypes.string.isRequired
 };
 
 export default GiselleGuestbook;

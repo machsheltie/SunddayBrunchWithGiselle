@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { trackAffiliateClick } from '../lib/analytics'
 import './ToolsUsed.css'
 
@@ -20,6 +21,14 @@ function ToolsUsed({ tools = [] }) {
             </ul>
         </div>
     )
+}
+
+ToolsUsed.propTypes = {
+    tools: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired
+    }))
 }
 
 export default ToolsUsed

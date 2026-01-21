@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { motion, Reorder } from 'framer-motion';
 import { WhiskIcon, MixingBowl } from './illustrations/Decorations';
 import { useAchievements } from './AchievementToaster';
@@ -73,6 +74,13 @@ const ThePantry = ({ ingredients = [] }) => {
             <MixingBowl className="pantry-bowl-decor" />
         </div>
     );
+};
+
+ThePantry.propTypes = {
+    ingredients: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        amount: PropTypes.string.isRequired
+    }))
 };
 
 export default ThePantry;

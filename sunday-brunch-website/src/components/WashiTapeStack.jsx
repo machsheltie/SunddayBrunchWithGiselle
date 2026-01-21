@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { WashiTape } from './illustrations/Decorations';
 import './WashiTapeStack.css';
 
@@ -28,6 +29,11 @@ const WashiTapeStack = ({ count = 3, className = "" }) => {
             ))}
         </div>
     );
+};
+
+WashiTapeStack.propTypes = {
+    count: PropTypes.number,
+    className: PropTypes.string
 };
 
 export default WashiTapeStack;

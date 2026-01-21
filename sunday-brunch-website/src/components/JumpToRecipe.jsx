@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 import { gsap } from 'gsap'
 import { MagicWand } from './illustrations/Decorations'
 import './JumpToRecipe.css'
@@ -87,6 +88,10 @@ function JumpToRecipe({ targetId = 'jump-to-recipe' }) {
             <MagicWand className="magic-wand-icon" />
         </button>
     )
+}
+
+JumpToRecipe.propTypes = {
+    targetId: PropTypes.string
 }
 
 export default JumpToRecipe

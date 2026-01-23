@@ -30,17 +30,18 @@ const PawFollower = () => {
             // Update cursor position for Framer Motion
             setCursorPos({ x, y });
 
-            // Add to trail if mouse moved enough
+            // Add to trail if mouse moved enough (every 40px as per preview-magical.html)
             setTrail(prev => {
                 const last = prev[prev.length - 1];
-                if (last && Math.hypot(x - last.x, y - last.y) < 50) return prev;
+                if (last && Math.hypot(x - last.x, y - last.y) < 40) return prev;
 
+                const colors = ['rgba(252, 225, 228, 0.4)', 'rgba(232, 223, 245, 0.4)', 'rgba(223, 240, 234, 0.4)'];
                 const newPoint = {
-                    id: Date.now(),
+                    id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, // Unique key with timestamp + random string
                     x,
                     y,
-                    rotation: Math.random() * 30 - 15,
-                    color: ['var(--soft-sakura)', 'var(--pastel-lavender)', 'var(--pastel-sky)'][Math.floor(Math.random() * 3)]
+                    rotation: Math.random() * 30 - 15, // -15 to +15 deg
+                    color: colors[Math.floor(Math.random() * colors.length)]
                 };
 
                 return [...prev, newPoint].slice(-20); // Keep last 20
@@ -89,7 +90,7 @@ const PawFollower = () => {
                 mixBlendMode: pawColor === '#FFFFFF' ? 'normal' : 'multiply'
             }}
         >
-            {/* The Trail */}
+            {/* The Trail - stays visible for 2 seconds then fades over 800ms */}
             <AnimatePresence>
                 {trail.map(point => (
                     <motion.div
@@ -97,15 +98,18 @@ const PawFollower = () => {
                         className="trail-point"
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.2, filter: 'blur(10px)' }}
-                        transition={{ duration: 0.8 }}
+                        exit={{ opacity: 0, scale: 0.2 }}
+                        transition={{
+                            animate: { duration: 0.3 },
+                            exit: { duration: 0.8, delay: 2 } // Stay 2 seconds, then fade over 800ms
+                        }}
                         style={{
                             left: point.x,
                             top: point.y,
                             transform: `translate(-50%, -50%) rotate(${point.rotation}deg)`
                         }}
                     >
-                        <PawPrint color={point.color} opacity="0.3" />
+                        <PawPrint color={point.color} opacity="1" />
                     </motion.div>
                 ))}
             </AnimatePresence>

@@ -11,6 +11,9 @@
 
 import { supabase } from './supabase'
 import { getRecipeBySlug } from './content'
+import { createLogger } from './logger'
+
+const logger = createLogger('Ratings')
 
 /**
  * Submit or update a rating for a recipe
@@ -130,6 +133,7 @@ export async function getUserRating(recipeSlug) {
  *
  * Returns average rating and total count from the recipe_ratings view.
  * If no ratings exist, returns zeros instead of an error.
+ * Gracefully handles missing database tables (development mode).
  *
  * @param {string} recipeSlug - Recipe identifier
  * @returns {Promise<{data: Object|null, error: Object|null}>}
@@ -161,11 +165,29 @@ export async function getRecipeRatings(recipeSlug) {
       }
     }
 
+    // Handle table not found (406) or other database errors - graceful fallback
+    if (error) {
+      logger.warn('Database table not found or error fetching ratings. Using fallback.', { error, recipeSlug })
+      return {
+        data: {
+          recipe_slug: recipeSlug,
+          average_rating: 0,
+          rating_count: 0
+        },
+        error: null
+      }
+    }
+
     return { data, error }
   } catch (error) {
+    logger.warn('Error in getRecipeRatings. Using fallback.', { error, recipeSlug })
     return {
-      data: null,
-      error: { message: error.message }
+      data: {
+        recipe_slug: recipeSlug,
+        average_rating: 0,
+        rating_count: 0
+      },
+      error: null
     }
   }
 }
@@ -220,6 +242,7 @@ export async function deleteRating(recipeSlug) {
  * Fetches reviews with ratings >= minRating that include text comments,
  * enriched with recipe data (title, slug, image). Returns empty array
  * if database query fails or no reviews exist.
+ * Gracefully handles missing database tables or missing columns (development mode).
  *
  * @param {number} limit - Number of reviews to return (default: 4)
  * @param {number} minRating - Minimum rating to include (default: 5)
@@ -244,7 +267,12 @@ export async function getRecentHighRatedReviews(limit = 4, minRating = 5) {
       .limit(limit)
 
     if (error) {
-      console.error('Error fetching reviews:', error)
+      // Handle missing table (406) or missing column (42703) gracefully
+      if (error.code === '42703' || error.code === 'PGRST204' || error.message?.includes('does not exist')) {
+        logger.warn('Database table/column not found. Using fallback testimonials.', { error })
+        return []
+      }
+      logger.error('Error fetching reviews', error)
       return []
     }
 
@@ -269,7 +297,7 @@ export async function getRecentHighRatedReviews(limit = 4, minRating = 5) {
     // Remove any reviews where recipe enrichment failed
     return enriched.filter(r => r.recipeSlug)
   } catch (error) {
-    console.error('Error in getRecentHighRatedReviews:', error)
+    logger.warn('Error in getRecentHighRatedReviews. Using fallback testimonials.', error)
     return []
   }
 }

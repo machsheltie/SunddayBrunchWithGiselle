@@ -4,9 +4,14 @@ import './PinterestButton.css';
 const PinterestButton = ({ url, description, image }) => {
     const handlePin = (e) => {
         e.preventDefault();
+        // Don't try to pin if there's no image
+        if (!image) return;
         const pinUrl = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(image)}&description=${encodeURIComponent(description)}`;
         window.open(pinUrl, '_blank', 'width=800,height=600');
     };
+
+    // Don't render button if there's no image to pin
+    if (!image) return null;
 
     return (
         <button
@@ -25,7 +30,7 @@ const PinterestButton = ({ url, description, image }) => {
 PinterestButton.propTypes = {
     url: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    image: PropTypes.string // Optional - button won't render without image
 };
 
 export default PinterestButton;

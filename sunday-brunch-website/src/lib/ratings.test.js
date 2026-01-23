@@ -322,7 +322,7 @@ describe('Rating API Functions', () => {
 
     it('should handle database errors', async () => {
       // Arrange
-      const dbError = { message: 'Database connection failed' }
+      const dbError = { message: 'Database connection failed', code: 'PGRST500' }
       mockSupabaseClient.from.mockReturnValue({
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
@@ -337,9 +337,13 @@ describe('Rating API Functions', () => {
       // Act
       const result = await getRecipeRatings('chocolate-chip-cookies')
 
-      // Assert
-      expect(result.data).toBeNull()
-      expect(result.error).toEqual(dbError)
+      // Assert - Gracefully returns fallback data instead of error
+      expect(result.data).toEqual({
+        recipe_slug: 'chocolate-chip-cookies',
+        average_rating: 0,
+        rating_count: 0
+      })
+      expect(result.error).toBeNull()
     })
   })
 

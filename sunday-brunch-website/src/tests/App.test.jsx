@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { trackPageView } from '../lib/analytics'
+import { TestMemoryRouter } from './utils/test-router'
 
 // Mock analytics
 vi.mock('../lib/analytics', () => ({
@@ -86,9 +86,9 @@ describe('App Component', () => {
         it('should render home route by default', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -101,9 +101,9 @@ describe('App Component', () => {
         it('should render recipe index page at /recipes', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/recipes']}>
+                <TestMemoryRouter initialEntries={['/recipes']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Wait for lazy loading
@@ -115,9 +115,9 @@ describe('App Component', () => {
         it('should render recipe detail page at /recipes/:slug', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/recipes/chocolate-croissant']}>
+                <TestMemoryRouter initialEntries={['/recipes/chocolate-croissant']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Wait for lazy loading
@@ -129,9 +129,9 @@ describe('App Component', () => {
         it('should render episode page at /episodes/:slug', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/episodes/sunday-morning']}>
+                <TestMemoryRouter initialEntries={['/episodes/sunday-morning']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Wait for lazy loading
@@ -143,9 +143,9 @@ describe('App Component', () => {
         it('should render media kit page at /media-kit', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/media-kit']}>
+                <TestMemoryRouter initialEntries={['/media-kit']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Wait for lazy loading
@@ -157,9 +157,9 @@ describe('App Component', () => {
         it('should render team page at /team', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/team']}>
+                <TestMemoryRouter initialEntries={['/team']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Wait for lazy loading
@@ -171,9 +171,9 @@ describe('App Component', () => {
         it('should render newsletter page at /newsletter', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/newsletter']}>
+                <TestMemoryRouter initialEntries={['/newsletter']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Wait for lazy loading
@@ -185,9 +185,9 @@ describe('App Component', () => {
         it('should render alchemists lab page at /lab', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/lab']}>
+                <TestMemoryRouter initialEntries={['/lab']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Wait for lazy loading
@@ -201,9 +201,9 @@ describe('App Component', () => {
         it('should call trackPageView on initial route load', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -216,9 +216,9 @@ describe('App Component', () => {
             // Arrange & Act - Initialize with different routes to test route changes
             // First mount with /recipes route
             const { unmount } = render(
-                <MemoryRouter initialEntries={['/recipes']}>
+                <TestMemoryRouter initialEntries={['/recipes']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - trackPageView should have been called with /recipes
@@ -239,9 +239,9 @@ describe('App Component', () => {
 
                 // Act
                 const { unmount } = render(
-                    <MemoryRouter initialEntries={[route]}>
+                    <TestMemoryRouter initialEntries={[route]}>
                         <App />
-                    </MemoryRouter>
+                    </TestMemoryRouter>
                 )
 
                 // Assert
@@ -258,9 +258,9 @@ describe('App Component', () => {
         it('should scroll to top on initial route load', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -272,9 +272,9 @@ describe('App Component', () => {
         it('should scroll to top when route changes', async () => {
             // Arrange & Act - Initialize with different route to verify scroll behavior
             const { unmount } = render(
-                <MemoryRouter initialEntries={['/recipes']}>
+                <TestMemoryRouter initialEntries={['/recipes']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Scroll should be called when component mounts
@@ -291,9 +291,9 @@ describe('App Component', () => {
         it('should use React.lazy for code splitting on non-Home routes', async () => {
             // Arrange & Act - Render a lazy-loaded route
             render(
-                <MemoryRouter initialEntries={['/recipes']}>
+                <TestMemoryRouter initialEntries={['/recipes']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Component should eventually load (even though mocked)
@@ -306,9 +306,9 @@ describe('App Component', () => {
             // Arrange & Act - The App uses Suspense with WhimsicalLoader as fallback
             // Even though mocks load synchronously in tests, Suspense boundary exists
             render(
-                <MemoryRouter initialEntries={['/team']}>
+                <TestMemoryRouter initialEntries={['/team']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Verify the lazy-loaded component renders
@@ -320,9 +320,9 @@ describe('App Component', () => {
         it('should not show loader for Home page (loaded immediately)', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Home page should render immediately without loader
@@ -339,9 +339,9 @@ describe('App Component', () => {
         it('should render NotFound page for unknown routes', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/unknown-route']}>
+                <TestMemoryRouter initialEntries={['/unknown-route']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Wait for lazy loading
@@ -354,9 +354,9 @@ describe('App Component', () => {
         it('should track analytics for 404 pages', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/non-existent-page']}>
+                <TestMemoryRouter initialEntries={['/non-existent-page']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -370,9 +370,9 @@ describe('App Component', () => {
         it('should wrap routes with AchievementProvider', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -384,9 +384,9 @@ describe('App Component', () => {
         it('should maintain provider hierarchy with Layout', async () => {
             // Arrange & Act
             const { container } = render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - AchievementProvider wraps Layout
@@ -402,9 +402,9 @@ describe('App Component', () => {
         it('should wrap all routes with Layout component', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -422,9 +422,9 @@ describe('App Component', () => {
 
                 // Act
                 const { unmount } = render(
-                    <MemoryRouter initialEntries={[route]}>
+                    <TestMemoryRouter initialEntries={[route]}>
                         <App />
-                    </MemoryRouter>
+                    </TestMemoryRouter>
                 )
 
                 // Assert
@@ -439,9 +439,9 @@ describe('App Component', () => {
         it('should render page content inside Layout', async () => {
             // Arrange & Act
             render(
-                <MemoryRouter initialEntries={['/']}>
+                <TestMemoryRouter initialEntries={['/']}>
                     <App />
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert

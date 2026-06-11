@@ -1,10 +1,14 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { getRecentHighRatedReviews } from '../lib/ratings'
 import { trackTestimonialView, trackTestimonialInteraction } from '../lib/analytics'
 import TestimonialCard from './TestimonialCard'
 import WhimsicalButton from './WhimsicalButton'
+import { createLogger } from '../lib/logger'
 import './SocialProofSection.css'
+
+const logger = createLogger('SocialProof')
 
 /**
  * Seed testimonials for fallback when no real reviews exist yet
@@ -68,7 +72,7 @@ function SocialProofSection() {
 
                 setLoading(false)
             } catch (error) {
-                console.error('Error loading testimonials:', error)
+                logger.error('Error loading testimonials:', error)
                 setTestimonials(SEED_TESTIMONIALS)
                 setLoading(false)
             }
@@ -192,7 +196,7 @@ function SocialProofSection() {
             {/* CTA */}
             <div className="social-proof-section__cta">
                 <a href="/guestbook">
-                    <WhimsicalButton type="secondary" showPaw={true}>
+                    <WhimsicalButton type="secondary" showPaw={false}>
                         Join the Community
                     </WhimsicalButton>
                 </a>

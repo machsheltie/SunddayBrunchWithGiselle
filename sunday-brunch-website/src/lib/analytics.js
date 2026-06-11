@@ -1,8 +1,10 @@
+import { createLogger } from './logger'
+
+const logger = createLogger('Analytics')
+
 // Simple analytics stub - replace with real provider
 export const trackEvent = (name, data = {}) => {
-    if (import.meta.env.MODE === 'development') {
-        console.debug('[event]', name, data)
-    }
+    logger.debug('Event tracked', { name, ...data })
     // Hook real analytics provider here (e.g., PostHog, GA)
 }
 

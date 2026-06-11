@@ -26,6 +26,7 @@ describe('Rating API Functions', () => {
   let getUserRating
   let getRecipeRatings
   let deleteRating
+  let _resetDbAvailabilityCache
 
   beforeEach(async () => {
     // Import fresh module for each test
@@ -34,9 +35,13 @@ describe('Rating API Functions', () => {
     getUserRating = module.getUserRating
     getRecipeRatings = module.getRecipeRatings
     deleteRating = module.deleteRating
+    _resetDbAvailabilityCache = module._resetDbAvailabilityCache
 
     // Clear all mocks
     vi.clearAllMocks()
+
+    // Reset database availability cache for each test
+    _resetDbAvailabilityCache()
   })
 
   describe('submitRating', () => {
@@ -275,15 +280,31 @@ describe('Rating API Functions', () => {
         rating_count: 128
       }
 
-      mockSupabaseClient.from.mockReturnValue({
-        select: vi.fn().mockReturnValue({
+      // Mock needs to handle both availability check (.limit(1)) and data query (.eq().single())
+      const selectMock = vi.fn()
+      selectMock.mockImplementation((fields) => {
+        if (fields === 'recipe_slug') {
+          // Availability check
+          return {
+            limit: vi.fn().mockResolvedValue({
+              data: [],
+              error: null // No error = database available
+            })
+          }
+        }
+        // Data query
+        return {
           eq: vi.fn().mockReturnValue({
             single: vi.fn().mockResolvedValue({
               data: mockAggregation,
               error: null
             })
           })
-        })
+        }
+      })
+
+      mockSupabaseClient.from.mockReturnValue({
+        select: selectMock
       })
 
       // Act
@@ -297,15 +318,30 @@ describe('Rating API Functions', () => {
 
     it('should return zero ratings when recipe has no ratings', async () => {
       // Arrange
-      mockSupabaseClient.from.mockReturnValue({
-        select: vi.fn().mockReturnValue({
+      const selectMock = vi.fn()
+      selectMock.mockImplementation((fields) => {
+        if (fields === 'recipe_slug') {
+          // Availability check
+          return {
+            limit: vi.fn().mockResolvedValue({
+              data: [],
+              error: null // No error = database available
+            })
+          }
+        }
+        // Data query - no rows found
+        return {
           eq: vi.fn().mockReturnValue({
             single: vi.fn().mockResolvedValue({
               data: null,
               error: { code: 'PGRST116', message: 'No rows found' }
             })
           })
-        })
+        }
+      })
+
+      mockSupabaseClient.from.mockReturnValue({
+        select: selectMock
       })
 
       // Act
@@ -323,15 +359,31 @@ describe('Rating API Functions', () => {
     it('should handle database errors', async () => {
       // Arrange
       const dbError = { message: 'Database connection failed', code: 'PGRST500' }
-      mockSupabaseClient.from.mockReturnValue({
-        select: vi.fn().mockReturnValue({
+
+      const selectMock = vi.fn()
+      selectMock.mockImplementation((fields) => {
+        if (fields === 'recipe_slug') {
+          // Availability check - database error
+          return {
+            limit: vi.fn().mockResolvedValue({
+              data: null,
+              error: dbError // Error = database unavailable
+            })
+          }
+        }
+        // This shouldn't be called since DB is unavailable
+        return {
           eq: vi.fn().mockReturnValue({
             single: vi.fn().mockResolvedValue({
               data: null,
               error: dbError
             })
           })
-        })
+        }
+      })
+
+      mockSupabaseClient.from.mockReturnValue({
+        select: selectMock
       })
 
       // Act

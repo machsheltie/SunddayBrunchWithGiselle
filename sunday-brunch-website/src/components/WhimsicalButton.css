@@ -1,48 +1,115 @@
+/* ============================================
+   WHIMSICAL BUTTONS - Strict Parity with preview-magical.html
+   ============================================ */
+
 .whimsical-button {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-4) var(--space-8);
+    display: inline-block;
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
     border: none;
-    border-radius: var(--radius-full);
-    font-family: var(--font-body);
-    font-size: var(--text-lg);
-    font-weight: 700;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    z-index: 1;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    /* No line-height here, same as the preview: <a> usages inherit body 1.6,
+       <button> usages get the UA's `normal` — both match their preview twins */
 }
 
+/* Primary Button (Gradient Purple) - EXACT match to preview-magical.html */
 .whimsical-button--primary {
-    background: var(--midnight-lavender);
-    color: var(--pale-buttercream);
-    box-shadow: 0 4px 15px rgba(46, 26, 71, 0.2);
-    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, filter 0.3s ease;
+    background: linear-gradient(135deg, #9b7ab8, #c59fdc);
+    color: white;
+    box-shadow: 0 8px 24px rgba(155, 122, 184, 0.3);
 }
 
-.whimsical-button--secondary {
-    background: var(--pastel-lavender);
-    color: var(--midnight-lavender);
-    border: 2px solid var(--pastel-lavender);
-    box-shadow: 0 2px 8px rgba(155, 89, 182, 0.05);
-    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, filter 0.3s ease;
+.whimsical-button--primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(155, 122, 184, 0.5);
 }
+
+/* Secondary Button (Light/Outline) - EXACT match to preview-magical.html */
+.whimsical-button--secondary {
+    background: linear-gradient(135deg, #e8dff5, #f5ebff);
+    color: #2e1a47;
+    box-shadow: 0 6px 20px rgba(232, 223, 245, 0.4);
+    border: 2px solid rgba(155, 122, 184, 0.3);
+}
+
+.whimsical-button--secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(232, 223, 245, 0.6);
+}
+
+/* Glowing pawprint trails on hover (::before/::after) */
+.whimsical-button::before {
+    content: '🐾';
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.whimsical-button:hover::before {
+    left: -15px;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+}
+
+.whimsical-button::after {
+    content: '🐾';
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.whimsical-button:hover::after {
+    right: -15px;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+}
+
+/* Sparkle & flour click particles live in index.css (.sparkle-particle /
+   .flour-particle) and are spawned by src/lib/sparkles.js onto document.body —
+   never inside the button, whose overflow:hidden would clip the burst. */
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .whimsical-button {
+        font-size: 1.2rem;
+        padding: 0.75rem 2rem;
+    }
+}
+
+/* ============================================
+   NAVIGATION BUTTON VARIANT (For Header)
+   Separate styling to avoid conflicts
+   ============================================ */
 
 .whimsical-button--nav {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
-    padding: var(--space-2);
-    width: 100px;
-    height: 100px;
+    padding: var(--space-2, 0.5rem);
+    width: 60px;
+    height: 60px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--midnight-lavender);
-    border-radius: var(--radius-full);
+    color: var(--midnight-lavender, #2e1a47);
+    border-radius: 9999px;
+    font-family: 'Fredoka One', cursive;
 }
 
 .whimsical-button__nav-bg {
@@ -53,54 +120,35 @@
     align-items: center;
     justify-content: center;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    border: none;
-    background: none;
     pointer-events: none;
 }
 
 .whimsical-button--nav .whimsical-button__text {
     z-index: 2;
-    font-family: var(--font-nav);
-    font-size: var(--text-base);
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     pointer-events: none;
-    text-decoration: none;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     text-align: center;
     line-height: 1.3;
-    white-space: nowrap;
-    /* No underlines in the sanctuary */
 }
 
 .whimsical-button--nav:hover .whimsical-button__nav-bg {
     transform: scale(1.15) rotate(5deg);
 }
 
-.whimsical-button--nav:hover .whimsical-button__text {
-    color: var(--midnight-lavender) !important;
-    text-shadow: none;
-}
-
-.whimsical-button--nav:hover .whimsical-button__nav-paw,
-.whimsical-button--nav:hover .whimsical-button__nav-paw path,
-.whimsical-button--nav:hover .whimsical-button__nav-paw ellipse {
-    fill: var(--pastel-lavender) !important;
-    opacity: 0.9 !important;
-}
-
-.whimsical-button--nav:hover .whimsical-button__nav-paw {
-    /* Exact Netlify Triple-Layer Glow */
-    filter: brightness(2) drop-shadow(0 0 20px var(--pastel-lavender)) drop-shadow(0 0 10px var(--soft-sakura)) drop-shadow(0 0 5px white);
-}
-
 .whimsical-button__paw-container {
     width: 24px;
     height: 24px;
-    display: flex;
+    /* inline-flex so an opted-in paw sits beside the label instead of
+       wrapping to its own line inside the inline-block button */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    vertical-align: middle;
+    margin-left: 0.4rem;
     position: relative;
     z-index: 2;
 }
@@ -110,88 +158,7 @@
     height: 100%;
 }
 
-.whimsical-button__watercolor-wash {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(214, 188, 250, 0.2) 0%, rgba(252, 231, 243, 0.2) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.whimsical-button:not(.whimsical-button--nav):hover .whimsical-button__watercolor-wash {
-    opacity: 1;
-}
-
-.whimsical-button--primary:not(.whimsical-button--nav):hover {
-    transform: scale(1.05);
-    background: #3d2659;
-    color: var(--pale-buttercream);
-    filter: brightness(1.3) drop-shadow(0 0 20px var(--pastel-sky)) drop-shadow(0 0 10px rgba(179, 217, 255, 0.6)) drop-shadow(0 0 5px rgba(214, 188, 250, 0.8));
-}
-
-.whimsical-button--secondary:hover {
-    transform: scale(1.05);
-    background: #E9D5FF;
-    color: var(--midnight-lavender);
-    border-color: #E9D5FF;
-    filter: brightness(1.2) drop-shadow(0 0 20px var(--pastel-lavender)) drop-shadow(0 0 10px rgba(214, 188, 250, 0.6)) drop-shadow(0 0 5px rgba(214, 188, 250, 0.8));
-}
-
-.whimsical-button:active {
-    transform: scale(0.98);
-}
-
-/* Specific styling for the paw mask effect if desired */
-.whimsical-button--primary::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    right: -10px;
-    width: 40px;
-    height: 40px;
-    background: var(--giselle-color);
-    opacity: 0.1;
-    border-radius: 50%;
-    z-index: 0;
-}
-
-/* ===== SPARKLE ANIMATION ===== */
-.sparkle {
-    position: absolute;
-    pointer-events: none;
-    z-index: 10;
-    animation: sparkle-fade 0.6s ease-out forwards;
-}
-
-@keyframes sparkle-fade {
-    0% {
-        transform: translate(0, 0) scale(0) rotate(0deg);
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(180deg);
-        opacity: 0;
-    }
-}
-
-.flour-particle {
-    position: absolute;
-    pointer-events: none;
-    z-index: 10;
-    animation: sparkle-fade 0.8s ease-out forwards;
-}
-
 /* ===== MOBILE RESPONSIVE NAV BUTTONS ===== */
-/* Keep the whimsical paw prints, but make them readable! */
-
-/* Tablet and large phones (iPad Mini, iPhone 12 Pro Max landscape) */
 @media (max-width: 768px) {
     .whimsical-button--nav {
         width: 60px;
@@ -200,21 +167,15 @@
     }
 
     .whimsical-button--nav .whimsical-button__text {
-        /* Switch to system font for readability on mobile */
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        font-size: 0.7rem;           /* 11.2px */
-        font-weight: 700;             /* Keep bold */
-        letter-spacing: 0.02em;       /* Tighter spacing */
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
         line-height: 1.1;
-        white-space: normal;          /* Allow wrapping in small buttons */
-    }
-
-    .whimsical-button__nav-paw {
-        opacity: 0.5 !important;      /* Reduce paw visibility for text clarity */
+        white-space: normal;
     }
 }
 
-/* iPhone 12, iPhone 13, Pixel 5 (390px - 414px) */
 @media (max-width: 430px) {
     .whimsical-button--nav {
         width: 54px;
@@ -222,12 +183,11 @@
     }
 
     .whimsical-button--nav .whimsical-button__text {
-        font-size: 0.65rem;          /* 10.4px */
+        font-size: 0.65rem;
         letter-spacing: 0.01em;
     }
 }
 
-/* iPhone SE, Galaxy S8 (smaller phones, 375px) */
 @media (max-width: 375px) {
     .whimsical-button--nav {
         width: 48px;
@@ -235,7 +195,7 @@
     }
 
     .whimsical-button--nav .whimsical-button__text {
-        font-size: 0.6rem;           /* 9.6px */
+        font-size: 0.6rem;
         letter-spacing: 0;
         line-height: 1;
     }

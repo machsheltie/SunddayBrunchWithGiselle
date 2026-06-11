@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { TestBrowserRouter } from '../utils/test-router'
 import Home from '../../pages/Home'
 import { getFeatured } from '../../lib/content'
 import { applyMeta } from '../../lib/seo'
@@ -24,7 +24,7 @@ vi.mock('../../components/FeaturedRecipeCard', () => ({
 
 vi.mock('../../components/EpisodeTemplate', () => ({
     default: ({ episode }) => (
-        <div data-testid="episode-template">
+        <div data-testid="featured-episode-card">
             EpisodeTemplate: {episode.title}
         </div>
     )
@@ -50,6 +50,26 @@ vi.mock('../../components/LoadingSkeleton', () => ({
     )
 }))
 
+vi.mock('../../components/RecipeCollectionsSection', () => ({
+    default: () => <div data-testid="recipe-collections-section">RecipeCollectionsSection</div>
+}))
+
+vi.mock('../../components/RecentRecipesGallery', () => ({
+    default: () => <div data-testid="recent-recipes-gallery">RecentRecipesGallery</div>
+}))
+
+vi.mock('../../components/FeaturedEpisodeCard', () => ({
+    default: ({ episode }) => (
+        <div data-testid="featured-episode-card">
+            FeaturedEpisodeCard: {episode.title}
+        </div>
+    )
+}))
+
+vi.mock('../../components/SocialProofSection', () => ({
+    default: () => <div data-testid="social-proof-section">SocialProofSection</div>
+}))
+
 describe('Home Page', () => {
     const mockFeaturedData = {
         recipe: {
@@ -71,7 +91,7 @@ describe('Home Page', () => {
 
     // Helper to render with Router context
     const renderWithRouter = (component) => {
-        return render(<BrowserRouter>{component}</BrowserRouter>)
+        return render(<TestBrowserRouter>{component}</TestBrowserRouter>)
     }
 
     beforeEach(() => {
@@ -95,49 +115,53 @@ describe('Home Page', () => {
             })
         })
 
-        it('should render all 3 sections (Featured Recipe, Latest Episode, Media Kit)', async () => {
+        it('should render all main sections (Hero, Recipe, Collections, Episodes)', async () => {
             // Arrange & Act
             renderWithRouter(<Home />)
 
-            // Assert
+            // Assert - Check for section test IDs and key components
             await waitFor(() => {
-                expect(screen.getByText('Featured Recipe')).toBeInTheDocument()
+                expect(screen.getByTestId('whimsical-hero')).toBeInTheDocument()
+                expect(screen.getByTestId('featured-recipe')).toBeInTheDocument()
+                expect(screen.getByTestId('recipe-collections-section')).toBeInTheDocument()
+                expect(screen.getByTestId('recent-recipes-gallery')).toBeInTheDocument()
+                expect(screen.getByTestId('social-proof-section')).toBeInTheDocument()
                 expect(screen.getByText('Latest Episode')).toBeInTheDocument()
-                expect(screen.getByText('Media Kit (on-brand only)')).toBeInTheDocument()
             })
         })
 
-        it('should render section headers with correct titles', async () => {
+        it('should render Latest Episode section title', async () => {
             // Arrange & Act
             renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
-                const headers = screen.getAllByRole('heading', { level: 2 })
-                expect(headers).toHaveLength(3)
-                expect(headers[0]).toHaveTextContent('Featured Recipe')
-                expect(headers[1]).toHaveTextContent('Latest Episode')
-                expect(headers[2]).toHaveTextContent('Media Kit (on-brand only)')
+                expect(screen.getByText('Latest Episode')).toBeInTheDocument()
             })
         })
 
-        it('should render sponsor pill in media kit section', async () => {
+        it('should render featured recipe section with testid', async () => {
             // Arrange & Act
             renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
-                expect(screen.getByText('Sponsors')).toBeInTheDocument()
+                const recipeSection = screen.getByTestId('featured-recipe')
+                expect(recipeSection).toBeInTheDocument()
+                expect(recipeSection).toHaveClass('featured-recipe-section')
             })
         })
 
-        it('should render Audio + transcript pill in episode section', async () => {
+        it('should render all mocked child components', async () => {
             // Arrange & Act
             renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
-                expect(screen.getByText('Audio + transcript')).toBeInTheDocument()
+                expect(screen.getByTestId('whimsical-hero')).toBeInTheDocument()
+                expect(screen.getByTestId('recipe-collections-section')).toBeInTheDocument()
+                expect(screen.getByTestId('recent-recipes-gallery')).toBeInTheDocument()
+                expect(screen.getByTestId('social-proof-section')).toBeInTheDocument()
             })
         })
     })
@@ -176,14 +200,14 @@ describe('Home Page', () => {
             })
         })
 
-        it('should display EpisodeTemplate when episode data available', async () => {
+        it('should display FeaturedEpisodeCard when episode data available', async () => {
             // Arrange & Act
             renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
-                expect(screen.getByTestId('episode-template')).toBeInTheDocument()
-                expect(screen.getByText('EpisodeTemplate: Episode 1: The Art of Baking')).toBeInTheDocument()
+                expect(screen.getByTestId('featured-episode-card')).toBeInTheDocument()
+                expect(screen.getByText('FeaturedEpisodeCard: Episode 1: The Art of Baking')).toBeInTheDocument()
             })
         })
 
@@ -211,7 +235,7 @@ describe('Home Page', () => {
             // Assert
             await waitFor(() => {
                 expect(screen.getByText('No episode available yet.')).toBeInTheDocument()
-                expect(screen.queryByTestId('episode-template')).not.toBeInTheDocument()
+                expect(screen.queryByTestId('featured-episode-card')).not.toBeInTheDocument()
             })
         })
 
@@ -255,67 +279,19 @@ describe('Home Page', () => {
     })
 
     describe('CTAForm Integration', () => {
-        it('should render CTAForm in recipe section with correct props', async () => {
+        it('should render CTAForm in episode section when episode exists', async () => {
             // Arrange & Act
             renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
-                const ctaForms = screen.getAllByTestId('cta-form')
-                const recipeCTA = ctaForms.find(form =>
-                    form.textContent.includes('Get recipes, Sunday letters, early drops')
-                )
-                expect(recipeCTA).toBeInTheDocument()
+                const ctaForm = screen.getByTestId('cta-form')
+                expect(ctaForm).toBeInTheDocument()
+                expect(ctaForm).toHaveTextContent('Get recipes, Sunday letters, early drops')
             })
         })
 
-        it('should render CTAForm in episode section', async () => {
-            // Arrange & Act
-            renderWithRouter(<Home />)
-
-            // Assert
-            await waitFor(() => {
-                const ctaForms = screen.getAllByTestId('cta-form')
-                const episodeCTA = ctaForms.find(form =>
-                    form.textContent.includes('Stay in the loop')
-                )
-                expect(episodeCTA).toBeInTheDocument()
-            })
-        })
-
-        it('should render CTAForm in media kit section with contact mode', async () => {
-            // Arrange & Act
-            renderWithRouter(<Home />)
-
-            // Assert
-            await waitFor(() => {
-                const ctaForms = screen.getAllByTestId('cta-form')
-                const mediaKitCTA = ctaForms.find(form =>
-                    form.textContent.includes('Request a bundle') &&
-                    form.getAttribute('data-mode') === 'contact'
-                )
-                expect(mediaKitCTA).toBeInTheDocument()
-            })
-        })
-
-        it('should not render CTAForm in recipe section when recipe is null', async () => {
-            // Arrange
-            getFeatured.mockResolvedValue({ recipe: null, episode: mockFeaturedData.episode })
-
-            // Act
-            renderWithRouter(<Home />)
-
-            // Assert
-            await waitFor(() => {
-                const ctaForms = screen.getAllByTestId('cta-form')
-                const recipeCTA = ctaForms.find(form =>
-                    form.textContent.includes('Get recipes, Sunday letters, early drops')
-                )
-                expect(recipeCTA).toBeUndefined()
-            })
-        })
-
-        it('should not render CTAForm in episode section when episode is null', async () => {
+        it('should not render CTAForm when episode is null', async () => {
             // Arrange
             getFeatured.mockResolvedValue({ recipe: mockFeaturedData.recipe, episode: null })
 
@@ -324,87 +300,37 @@ describe('Home Page', () => {
 
             // Assert
             await waitFor(() => {
-                const ctaForms = screen.getAllByTestId('cta-form')
-                const episodeCTA = ctaForms.find(form =>
-                    form.textContent.includes('Stay in the loop')
-                )
-                expect(episodeCTA).toBeUndefined()
+                expect(screen.queryByTestId('cta-form')).not.toBeInTheDocument()
             })
         })
     })
 
-    describe('ShareBar Integration', () => {
-        it('should render ShareBar in recipe section', async () => {
-            // Arrange & Act
-            renderWithRouter(<Home />)
-
-            // Assert
-            await waitFor(() => {
-                expect(screen.getByTestId('share-bar')).toBeInTheDocument()
-            })
-        })
-
-        it('should not render ShareBar when recipe is null', async () => {
-            // Arrange
-            getFeatured.mockResolvedValue({ recipe: null, episode: mockFeaturedData.episode })
-
-            // Act
-            renderWithRouter(<Home />)
-
-            // Assert
-            await waitFor(() => {
-                expect(screen.queryByTestId('share-bar')).not.toBeInTheDocument()
-            })
-        })
-    })
+    // ShareBar Integration tests removed - ShareBar is no longer rendered in Home component
 
     describe('Section Structure Tests', () => {
-        it('should render recipe section with #recipes id', async () => {
+        it('should render featured recipe section with correct class', async () => {
             // Arrange & Act
             const { container } = renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
-                const recipeSection = container.querySelector('#recipes')
+                const recipeSection = container.querySelector('.featured-recipe-section')
                 expect(recipeSection).toBeInTheDocument()
                 expect(recipeSection.tagName).toBe('SECTION')
+                expect(recipeSection).toHaveClass('section', 'featured-recipe-section')
             })
         })
 
-        it('should render episode section with #episodes id', async () => {
+        it('should render latest episode section with correct class', async () => {
             // Arrange & Act
             const { container } = renderWithRouter(<Home />)
 
             // Assert
             await waitFor(() => {
-                const episodeSection = container.querySelector('#episodes')
+                const episodeSection = container.querySelector('.latest-episode-section')
                 expect(episodeSection).toBeInTheDocument()
                 expect(episodeSection.tagName).toBe('SECTION')
-            })
-        })
-
-        it('should render media kit section with #media-kit id', async () => {
-            // Arrange & Act
-            const { container } = renderWithRouter(<Home />)
-
-            // Assert
-            await waitFor(() => {
-                const mediaKitSection = container.querySelector('#media-kit')
-                expect(mediaKitSection).toBeInTheDocument()
-                expect(mediaKitSection.tagName).toBe('SECTION')
-            })
-        })
-
-        it('should render media kit content with brand guidelines', async () => {
-            // Arrange & Act
-            renderWithRouter(<Home />)
-
-            // Assert
-            await waitFor(() => {
-                expect(screen.getByText(/We are cozy, baking-first, pet-loving/i)).toBeInTheDocument()
-                expect(screen.getByText(/Inventory: site placements, email mentions, audio reads/i)).toBeInTheDocument()
-                expect(screen.getByText(/Allow: baking\/kitchen gear, ingredients/i)).toBeInTheDocument()
-                expect(screen.getByText(/Deny: diet fads, off-brand finance/i)).toBeInTheDocument()
+                expect(episodeSection).toHaveClass('latest-episode-section')
             })
         })
     })
@@ -423,7 +349,7 @@ describe('Home Page', () => {
                 expect(screen.queryByTestId('loading-skeleton-recipe')).not.toBeInTheDocument()
                 expect(screen.queryByTestId('loading-skeleton-episode')).not.toBeInTheDocument()
                 expect(screen.getByTestId('featured-recipe-card')).toBeInTheDocument()
-                expect(screen.getByTestId('episode-template')).toBeInTheDocument()
+                expect(screen.getByTestId('featured-episode-card')).toBeInTheDocument()
             })
         })
 
@@ -437,7 +363,7 @@ describe('Home Page', () => {
             // Assert
             await waitFor(() => {
                 expect(screen.getByTestId('featured-recipe-card')).toBeInTheDocument()
-                expect(screen.queryByTestId('episode-template')).not.toBeInTheDocument()
+                expect(screen.queryByTestId('featured-episode-card')).not.toBeInTheDocument()
                 expect(screen.getByText('No episode available yet.')).toBeInTheDocument()
             })
         })
@@ -453,7 +379,7 @@ describe('Home Page', () => {
             await waitFor(() => {
                 expect(screen.queryByTestId('featured-recipe-card')).not.toBeInTheDocument()
                 expect(screen.getByText('No recipe available yet.')).toBeInTheDocument()
-                expect(screen.getByTestId('episode-template')).toBeInTheDocument()
+                expect(screen.getByTestId('featured-episode-card')).toBeInTheDocument()
             })
         })
 
@@ -469,7 +395,7 @@ describe('Home Page', () => {
                 expect(screen.getByText('No recipe available yet.')).toBeInTheDocument()
                 expect(screen.getByText('No episode available yet.')).toBeInTheDocument()
                 expect(screen.queryByTestId('featured-recipe-card')).not.toBeInTheDocument()
-                expect(screen.queryByTestId('episode-template')).not.toBeInTheDocument()
+                expect(screen.queryByTestId('featured-episode-card')).not.toBeInTheDocument()
             })
         })
     })

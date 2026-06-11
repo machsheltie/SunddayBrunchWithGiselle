@@ -7,8 +7,10 @@
     padding: 1.5rem 3rem;
     position: sticky;
     top: 0;
-    z-index: 1000;
     width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+    /* No box-shadow — the preview header has none */
 }
 
 .header-content {
@@ -34,11 +36,17 @@
     text-transform: none;
 }
 
-.brand-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, #9b7ab8 50%, transparent 100%);
+/* Matches preview-magical.html lines 79-84 (the !important shields against
+   App.css's legacy 30px-SVG .brand-divider rule for the masthead) */
+.header .brand-divider {
+    display: block !important;
+    height: 1px !important;
+    min-height: 1px !important;
+    width: 100% !important;
+    background: linear-gradient(90deg, transparent 0%, #9b7ab8 50%, transparent 100%) !important;
     margin: 0.5rem 0;
-    opacity: 0.5;
+    border: none !important;
+    opacity: 0.5 !important;
 }
 
 .brand-subtitle {
@@ -73,6 +81,9 @@
     transition: all 0.3s ease;
     font-size: 0.9rem;
     color: #2e1a47;
+    /* Preview pills are <button>s (UA line-height ~normal); our NavLinks are
+       <a>s inheriting 1.6 and rendered ~6px taller — unify both element types */
+    line-height: normal;
 }
 
 .nav-button:hover {

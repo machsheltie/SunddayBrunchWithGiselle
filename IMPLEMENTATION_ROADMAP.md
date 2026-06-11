@@ -580,15 +580,15 @@ The original Sprint 3 plan (User Reviews & Ratings) is now **Sprint 4** to ensur
 **Status:** Not Started
 **Estimated Time:** 2-3 hours
 **Tasks:**
-- [ ] Run Supabase SQL scripts to create database tables
+- [x] Run Supabase SQL scripts to create database tables
   - users table (profiles, display_name, avatar_url)
   - recipes table (if not exists)
   - ratings table (user_id, recipe_id, rating, created_at)
   - reviews table (user_id, recipe_id, content, images, created_at)
   - review_votes table (user_id, review_id, vote_type)
-- [ ] Set up Row Level Security (RLS) policies for all tables
-- [ ] Test database access from frontend
-- [ ] Verify Supabase Auth integration with database
+- [x] Set up Row Level Security (RLS) policies for all tables
+- [x] Test database access from frontend
+- [x] Verify Supabase Auth integration with database
 
 **Why Important:** Backend database required before writing comprehensive tests
 
@@ -596,13 +596,13 @@ The original Sprint 3 plan (User Reviews & Ratings) is now **Sprint 4** to ensur
 **Status:** Not Started
 **Estimated Time:** 2-3 hours
 **Tasks:**
-- [ ] Create ProtectedRoute component
+- [x] Create ProtectedRoute component
   - Check authentication status via useAuth()
   - Redirect to login if not authenticated
   - Show loading state while checking auth
-- [ ] Wrap protected pages (Profile, MyRecipes, etc.)
-- [ ] Handle auth state changes (sign in/out navigation)
-- [ ] Test navigation flows
+- [x] Wrap protected pages (Profile, MyRecipes, etc.)
+- [x] Handle auth state changes (sign in/out navigation)
+- [x] Test navigation flows
   - Unauthenticated user tries to access protected page
   - User signs in and returns to intended page
   - User signs out and redirects to home

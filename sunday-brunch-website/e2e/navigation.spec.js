@@ -71,10 +71,8 @@ test.describe('Navigation', () => {
       await otherLink.click()
       await page.waitForTimeout(500)
 
-      // Navigate back to home
-      const homeLink = nav.getByRole('link', { name: /home/i }).or(
-        page.locator('a[href="/"], a[href="/#"]')
-      )
+      // Navigate back to home - use the exact "Home" text to avoid matching brand link
+      const homeLink = nav.getByRole('link', { name: 'Home' })
       await homeLink.click()
 
       await expect(page).toHaveURL(/\/$|\/index|\/home/i)

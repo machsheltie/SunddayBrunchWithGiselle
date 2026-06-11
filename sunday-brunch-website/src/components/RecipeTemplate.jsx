@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useMemo } from 'react'
 import ToolsUsed from './ToolsUsed'
 import RelatedContent from './RelatedContent'
@@ -14,9 +15,10 @@ import ProcessStep from './ProcessStep'
 import IngredientAlchemist from './IngredientAlchemist'
 import ThePantry from './ThePantry'
 import { trackPrint, trackCopy } from '../lib/analytics'
+import { createSparkles } from '../lib/sparkles'
 import './RecipeTemplate.css'
 
-function RecipeTemplate({ recipe, expandedImage }) {
+function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
     const [copied, setCopied] = useState(false)
     const [checkedIngredients, setCheckedIngredients] = useState({})
     const [servingMultiplier, setServingMultiplier] = useState(1)
@@ -85,7 +87,8 @@ function RecipeTemplate({ recipe, expandedImage }) {
         }))
     }
 
-    const handleCopy = () => {
+    const handleCopy = (e) => {
+        createSparkles(e)
         const text = recipe.ingredients.join('\n')
         navigator.clipboard.writeText(text).then(() => {
             setCopied(true)
@@ -96,7 +99,8 @@ function RecipeTemplate({ recipe, expandedImage }) {
         setTimeout(() => setCopied(false), 1500)
     }
 
-    const handlePrint = () => {
+    const handlePrint = (e) => {
+        createSparkles(e)
         trackPrint({ type: 'recipe', slug: recipe.slug })
         window.print()
     }
@@ -107,34 +111,43 @@ function RecipeTemplate({ recipe, expandedImage }) {
                 {JSON.stringify(recipeSchema)}
             </script>
             <JumpToRecipe />
-            <div className="recipe-container">
-                {/* Magical Watercolor Floaters */}
-                <div className="watercolor-float w-bubble-1"></div>
-                <div className="watercolor-float w-bubble-2"></div>
-                <div className="watercolor-float w-bubble-3"></div>
+            <div className={embedded ? 'recipe-container recipe-container--embedded' : 'recipe-container'}>
+                {/* Outer scrapbook decorations only make sense standalone;
+                    embedded mode lets the host card supply the chrome */}
+                {!embedded && (
+                    <>
+                        {/* Magical Watercolor Floaters */}
+                        <div className="watercolor-float w-bubble-1"></div>
+                        <div className="watercolor-float w-bubble-2"></div>
+                        <div className="watercolor-float w-bubble-3"></div>
 
-                {/* Decorative Paw Prints Background */}
-                <PawPrint className="bg-decor bg-paw-1" color="var(--pastel-sky)" />
-                <PawPrint className="bg-decor bg-paw-2" color="var(--soft-sakura)" />
+                        {/* Decorative Paw Prints Background */}
+                        <PawPrint className="bg-decor bg-paw-1" color="var(--pastel-sky)" />
+                        <PawPrint className="bg-decor bg-paw-2" color="var(--soft-sakura)" />
+                    </>
+                )}
 
-                <div className="recipe scrapbook-paper" id="jump-to-recipe">
-                    <div className="tape-top-center-wrapper">
-                        <WashiTape className="tape-top-center" color="var(--pastel-lavender)" />
-                        {/* Scattered pawprints on the tape for scrapbook charm */}
-                        <PawPrint className="tape-paw paw-1" color="var(--midnight-lavender)" opacity="0.25" width="12" height="12" />
-                        <PawPrint className="tape-paw paw-2" color="var(--midnight-lavender)" opacity="0.2" width="10" height="10" />
-                        <PawPrint className="tape-paw paw-3" color="var(--midnight-lavender)" opacity="0.3" width="14" height="14" />
-                        <PawPrint className="tape-paw paw-4" color="var(--midnight-lavender)" opacity="0.22" width="11" height="11" />
-                        <PawPrint className="tape-paw paw-5" color="var(--midnight-lavender)" opacity="0.28" width="13" height="13" />
-                    </div>
+                <div className={embedded ? 'recipe recipe--embedded' : 'recipe scrapbook-paper'} id="jump-to-recipe">
+                    {!embedded && (
+                        <div className="tape-top-center-wrapper">
+                            <WashiTape className="tape-top-center" color="var(--pastel-lavender)" />
+                            {/* Scattered pawprints on the tape for scrapbook charm */}
+                            <PawPrint className="tape-paw paw-1" color="var(--midnight-lavender)" opacity="0.25" width="12" height="12" />
+                            <PawPrint className="tape-paw paw-2" color="var(--midnight-lavender)" opacity="0.2" width="10" height="10" />
+                            <PawPrint className="tape-paw paw-3" color="var(--midnight-lavender)" opacity="0.3" width="14" height="14" />
+                            <PawPrint className="tape-paw paw-4" color="var(--midnight-lavender)" opacity="0.22" width="11" height="11" />
+                            <PawPrint className="tape-paw paw-5" color="var(--midnight-lavender)" opacity="0.28" width="13" height="13" />
+                        </div>
+                    )}
                     <PinterestButton
                         url={window.location.href}
                         description={`Check out this amazing ${recipe.title} from Sunday Brunch With Giselle!`}
                         image={recipe.image}
                     />
 
-                    {/* Expanded Recipe Image */}
-                    {expandedImage && (
+                    {/* Expanded Recipe Image - skipped when embedded since the
+                        host card's collapsed grid already shows the photo */}
+                    {expandedImage && !embedded && (
                         <div className="recipe__hero-image">
                             <img src={expandedImage} alt={recipe.title} />
                         </div>
@@ -149,7 +162,6 @@ function RecipeTemplate({ recipe, expandedImage }) {
                                 </p>
                             )}
                         </div>
-                        <button className="pill" onClick={handlePrint}>Print</button>
                     </div>
 
                     {/* Dietary Badges */}
@@ -165,25 +177,25 @@ function RecipeTemplate({ recipe, expandedImage }) {
                     {recipe.story && (
                         <div className="story">
                             {recipe.story.map((p, idx) => (
-                                <p key={idx}>{p}</p>
+                                <p key={idx} style={{ fontStyle: 'italic', color: '#5a4668', lineHeight: '1.6', marginBottom: '1rem' }}>{p}</p>
                             ))}
                         </div>
                     )}
 
                     {/* Baker's Prep / Mise en Place */}
                     <div className="bakers-prep">
-                        <div className="bakers-prep__header">
-                            <PawPrint width="20" height="20" color="var(--midnight-lavender)" />
-                            <h4>Baker's Prep</h4>
+                        <div className="bakers-prep__header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center', marginBottom: '0.8rem' }}>
+                            <span style={{ fontSize: '1.2rem' }}>🐾</span>
+                            <h4 style={{ fontFamily: "'Italiana', serif", fontSize: '1.2rem', margin: 0, textTransform: 'none', letterSpacing: 'normal' }}>Baker's Prep</h4>
                         </div>
-                        <ul className="bakers-prep__list">
+                        <ul className="bakers-prep__list" style={{ margin: 0, paddingLeft: '1.5rem', lineHeight: '1.8', textAlign: 'left' }}>
                             <li>Ensure all ingredients marked "room temperature" are properly softened.</li>
                             <li>Preheat your oven 20 minutes before baking.</li>
                             <li>Measure ingredients accurately (we recommend using the Metric/Weight toggle!).</li>
                         </ul>
                     </div>
 
-                    {/* Example Sheltie Tip - can be customized per recipe */}
+                    {/* Example Sheltie Tip - Giselle */}
                     <SheltieTip character="giselle">
                         <p>Darling, if you're going to make this, do it properly. No shortcuts. We're not animals... well, <em>I</em> am, but I have standards.</p>
                     </SheltieTip>
@@ -195,101 +207,95 @@ function RecipeTemplate({ recipe, expandedImage }) {
                         <button className="recipe__action" onClick={handlePrint}>Print recipe</button>
                     </div>
 
-                    <div className="recipe__two-col">
-                        <div>
-                            {/* Collapsible: The Alchemist's Pantry */}
-                            <div className="collapsible-section">
-                                <button
-                                    className="collapsible-header"
-                                    onClick={() => setIsPantryOpen(!isPantryOpen)}
-                                    aria-expanded={isPantryOpen}
-                                >
-                                    <h4>The Alchemist's Pantry</h4>
-                                    <span className={`chevron ${isPantryOpen ? 'open' : ''}`}>▼</span>
-                                </button>
-                                <div className={`collapsible-content ${isPantryOpen ? 'open' : ''}`}>
-                                    <ThePantry ingredients={recipe.ingredients} />
-                                </div>
+                    <div className="recipe__main-grid">
+                        {/* LEFT COLUMN: Ingredients, Tools, Nutrition */}
+                        <div className="recipe__col-left">
+                            <div className="recipe-card-panel ingredients-panel">
+                                <h4>Ingredients</h4>
+                                <RecipeCalculator
+                                    initialIngredients={recipe.ingredients}
+                                    initialYield={recipe.yield}
+                                    onScaleChange={setServingMultiplier}
+                                />
                             </div>
 
-                            {/* Collapsible: Ingredients */}
-                            <div className="collapsible-section">
-                                <button
-                                    className="collapsible-header"
-                                    onClick={() => setIsIngredientsOpen(!isIngredientsOpen)}
-                                    aria-expanded={isIngredientsOpen}
-                                >
-                                    <h4>Ingredients</h4>
-                                    <span className={`chevron ${isIngredientsOpen ? 'open' : ''}`}>▼</span>
-                                </button>
-                                <div className={`collapsible-content ${isIngredientsOpen ? 'open' : ''}`}>
-                                    <RecipeCalculator
-                                        initialIngredients={recipe.ingredients}
-                                        initialYield={recipe.yield}
-                                        onScaleChange={setServingMultiplier}
+                            {/* Tools Used - Moved here */}
+                            <div className="recipe-card-panel tools-panel">
+                                <ToolsUsed tools={recipe.tools} />
+                            </div>
+
+                            {/* Nutrition Facts */}
+                            {recipe.nutrition && (
+                                <div className="recipe-card-panel nutrition-panel">
+                                    <NutritionFacts
+                                        nutrition={recipe.nutrition}
+                                        servingMultiplier={servingMultiplier}
+                                        collapsible={false}
                                     />
                                 </div>
-                            </div>
-
-                            {/* Collapsible: Ingredients Transmutations */}
-                            <div className="collapsible-section">
-                                <button
-                                    className="collapsible-header"
-                                    onClick={() => setIsTransmutationsOpen(!isTransmutationsOpen)}
-                                    aria-expanded={isTransmutationsOpen}
-                                >
-                                    <h4>Ingredients Transmutations</h4>
-                                    <span className={`chevron ${isTransmutationsOpen ? 'open' : ''}`}>▼</span>
-                                </button>
-                                <div className={`collapsible-content ${isTransmutationsOpen ? 'open' : ''}`}>
-                                    <IngredientAlchemist />
-                                </div>
-                            </div>
-
-                            {/* Nutrition Facts (synced with recipe calculator) */}
-                            {recipe.nutrition && (
-                                <NutritionFacts
-                                    nutrition={recipe.nutrition}
-                                    servingMultiplier={servingMultiplier}
-                                    collapsible={true}
-                                />
                             )}
                         </div>
-                        <div>
-                            <h4>Steps</h4>
-                            <div className="recipe__steps-container">
-                                {recipe.steps.map((step, idx) => (
-                                    <ProcessStep
-                                        key={idx}
-                                        stepNumber={idx + 1}
-                                        content={typeof step === 'string' ? step : step.content}
-                                        image={step.image}
-                                    />
-                                ))}
+
+                        {/* RIGHT COLUMN: Steps & Notes */}
+                        <div className="recipe__col-right">
+                            <div className="recipe-card-panel steps-panel">
+                                <h4>Instructions</h4>
+                                <div className="recipe__steps-container">
+                                    {recipe.steps.map((step, idx) => (
+                                        <ProcessStep
+                                            key={idx}
+                                            stepNumber={idx + 1}
+                                            content={typeof step === 'string' ? step : step.content}
+                                            image={step.image}
+                                        />
+                                    ))}
+                                </div>
                             </div>
+
+                            {/* Static Baker's Notes - NOT an input */}
+                            {recipe.notes && (
+                                <div className="recipe-card-panel notes-panel">
+                                    <h4>Baker's Notes</h4>
+                                    <div className="static-notes" style={{ fontStyle: 'italic', color: '#5a4668' }}>
+                                        {recipe.notes}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
 
-                    {/* Science tip from Phaedra */}
+                    {/* Science tip from Phaedra - Full Width Below Grid */}
                     <SheltieTip character="phaedra">
                         <p>The key to this recipe is temperature control. When chocolate cools too quickly, it can seize. Patience, friends!</p>
                     </SheltieTip>
 
+                    <GiselleGuestbook recipeSlug={recipe.slug} />
+
                     <div className="recipe__extras">
+                        <RelatedContent related={recipe.related} seasonal={recipe.seasonal} />
                     </div>
 
-                    <GiselleGuestbook recipeSlug={recipe.slug} />
+                    {!embedded && <WashiTape className="tape-bottom-center" color="var(--pastel-sky)" />}
                 </div>
-
-                <div className="recipe__extras">
-                    <ToolsUsed tools={recipe.tools} />
-                    <RelatedContent related={recipe.related} seasonal={recipe.seasonal} />
-                </div>
-
-                <WashiTape className="tape-bottom-center" color="var(--pastel-sky)" />
             </div>
         </>
     )
 }
 
 export default RecipeTemplate
+
+RecipeTemplate.propTypes = {
+    recipe: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        slug: PropTypes.string.isRequired,
+        image: PropTypes.string,
+        category: PropTypes.string,
+        skill: PropTypes.string,
+        description: PropTypes.string,
+        ingredients: PropTypes.array,
+        steps: PropTypes.array,
+        dietary: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
+    expandedImage: PropTypes.string,
+    embedded: PropTypes.bool,
+};

@@ -1,24 +1,49 @@
+/* Whimsy Layer - Floating Pawprints & Blobs (matches preview-magical.html lines 416-452) */
 .whimsy-layer {
     position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
-    z-index: var(--z-background);
+    z-index: 1;
     overflow: hidden;
 }
 
 .whimsy-item {
     position: absolute;
+    pointer-events: none;
 }
 
 .whimsy-paw {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
+    /* Opacity randomized 0.1-0.3 by GSAP at mount */
+    animation: drift 20s ease-in-out infinite;
 }
 
 .whimsy-blob {
-    width: 200px;
-    height: 200px;
     border-radius: 50%;
+    filter: url(#watercolor-wash) blur(40px);
+    animation: drift 15s ease-in-out infinite;
+}
+
+@keyframes drift {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(20px, -10px) rotate(5deg);
+    }
+
+    50% {
+        transform: translate(-10px, 20px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translate(15px, 15px) rotate(8deg);
+    }
 }

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom'
+import { TestMemoryRouter } from '../utils/test-router'
 import RecipeIndexPage from '../../pages/RecipeIndexPage'
 import { getRecipes } from '../../lib/content'
 import { applyMeta } from '../../lib/seo'
@@ -76,9 +76,9 @@ describe('RecipeIndexPage Component', () => {
 
     const renderWithRouter = () => {
         return render(
-            <MemoryRouter>
+            <TestMemoryRouter>
                 <RecipeIndexPage />
-            </MemoryRouter>
+            </TestMemoryRouter>
         )
     }
 

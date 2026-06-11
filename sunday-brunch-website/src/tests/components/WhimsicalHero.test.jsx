@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { TestBrowserRouter } from '../utils/test-router';
 import WhimsicalHero from '../../components/WhimsicalHero';
 
 // Mock CSS imports
@@ -8,7 +8,7 @@ vi.mock('../../components/WhimsicalHero.css', () => ({}));
 
 // Helper to render with Router context
 const renderWithRouter = (component) => {
-    return render(<BrowserRouter>{component}</BrowserRouter>);
+    return render(<TestBrowserRouter>{component}</TestBrowserRouter>);
 };
 
 describe('WhimsicalHero', () => {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PawPrint } from './illustrations/Decorations';
@@ -59,6 +60,10 @@ const WhimsicalLoader = ({ fullscreen = false }) => {
             </div>
         </div>
     );
+};
+
+WhimsicalLoader.propTypes = {
+    fullscreen: PropTypes.bool,
 };
 
 export default WhimsicalLoader;

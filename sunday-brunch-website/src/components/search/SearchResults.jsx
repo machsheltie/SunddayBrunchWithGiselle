@@ -263,14 +263,4 @@ SearchResults.propTypes = {
   onLoadMore: PropTypes.func
 }
 
-SearchResults.defaultProps = {
-  loading: false,
-  searchQuery: '',
-  groupByCategory: false,
-  highlightSearch: false,
-  itemsPerPage: 20,
-  infiniteScroll: false,
-  onLoadMore: null
-}
-
 export default SearchResults

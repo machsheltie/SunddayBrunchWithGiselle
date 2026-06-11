@@ -1,8 +1,14 @@
+import { createLogger } from '../lib/logger'
+
+const logger = createLogger('Sponsor')
+
 const SPONSOR_ENDPOINT = import.meta.env.VITE_SPONSOR_ENDPOINT
 
 export const sendSponsorInquiry = async ({ name, email, note }) => {
     if (!SPONSOR_ENDPOINT) {
-        console.warn('Sponsor endpoint not configured. Set VITE_SPONSOR_ENDPOINT to send real requests.')
+        logger.warn('Sponsor endpoint not configured', {
+            message: 'Set VITE_SPONSOR_ENDPOINT to send real requests.'
+        })
         return Promise.resolve({ success: true, data: { name, email, note, mocked: true } })
     }
 

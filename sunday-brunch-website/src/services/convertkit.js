@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { createLogger } from '../lib/logger'
+
+const logger = createLogger('ConvertKit')
 
 /**
  * Subscribe email to ConvertKit newsletter via Netlify serverless function
@@ -32,7 +35,7 @@ export const subscribeToNewsletter = async (email, firstName = '') => {
         // Serverless function returns consistent response format
         return response.data
     } catch (error) {
-        console.error('Newsletter subscription error:', error)
+        logger.error('Newsletter subscription error', error)
 
         if (error.response) {
             // Serverless function responded with error

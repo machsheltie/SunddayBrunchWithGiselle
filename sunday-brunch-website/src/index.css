@@ -70,7 +70,9 @@
     --leading-tight: 1.25;
     --leading-snug: 1.375;
     --leading-normal: 1.5;
-    --leading-relaxed: 1.625;
+    --leading-relaxed: 1.6;
+    /* 1.6 matches preview-magical.html body line-height — 1.625 made every
+       inherited line-height compute to 26px instead of the preview's 25.6px */
     --leading-loose: 2;
 
     /* ===== SPACING ===== */
@@ -130,7 +132,9 @@
 
     color-scheme: light;
     color: var(--midnight-lavender);
-    background-color: var(--pale-buttercream);
+    /* No root background — body's pastel gradient propagates to the canvas,
+       exactly as in preview-magical.html (buttercream here caused yellow
+       flashes behind the fixed WebGL canvas during scroll repaints) */
 
     /* text-rendering: optimizeLegibility; */
     /* Removed font-synthesis, -webkit-font-smoothing, and -moz-osx-font-smoothing */
@@ -154,9 +158,10 @@ html {
 
 body {
     font-family: 'Fraunces', serif;
-    /* Matching preview-magical.html lines 16-24 */
-    /* Background is handled by WatercolorCanvas */
-    background: transparent;
+    /* Matching preview-magical.html lines 16-24. The WatercolorCanvas paints
+       over this; the gradient is the same fallback the preview keeps under
+       its WebGL canvas (visible during lazy-load or if WebGL fails). */
+    background: linear-gradient(135deg, #f8f3f9 0%, #fef7f2 50%, #f9f5f8 100%);
     color: var(--midnight-lavender);
     min-height: 100vh;
     font-size: 16px;
@@ -275,6 +280,20 @@ body {
     }
 }
 
+/* Screen-reader-only utility — referenced by form labels across the app;
+   without it the labels render as visible flex items and steal layout space */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 @keyframes scaleRotate {
     from {
         transform: scale(0.9) rotate(5deg);
@@ -301,6 +320,33 @@ body {
         transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.5);
         opacity: 0;
     }
+}
+
+/* Sparkle & flour click particles (preview-magical.html lines 599-629).
+   Spawned by src/lib/sparkles.js onto document.body at the cursor. */
+.sparkle-particle {
+    position: absolute;
+    pointer-events: none;
+    background: #D6BCFA;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: sparkle-burst 0.8s ease-out forwards;
+    z-index: 9999;
+}
+
+.flour-particle {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: sparkle-burst 0.8s ease-out forwards;
+    z-index: 9999;
+}
+
+/* Centered CTA wrapper inside cards (preview-magical.html lines 865-869) */
+.button-centered {
+    text-align: center;
+    margin-top: auto;
+    padding-top: 0.5rem;
 }
 
 /* Base Classes for Global Animations that might still be used in JS */

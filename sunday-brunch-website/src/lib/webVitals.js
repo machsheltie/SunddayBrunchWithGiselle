@@ -13,6 +13,9 @@
 
 import { onCLS, onINP, onFCP, onLCP, onTTFB } from 'web-vitals'
 import { trackEvent } from './analytics'
+import { createLogger } from './logger'
+
+const logger = createLogger('WebVitals')
 
 /**
  * Performance thresholds based on Google's Core Web Vitals recommendations
@@ -56,13 +59,11 @@ function sendToAnalytics({ name, value, rating, delta, id }) {
     })
 
     // Log in development for debugging
-    if (import.meta.env.DEV) {
-        console.debug(`[Web Vitals] ${name}:`, {
-            value: Math.round(value),
-            rating: customRating,
-            threshold: THRESHOLDS[name]
-        })
-    }
+    logger.debug(`${name} metric`, {
+        value: Math.round(value),
+        rating: customRating,
+        threshold: THRESHOLDS[name]
+    })
 }
 
 /**
@@ -83,11 +84,9 @@ export function initWebVitals() {
         onFCP(sendToAnalytics)
         onTTFB(sendToAnalytics)
 
-        if (import.meta.env.DEV) {
-            console.debug('[Web Vitals] Monitoring initialized')
-        }
+        logger.debug('Monitoring initialized')
     } catch (error) {
-        console.error('[Web Vitals] Failed to initialize:', error)
+        logger.error('Failed to initialize', error)
     }
 }
 

@@ -74,15 +74,7 @@ html {
     /* Ensure masthead is always on top */
 }
 
-.brand-link {
-    text-decoration: none;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.brand-link:hover {
-    transform: scale(1.02);
-}
+/* .brand-link is styled in Header.css (single source of truth) */
 
 .brand {
     text-align: center;
@@ -221,16 +213,6 @@ html {
     transform: scale(0.98);
 }
 
-/* ===== DECORATIVE HERO-CONTENT DIVIDER ===== */
-
-.hero-content-divider {
-    width: 100%;
-    height: 12px;
-    opacity: 0.7;
-    margin: var(--space-4) 0 var(--space-12);
-    background: repeating-linear-gradient(45deg, var(--pastel-lavender), var(--pastel-lavender) 15px, var(--soft-sakura) 15px, var(--soft-sakura) 30px, var(--pastel-sky) 30px, var(--pastel-sky) 45px);
-}
-
 /* ===== BUTTONS ===== */
 
 .cta-button {
@@ -329,27 +311,31 @@ html {
     z-index: 2;
 }
 
+/* Footer — strict parity with preview-magical.html lines 2770-2812 */
 .footer {
     grid-column: 1 / -1;
-    background: linear-gradient(to top, var(--soft-sakura), transparent);
-    padding: var(--space-20) var(--space-10);
-    margin: 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: linear-gradient(135deg, rgba(232, 223, 245, 0.3) 0%, rgba(252, 225, 228, 0.3) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 2px solid rgba(232, 223, 245, 0.3);
+    padding: 2rem 3rem;
+    margin-top: 4rem;
     text-align: center;
 }
 
-.footer::before {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: 0;
-    width: 100%;
-    height: 15px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 20' preserveAspectRatio='none'%3E%3Cpath d='M0,20 Q250,0 500,20 T1000,20 L1000,0 L0,0 Z' fill='%23FCE7F3'/%3E%3C/svg%3E");
-    background-size: 100% 100%;
+.footer-pawprints {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer p {
+    font-family: 'Fraunces', serif;
+    color: #5a4668;
+    font-size: 0.95rem;
+    margin: 0;
 }
 
 /* ===== RESPONSIVE ===== */

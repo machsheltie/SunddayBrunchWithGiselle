@@ -6,9 +6,10 @@ import StarRating from './StarRating'
 describe('StarRating', () => {
   describe('Display Mode (Read-Only)', () => {
     it('should render 5 stars', () => {
-      render(<StarRating value={0} />)
+      const { container } = render(<StarRating value={0} />)
 
-      const stars = screen.getAllByRole('img', { hidden: true })
+      // Query star elements directly (not using role since container also has role="img")
+      const stars = container.querySelectorAll('.star-rating__star')
       expect(stars).toHaveLength(5)
     })
 
@@ -186,9 +187,12 @@ describe('StarRating', () => {
       ratingContainer.focus()
 
       // Press right arrow 3 times
+      // Component uses prop value for each keypress (controlled component)
+      // So each press from value=0 calls onChange(1)
       await user.keyboard('{ArrowRight}{ArrowRight}{ArrowRight}')
 
-      expect(onChange).toHaveBeenLastCalledWith(3)
+      expect(onChange).toHaveBeenCalledTimes(3)
+      expect(onChange).toHaveBeenLastCalledWith(1)
     })
 
     it('should be keyboard accessible - arrow left decreases rating', async () => {

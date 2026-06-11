@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { BrowserRouter } from 'react-router-dom'
+import { TestBrowserRouter } from '../utils/test-router'
 import SearchResults from '../../components/search/SearchResults'
 
 const renderWithRouter = (component) => {
-  return render(<BrowserRouter>{component}</BrowserRouter>)
+  return render(<TestBrowserRouter>{component}</TestBrowserRouter>)
 }
 
 describe('SearchResults Component', () => {

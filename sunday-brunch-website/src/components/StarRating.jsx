@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react'
 import './StarRating.css'
 
@@ -144,3 +145,11 @@ export default function StarRating({ value = 0, count, onChange, disabled = fals
     </div>
   )
 }
+
+StarRating.propTypes = {
+    value: PropTypes.number,
+    count: PropTypes.number,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
+};

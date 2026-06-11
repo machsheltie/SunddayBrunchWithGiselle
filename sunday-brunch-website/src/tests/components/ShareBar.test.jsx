@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { TestBrowserRouter } from '../utils/test-router';
 import ShareBar from '../../components/ShareBar';
 
 // Mock react-router-dom's useLocation
@@ -63,9 +63,9 @@ describe('ShareBar', () => {
     // Helper to render component
     const renderShareBar = () => {
         return render(
-            <BrowserRouter>
+            <TestBrowserRouter>
                 <ShareBar />
-            </BrowserRouter>
+            </TestBrowserRouter>
         );
     };
 

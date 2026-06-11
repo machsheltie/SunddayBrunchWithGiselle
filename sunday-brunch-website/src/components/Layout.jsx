@@ -9,7 +9,6 @@ const WatercolorCanvas = lazy(() => import('./WatercolorCanvas'))
 import WatercolorFilters from './illustrations/WatercolorFilters'
 import GrainOverlay from './GrainOverlay'
 import WhimsyLayer from './WhimsyLayer'
-import WhimsicalButton from './WhimsicalButton'
 import PawFollower from './PawFollower'
 import FloatingActionButtons from './FloatingActionButtons'
 import SheltieSightings from './SheltieSightings'
@@ -126,7 +125,7 @@ function Layout({ children }) {
                     <div className="footer-pawprints">
                         {/* Pawprint rail */}
                         {[...Array(6)].map((_, i) => (
-                            <svg key={i} className="paw-icon" width="24" height="24" viewBox="0 0 24 24" fill="var(--pastel-lavender)" opacity={0.5 - (i * 0.08)}>
+                            <svg key={i} className="paw-icon" width="24" height="24" viewBox="0 0 24 24" fill="#e8dff5" opacity={0.5 - (i * 0.08)}>
                                 <circle cx="12" cy="14" r="3.5" />
                                 <circle cx="8" cy="8" r="2.5" />
                                 <circle cx="12" cy="6" r="2.5" />

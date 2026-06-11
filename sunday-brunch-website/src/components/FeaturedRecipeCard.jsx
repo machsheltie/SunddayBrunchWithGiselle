@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import RecipeTemplate from './RecipeTemplate';
 import WhimsicalButton from './WhimsicalButton';
 import DietaryBadges from './DietaryBadges';
 import StarRating from './StarRating';
+import CrystalRating from './CrystalRating';
 import { getRecipeRatings } from '../lib/ratings';
 import './FeaturedRecipeCard.css';
 
 const FeaturedRecipeCard = ({ recipe }) => {
+    // Verified: Changes for badge, paw, and layout are present
     const [isExpanded, setIsExpanded] = useState(false);
     const [ratings, setRatings] = useState(null);
     const [ratingsLoading, setRatingsLoading] = useState(true);
@@ -28,23 +31,6 @@ const FeaturedRecipeCard = ({ recipe }) => {
                 });
         }
     }, [recipe?.slug]);
-
-    if (isExpanded) {
-        return (
-            <div className="featured-recipe-expanded">
-                <RecipeTemplate recipe={recipe} expandedImage={recipe.image} />
-                <div className="featured-recipe-collapse">
-                    <WhimsicalButton
-                        type="secondary"
-                        onClick={() => setIsExpanded(false)}
-                        showPaw={false}
-                    >
-                        Collapse Recipe
-                    </WhimsicalButton>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="featured-recipe-card">
@@ -84,46 +70,72 @@ const FeaturedRecipeCard = ({ recipe }) => {
                         src={recipe.image}
                         alt={recipe.title}
                     />
-                    <div className="category-badge">{recipe.category}</div>
+                    <div className="category-badge">Featured</div>
                 </div>
 
                 <div className="featured-content">
                     <h3>{recipe.title}</h3>
 
-                    {!ratingsLoading && ratings && (
-                        <div className="featured-meta">
-                            {/* Crystal rating stars - inline with other meta */}
-                            <span style={{ display: 'inline-flex', gap: '0.2rem', alignItems: 'center' }}>
-                                {[...Array(5)].map((_, i) => (
-                                    <svg key={i} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '1rem', height: '1rem' }}>
-                                        <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="#D6BCFA" stroke="#D6BCFA" strokeWidth="1.5" strokeLinejoin="round" />
-                                        <path d="M12 5 L12 19 M7 8 L17 16 M17 8 L7 16" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
-                                    </svg>
-                                ))}
-                                <span style={{ marginLeft: '0.3rem' }}>({ratings.rating_count})</span>
-                            </span>
-                            <span>⏱️ {recipe.times?.total || '--'}</span>
-                            <span>📊 {recipe.skill || 'Medium'}</span>
-                        </div>
-                    )}
+                    {/* Meta row always renders (preview parity); crystals appear once ratings resolve */}
+                    <div className="featured-meta">
+                        {!ratingsLoading && ratings && (
+                            <CrystalRating
+                                value={Math.round(ratings.average_rating)}
+                                count={ratings.rating_count}
+                                readOnly={true}
+                            />
+                        )}
+                        <span>⏱️ {recipe.times?.total || '--'}</span>
+                        <span>📊 {recipe.skill || 'Medium'}</span>
+                    </div>
 
                     <p style={{ fontStyle: 'italic', color: '#5a4668' }}>
                         {recipe.story && recipe.story.length > 0 ? recipe.story[0] : recipe.description}
                     </p>
 
-                    <div className="button-centered">
+                    {!isExpanded && (
+                        <div className="button-centered">
+                            <WhimsicalButton
+                                type="primary"
+                                onClick={() => setIsExpanded(true)}
+                                showPaw={false}
+                            >
+                                View Full Recipe
+                            </WhimsicalButton>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* In-card expansion below the collapsed grid (preview #recipeExpanded parity) */}
+            {isExpanded && (
+                <div className="featured-recipe-expansion">
+                    <RecipeTemplate recipe={recipe} expandedImage={recipe.image} embedded />
+                    <div className="featured-recipe-collapse">
                         <WhimsicalButton
-                            type="primary"
-                            onClick={() => setIsExpanded(true)}
-                            showPaw={true}
+                            type="secondary"
+                            onClick={() => setIsExpanded(false)}
+                            showPaw={false}
                         >
-                            View Full Recipe
+                            Collapse Recipe
                         </WhimsicalButton>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
+};
+
+FeaturedRecipeCard.propTypes = {
+    recipe: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string,
+        category: PropTypes.string,
+        skill: PropTypes.string,
+        description: PropTypes.string,
+        dietary: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
 };
 
 export default FeaturedRecipeCard;

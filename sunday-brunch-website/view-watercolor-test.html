@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watercolor Width Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg,
+                rgba(248, 243, 249, 0.5) 0%,
+                rgba(254, 247, 242, 0.5) 50%,
+                rgba(249, 245, 248, 0.5) 100%
+            );
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .watercolor-test {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6f0 50%, #f0e6ff 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 40px;
+            border-radius: 16px;
+        }
+        
+        .edge-marker {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: red;
+            z-index: 9999;
+        }
+        
+        .edge-left { left: 0; }
+        .edge-right { right: 0; }
+        .edge-1200-left { left: calc((100vw - 1200px) / 2); background: blue; }
+        .edge-1200-right { right: calc((100vw - 1200px) / 2); background: blue; }
+    </style>
+</head>
+<body>
+    <div class="watercolor-test"></div>
+    
+    <!-- Edge markers -->
+    <div class="edge-marker edge-left"></div>
+    <div class="edge-marker edge-right"></div>
+    <div class="edge-marker edge-1200-left"></div>
+    <div class="edge-marker edge-1200-right"></div>
+    
+    <div class="container">
+        <h1>Watercolor Width Test</h1>
+        <p>Red lines = viewport edges (should be at browser window edges)</p>
+        <p>Blue lines = 1200px container edges</p>
+        <p>If you see harsh vertical lines in your app, they're likely at the blue line positions where the max-width container creates boundaries.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Combined Design - Full Homepage Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Fraunces:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Fraunces', serif;
+            background: linear-gradient(135deg, #f5f0f6 0%, #fef9f4 50%, #f6f2f5 100%);
+            color: #2e1a47;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Soft vertical border lines */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(232, 223, 245, 0.3) 10%,
+                rgba(232, 223, 245, 0.5) 50%,
+                rgba(232, 223, 245, 0.3) 90%,
+                transparent 100%);
+            z-index: 0;
+        }
+
+        body::before {
+            left: 5%;
+        }
+
+        body::after {
+            right: 5%;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header with gradient colors */
+        .header {
+            background: linear-gradient(135deg, rgba(232, 223, 245, 0.4) 0%, rgba(252, 225, 228, 0.4) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(232, 223, 245, 0.3);
+            padding: 1.5rem 3rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand h1 {
+            font-family: 'Italiana', serif;
+            font-size: 1.8rem;
+            color: #2e1a47;
+        }
+
+        .brand-accent {
+            font-family: 'Pinyon Script', cursive;
+            color: #9b7ab8;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-button {
+            font-family: 'Fredoka One', cursive;
+            /* Keeping paw print style as requested */
+            background: white;
+            border: 2px solid #e8dff5;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section with gradient colors */
+        .hero {
+            background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #dff0ea 100%);
+            padding: 5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Italiana', serif;
+            font-size: 4rem;
+            color: #2e1a47;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            color: #9b7ab8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        /* New Button Styles (from Option B) */
+        .whimsical-button {
+            display: inline-block;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.6rem;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dark purple gradient for primary buttons */
+        .whimsical-button--primary {
+            background: linear-gradient(135deg, #9b7ab8, #c59fdc);
+            color: white;
+            box-shadow: 0 8px 24px rgba(155, 122, 184, 0.3);
+        }
+
+        .whimsical-button--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(155, 122, 184, 0.5);
+        }
+
+        /* Soft lavender gradient for secondary buttons */
+        .whimsical-button--secondary {
+            background: linear-gradient(135deg, #e8dff5, #f5ebff);
+            color: #2e1a47;
+            box-shadow: 0 6px 20px rgba(232, 223, 245, 0.4);
+            border: 2px solid rgba(155, 122, 184, 0.3);
+        }
+
+        .whimsical-button--secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(232, 223, 245, 0.6);
+            border-color: rgba(155, 122, 184, 0.5);
+        }
+
+        /* Glowing pawprint trails on hover */
+        .whimsical-button::before {
+            content: '🐾';
+            position: absolute;
+            top: 50%;
+            left: -30px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .whimsical-button:hover::before {
+            left: -15px;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+        }
+
+        .whimsical-button::after {
+            content: '🐾';
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .whimsical-button:hover::after {
+            right: -15px;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+        }
+
+        /* Gradient dividers (keeping original) */
+        .hero-content-divider {
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(232, 223, 245, 0.5) 20%,
+                rgba(252, 225, 228, 0.5) 50%,
+                rgba(232, 223, 245, 0.5) 80%,
+                transparent 100%);
+            margin: 3rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        /* Recipe Sanctuary Section (Option A structure, B styling) */
+        .recipe-sanctuary {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(30px);
+            border-radius: 32px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .recipe-sanctuary::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 32px;
+            padding: 3px;
+            background: linear-gradient(135deg, #e8dff5, #fce1e4, #dff0ea, #e8dff5);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        .sanctuary-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .sanctuary-header h2 {
+            font-family: 'Italiana', serif;
+            font-size: 2.5rem;
+            color: #2e1a47;
+            margin-bottom: 0.5rem;
+        }
+
+        .sanctuary-subtitle {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.5rem;
+            color: #9b7ab8;
+        }
+
+        /* Featured Recipe (enhanced from original) */
+        .featured-recipe {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 12px 48px rgba(46, 26, 71, 0.15),
+                        0 0 0 3px rgba(232, 223, 245, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        /* Sparkle animations */
+        .featured-recipe::before {
+            content: '✨';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 2rem;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.2) rotate(15deg); opacity: 0.8; }
+        }
+
+        .featured-recipe:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 64px rgba(46, 26, 71, 0.25),
+                        0 0 0 4px rgba(232, 223, 245, 0.5);
+        }
+
+        .featured-recipe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .featured-image {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 8px 24px rgba(46, 26, 71, 0.1);
+        }
+
+        .featured-content h3 {
+            font-family: 'Italiana', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2e1a47;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #9b7ab8;
+        }
+
+        .paw-divider {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            opacity: 0.5;
+            letter-spacing: 1rem;
+            position: relative;
+        }
+
+        /* Collections - Magical Portals from Option B, A's sizing */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .collection-portal {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        /* Rotating gradient effect on hover */
+        .collection-portal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--portal-color), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .collection-portal:hover::before {
+            opacity: 0.15;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .collection-portal:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(46, 26, 71, 0.2);
+            border-color: var(--portal-color);
+        }
+
+        .collection-portal:nth-child(1) { --portal-color: #dff0ea; }
+        .collection-portal:nth-child(2) { --portal-color: #fce1e4; }
+        .collection-portal:nth-child(3) { --portal-color: #e8dff5; }
+        .collection-portal:nth-child(4) { --portal-color: #fff3e0; }
+
+        .portal-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .portal-header {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .portal-icon {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 4px 8px rgba(46, 26, 71, 0.1));
+        }
+
+        .portal-title {
+            font-family: 'Italiana', serif;
+            font-size: 1.3rem;
+            color: #2e1a47;
+        }
+
+        .portal-subtitle {
+            font-size: 0.9rem;
+            color: #9b7ab8;
+            font-weight: 600;
+        }
+
+        .portal-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .preview-thumb {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .collection-portal:hover .preview-thumb {
+            transform: scale(1.05);
+        }
+
+        .portal-count {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #9b7ab8;
+            font-weight: 600;
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .portal-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .collection-portal:hover .portal-arrow {
+            transform: translateX(6px);
+        }
+
+        /* Recent Additions - Recipe Library styling from B, A's sizing */
+        .recent-additions {
+            margin-top: 2rem;
+        }
+
+        .recent-additions h3 {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            color: #2e1a47;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .recent-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .library-book {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(232, 223, 245, 0.6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Paw trail effect */
+        .library-book::after {
+            content: '🐾';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .library-book:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 12px 32px rgba(46, 26, 71, 0.2);
+            border-color: #9b7ab8;
+        }
+
+        .library-book:hover::after {
+            opacity: 0.4;
+        }
+
+        .book-cover {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .book-info {
+            padding: 1.25rem;
+        }
+
+        .book-title {
+            font-family: 'Italiana', serif;
+            font-size: 1rem;
+            color: #2e1a47;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .book-meta {
+            font-size: 0.85rem;
+            color: #9b7ab8;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .browse-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Other sections */
+        .other-section {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(232, 223, 245, 0.3);
+        }
+
+        .section-title {
+            font-family: 'Italiana', serif;
+            font-size: 2rem;
+            color: #2e1a47;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-content {
+            text-align: center;
+            color: #9b7ab8;
+            font-style: italic;
+        }
+
+        /* Footer note */
+        .design-note {
+            background: linear-gradient(135deg, rgba(232, 223, 245, 0.3), rgba(252, 225, 228, 0.3));
+            border-left: 4px solid #9b7ab8;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .design-note h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2e1a47;
+        }
+
+        .design-note ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .design-note li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .design-note li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header with Gradient -->
+        <header class="header">
+            <div class="header-content">
+                <div class="brand">
+                    <h1>Sunday Brunch <span class="brand-accent">with</span> Giselle</h1>
+                </div>
+                <nav class="nav-buttons">
+                    <button class="nav-button">Home</button>
+                    <button class="nav-button">Recipes</button>
+                    <button class="nav-button">Episodes</button>
+                    <button class="nav-button">Team</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section with Gradient Colors -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Sunday Brunch With Giselle</h1>
+                <p class="hero-subtitle">Whimsy, warmth, and wags</p>
+                <div class="hero-cta-group">
+                    <a href="#" class="whimsical-button whimsical-button--primary">Latest Episode</a>
+                    <a href="#" class="whimsical-button whimsical-button--secondary">Browse Recipes</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gradient Divider (keeping original) -->
+        <div class="hero-content-divider"></div>
+
+        <!-- Main Content Container -->
+        <div class="container">
+            <!-- Recipe Sanctuary Section -->
+            <section class="recipe-sanctuary">
+                <div class="sanctuary-header">
+                    <h2>The Recipe Sanctuary</h2>
+                    <p class="sanctuary-subtitle">Where every bake begins with a dash of magic</p>
+                </div>
+
+                <!-- Featured Recipe -->
+                <div class="featured-recipe">
+                    <div class="featured-recipe-grid">
+                        <div class="featured-image">🍰</div>
+                        <div class="featured-content">
+                            <h3>Giselle's Royal Velvet Cake</h3>
+                            <div class="featured-meta">
+                                <span>⭐⭐⭐⭐⭐ (127 reviews)</span>
+                                <span>⏱️ 90 min</span>
+                            </div>
+                            <p>A decadent masterpiece with layers of crimson velvet and clouds of cream cheese frosting. Perfect for celebrations or Sunday indulgence.</p>
+                            <p style="margin-top: 1rem; font-family: 'Pinyon Script', cursive; font-size: 1.2rem; color: #9b7ab8;">
+                                "Precision meets whimsy in every layer" - Giselle
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paw-divider">🐾 🐾 🐾</div>
+
+                <!-- Collections - Magical Portals -->
+                <div class="collections-grid">
+                    <div class="collection-portal">
+                        <div class="portal-content">
+                            <div class="portal-header">
+                                <div class="portal-icon">⏱️</div>
+                                <div>
+                                    <div class="portal-title">Sunday Morning Bakes</div>
+                                    <div class="portal-subtitle">Under 30 minutes</div>
+                                </div>
+                            </div>
+                            <div class="portal-preview">
+                                <div class="preview-thumb">🥐</div>
+                                <div class="preview-thumb">🍪</div>
+                                <div class="preview-thumb">🥧</div>
+                            </div>
+                            <div class="portal-count">
+                                <span>12 whimsical recipes</span>
+                                <span class="portal-arrow">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-portal">
+                        <div class="portal-content">
+                            <div class="portal-header">
+                                <div class="portal-icon">🎁</div>
+                                <div>
+                                    <div class="portal-title">Gift-Worthy Treats</div>
+                                    <div class="portal-subtitle">Beautiful & delicious</div>
+                                </div>
+                            </div>
+                            <div class="portal-preview">
+                                <div class="preview-thumb">🧁</div>
+                                <div class="preview-thumb">🍰</div>
+                                <div class="preview-thumb">🍪</div>
+                            </div>
+                            <div class="portal-count">
+                                <span>18 precious bakes</span>
+                                <span class="portal-arrow">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-portal">
+                        <div class="portal-content">
+                            <div class="portal-header">
+                                <div class="portal-icon">🌟</div>
+                                <div>
+                                    <div class="portal-title">First-Time Baker Favorites</div>
+                                    <div class="portal-subtitle">Gentle guidance included</div>
+                                </div>
+                            </div>
+                            <div class="portal-preview">
+                                <div class="preview-thumb">🍞</div>
+                                <div class="preview-thumb">🥐</div>
+                                <div class="preview-thumb">🧁</div>
+                            </div>
+                            <div class="portal-count">
+                                <span>15 confidence builders</span>
+                                <span class="portal-arrow">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-portal">
+                        <div class="portal-content">
+                            <div class="portal-header">
+                                <div class="portal-icon">🍂</div>
+                                <div>
+                                    <div class="portal-title">Winter Specials</div>
+                                    <div class="portal-subtitle">Celebrating the season</div>
+                                </div>
+                            </div>
+                            <div class="portal-preview">
+                                <div class="preview-thumb">☕</div>
+                                <div class="preview-thumb">🥧</div>
+                                <div class="preview-thumb">🍰</div>
+                            </div>
+                            <div class="portal-count">
+                                <span>9 cozy delights</span>
+                                <span class="portal-arrow">→</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paw-divider">🐾 🐾 🐾</div>
+
+                <!-- Recent Additions - Recipe Library Style -->
+                <div class="recent-additions">
+                    <h3>Fresh from the Oven</h3>
+                    <div class="recent-grid">
+                        <div class="library-book">
+                            <div class="book-cover">🍪</div>
+                            <div class="book-info">
+                                <div class="book-title">Lavender Shortbread</div>
+                                <div class="book-meta">
+                                    <span>⭐ 4.9</span>
+                                    <span>⏱️ 25 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library-book">
+                            <div class="book-cover">🥐</div>
+                            <div class="book-info">
+                                <div class="book-title">Butter Croissants</div>
+                                <div class="book-meta">
+                                    <span>⭐ 5.0</span>
+                                    <span>⏱️ 3 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library-book">
+                            <div class="book-cover">🧁</div>
+                            <div class="book-info">
+                                <div class="book-title">Rose Cupcakes</div>
+                                <div class="book-meta">
+                                    <span>⭐ 4.8</span>
+                                    <span>⏱️ 45 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library-book">
+                            <div class="book-cover">🍰</div>
+                            <div class="book-info">
+                                <div class="book-title">Lemon Drizzle Cake</div>
+                                <div class="book-meta">
+                                    <span>⭐ 4.9</span>
+                                    <span>⏱️ 60 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library-book">
+                            <div class="book-cover">🥧</div>
+                            <div class="book-info">
+                                <div class="book-title">Apple Cinnamon Tart</div>
+                                <div class="book-meta">
+                                    <span>⭐ 5.0</span>
+                                    <span>⏱️ 75 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library-book">
+                            <div class="book-cover">🍞</div>
+                            <div class="book-info">
+                                <div class="book-title">Honey Oat Bread</div>
+                                <div class="book-meta">
+                                    <span>⭐ 4.7</span>
+                                    <span>⏱️ 2 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library-book">
+                            <div class="book-cover">🍩</div>
+                            <div class="book-info">
+                                <div class="book-title">Cardamom Doughnuts</div>
+                                <div class="book-meta">
+                                    <span>⭐ 4.9</span>
+                                    <span>⏱️ 40 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="library-book">
+                            <div class="book-cover">🧇</div>
+                            <div class="book-info">
+                                <div class="book-title">Belgian Waffles</div>
+                                <div class="book-meta">
+                                    <span>⭐ 5.0</span>
+                                    <span>⏱️ 20 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="browse-cta">
+                        <a href="#" class="whimsical-button whimsical-button--primary">Browse the Full Collection →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Proof Section -->
+            <section class="other-section">
+                <h2 class="section-title">What Bakers Are Saying</h2>
+                <p class="section-content">(Rotating testimonials carousel with character replies)</p>
+            </section>
+
+            <!-- Latest Episode Section -->
+            <section class="other-section">
+                <h2 class="section-title">Latest Episode</h2>
+                <p class="section-content">(Episode player)</p>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button class="whimsical-button whimsical-button--primary">Get recipes, Sunday letters, early drops</button>
+                </div>
+            </section>
+
+            <!-- Design Notes -->
+            <div class="design-note">
+                <h4>✨ Final Combined Design Elements</h4>
+                <ul>
+                    <li><strong>Structure:</strong> Option A's unified "Recipe Sanctuary" with clear flow</li>
+                    <li><strong>Collections:</strong> Option B's magical portals with rotating gradients on hover</li>
+                    <li><strong>Recent Recipes:</strong> Option B's library book styling with paw trails</li>
+                    <li><strong>Buttons:</strong> New whimsical style with Pinyon Script font + glowing paw trails</li>
+                    <li><strong>Primary Buttons:</strong> Purple gradient (9b7ab8 → c59fdc) for "Latest Episode", "Browse Collection"</li>
+                    <li><strong>Secondary Buttons:</strong> Soft lavender gradient (e8dff5 → f5ebff) for "Browse Recipes"</li>
+                    <li><strong>Hero:</strong> Redesigned with Option A's gradient colors + watercolor effects</li>
+                    <li><strong>Header:</strong> Gradient background matching hero palette</li>
+                    <li><strong>Background:</strong> Softer color from Option A with vertical border lines</li>
+                    <li><strong>Typography:</strong> "Fresh from the Oven" uses Pinyon Script from Option A</li>
+                    <li><strong>Animations:</strong> Sparkles on featured recipe, rotating gradients on portals, paw trails everywhere</li>
+                    <li><strong>Original Elements Preserved:</strong> Gradient dividers above/below hero, navbar paw buttons</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -2,27 +2,31 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: -1;
-    overflow: hidden;
     pointer-events: none;
-    background: var(--pale-buttercream);
+    /* Kept at -1, but we will ensure body background is transparent */
 }
 
 .watercolor-canvas canvas {
     width: 100% !important;
     height: 100% !important;
+    display: block !important;
 }
 
-.grain-overlay {
-    content: '';
-    position: absolute;
+/* Lazy loading placeholder - should match watercolor-canvas */
+.watercolor-canvas-placeholder {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: var(--paper-grain);
-    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: transparent;
     pointer-events: none;
 }
+
+/* .grain-overlay is styled in GrainOverlay.css (single source of truth).
+   A duplicate rule here previously overrode its background-image with
+   var(--paper-grain) — a color, not an image — silently erasing the texture. */

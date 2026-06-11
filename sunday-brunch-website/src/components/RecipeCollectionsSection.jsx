@@ -1,8 +1,12 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
 import { getRecipes } from '../lib/content'
 import { getAllCollections } from '../data/collections'
 import RecipeCollectionCard from './RecipeCollectionCard'
+import { createLogger } from '../lib/logger'
 import './RecipeCollectionsSection.css'
+
+const logger = createLogger('RecipeCollections')
 
 /**
  * RecipeCollectionsSection - Curated recipe collections for content discovery
@@ -26,9 +30,6 @@ function RecipeCollectionsSection() {
                 // For each collection, find matching recipes
                 const enrichedCollections = collectionDefinitions.map(collection => {
                     const matchingRecipes = allRecipes.filter(recipe => {
-                        // Skip placeholder recipes
-                        if (recipe.slug.includes('placeholder')) return false
-
                         const filters = collection.filters
 
                         // Filter by cook time (maxOnly means "under X minutes")
@@ -49,8 +50,8 @@ function RecipeCollectionsSection() {
                             return false
                         }
 
-                        // Filter by season
-                        if (filters.season && recipe.season !== filters.season) {
+                        // Filter by season ('All Seasons' matches any, same as useRecipeSearch)
+                        if (filters.season && recipe.season !== filters.season && recipe.season !== 'All Seasons') {
                             return false
                         }
 
@@ -59,14 +60,15 @@ function RecipeCollectionsSection() {
 
                     return {
                         ...collection,
-                        featured: matchingRecipes.slice(0, 3) // First 3 for preview
+                        featured: matchingRecipes.slice(0, 3), // First 3 for preview
+                        recipeCount: matchingRecipes.length // Total matches, not the preview slice
                     }
                 })
 
                 setCollections(enrichedCollections)
                 setLoading(false)
             } catch (error) {
-                console.error('Error loading collections:', error)
+                logger.error('Error loading collections:', error)
                 setLoading(false)
             }
         }
@@ -91,21 +93,15 @@ function RecipeCollectionsSection() {
     }
 
     return (
-        <section className="recipe-sanctuary" data-testid="recipe-collections">
-            <div className="sanctuary-header">
-                <h2>The Recipe Sanctuary</h2>
-                <p className="sanctuary-subtitle">Curated for every mood & moment</p>
-            </div>
-            <div className="recipe-collections-grid">
-                {collections.map(collection => (
-                    <RecipeCollectionCard
-                        key={collection.id}
-                        collection={collection}
-                        previewRecipes={collection.featured}
-                    />
-                ))}
-            </div>
-        </section>
+        <div className="recipe-collections-grid" data-testid="recipe-collections">
+            {collections.map(collection => (
+                <RecipeCollectionCard
+                    key={collection.id}
+                    collection={collection}
+                    previewRecipes={collection.featured}
+                />
+            ))}
+        </div>
     )
 }
 

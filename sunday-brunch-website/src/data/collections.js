@@ -63,7 +63,7 @@ export const collections = [
         title: 'Quick Sunday Morning Bakes',
         subtitle: 'Under 30 minutes',
         icon: '⏱️',
-        color: 'var(--pastel-sky)',
+        color: 'var(--magical-mint)', // #dff0ea
         filters: {
             cookTime: 30,
             maxOnly: true
@@ -76,7 +76,7 @@ export const collections = [
         title: 'Perfect for Gifting',
         subtitle: 'Beautiful & delicious',
         icon: '🎁',
-        color: 'var(--soft-sakura)',
+        color: 'var(--magical-pink)', // #fce1e4
         filters: {
             occasion: 'Holiday Gifting'
         },
@@ -88,7 +88,7 @@ export const collections = [
         title: 'Beginner-Friendly Favorites',
         subtitle: 'Easy wins',
         icon: '🌟',
-        color: 'var(--pastel-lavender)',
+        color: 'var(--magical-lavender)', // #e8dff5
         filters: {
             skill: 'Beginner'
         },
@@ -100,7 +100,7 @@ export const collections = [
         title: `${getCurrentSeason()} Specials`,
         subtitle: `Celebrating ${getCurrentSeason().toLowerCase()}`,
         icon: getSeasonEmoji(getCurrentSeason()),
-        color: 'var(--mint-cream)',
+        color: 'var(--magical-peach)', // #fff3e0
         filters: {
             season: getCurrentSeason()
         },

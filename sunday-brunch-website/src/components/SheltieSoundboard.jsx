@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SheltieSilhouette, PawPrint } from './illustrations/Decorations';
 import { useAchievements } from './AchievementToaster';
+import { createLogger } from '../lib/logger';
 import './SheltieSoundboard.css';
+
+const logger = createLogger('SheltieSoundboard');
 
 const SheltieSoundboard = () => {
     const { unlockAchievement } = useAchievements();
@@ -26,7 +29,7 @@ const SheltieSoundboard = () => {
         }
 
         // Placeholder for actual audio playback
-        console.log(`Playing sound: ${id}`);
+        logger.debug(`Playing sound: ${id}`);
         setTimeout(() => setActiveSound(null), 1000);
     };
 

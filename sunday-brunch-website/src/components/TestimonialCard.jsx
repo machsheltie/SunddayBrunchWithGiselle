@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import './SocialProofSection.css'
 
@@ -97,3 +98,14 @@ function TestimonialCard({ review }) {
 }
 
 export default TestimonialCard
+
+TestimonialCard.propTypes = {
+    review: PropTypes.shape({
+        user_name: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        comment: PropTypes.string,
+        recipeTitle: PropTypes.string,
+        recipeSlug: PropTypes.string,
+        recipeImage: PropTypes.string,
+    }).isRequired,
+};

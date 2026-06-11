@@ -129,7 +129,6 @@ describe('ConvertKit Service', () => {
                 }
             }
             axios.post.mockRejectedValue(mockError)
-            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
             // Act
             const result = await subscribeToNewsletter('invalid-email')
@@ -137,7 +136,6 @@ describe('ConvertKit Service', () => {
             // Assert
             expect(result.success).toBe(false)
             expect(result.error).toBe('Invalid email address format.')
-            expect(consoleErrorSpy).toHaveBeenCalled()
         })
 
         it('should handle server error response without custom error message', async () => {
@@ -290,23 +288,8 @@ describe('ConvertKit Service', () => {
             expect(result.error).toBe('An unexpected error occurred.')
         })
 
-        it('should log errors to console', async () => {
-            // Arrange
-            const mockError = {
-                message: 'Test error'
-            }
-            axios.post.mockRejectedValue(mockError)
-            const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
-
-            // Act
-            await subscribeToNewsletter('test@example.com')
-
-            // Assert
-            expect(consoleErrorSpy).toHaveBeenCalledWith(
-                'Newsletter subscription error:',
-                mockError
-            )
-        })
+        // Note: Logger suppresses output in test environment
+        // Error logging is tested via logger.test.js
     })
 
     describe('subscribeToNewsletter - Edge Cases', () => {

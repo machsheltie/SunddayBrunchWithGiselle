@@ -1,6 +1,41 @@
 .social-proof-section {
-    margin: var(--space-16) 0;
-    padding: 0 var(--space-6);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(30px);
+    border-radius: 32px;
+    padding: 3rem;
+    margin: 3rem 0;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: visible;
+}
+
+.social-proof-section::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 32px;
+    padding: 3px;
+    background: linear-gradient(135deg, #fce1e4, #e8dff5, #dff0ea, #fce1e4);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+}
+
+/* Preview shows a single centered .section-title here; App.css's shared
+   .section__header (flex row + pink underline) is used by other pages,
+   so neutralize it locally instead of globally */
+.social-proof-section .section__header {
+    display: block;
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 2rem;
+}
+
+.social-proof-section .section__title {
+    margin-bottom: 0.5rem;
 }
 
 /* Testimonial Carousel */
@@ -235,6 +270,7 @@
     0% {
         background-position: -200% 0;
     }
+
     100% {
         background-position: 200% 0;
     }

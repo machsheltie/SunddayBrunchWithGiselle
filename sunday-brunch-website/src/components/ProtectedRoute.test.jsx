@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { MemoryRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import { TestMemoryRouter } from '../tests/utils/test-router'
 import ProtectedRoute from './ProtectedRoute'
 import { useAuth } from '../hooks/useAuth'
 
@@ -31,7 +32,7 @@ describe('ProtectedRoute', () => {
       })
 
       render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -43,7 +44,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('whimsical-loader')).toBeInTheDocument()
@@ -59,7 +60,7 @@ describe('ProtectedRoute', () => {
       })
 
       render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -71,7 +72,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
@@ -93,7 +94,7 @@ describe('ProtectedRoute', () => {
       }
 
       render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePageWithState />} />
             <Route
@@ -105,7 +106,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
@@ -126,7 +127,7 @@ describe('ProtectedRoute', () => {
       })
 
       render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -138,7 +139,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('protected-content')).toBeInTheDocument()
@@ -157,7 +158,7 @@ describe('ProtectedRoute', () => {
       })
 
       const { container } = render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route
               path="/protected"
@@ -168,7 +169,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       // ProtectedRoute should not add any wrapper elements
@@ -179,7 +180,7 @@ describe('ProtectedRoute', () => {
   describe('State Transitions', () => {
     it('should handle loading -> unauthenticated transition', () => {
       const { rerender } = render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -191,7 +192,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       // Start with loading state
@@ -201,7 +202,7 @@ describe('ProtectedRoute', () => {
       })
 
       rerender(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -213,7 +214,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('whimsical-loader')).toBeInTheDocument()
@@ -225,7 +226,7 @@ describe('ProtectedRoute', () => {
       })
 
       rerender(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -237,7 +238,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.queryByTestId('whimsical-loader')).not.toBeInTheDocument()
@@ -257,7 +258,7 @@ describe('ProtectedRoute', () => {
       })
 
       const { rerender } = render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -269,7 +270,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('whimsical-loader')).toBeInTheDocument()
@@ -281,7 +282,7 @@ describe('ProtectedRoute', () => {
       })
 
       rerender(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -293,7 +294,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.queryByTestId('whimsical-loader')).not.toBeInTheDocument()
@@ -309,7 +310,7 @@ describe('ProtectedRoute', () => {
       })
 
       render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -321,7 +322,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
@@ -334,7 +335,7 @@ describe('ProtectedRoute', () => {
       })
 
       render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -346,7 +347,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
@@ -364,7 +365,7 @@ describe('ProtectedRoute', () => {
       })
 
       render(
-        <MemoryRouter initialEntries={['/protected']}>
+        <TestMemoryRouter initialEntries={['/protected']}>
           <Routes>
             <Route
               path="/protected"
@@ -376,7 +377,7 @@ describe('ProtectedRoute', () => {
               }
             />
           </Routes>
-        </MemoryRouter>
+        </TestMemoryRouter>
       )
 
       expect(screen.getByTestId('child-1')).toBeInTheDocument()

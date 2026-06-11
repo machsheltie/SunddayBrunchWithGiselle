@@ -28,7 +28,6 @@ export const getRecentRecipes = async (limit = 8) => {
 
     return delay(
         allRecipes
-            .filter(recipe => !recipe.slug.includes('placeholder')) // Exclude placeholders
             .sort((a, b) => {
                 // Sort by publishedDate if exists, otherwise fallback
                 const dateA = new Date(a.publishedDate || '2024-01-01')

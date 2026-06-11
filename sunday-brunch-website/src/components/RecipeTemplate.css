@@ -3,23 +3,35 @@
     padding: var(--space-8) var(--space-4);
 }
 
-.scrapbook-paper {
-    background: #fffef8;
-    background-image:
-        linear-gradient(var(--pale-buttercream) 1px, transparent 1px),
-        linear-gradient(90deg, var(--pale-buttercream) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-position: 20px 20px;
-    box-shadow:
-        1px 1px 3px rgba(0, 0, 0, 0.05),
-        5px 5px 15px rgba(0, 0, 0, 0.1);
-    transform: rotate(-0.5deg);
-    max-width: 900px;
-    margin: 0 auto;
-    padding: var(--space-10) var(--space-8);
+/* Embedded mode (inside the homepage featured card): the host card supplies
+   the chrome, so the recipe itself stays transparent and full-width */
+.recipe-container--embedded {
+    padding: 0;
+}
+
+.recipe--embedded {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    max-width: none;
+    padding: 0;
     position: relative;
     z-index: 5;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.scrapbook-paper {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--space-8);
+    position: relative;
+    z-index: 5;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 24px rgba(46, 26, 71, 0.05);
 }
 
 /* Tape decoration with pawprints */
@@ -135,55 +147,100 @@
 }
 
 .recipe__title {
-    font-family: var(--font-display);
-    font-size: var(--text-4xl);
-    font-weight: 400;
-    color: var(--midnight-lavender);
+    font-family: 'Italiana', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2e1a47;
     margin-bottom: var(--space-2);
 }
 
 .recipe__meta {
-    font-size: var(--text-sm);
-    color: var(--dusty-plum);
+    font-size: 0.95rem;
+    color: #9b7ab8;
     font-weight: 600;
 }
 
+/* Action Buttons - Copy / Print */
 .recipe__actions {
     display: flex;
-    gap: var(--space-4);
-    margin: var(--space-6) 0;
+    gap: 1rem;
+    margin: 2rem 0;
+    width: 100%;
 }
 
 .recipe__action {
-    background: var(--midnight-lavender);
-    color: var(--pale-buttercream);
-    border: none;
-    padding: var(--space-3) var(--space-5);
-    border-radius: var(--radius-full);
-    font-family: var(--font-body);
-    font-size: var(--text-base);
+    flex: 1;
+    background: #e8dff5;
+    color: #2e1a47;
+    border: 2px solid #e8dff5;
+    border-radius: 50px;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Fraunces', serif;
+    /* Matching body/preview font */
+    font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--transition-base);
-    box-shadow: 0 4px 0 var(--pastel-lavender);
+    transition: all 0.3s ease;
+    box-shadow: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .recipe__action:hover {
+    background: #d8cce5;
     transform: translateY(-2px);
-    box-shadow: 0 6px 0 var(--pastel-lavender);
-    background: #1e1130;
+    box-shadow: 0 4px 12px rgba(46, 26, 71, 0.1);
 }
 
 .recipe__action:active {
-    transform: translateY(2px);
+    transform: translateY(1px);
     box-shadow: none;
 }
 
-.recipe__two-col {
+/* Main Grid Layout - 2 Columns */
+.recipe__main-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
-    margin: var(--space-8) 0;
+    gap: 2rem;
+    margin: 2rem 0;
+    align-items: start;
+}
+
+/* Individual Panels (Ingredients, Steps, Alchemy) - preview panel chrome */
+.recipe-card-panel {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid rgba(232, 223, 245, 0.5);
+}
+
+.recipe-card-panel h4 {
+    font-family: 'Italiana', serif;
+    font-size: 1.3rem;
+    color: #2e1a47;
+    margin-bottom: 1rem;
+}
+
+/* Notes Section */
+.recipe-notes-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #e8dff5;
+    border-radius: 12px;
+    padding: 1rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: #5a4668;
+    resize: vertical;
+}
+
+.recipe-notes-input:focus {
+    outline: none;
+    border-color: #9b7ab8;
+    background: white;
 }
 
 .recipe__two-col h4 {
@@ -197,7 +254,7 @@
 }
 
 .recipe__steps-container {
-    padding-left: 3rem;
+    /* No hanging indent: step circles now sit in-flow (preview parity) */
     width: 100%;
     list-style: none !important;
     counter-reset: none !important;
@@ -442,12 +499,15 @@
 }
 
 /* Baker's Prep Styles */
+/* Baker's Prep Styles - Matching Preview Logic */
 .bakers-prep {
-    background: var(--soft-sakura);
-    border: 1px solid var(--midnight-lavender);
-    border-radius: var(--radius-md);
-    padding: var(--space-4);
-    margin: var(--space-6) 0;
+    background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #dff0ea 100%);
+    border: 2px dashed #9b7ab8;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 700px;
+    text-align: center;
 }
 
 .bakers-prep__header {
@@ -488,57 +548,14 @@
     color: var(--midnight-lavender);
 }
 
-/* Collapsible Sections */
-.collapsible-section {
-    margin: var(--space-6) 0;
-}
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .recipe__main-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 
-.collapsible-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--soft-sakura);
-    padding: var(--space-3) 0;
-    cursor: pointer;
-    transition: all var(--transition-base);
-}
-
-.collapsible-header:hover {
-    border-bottom-color: var(--pastel-lavender);
-}
-
-.collapsible-header h4 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: var(--text-xl);
-    font-weight: 400;
-    color: var(--midnight-lavender);
-    text-align: left;
-}
-
-.collapsible-header .chevron {
-    font-size: 0.875rem;
-    color: var(--midnight-lavender);
-    transition: transform 0.3s ease;
-    display: inline-block;
-}
-
-.collapsible-header .chevron.open {
-    transform: rotate(180deg);
-}
-
-.collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
-    opacity: 0;
-}
-
-.collapsible-content.open {
-    max-height: 5000px;
-    opacity: 1;
-    transition: max-height 0.6s ease-in, opacity 0.4s ease-in;
+    .scrapbook-paper {
+        padding: 1.5rem;
+    }
 }

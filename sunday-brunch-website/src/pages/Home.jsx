@@ -35,12 +35,16 @@ function Home() {
             {/* Outer container wrapping ALL content - matches preview-magical.html */}
             <div className="container">
                 {/* Hero Section */}
-                <WhimsicalHero />
+                <div className="hero-wrapper">
+                    <WhimsicalHero />
+
+                    <div className="hero-content-divider"></div>
+                </div>
 
                 {/* Recipe Sanctuary - Unified section with gradient border */}
                 <RecipeSanctuary>
                     {/* Featured Recipe */}
-                    <section className="section featured-recipe-section" data-testid="featured-recipe">
+                    <section className="featured-recipe-section" data-testid="featured-recipe">
                         {loading && <LoadingSkeleton type="recipe" />}
                         {!loading && featured.recipe && (
                             <FeaturedRecipeCard recipe={featured.recipe} />

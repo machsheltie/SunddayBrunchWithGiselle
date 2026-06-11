@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { motion } from 'framer-motion';
 import './ProcessStep.css';
@@ -8,8 +9,8 @@ import './ProcessStep.css';
 const ProcessStep = ({ stepNumber, content, image }) => {
     return (
         <div className="process-step">
+            <span className="process-step__number">{stepNumber}</span>
             <div className="process-step__text">
-                <span className="step-number">{stepNumber}</span>
                 <p>{content}</p>
             </div>
 
@@ -26,3 +27,9 @@ const ProcessStep = ({ stepNumber, content, image }) => {
 };
 
 export default ProcessStep;
+
+ProcessStep.propTypes = {
+    stepNumber: PropTypes.number.isRequired,
+    content: PropTypes.string.isRequired,
+    image: PropTypes.string,
+};

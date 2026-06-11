@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react'
 import { subscribeToNewsletter } from '../services/convertkit'
 import { sendSponsorInquiry } from '../services/sponsor'
@@ -5,7 +6,7 @@ import { trackEvent } from '../lib/analytics'
 import WhimsicalButton from './WhimsicalButton'
 import './CTAForm.css'
 
-function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday letters, early drops.', mode = 'subscribe' }) {
+function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Join our cozy community of bakers and storytellers', mode = 'subscribe' }) {
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState({ type: '', text: '' })
     const [loading, setLoading] = useState(false)
@@ -122,7 +123,7 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
                 <input
                     id="cta-email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder="your@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={loading}
@@ -132,7 +133,7 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
                     aria-label="Email for newsletter"
                 />
                 <WhimsicalButton type="primary" disabled={loading} aria-label="Subscribe to newsletter">
-                    {loading ? 'Signing up...' : 'Get updates'}
+                    {loading ? 'Signing up...' : 'Subscribe'}
                 </WhimsicalButton>
             </form>
             {message.text && (
@@ -145,3 +146,10 @@ function CTAForm({ id, headline = 'Stay in the loop', subcopy = 'Recipes, Sunday
 }
 
 export default CTAForm
+
+CTAForm.propTypes = {
+    id: PropTypes.string,
+    headline: PropTypes.string,
+    subcopy: PropTypes.string,
+    mode: PropTypes.oneOf(['subscribe', 'sponsor']),
+};

@@ -53,7 +53,7 @@ describe('WhimsicalButton', () => {
 
     afterEach(() => {
         // Clean up any particles created during tests
-        document.querySelectorAll('.sparkle, .flour-particle').forEach(el => el.remove());
+        document.querySelectorAll('.sparkle-particle, .flour-particle').forEach(el => el.remove());
     });
 
     // ==========================================
@@ -233,13 +233,16 @@ describe('WhimsicalButton', () => {
             const divCalls = createElementSpy.mock.calls.filter(call => call[0] === 'div');
             expect(divCalls.length).toBeGreaterThanOrEqual(12);
 
-            // Check that particles were added to the button
-            const button_element = button;
-            const sparkles = button_element.querySelectorAll('.sparkle');
-            const flourParticles = button_element.querySelectorAll('.flour-particle');
+            // Particles are appended to document.body (preview-magical.html parity)
+            // so the burst is never clipped by the button's overflow:hidden
+            const sparkles = document.body.querySelectorAll(':scope > .sparkle-particle');
+            const flourParticles = document.body.querySelectorAll(':scope > .flour-particle');
 
             expect(sparkles.length).toBe(6);
             expect(flourParticles.length).toBe(6);
+
+            // None should live inside the button where they would be clipped
+            expect(button.querySelectorAll('.sparkle-particle, .flour-particle').length).toBe(0);
 
             createElementSpy.mockRestore();
         });
@@ -318,10 +321,10 @@ describe('WhimsicalButton', () => {
         });
 
         it('should animate paw on mouse enter for default variant', async () => {
-            // Arrange
+            // Arrange — paw is opt-in (showPaw defaults to false for preview parity)
             const { gsap } = await import('gsap');
             const { container } = render(
-                <WhimsicalButton variant="default">Hover</WhimsicalButton>
+                <WhimsicalButton variant="default" showPaw={true}>Hover</WhimsicalButton>
             );
             const button = container.querySelector('button');
 
@@ -342,10 +345,10 @@ describe('WhimsicalButton', () => {
         });
 
         it('should reset paw animation on mouse leave', async () => {
-            // Arrange
+            // Arrange — paw is opt-in (showPaw defaults to false for preview parity)
             const { gsap } = await import('gsap');
             const { container } = render(
-                <WhimsicalButton variant="default">Hover</WhimsicalButton>
+                <WhimsicalButton variant="default" showPaw={true}>Hover</WhimsicalButton>
             );
             const button = container.querySelector('button');
 

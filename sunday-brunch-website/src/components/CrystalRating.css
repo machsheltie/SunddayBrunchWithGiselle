@@ -1,0 +1,38 @@
+/* Crystal Rating - Matches preview-magical.html lines 2494-2562 */
+.crystal-rating-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.crystal-rating-stars {
+    display: inline-flex;
+    gap: 0.2rem;
+    align-items: center;
+}
+
+.crystal-rating {
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.crystal-rating--interactive {
+    cursor: pointer;
+}
+
+.crystal-rating--interactive:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 10px #D6BCFA);
+}
+
+.crystal-rating-count {
+    margin-left: 0.3rem;
+    font-size: 0.9rem;
+    color: #9b7ab8;
+}
+
+/* Accessibility - Focus state for keyboard navigation */
+.crystal-rating-container:focus-visible {
+    outline: 2px solid #D6BCFA;
+    outline-offset: 4px;
+    border-radius: 4px;
+}

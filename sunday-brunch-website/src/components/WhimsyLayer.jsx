@@ -1,57 +1,65 @@
 import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { PawPrint } from './illustrations/Decorations';
+import gsap from 'gsap';
+import { WhimsyPaw } from './illustrations/Decorations';
 import './WhimsyLayer.css';
 
+/**
+ * WhimsyLayer - Floating pawprints and blobs matching preview-magical.html.
+ * GSAP randomizes position and opacity; the CSS `drift` keyframes provide the
+ * motion (in the preview the CSS animation overrides GSAP's transform tween,
+ * so the effective drift is the constrained ±20px/±8° one — replicated here).
+ */
 const WhimsyLayer = () => {
     const layerRef = useRef(null);
 
+    // Pawprint colors matching preview
+    const pawColors = ['#e8dff5', '#fce1e4', '#b3d9ff', '#dff0ea'];
+
+    // Blob colors/sizes matching preview's inline values (lines 1489-1494)
+    const blobColors = ['rgba(252, 225, 228, 0.3)', 'rgba(232, 223, 245, 0.3)', 'rgba(179, 217, 255, 0.3)', 'rgba(223, 240, 234, 0.3)'];
+    const blobSizes = [150, 200, 120, 180, 140, 160];
+
     useEffect(() => {
-        const elements = layerRef.current.querySelectorAll('.whimsy-item');
+        if (!layerRef.current) return;
 
-        elements.forEach((el, i) => {
-            // Random organic placement
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-            const rotation = Math.random() * 360;
-            const scale = 0.5 + Math.random() * 1.5;
+        const items = layerRef.current.querySelectorAll('.whimsy-item');
 
+        items.forEach((el) => {
+            // Random placement + opacity - matches preview lines 2442-2448
+            // (rotation/scale are owned by the CSS drift animation, as in preview)
             gsap.set(el, {
-                left: `${x}%`,
-                top: `${y}%`,
-                rotation: rotation,
-                scale: scale,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
                 opacity: 0.1 + Math.random() * 0.2
-            });
-
-            // Subtle drift
-            gsap.to(el, {
-                x: '+=20',
-                y: '+=20',
-                rotation: '+=10',
-                duration: 10 + Math.random() * 20,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                delay: i * 0.5
             });
         });
     }, []);
 
     return (
-        <div ref={layerRef} className="whimsy-layer" aria-hidden="true">
+        <div className="whimsy-layer" aria-hidden="true" ref={layerRef}>
+            {/* 8 Pawprints - matching preview count, staggered drift delays */}
             {[...Array(8)].map((_, i) => (
-                <div key={`paw-${i}`} className="whimsy-item whimsy-paw">
-                    <PawPrint color="var(--pastel-lavender)" />
+                <div
+                    key={`paw-${i}`}
+                    className="whimsy-item whimsy-paw"
+                    style={{ animationDelay: `${i * 2}s` }}
+                >
+                    <WhimsyPaw color={pawColors[i % pawColors.length]} />
                 </div>
             ))}
+
+            {/* 6 Blobs - preview's fixed sizes and rgba(.3) washes */}
             {[...Array(6)].map((_, i) => (
-                <div key={`blob-${i}`} className="whimsy-item whimsy-blob" style={{
-                    background: i % 3 === 0 ? 'var(--sakura-wash)' : i % 3 === 1 ? 'var(--sky-wash)' : 'var(--lavender-wash)',
-                    filter: 'url(#watercolor-wash) blur(40px)',
-                    width: `${100 + Math.random() * 200}px`,
-                    height: `${100 + Math.random() * 200}px`
-                }}></div>
+                <div
+                    key={`blob-${i}`}
+                    className="whimsy-item whimsy-blob"
+                    style={{
+                        background: blobColors[i % blobColors.length],
+                        width: `${blobSizes[i]}px`,
+                        height: `${blobSizes[i]}px`,
+                        animationDelay: `${1 + i * 2}s`
+                    }}
+                ></div>
             ))}
         </div>
     );

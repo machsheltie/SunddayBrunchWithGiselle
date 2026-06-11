@@ -1,50 +1,51 @@
-import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import './SheltieTip.css'
-import { GiselleAvatar, PhaedraAvatar, TianaAvatar, HavokAvatar } from './illustrations/SheltieAvatars'
+
+// Character portrait photos (80px round avatars, preview parity) with a
+// dicebear fallback if a portrait fails to load
+const SHELTIE_CONFIG = {
+    giselle: {
+        name: 'Giselle says...',
+        photo: '/images/recipes/giselle-portrait.png',
+        fallback: 'https://api.dicebear.com/7.x/bottts/svg?seed=giselle&backgroundColor=d6bcfa'
+    },
+    havok: {
+        name: 'Havok barks...',
+        photo: '/images/recipes/havok-portrait.png',
+        fallback: 'https://api.dicebear.com/7.x/bottts/svg?seed=havok&backgroundColor=dcdcdc'
+    },
+    tiana: {
+        name: 'Tiana yips...',
+        photo: '/images/recipes/tiana-portrait.png',
+        fallback: 'https://api.dicebear.com/7.x/bottts/svg?seed=tiana&backgroundColor=ffb6c1'
+    },
+    phaedra: {
+        name: 'Phaedra explains...',
+        photo: '/images/recipes/phaedra-portrait.png',
+        fallback: 'https://api.dicebear.com/7.x/bottts/svg?seed=phaedra&backgroundColor=e8dff5'
+    }
+}
 
 function SheltieTip({ character = 'giselle', children }) {
-    const [hasWiggled, setHasWiggled] = useState(false);
-    const tipRef = useRef(null);
+    const { name, photo, fallback } = SHELTIE_CONFIG[character] || SHELTIE_CONFIG.giselle
 
-    const characterConfig = {
-        giselle: { name: 'Giselle', title: 'The Queen', Avatar: GiselleAvatar },
-        phaedra: { name: 'Phaedra', title: 'The Science Dogter', Avatar: PhaedraAvatar },
-        tiana: { name: 'Tiana', title: 'The Joyful Taster', Avatar: TianaAvatar },
-        havok: { name: 'Havok', title: 'The Kitchen War Correspondent', Avatar: HavokAvatar }
+    const handleImageError = (e) => {
+        if (e.target.src !== fallback) {
+            e.target.src = fallback
+        }
     }
 
-    const { name, title, Avatar } = characterConfig[character] || characterConfig.giselle
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !hasWiggled) {
-                    setHasWiggled(true);
-                }
-            },
-            { threshold: 0.5 }
-        );
-
-        if (tipRef.current) {
-            observer.observe(tipRef.current);
-        }
-
-        return () => observer.disconnect();
-    }, [hasWiggled]);
-
     return (
-        <div
-            ref={tipRef}
-            className={`sheltie-tip sheltie-tip--${character} ${hasWiggled ? 'should-wiggle' : ''}`}
-        >
-            <div className="sheltie-tip__avatar-wrapper">
-                <Avatar className="sheltie-tip__avatar" />
-            </div>
+        <div className={`sheltie-tip sheltie-tip--${character}`}>
+            <img
+                className="sheltie-tip__avatar"
+                src={photo}
+                alt={name.replace(/\s(says|barks|yips|explains)\.\.\./, '')}
+                onError={handleImageError}
+            />
             <div className="sheltie-tip__body">
                 <div className="sheltie-tip__header">
                     <span className="sheltie-tip__name">{name}</span>
-                    <span className="sheltie-tip__title">{title}</span>
                 </div>
                 <div className="sheltie-tip__content">
                     {children}
@@ -55,7 +56,7 @@ function SheltieTip({ character = 'giselle', children }) {
 }
 
 SheltieTip.propTypes = {
-    character: PropTypes.oneOf(['giselle', 'phaedra', 'tiana', 'havok']),
+    character: PropTypes.oneOf(['giselle', 'havok', 'tiana', 'phaedra']),
     children: PropTypes.node.isRequired
 }
 

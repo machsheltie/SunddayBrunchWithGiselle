@@ -1,0 +1,2815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Preview - With Whimsical Animations & Interactive Elements</title>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Fraunces:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Fredoka+One&display=swap" rel="stylesheet">
+
+    <!-- Three.js for WebGL Watercolor Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- GSAP for Organic Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Fraunces', serif;
+            background: linear-gradient(135deg, #f8f3f9 0%, #fef7f2 50%, #f9f5f8 100%);
+            color: #2e1a47;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* WebGL Watercolor Canvas - Living Background */
+        .watercolor-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        #watercolorCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Header Section - Full width, glassmorphism */
+        .header {
+            background: linear-gradient(135deg, rgba(232, 223, 245, 0.4) 0%, rgba(252, 225, 228, 0.4) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(232, 223, 245, 0.3);
+            padding: 1.5rem 3rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-title {
+            font-family: 'Italiana', serif;
+            font-size: 1.8rem;
+            color: #2e1a47;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .brand-accent {
+            font-family: 'Pinyon Script', cursive;
+            color: #9b7ab8;
+            text-transform: none;
+        }
+
+        .brand-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #9b7ab8 50%, transparent 100%);
+            margin: 0.5rem 0;
+            opacity: 0.5;
+        }
+
+        .brand-subtitle {
+            font-family: 'Fraunces', serif;
+            font-size: 0.85rem;
+            color: #9b7ab8;
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-button {
+            font-family: 'Fredoka One', cursive;
+            background: white;
+            border: 2px solid #e8dff5;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-button:hover {
+            background: #e8dff5;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(46, 26, 71, 0.1);
+        }
+
+        .hero-wrapper {
+            position: relative;
+        }
+
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #dff0ea 100%);
+            border-radius: 16px;
+            border: 2px dashed #9b7ab8;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+            overflow: visible;
+            min-height: 60vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 10;
+            padding-right: 1rem;
+            mix-blend-mode: multiply; /* Collage-like depth */
+        }
+
+        .hero-title {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1;
+            color: #2e1a47;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-script-accent {
+            font-family: 'Pinyon Script', cursive;
+            color: #9b7ab8;
+            text-transform: lowercase;
+        }
+
+        /* Whimsical wavy divider from actual website */
+        .hero-divider {
+            width: 260px;
+            height: 30px;
+            margin: 1rem 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'%3E%3Cpath d='M0,10 Q50,0 100,10 T200,10' fill='none' stroke='%235D4D7A' stroke-width='1'/%3E%3Ccircle cx='100' cy='10' r='2' fill='%235D4D7A'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+
+        .hero-subtitle {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.8rem;
+            color: #9b7ab8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Watercolor Quote Wrapper with Organic Mask */
+        .hero-quote-wrapper {
+            position: relative;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+            z-index: 1;
+            overflow: visible;
+        }
+
+        .hero-quote-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(232, 223, 245, 0.3);
+            border-radius: 16px;
+
+            /* Watercolor splatter mask for organic edges */
+            mask-image:
+                radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
+            -webkit-mask-image:
+                radial-gradient(circle at 20% 30%, black 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, black 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, black 0%, transparent 55%);
+            mask-composite: add;
+            -webkit-mask-composite: source-over;
+            opacity: 0.8;
+        }
+
+        /* SVG Watercolor Splatter Accent Behind Quote */
+        .hero-quote-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            background: #fce1e4;
+            filter: blur(30px);
+            opacity: 0.4;
+            z-index: -2;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q50,0 70,20 T90,50 T70,80 T30,80 T10,50 Z' fill='black'/%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q50,0 70,20 T90,50 T70,80 T30,80 T10,50 Z' fill='black'/%3E%3C/svg%3E");
+            mask-size: contain;
+            -webkit-mask-size: contain;
+        }
+
+        .hero-quote {
+            font-family: 'Fraunces', serif;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #5a4668;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            font-style: italic;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-frame {
+            position: relative;
+            border-radius: 16px;
+            overflow: visible;
+            box-shadow: 0 12px 48px rgba(46, 26, 71, 0.2);
+            transform: rotate(-2deg);
+            max-width: 100%;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+
+            /* Torn Paper Mask Effect */
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cpath d='M0,0 L400,0 L400,500 Q390,495 380,500 Q370,505 360,500 Q350,495 340,500 Q330,505 320,500 Q310,495 300,500 Q290,505 280,500 Q270,495 260,500 Q250,505 240,500 Q230,495 220,500 Q210,505 200,500 Q190,495 180,500 Q170,505 160,500 Q150,495 140,500 Q130,505 120,500 Q110,495 100,500 Q90,505 80,500 Q70,495 60,500 Q50,505 40,500 Q30,495 20,500 Q10,505 0,500 Z' fill='black'/%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cpath d='M0,0 L400,0 L400,500 Q390,495 380,500 Q370,505 360,500 Q350,495 340,500 Q330,505 320,500 Q310,495 300,500 Q290,505 280,500 Q270,495 260,500 Q250,505 240,500 Q230,495 220,500 Q210,505 200,500 Q190,495 180,500 Q170,505 160,500 Q150,495 140,500 Q130,505 120,500 Q110,495 100,500 Q90,505 80,500 Q70,495 60,500 Q50,505 40,500 Q30,495 20,500 Q10,505 0,500 Z' fill='black'/%3E%3C/svg%3E");
+            mask-size: 100% 100%;
+            -webkit-mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+        }
+
+        .washi-tape {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 200px;
+            height: 30px;
+            z-index: 10;
+        }
+
+        .washi-tape svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Whimsical Buttons - New Style from Option B */
+        .whimsical-button {
+            display: inline-block;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.6rem;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .whimsical-button--primary {
+            background: linear-gradient(135deg, #9b7ab8, #c59fdc);
+            color: white;
+            box-shadow: 0 8px 24px rgba(155, 122, 184, 0.3);
+        }
+
+        .whimsical-button--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(155, 122, 184, 0.5);
+        }
+
+        .whimsical-button--secondary {
+            background: linear-gradient(135deg, #e8dff5, #f5ebff);
+            color: #2e1a47;
+            box-shadow: 0 6px 20px rgba(232, 223, 245, 0.4);
+            border: 2px solid rgba(155, 122, 184, 0.3);
+        }
+
+        .whimsical-button--secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(232, 223, 245, 0.6);
+        }
+
+        /* Glowing pawprint trails on hover */
+        .whimsical-button::before {
+            content: '🐾';
+            position: absolute;
+            top: 50%;
+            left: -30px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .whimsical-button:hover::before {
+            left: -15px;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+        }
+
+        .whimsical-button::after {
+            content: '🐾';
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .whimsical-button:hover::after {
+            right: -15px;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 8px rgba(155, 122, 184, 0.8));
+        }
+
+        /* Action Button Hover States */
+        .action-button:hover {
+            transform: scale(1.05);
+            background: #E9D5FF !important;
+            border-color: #E9D5FF !important;
+            filter: brightness(1.2) drop-shadow(0 0 20px var(--pastel-lavender)) drop-shadow(0 0 10px rgba(214, 188, 250, 0.6));
+        }
+
+        .action-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Crystal Rating Hover */
+        .crystal-rating:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 10px #D6BCFA);
+        }
+
+        /* Review button inherits from .whimsical-button--primary */
+
+        /* Episode Related Links Hover States */
+        #episodeExpanded a:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(155, 122, 184, 0.2);
+            background: rgba(232, 223, 245, 0.4) !important;
+        }
+
+        /* ========== MAGICAL ELEMENTS ========== */
+
+
+        /* Grain Overlay - Texture Throughout */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            mix-blend-mode: multiply;
+        }
+
+        /* Whimsy Layer - Floating Pawprints & Blobs */
+        .whimsy-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .whimsy-item {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .whimsy-paw {
+            width: 40px;
+            height: 40px;
+            opacity: 0.15;
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        .whimsy-blob {
+            border-radius: 50%;
+            opacity: 0.2;
+            filter: url(#watercolor-wash) blur(40px);
+            animation: drift 15s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -10px) rotate(5deg); }
+            50% { transform: translate(-10px, 20px) rotate(-5deg); }
+            75% { transform: translate(15px, 15px) rotate(8deg); }
+        }
+
+        /* Sheltie Sightings - Random Walks */
+        .sheltie-sightings {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            pointer-events: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .sighting-wrapper {
+            position: absolute;
+            bottom: 20px;
+            width: 150px;
+            height: 150px;
+            opacity: 0;
+            animation: sheltieWalk 8s linear;
+        }
+
+        @keyframes sheltieWalk {
+            0% { opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { opacity: 0; }
+        }
+
+        /* Alchemy Circle - Floating Background */
+        .alchemy-circle-container {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 300px;
+            height: 300px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.15;
+            animation: floatAndRotate 20s ease-in-out infinite;
+        }
+
+        .alchemy-circle {
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #e8dff5;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(252, 225, 228, 0.4) 0%, transparent 70%);
+            animation: rotateCircle 20s linear infinite;
+        }
+
+        @keyframes rotateCircle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes floatAndRotate {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Watercolor Splatter Accents */
+        .watercolor-splatter {
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .splatter-1 {
+            top: -30px;
+            left: -30px;
+            width: 120px;
+            height: 120px;
+            background: rgba(252, 225, 228, 0.4);
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        .splatter-2 {
+            bottom: -40px;
+            right: -40px;
+            width: 150px;
+            height: 150px;
+            background: rgba(232, 223, 245, 0.3);
+            animation: breathe 5s ease-in-out infinite 1s;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        /* Glimmer Overlay on Images */
+        .glimmer-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                transparent 100%
+            );
+            pointer-events: none;
+            animation: glimmer 3s ease-in-out infinite;
+            border-radius: inherit;
+        }
+
+        @keyframes glimmer {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Entrance Animations */
+        .animate-slide-in-left {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .animate-scale-rotate {
+            animation: scaleRotate 1.2s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleRotate {
+            from {
+                transform: scale(0.9) rotate(5deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(-2deg);
+                opacity: 1;
+            }
+        }
+
+        /* Sparkle & Flour Particles */
+        .sparkle-particle {
+            position: absolute;
+            pointer-events: none;
+            background: #D6BCFA;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparkle-burst 0.8s ease-out forwards;
+            z-index: 9999;
+        }
+
+        .flour-particle {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: sparkle-burst 0.8s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes sparkle-burst {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Action Buttons */
+        .floating-actions {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .floating-actions.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(232, 223, 245, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(155, 122, 184, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(155, 122, 184, 0.4);
+        }
+
+        .floating-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: #2e1a47;
+        }
+
+        /* ========== END MAGICAL ELEMENTS ========== */
+
+        /* Gradient divider below hero */
+        .hero-content-divider {
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(232, 223, 245, 0.5) 20%,
+                rgba(252, 225, 228, 0.5) 50%,
+                rgba(232, 223, 245, 0.5) 80%,
+                transparent 100%);
+            margin: 3rem 0;
+        }
+
+        /* Recipe Sanctuary - Unified Section */
+        .recipe-sanctuary {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(30px);
+            border-radius: 32px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            overflow: visible;
+        }
+
+        /* Organic watercolor splatter behind recipe sanctuary */
+        .recipe-sanctuary::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            background: #dff0ea;
+            filter: blur(50px);
+            opacity: 0.3;
+            z-index: -1;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,30 Q40,10 60,30 T80,60 Q90,80 70,90 T30,90 Q10,80 20,60 Z' fill='black'/%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,30 Q40,10 60,30 T80,60 Q90,80 70,90 T30,90 Q10,80 20,60 Z' fill='black'/%3E%3C/svg%3E");
+            mask-size: contain;
+            -webkit-mask-size: contain;
+        }
+
+        .recipe-sanctuary::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 32px;
+            padding: 3px;
+            background: linear-gradient(135deg, #e8dff5, #fce1e4, #dff0ea, #e8dff5);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        .sanctuary-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .sanctuary-header h2 {
+            font-family: 'Italiana', serif;
+            font-size: 2.5rem;
+            color: #2e1a47;
+            margin-bottom: 0.5rem;
+        }
+
+        .sanctuary-subtitle {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.5rem;
+            color: #9b7ab8;
+        }
+
+        /* Featured Recipe Card - From preview-option-a.html */
+        .featured-recipe-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            overflow: visible;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(46, 26, 71, 0.15);
+            border: 2px solid rgba(232, 223, 245, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Organic watercolor splatter accent on featured recipe */
+        .featured-recipe-card::after {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: -25px;
+            width: 120px;
+            height: 120px;
+            background: #e8dff5;
+            filter: blur(35px);
+            opacity: 0.35;
+            z-index: -1;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,40 Q30,20 50,30 Q70,40 80,60 T60,85 T30,80 T10,60 Z' fill='black'/%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,40 Q30,20 50,30 Q70,40 80,60 T60,85 T30,80 T10,60 Z' fill='black'/%3E%3C/svg%3E");
+            mask-size: contain;
+            -webkit-mask-size: contain;
+        }
+
+        /* Sparkle animation */
+        .featured-recipe-card::before {
+            content: '✨';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 2rem;
+            animation: sparkle 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.2) rotate(15deg); opacity: 0.8; }
+        }
+
+        .featured-recipe-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(46, 26, 71, 0.25);
+        }
+
+        .featured-recipe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .featured-image-container {
+            position: relative;
+            aspect-ratio: 4/3;
+        }
+
+        .featured-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #e8dff5;
+            color: #2e1a47;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .featured-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .featured-content h3 {
+            font-family: 'Italiana', serif;
+            font-size: 1.8rem;
+            color: #2e1a47;
+            line-height: 1.2;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 0.8rem;
+            color: #9b7ab8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .featured-content p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .button-centered {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+
+        .paw-divider {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            opacity: 0.5;
+            letter-spacing: 1rem;
+        }
+
+        /* Collections - Magical Portals from Option B */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .collection-portal {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .collection-portal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--portal-color), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .collection-portal:hover::before {
+            opacity: 0.15;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .collection-portal:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(46, 26, 71, 0.2);
+            border-color: var(--portal-color);
+        }
+
+        .collection-portal:nth-child(1) { --portal-color: #dff0ea; }
+        .collection-portal:nth-child(2) { --portal-color: #fce1e4; }
+        .collection-portal:nth-child(3) { --portal-color: #e8dff5; }
+        .collection-portal:nth-child(4) { --portal-color: #fff3e0; }
+
+        .portal-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .portal-header {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .portal-icon {
+            font-size: 2.5rem;
+        }
+
+        .portal-title {
+            font-family: 'Italiana', serif;
+            font-size: 1.3rem;
+            color: #2e1a47;
+        }
+
+        .portal-subtitle {
+            font-size: 0.9rem;
+            color: #9b7ab8;
+            font-weight: 600;
+        }
+
+        .portal-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .preview-thumb {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .collection-portal:hover .preview-thumb {
+            transform: scale(1.05);
+        }
+
+        .portal-count {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #9b7ab8;
+            font-weight: 600;
+        }
+
+        .portal-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .collection-portal:hover .portal-arrow {
+            transform: translateX(6px);
+        }
+
+        /* Recent Additions - Library Style */
+        .recent-additions h3 {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            color: #2e1a47;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .recent-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .library-book {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(232, 223, 245, 0.6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .library-book::after {
+            content: '🐾';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .library-book:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 12px 32px rgba(46, 26, 71, 0.2);
+            border-color: #9b7ab8;
+        }
+
+        .library-book:hover::after {
+            opacity: 0.4;
+        }
+
+        .book-cover {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .book-info {
+            padding: 1.25rem;
+        }
+
+        .book-title {
+            font-family: 'Italiana', serif;
+            font-size: 1rem;
+            color: #2e1a47;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-meta {
+            font-size: 0.85rem;
+            color: #9b7ab8;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .browse-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Latest Episode Section - ABOVE Social Proof */
+        .latest-episode-section {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(30px);
+            border-radius: 32px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Organic watercolor splatter behind episode section */
+        .latest-episode-section::after {
+            content: '';
+            position: absolute;
+            top: -35px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 180px;
+            height: 180px;
+            background: #fce1e4;
+            filter: blur(45px);
+            opacity: 0.3;
+            z-index: -1;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M25,25 Q45,15 60,25 Q80,35 85,55 T75,80 Q60,90 40,85 T15,60 Q10,40 25,25 Z' fill='black'/%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M25,25 Q45,15 60,25 Q80,35 85,55 T75,80 Q60,90 40,85 T15,60 Q10,40 25,25 Z' fill='black'/%3E%3C/svg%3E");
+            mask-size: contain;
+            -webkit-mask-size: contain;
+        }
+
+        .latest-episode-section::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 32px;
+            padding: 3px;
+            background: linear-gradient(135deg, #dff0ea, #fce1e4, #e8dff5, #dff0ea);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        .section-title {
+            font-family: 'Italiana', serif;
+            font-size: 2rem;
+            color: #2e1a47;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Episode Card - Styled like Recipe Card */
+        .featured-episode-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(46, 26, 71, 0.15);
+            border: 2px solid rgba(232, 223, 245, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .featured-episode-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(46, 26, 71, 0.25);
+        }
+
+        .featured-episode-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .episode-waveform {
+            position: relative;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #dff0ea 0%, #fce1e4 50%, #e8dff5 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-icon-container {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 8px 32px rgba(46, 26, 71, 0.2);
+        }
+
+        .episode-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .episode-content h3 {
+            font-family: 'Italiana', serif;
+            font-size: 1.8rem;
+            color: #2e1a47;
+            line-height: 1.2;
+        }
+
+        .episode-content p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .episode-date {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.3rem;
+            color: #9b7ab8;
+            font-style: italic;
+        }
+
+        /* Newsletter Signup in Episode Section */
+        .newsletter-form {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(232, 223, 245, 0.3);
+            border-radius: 16px;
+            border: 2px dashed #9b7ab8;
+        }
+
+        .newsletter-form h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.5rem;
+            color: #2e1a47;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .newsletter-form p {
+            text-align: center;
+            color: #9b7ab8;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-input-group {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input-group input {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #e8dff5;
+            border-radius: 50px;
+            font-family: 'Fraunces', serif;
+            font-size: 1rem;
+        }
+
+        /* Social Proof Section - BELOW Episode */
+        .social-proof-section {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(30px);
+            border-radius: 32px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .social-proof-section::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 32px;
+            padding: 3px;
+            background: linear-gradient(135deg, #fce1e4, #e8dff5, #dff0ea, #fce1e4);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        .testimonial-placeholder {
+            text-align: center;
+            color: #9b7ab8;
+            font-style: italic;
+            padding: 3rem;
+            background: rgba(232, 223, 245, 0.2);
+            border-radius: 16px;
+            border: 2px dashed #e8dff5;
+        }
+
+        .note {
+            background: linear-gradient(135deg, rgba(232, 223, 245, 0.3), rgba(252, 225, 228, 0.3));
+            border-left: 4px solid #9b7ab8;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        .note h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2e1a47;
+        }
+
+        .note ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .note li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .note li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Paw Follower - Watercolor Effect */
+        .paw-follower-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+        }
+
+        .trail-point {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            pointer-events: none;
+            opacity: 1;
+            filter: blur(1px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .trail-point.fading {
+            opacity: 0;
+            transform: scale(0.2);
+        }
+
+        .paw-cursor {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .paw-cursor.is-visible {
+            opacity: 1;
+        }
+
+        .paw-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Card Washi Tape Positioning - Centered at top */
+        .card-washi-top {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 150px;
+            height: 30px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <!-- SVG Watercolor Filters - For applying to elements -->
+    <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+        <defs>
+            <!-- Watercolor Filter: Paper Texture & Rough Edge -->
+            <filter id="watercolor" x="-50%" y="-50%" width="200%" height="200%" colorInterpolationFilters="sRGB">
+                <!-- Generate Noise -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="5" result="noise" />
+                <!-- Displacement for "Bleeding" Edge -->
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                <!-- Slight Blur for Ink Diffusion -->
+                <feGaussianBlur in="displaced" stdDeviation="0.5" result="blurred" />
+                <!-- Composite logic: Blend texture back in for "paper grain" look inside the shape -->
+                <feComposite operator="in" in="noise" in2="blurred" result="textured" />
+                <feBlend mode="multiply" in="textured" in2="blurred" result="final" />
+            </filter>
+
+            <!-- Watercolor Wash Filter: Softer effect for background washes -->
+            <filter id="watercolor-wash" x="-50%" y="-50%" width="200%" height="200%" colorInterpolationFilters="sRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="1" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" result="displaced" />
+                <feGaussianBlur in="displaced" stdDeviation="1.5" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- WebGL Watercolor Canvas - Living Background -->
+    <div class="watercolor-canvas">
+        <canvas id="watercolorCanvas"></canvas>
+    </div>
+
+    <!-- Header - Glassmorphism from preview-final-combined -->
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1 class="brand-title">Sunday Brunch <span class="brand-accent">with</span> Giselle</h1>
+                <div class="brand-divider"></div>
+                <p class="brand-subtitle">Whimsy, warmth, and wags</p>
+            </div>
+            <nav class="nav-buttons">
+                <button class="nav-button">Home</button>
+                <button class="nav-button">Recipes</button>
+                <button class="nav-button">Episodes</button>
+                <button class="nav-button">Team</button>
+                <button class="nav-button">Login</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Grain Overlay - Texture Throughout -->
+    <div class="grain-overlay"></div>
+
+    <!-- Whimsy Layer - Floating Pawprints & Blobs -->
+    <div class="whimsy-layer" id="whimsyLayer">
+        <!-- Pawprints -->
+        <div class="whimsy-item whimsy-paw" style="left: 10%; top: 20%;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="70" rx="20" ry="25" fill="#e8dff5" />
+                <ellipse cx="30" cy="40" rx="12" ry="15" fill="#e8dff5" />
+                <ellipse cx="50" cy="35" rx="12" ry="15" fill="#e8dff5" />
+                <ellipse cx="70" cy="40" rx="12" ry="15" fill="#e8dff5" />
+            </svg>
+        </div>
+        <div class="whimsy-item whimsy-paw" style="left: 85%; top: 15%; animation-delay: 2s;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="70" rx="20" ry="25" fill="#fce1e4" />
+                <ellipse cx="30" cy="40" rx="12" ry="15" fill="#fce1e4" />
+                <ellipse cx="50" cy="35" rx="12" ry="15" fill="#fce1e4" />
+                <ellipse cx="70" cy="40" rx="12" ry="15" fill="#fce1e4" />
+            </svg>
+        </div>
+        <div class="whimsy-item whimsy-paw" style="left: 15%; top: 65%; animation-delay: 4s;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="70" rx="20" ry="25" fill="#b3d9ff" />
+                <ellipse cx="30" cy="40" rx="12" ry="15" fill="#b3d9ff" />
+                <ellipse cx="50" cy="35" rx="12" ry="15" fill="#b3d9ff" />
+                <ellipse cx="70" cy="40" rx="12" ry="15" fill="#b3d9ff" />
+            </svg>
+        </div>
+        <div class="whimsy-item whimsy-paw" style="left: 75%; top: 60%; animation-delay: 6s;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="70" rx="20" ry="25" fill="#dff0ea" />
+                <ellipse cx="30" cy="40" rx="12" ry="15" fill="#dff0ea" />
+                <ellipse cx="50" cy="35" rx="12" ry="15" fill="#dff0ea" />
+                <ellipse cx="70" cy="40" rx="12" ry="15" fill="#dff0ea" />
+            </svg>
+        </div>
+        <div class="whimsy-item whimsy-paw" style="left: 50%; top: 40%; animation-delay: 8s;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="70" rx="20" ry="25" fill="#e8dff5" />
+                <ellipse cx="30" cy="40" rx="12" ry="15" fill="#e8dff5" />
+                <ellipse cx="50" cy="35" rx="12" ry="15" fill="#e8dff5" />
+                <ellipse cx="70" cy="40" rx="12" ry="15" fill="#e8dff5" />
+            </svg>
+        </div>
+        <div class="whimsy-item whimsy-paw" style="left: 30%; top: 80%; animation-delay: 10s;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="70" rx="20" ry="25" fill="#fce1e4" />
+                <ellipse cx="30" cy="40" rx="12" ry="15" fill="#fce1e4" />
+                <ellipse cx="50" cy="35" rx="12" ry="15" fill="#fce1e4" />
+                <ellipse cx="70" cy="40" rx="12" ry="15" fill="#fce1e4" />
+            </svg>
+        </div>
+        <div class="whimsy-item whimsy-paw" style="left: 90%; top: 75%; animation-delay: 12s;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="70" rx="20" ry="25" fill="#b3d9ff" />
+                <ellipse cx="30" cy="40" rx="12" ry="15" fill="#b3d9ff" />
+                <ellipse cx="50" cy="35" rx="12" ry="15" fill="#b3d9ff" />
+                <ellipse cx="70" cy="40" rx="12" ry="15" fill="#b3d9ff" />
+            </svg>
+        </div>
+        <div class="whimsy-item whimsy-paw" style="left: 60%; top: 25%; animation-delay: 14s;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="70" rx="20" ry="25" fill="#dff0ea" />
+                <ellipse cx="30" cy="40" rx="12" ry="15" fill="#dff0ea" />
+                <ellipse cx="50" cy="35" rx="12" ry="15" fill="#dff0ea" />
+                <ellipse cx="70" cy="40" rx="12" ry="15" fill="#dff0ea" />
+            </svg>
+        </div>
+
+        <!-- Watercolor Blobs -->
+        <div class="whimsy-item whimsy-blob" style="left: 5%; top: 30%; width: 150px; height: 150px; background: rgba(252, 225, 228, 0.3); animation-delay: 1s;"></div>
+        <div class="whimsy-item whimsy-blob" style="left: 80%; top: 50%; width: 200px; height: 200px; background: rgba(232, 223, 245, 0.3); animation-delay: 3s;"></div>
+        <div class="whimsy-item whimsy-blob" style="left: 25%; top: 70%; width: 120px; height: 120px; background: rgba(179, 217, 255, 0.3); animation-delay: 5s;"></div>
+        <div class="whimsy-item whimsy-blob" style="left: 70%; top: 15%; width: 180px; height: 180px; background: rgba(223, 240, 234, 0.3); animation-delay: 7s;"></div>
+        <div class="whimsy-item whimsy-blob" style="left: 45%; top: 85%; width: 140px; height: 140px; background: rgba(252, 225, 228, 0.3); animation-delay: 9s;"></div>
+        <div class="whimsy-item whimsy-blob" style="left: 95%; top: 35%; width: 160px; height: 160px; background: rgba(232, 223, 245, 0.3); animation-delay: 11s;"></div>
+    </div>
+
+    <!-- Sheltie Sightings - Random Walks -->
+    <div class="sheltie-sightings" id="sheltieSightings"></div>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions" id="floatingActions">
+        <button class="floating-btn" id="backToTop" title="Back to top">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4L4 12H8V20H16V12H20L12 4Z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Paw Follower Layer -->
+    <div class="paw-follower-layer" id="pawFollower">
+        <div class="paw-cursor" id="pawCursor">
+            <svg class="paw-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 10 Q40 5 50 10 Q60 5 70 10 Q80 20 75 35 Q65 50 50 45 Q35 50 25 35 Q20 20 30 10" fill="var(--midnight-lavender, #2e1a47)" opacity="0.6" />
+                <ellipse cx="20" cy="50" rx="10" ry="15" transform="rotate(-30 20 50)" fill="var(--midnight-lavender, #2e1a47)" opacity="0.6" />
+                <ellipse cx="80" cy="50" rx="10" ry="15" transform="rotate(30 80 50)" fill="var(--midnight-lavender, #2e1a47)" opacity="0.6" />
+                <ellipse cx="50" cy="75" rx="25" ry="20" fill="var(--midnight-lavender, #2e1a47)" opacity="0.66" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- Main Container with rounded borders like preview-option-a -->
+    <div class="container">
+        <div class="hero-wrapper">
+            <!-- Hero Section with Image on RIGHT -->
+            <section class="hero">
+                <!-- Alchemy Circle - Floating Background Magic -->
+                <div class="alchemy-circle-container">
+                    <div class="alchemy-circle"></div>
+                </div>
+
+                <div class="hero-content animate-slide-in-left">
+                    <h1 class="hero-title">
+                        Sunday Brunch <span class="hero-script-accent">with</span> Giselle
+                    </h1>
+                    <div class="hero-divider"></div>
+                    <p class="hero-subtitle">Whimsy, warmth, and wags</p>
+                    <div class="hero-quote-wrapper">
+                        <p class="hero-quote">
+                            Join Giselle and the pack for Sunday morning magic, fresh recipes, and stories that warm the soul.
+                        </p>
+                    </div>
+                    <div class="hero-cta-group">
+                        <a href="#" class="whimsical-button whimsical-button--primary">Latest Episode</a>
+                        <a href="#" class="whimsical-button whimsical-button--secondary">Browse Recipes</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual animate-scale-rotate">
+                    <div class="photo-frame">
+                        <!-- Watercolor Splatters -->
+                        <div class="watercolor-splatter splatter-1"></div>
+                        <div class="watercolor-splatter splatter-2"></div>
+
+                        <div class="washi-tape">
+                            <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <!-- Tape background -->
+                                <path d="M0 5 L2 2 L5 0 L95 0 L98 2 L100 5 L100 25 L98 28 L95 30 L5 30 L2 28 L0 25 Z" fill="rgba(232, 223, 245, 0.8)" opacity="0.8" />
+                                <!-- Top highlight line -->
+                                <path d="M0 0 L100 0" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="2,2" />
+                                <!-- Bottom shadow line -->
+                                <path d="M0 30 L100 30" stroke="rgba(0,0,0,0.1)" stroke-width="1" />
+                                <!-- Pawprints -->
+                                <g opacity="0.4">
+                                    <!-- Paw 1 -->
+                                    <ellipse cx="15" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="12" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="15" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="18" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <!-- Paw 2 -->
+                                    <ellipse cx="35" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="32" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="35" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="38" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <!-- Paw 3 -->
+                                    <ellipse cx="50" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="47" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="50" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="53" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <!-- Paw 4 -->
+                                    <ellipse cx="65" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="62" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="65" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="68" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <!-- Paw 5 -->
+                                    <ellipse cx="85" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="82" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="85" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                    <ellipse cx="88" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                                </g>
+                            </svg>
+                        </div>
+                        <img src="sunday-brunch-website/public/assets/stacey-and-giselle.png" alt="Stacey and Giselle in the kitchen" onerror="this.src='https://images.unsplash.com/photo-1556910110-a5a63dfd393c?w=500&h=600&fit=crop'">
+                        <!-- Glimmer Overlay -->
+                        <div class="glimmer-overlay"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gradient Divider Below Hero -->
+            <div class="hero-content-divider"></div>
+        </div>
+        <!-- Recipe Sanctuary - Unified Section -->
+        <section class="recipe-sanctuary">
+            <div class="sanctuary-header">
+                <h2>The Recipe Sanctuary</h2>
+                <p class="sanctuary-subtitle">Where every bake begins with a dash of magic</p>
+            </div>
+
+            <!-- Featured Recipe -->
+            <div class="featured-recipe-card" id="recipeCard">
+                <!-- Washi Tape Decoration - Centered at top -->
+                <div class="card-washi-top">
+                    <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                        <!-- Tape background -->
+                        <path d="M0 5 L2 2 L5 0 L95 0 L98 2 L100 5 L100 25 L98 28 L95 30 L5 30 L2 28 L0 25 Z" fill="rgba(232, 223, 245, 0.8)" opacity="0.8" />
+                        <!-- Top highlight line -->
+                        <path d="M0 0 L100 0" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="2,2" />
+                        <!-- Bottom shadow line -->
+                        <path d="M0 30 L100 30" stroke="rgba(0,0,0,0.1)" stroke-width="1" />
+                        <!-- Pawprints -->
+                        <g opacity="0.4">
+                            <!-- Paw 1 -->
+                            <ellipse cx="20" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="17" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="20" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="23" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <!-- Paw 2 -->
+                            <ellipse cx="50" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="47" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="50" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="53" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <!-- Paw 3 -->
+                            <ellipse cx="80" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="77" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="80" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="83" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="featured-recipe-grid">
+                    <div class="featured-image-container">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=500&fit=crop" alt="Royal Velvet Cake" onerror="this.src='https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=500&fit=crop'">
+                        <div class="category-badge">Featured</div>
+                    </div>
+                    <div class="featured-content">
+                        <h3>Giselle's Royal Velvet Cake</h3>
+                        <div class="featured-meta">
+                            <span style="display: inline-flex; gap: 0.2rem; align-items: center;">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1rem; height: 1rem;">
+                                    <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="#D6BCFA" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                                    <path d="M12 5 L12 19 M7 8 L17 16 M17 8 L7 16" stroke="rgba(255,255,255,0.4)" stroke-width="1" />
+                                </svg>
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1rem; height: 1rem;">
+                                    <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="#D6BCFA" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                                    <path d="M12 5 L12 19 M7 8 L17 16 M17 8 L7 16" stroke="rgba(255,255,255,0.4)" stroke-width="1" />
+                                </svg>
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1rem; height: 1rem;">
+                                    <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="#D6BCFA" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                                    <path d="M12 5 L12 19 M7 8 L17 16 M17 8 L7 16" stroke="rgba(255,255,255,0.4)" stroke-width="1" />
+                                </svg>
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1rem; height: 1rem;">
+                                    <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="#D6BCFA" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                                    <path d="M12 5 L12 19 M7 8 L17 16 M17 8 L7 16" stroke="rgba(255,255,255,0.4)" stroke-width="1" />
+                                </svg>
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1rem; height: 1rem;">
+                                    <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="#D6BCFA" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                                    <path d="M12 5 L12 19 M7 8 L17 16 M17 8 L7 16" stroke="rgba(255,255,255,0.4)" stroke-width="1" />
+                                </svg>
+                                <span style="margin-left: 0.3rem;">(127)</span>
+                            </span>
+                            <span>⏱️ 90 min</span>
+                            <span>📊 Advanced</span>
+                        </div>
+                        <p style="font-style: italic; color: #5a4668;">
+                            A decadent masterpiece with layers of crimson velvet and clouds of cream cheese frosting. Perfect for celebrations or Sunday indulgence.
+                        </p>
+                        <div class="button-centered">
+                            <button class="whimsical-button whimsical-button--primary" onclick="toggleRecipe()">View Full Recipe</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hidden expanded content -->
+                <div id="recipeExpanded" style="display: none; padding: 2rem; border-top: 2px dashed #e8dff5; background: rgba(255, 255, 255, 0.5);">
+                    <!-- Recipe Header -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h3 style="font-family: 'Italiana', serif; font-size: 2rem; margin-bottom: 0.5rem;">Giselle's Royal Velvet Cake</h3>
+                        <p style="color: #9b7ab8; font-size: 0.95rem;">
+                            Prep 30 min | Cook 60 min | Total 90 min | Yield 12 servings
+                        </p>
+                    </div>
+
+                    <!-- Dietary Badges -->
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(232, 223, 245, 0.4); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; color: #2e1a47;">Vegetarian</span>
+                        <span style="background: rgba(252, 225, 228, 0.4); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; color: #2e1a47;">Contains Dairy</span>
+                        <span style="background: rgba(223, 240, 234, 0.4); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; color: #2e1a47;">Contains Eggs</span>
+                    </div>
+
+                    <!-- Story Section -->
+                    <div style="margin-bottom: 2rem; font-style: italic; color: #5a4668; line-height: 1.6;">
+                        <p style="margin-bottom: 1rem;">This decadent red velvet cake has been the crown jewel of Sunday Brunch celebrations for years. With its striking crimson hue and luxurious cream cheese frosting, it's a masterpiece that demands precision and rewards with pure indulgence.</p>
+                        <p>Giselle insists on nothing less than perfection - each layer must be moist, tender, and perfectly balanced with just the right hint of cocoa and buttermilk tang.</p>
+                    </div>
+
+                    <!-- Baker's Prep -->
+                    <div style="background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #dff0ea 100%); padding: 1.5rem; border-radius: 16px; margin-bottom: 1.5rem; border: 2px dashed #9b7ab8; max-width: 700px; margin-left: auto; margin-right: auto;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem;">
+                            <span style="font-size: 1.2rem;">🐾</span>
+                            <h4 style="font-family: 'Italiana', serif; font-size: 1.2rem; margin: 0;">Baker's Prep</h4>
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8;">
+                            <li>Ensure all ingredients marked "room temperature" are properly softened.</li>
+                            <li>Preheat your oven 20 minutes before baking.</li>
+                            <li>Measure ingredients accurately (we recommend using the Metric/Weight toggle!).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Sheltie Tip - Giselle -->
+                    <div style="background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #dff0ea 100%); padding: 1.5rem; border-radius: 16px; margin-bottom: 2rem; border: 2px dashed #9b7ab8; max-width: 700px; margin-left: auto; margin-right: auto;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=160&h=160&fit=crop&crop=faces" alt="Giselle - The Queen" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; flex-shrink: 0; border: 3px solid rgba(214, 188, 250, 0.5);" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=giselle&backgroundColor=d6bcfa'">
+                            <div>
+                                <p style="font-family: 'Pinyon Script', cursive; font-size: 1.3rem; color: #9b7ab8; margin: 0 0 0.5rem 0;">Giselle says...</p>
+                                <p style="margin: 0; font-style: italic; color: #2e1a47;">Darling, if you're going to make this, do it properly. No shortcuts. We're not animals... well, <em>I</em> am, but I have standards.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <button class="action-button" style="flex: 1; padding: 0.8rem 1.5rem; border-radius: 50px; border: 2px solid #e8dff5; background: #e8dff5; color: #2e1a47; font-family: 'Fraunces', serif; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(155, 89, 182, 0.05);">
+                            Copy ingredients
+                        </button>
+                        <button class="action-button" style="flex: 1; padding: 0.8rem 1.5rem; border-radius: 50px; border: 2px solid #e8dff5; background: #e8dff5; color: #2e1a47; font-family: 'Fraunces', serif; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(155, 89, 182, 0.05);">
+                            Print recipe
+                        </button>
+                    </div>
+
+                    <!-- Two Column Layout -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <!-- Left Column: Ingredients & Nutrition -->
+                        <div>
+                            <!-- Ingredients Section -->
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 2px solid rgba(232, 223, 245, 0.5);">
+                                <h4 style="font-family: 'Italiana', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #2e1a47;">Ingredients</h4>
+                                <div style="margin-bottom: 1rem; padding: 0.8rem; background: rgba(232, 223, 245, 0.2); border-radius: 8px;">
+                                    <label style="font-size: 0.9rem; color: #5a4668;">Servings:
+                                        <select style="margin-left: 0.5rem; padding: 0.3rem; border-radius: 4px; border: 1px solid #e8dff5;">
+                                            <option>12 (original)</option>
+                                            <option>6 (half)</option>
+                                            <option>24 (double)</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; border-bottom: 1px dashed rgba(232, 223, 245, 0.3);">
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                            <input type="checkbox" style="width: 18px; height: 18px;">
+                                            <span>2½ cups all-purpose flour</span>
+                                        </label>
+                                    </li>
+                                    <li style="padding: 0.5rem 0; border-bottom: 1px dashed rgba(232, 223, 245, 0.3);">
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                            <input type="checkbox" style="width: 18px; height: 18px;">
+                                            <span>1½ cups granulated sugar</span>
+                                        </label>
+                                    </li>
+                                    <li style="padding: 0.5rem 0; border-bottom: 1px dashed rgba(232, 223, 245, 0.3);">
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                            <input type="checkbox" style="width: 18px; height: 18px;">
+                                            <span>1 cup buttermilk, room temperature</span>
+                                        </label>
+                                    </li>
+                                    <li style="padding: 0.5rem 0; border-bottom: 1px dashed rgba(232, 223, 245, 0.3);">
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                            <input type="checkbox" style="width: 18px; height: 18px;">
+                                            <span>2 large eggs, room temperature</span>
+                                        </label>
+                                    </li>
+                                    <li style="padding: 0.5rem 0;">
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                            <input type="checkbox" style="width: 18px; height: 18px;">
+                                            <span>2 tablespoons red food coloring</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Nutrition Facts -->
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; border: 2px solid rgba(232, 223, 245, 0.5);">
+                                <h4 style="font-family: 'Italiana', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #2e1a47;">Nutrition Facts</h4>
+                                <p style="font-size: 0.9rem; color: #9b7ab8; margin-bottom: 1rem;">Per serving (1/12 of recipe)</p>
+                                <div style="border-top: 2px solid #2e1a47; padding-top: 0.5rem;">
+                                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(232, 223, 245, 0.3);">
+                                        <span style="font-weight: 600;">Calories</span>
+                                        <span>420</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(232, 223, 245, 0.3);">
+                                        <span>Total Fat</span>
+                                        <span>18g</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(232, 223, 245, 0.3);">
+                                        <span>Total Carbs</span>
+                                        <span>62g</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                                        <span>Protein</span>
+                                        <span>5g</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Steps -->
+                        <div>
+                            <h4 style="font-family: 'Italiana', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #2e1a47;">Steps</h4>
+                            <!-- Step 1 -->
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 2px solid rgba(232, 223, 245, 0.5);">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #e8dff5, #fce1e4); display: flex; align-items: center; justify-content: center; font-family: 'Italiana', serif; font-size: 1.2rem; color: #2e1a47; flex-shrink: 0;">1</div>
+                                    <p style="margin: 0; color: #2e1a47;">Preheat oven to 350°F (175°C). Grease and flour three 9-inch round cake pans.</p>
+                                </div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 2px solid rgba(232, 223, 245, 0.5);">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #fce1e4, #dff0ea); display: flex; align-items: center; justify-content: center; font-family: 'Italiana', serif; font-size: 1.2rem; color: #2e1a47; flex-shrink: 0;">2</div>
+                                    <p style="margin: 0; color: #2e1a47;">In a large bowl, whisk together flour, sugar, cocoa powder, baking soda, and salt.</p>
+                                </div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 2px solid rgba(232, 223, 245, 0.5);">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #dff0ea, #e8dff5); display: flex; align-items: center; justify-content: center; font-family: 'Italiana', serif; font-size: 1.2rem; color: #2e1a47; flex-shrink: 0;">3</div>
+                                    <p style="margin: 0; color: #2e1a47;">In another bowl, beat together buttermilk, oil, eggs, food coloring, vinegar, and vanilla until smooth.</p>
+                                </div>
+                            </div>
+                            <!-- Step 4 -->
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 2px solid rgba(232, 223, 245, 0.5);">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #e8dff5, #fce1e4); display: flex; align-items: center; justify-content: center; font-family: 'Italiana', serif; font-size: 1.2rem; color: #2e1a47; flex-shrink: 0;">4</div>
+                                    <p style="margin: 0; color: #2e1a47;">Gradually add wet ingredients to dry, mixing until just combined. Do not overmix.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sheltie Tip - Phaedra -->
+                    <div style="background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #dff0ea 100%); padding: 1.5rem; border-radius: 16px; margin-bottom: 2rem; border: 2px dashed #9b7ab8; max-width: 700px; margin-left: auto; margin-right: auto;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=160&h=160&fit=crop&crop=faces" alt="Phaedra - The Science Dogter" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; flex-shrink: 0; border: 3px solid rgba(232, 223, 245, 0.5);" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=phaedra&backgroundColor=e8dff5'">
+                            <div>
+                                <p style="font-family: 'Pinyon Script', cursive; font-size: 1.3rem; color: #9b7ab8; margin: 0 0 0.5rem 0;">Phaedra explains...</p>
+                                <p style="margin: 0; font-style: italic; color: #2e1a47;">The key to this recipe is temperature control. When ingredients are at room temperature, they emulsify more easily, creating a smoother batter. Science!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Section -->
+                    <div style="background: rgba(255, 255, 255, 0.8); padding: 2rem; border-radius: 16px; margin-bottom: 2rem; border: 2px solid rgba(232, 223, 245, 0.5);">
+                        <h4 style="font-family: 'Italiana', serif; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Leave A Royal Review</h4>
+                        <p style="text-align: center; color: #9b7ab8; font-style: italic;">Bestow your alchemical crystals</p>
+
+                        <!-- Crystal Rating -->
+                        <div id="crystalRatingContainer" style="text-align: center; margin: 1.5rem 0; display: flex; gap: 0.5rem; justify-content: center; align-items: center;">
+                            <svg class="crystal-rating" data-rating="1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.8rem; height: 1.8rem; cursor: pointer; transition: all 0.2s;">
+                                <path class="crystal-fill" d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="none" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                            <svg class="crystal-rating" data-rating="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.8rem; height: 1.8rem; cursor: pointer; transition: all 0.2s;">
+                                <path class="crystal-fill" d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="none" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                            <svg class="crystal-rating" data-rating="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.8rem; height: 1.8rem; cursor: pointer; transition: all 0.2s;">
+                                <path class="crystal-fill" d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="none" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                            <svg class="crystal-rating" data-rating="4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.8rem; height: 1.8rem; cursor: pointer; transition: all 0.2s;">
+                                <path class="crystal-fill" d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="none" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                            <svg class="crystal-rating" data-rating="5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.8rem; height: 1.8rem; cursor: pointer; transition: all 0.2s;">
+                                <path class="crystal-fill" d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" fill="none" stroke="#D6BCFA" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+
+                        <div class="button-centered" style="margin-top: 1.5rem;">
+                            <button class="whimsical-button whimsical-button--primary review-button">
+                                Leave A Royal Review
+                            </button>
+                        </div>
+
+                        <p style="text-align: center; font-size: 0.9rem; color: #5a4668; margin-top: 1rem;">127 reviews • Average rating: 4.9/5</p>
+                    </div>
+
+                    <!-- Collapse Button -->
+                    <div class="button-centered">
+                        <button class="whimsical-button whimsical-button--secondary" onclick="toggleRecipe()">Collapse Recipe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="paw-divider">🐾 🐾 🐾</div>
+
+            <!-- Collections - Magical Portals -->
+            <div class="collections-grid">
+                <div class="collection-portal">
+                    <div class="portal-content">
+                        <div class="portal-header">
+                            <div class="portal-icon">⏱️</div>
+                            <div>
+                                <div class="portal-title">Sunday Morning Bakes</div>
+                                <div class="portal-subtitle">Under 30 minutes</div>
+                            </div>
+                        </div>
+                        <div class="portal-preview">
+                            <div class="preview-thumb">🥐</div>
+                            <div class="preview-thumb">🍪</div>
+                            <div class="preview-thumb">🥧</div>
+                        </div>
+                        <div class="portal-count">
+                            <span>12 recipes</span>
+                            <span class="portal-arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collection-portal">
+                    <div class="portal-content">
+                        <div class="portal-header">
+                            <div class="portal-icon">🎁</div>
+                            <div>
+                                <div class="portal-title">Gift-Worthy Treats</div>
+                                <div class="portal-subtitle">Beautiful & delicious</div>
+                            </div>
+                        </div>
+                        <div class="portal-preview">
+                            <div class="preview-thumb">🧁</div>
+                            <div class="preview-thumb">🍰</div>
+                            <div class="preview-thumb">🍪</div>
+                        </div>
+                        <div class="portal-count">
+                            <span>18 recipes</span>
+                            <span class="portal-arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collection-portal">
+                    <div class="portal-content">
+                        <div class="portal-header">
+                            <div class="portal-icon">🌟</div>
+                            <div>
+                                <div class="portal-title">First-Time Baker</div>
+                                <div class="portal-subtitle">Gentle guidance</div>
+                            </div>
+                        </div>
+                        <div class="portal-preview">
+                            <div class="preview-thumb">🍞</div>
+                            <div class="preview-thumb">🥐</div>
+                            <div class="preview-thumb">🧁</div>
+                        </div>
+                        <div class="portal-count">
+                            <span>15 recipes</span>
+                            <span class="portal-arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collection-portal">
+                    <div class="portal-content">
+                        <div class="portal-header">
+                            <div class="portal-icon">🍂</div>
+                            <div>
+                                <div class="portal-title">Winter Specials</div>
+                                <div class="portal-subtitle">Seasonal magic</div>
+                            </div>
+                        </div>
+                        <div class="portal-preview">
+                            <div class="preview-thumb">☕</div>
+                            <div class="preview-thumb">🥧</div>
+                            <div class="preview-thumb">🍰</div>
+                        </div>
+                        <div class="portal-count">
+                            <span>9 recipes</span>
+                            <span class="portal-arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="paw-divider">🐾 🐾 🐾</div>
+
+            <!-- Recent Additions -->
+            <div class="recent-additions">
+                <h3>Fresh from the Oven</h3>
+                <div class="recent-grid">
+                    <div class="library-book">
+                        <div class="book-cover">🍪</div>
+                        <div class="book-info">
+                            <div class="book-title">Lavender Shortbread</div>
+                            <div class="book-meta">
+                                <span>⭐ 4.9</span>
+                                <span>⏱️ 25m</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library-book">
+                        <div class="book-cover">🥐</div>
+                        <div class="book-info">
+                            <div class="book-title">Butter Croissants</div>
+                            <div class="book-meta">
+                                <span>⭐ 5.0</span>
+                                <span>⏱️ 3h</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library-book">
+                        <div class="book-cover">🧁</div>
+                        <div class="book-info">
+                            <div class="book-title">Rose Cupcakes</div>
+                            <div class="book-meta">
+                                <span>⭐ 4.8</span>
+                                <span>⏱️ 45m</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library-book">
+                        <div class="book-cover">🍰</div>
+                        <div class="book-info">
+                            <div class="book-title">Lemon Drizzle Cake</div>
+                            <div class="book-meta">
+                                <span>⭐ 4.9</span>
+                                <span>⏱️ 60m</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library-book">
+                        <div class="book-cover">🥧</div>
+                        <div class="book-info">
+                            <div class="book-title">Apple Tart</div>
+                            <div class="book-meta">
+                                <span>⭐ 5.0</span>
+                                <span>⏱️ 75m</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library-book">
+                        <div class="book-cover">🍞</div>
+                        <div class="book-info">
+                            <div class="book-title">Honey Oat Bread</div>
+                            <div class="book-meta">
+                                <span>⭐ 4.7</span>
+                                <span>⏱️ 2h</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library-book">
+                        <div class="book-cover">🍩</div>
+                        <div class="book-info">
+                            <div class="book-title">Cardamom Doughnuts</div>
+                            <div class="book-meta">
+                                <span>⭐ 4.9</span>
+                                <span>⏱️ 40m</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="library-book">
+                        <div class="book-cover">🧇</div>
+                        <div class="book-info">
+                            <div class="book-title">Belgian Waffles</div>
+                            <div class="book-meta">
+                                <span>⭐ 5.0</span>
+                                <span>⏱️ 20m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="browse-cta">
+                    <a href="#" class="whimsical-button whimsical-button--primary">Browse the Full Collection →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Episode Section - ABOVE Social Proof -->
+        <section class="latest-episode-section">
+            <h2 class="section-title">Latest Episode</h2>
+
+            <div class="featured-episode-card" id="episodeCard">
+                <!-- Washi Tape Decoration - Centered at top -->
+                <div class="card-washi-top">
+                    <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                        <!-- Tape background -->
+                        <path d="M0 5 L2 2 L5 0 L95 0 L98 2 L100 5 L100 25 L98 28 L95 30 L5 30 L2 28 L0 25 Z" fill="rgba(232, 223, 245, 0.8)" opacity="0.8" />
+                        <!-- Top highlight line -->
+                        <path d="M0 0 L100 0" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="2,2" />
+                        <!-- Bottom shadow line -->
+                        <path d="M0 30 L100 30" stroke="rgba(0,0,0,0.1)" stroke-width="1" />
+                        <!-- Pawprints -->
+                        <g opacity="0.4">
+                            <!-- Paw 1 -->
+                            <ellipse cx="20" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="17" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="20" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="23" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <!-- Paw 2 -->
+                            <ellipse cx="50" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="47" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="50" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="53" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <!-- Paw 3 -->
+                            <ellipse cx="80" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="77" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="80" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                            <ellipse cx="83" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="featured-episode-grid">
+                    <div class="episode-waveform">
+                        <div class="audio-icon-container">🎧</div>
+                    </div>
+                    <div class="episode-content">
+                        <h3>The Pie That Started a Dynasty</h3>
+                        <p class="episode-date">Aired on Sunday Morning</p>
+                        <div class="featured-meta">
+                            <span>🎙️ Podcast Episode</span>
+                            <span>📝 With Transcript</span>
+                        </div>
+                        <p style="font-style: italic; color: #5a4668;">
+                            Join Giselle as she recounts the legendary Sunday when a single apple pie sparked what would become a weekly tradition of baking, stories, and four very opinionated Shelties.
+                        </p>
+                        <div class="button-centered">
+                            <button class="whimsical-button whimsical-button--primary" onclick="toggleEpisode()">Listen Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hidden expanded content -->
+                <div id="episodeExpanded" style="display: none; padding: 2rem; border-top: 2px dashed #e8dff5; background: rgba(255, 255, 255, 0.5);">
+                    <!-- Episode Header -->
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+                        <div>
+                            <h3 style="font-family: 'Italiana', serif; font-size: 2rem; margin-bottom: 0.5rem;">The Pie That Started a Dynasty</h3>
+                            <p style="color: #9b7ab8; font-size: 0.95rem;">
+                                Aired on Sunday Morning | 32 minutes
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Audio Player Placeholder -->
+                    <div style="background: rgba(232, 223, 245, 0.3); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 2px solid rgba(232, 223, 245, 0.5);">
+                        <p style="text-align: center; color: #9b7ab8; font-size: 1.2rem;">🎧 Audio Player & Transcript 🎧</p>
+                        <p style="text-align: center; color: #5a4668; font-size: 0.9rem; margin-top: 0.5rem;">Interactive player with playback controls and full transcript</p>
+                    </div>
+
+                    <!-- Giselle's Comment -->
+                    <div style="background: linear-gradient(135deg, #e8dff5 0%, #fce1e4 50%, #dff0ea 100%); padding: 1.5rem; border-radius: 16px; margin-bottom: 2rem; border: 2px dashed #9b7ab8; max-width: 700px; margin-left: auto; margin-right: auto;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=160&h=160&fit=crop&crop=faces" alt="Giselle - The Queen" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; flex-shrink: 0; border: 3px solid rgba(214, 188, 250, 0.5);" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=giselle&backgroundColor=d6bcfa'">
+                            <div>
+                                <p style="font-family: 'Pinyon Script', cursive; font-size: 1.3rem; color: #9b7ab8; margin: 0 0 0.5rem 0;">Giselle whispers...</p>
+                                <p style="margin: 0; font-style: italic; color: #2e1a47;">"This episode was recorded during a particularly chaotic flour explosion. Excuse the sneezing! Also, Phaedra tried to lick the microphone three times. We're keeping it authentic."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Two Column Layout -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <!-- Left Column: Chapter Notes -->
+                        <div>
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; border: 2px solid rgba(232, 223, 245, 0.5);">
+                                <h4 style="font-family: 'Italiana', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #2e1a47;">Chapter Notes</h4>
+                                <ul style="margin: 0; padding-left: 1.5rem; line-height: 1.8; color: #2e1a47;">
+                                    <li style="margin-bottom: 0.8rem;">The legendary Sunday morning that started it all</li>
+                                    <li style="margin-bottom: 0.8rem;">How one apple pie became a weekly tradition</li>
+                                    <li style="margin-bottom: 0.8rem;">The Shelties' first taste test (chaos ensued)</li>
+                                    <li style="margin-bottom: 0.8rem;">Building a community around Sunday baking</li>
+                                    <li>Why precision and whimsy can coexist</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Featured Recipe & Related Episodes -->
+                        <div>
+                            <!-- Featured Recipe -->
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 2px solid rgba(252, 225, 228, 0.5);">
+                                <h5 style="font-family: 'Italiana', serif; font-size: 1.2rem; margin-bottom: 0.8rem; color: #2e1a47;">Featured Magic</h5>
+                                <p style="color: #5a4668; margin-bottom: 1rem; font-size: 0.95rem;">Learn to bake the pie that started it all</p>
+                                <a href="/recipes/classic-apple-pie" style="display: flex; gap: 1rem; padding: 1rem; background: rgba(232, 223, 245, 0.2); border-radius: 8px; text-decoration: none; border: 2px solid rgba(232, 223, 245, 0.4); transition: all 0.3s;">
+                                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #e8dff5, #fce1e4); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0;">🥧</div>
+                                    <div>
+                                        <p style="font-family: 'Italiana', serif; font-size: 1rem; color: #2e1a47; margin: 0 0 0.3rem 0;">Classic Apple Pie</p>
+                                        <p style="font-size: 0.85rem; color: #9b7ab8; margin: 0;">The dynasty begins here →</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Related Episodes -->
+                            <div style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 12px; border: 2px solid rgba(223, 240, 234, 0.5);">
+                                <h5 style="font-family: 'Italiana', serif; font-size: 1.2rem; margin-bottom: 0.8rem; color: #2e1a47;">Related Episodes</h5>
+                                <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                                    <a href="/episodes/mastering-pie-crust" style="display: block; padding: 0.8rem; background: rgba(223, 240, 234, 0.2); border-radius: 8px; text-decoration: none; border: 1px solid rgba(223, 240, 234, 0.4); transition: all 0.3s;">
+                                        <p style="font-size: 0.95rem; color: #2e1a47; margin: 0 0 0.2rem 0;">🎙️ Mastering the Perfect Pie Crust</p>
+                                        <p style="font-size: 0.8rem; color: #9b7ab8; margin: 0;">Flaky, buttery, foolproof</p>
+                                    </a>
+                                    <a href="/episodes/apple-varieties" style="display: block; padding: 0.8rem; background: rgba(223, 240, 234, 0.2); border-radius: 8px; text-decoration: none; border: 1px solid rgba(223, 240, 234, 0.4); transition: all 0.3s;">
+                                        <p style="font-size: 0.95rem; color: #2e1a47; margin: 0 0 0.2rem 0;">🎙️ The Apple Varietals Guide</p>
+                                        <p style="font-size: 0.8rem; color: #9b7ab8; margin: 0;">Choosing the right apples</p>
+                                    </a>
+                                    <a href="/episodes/sheltie-taste-tests" style="display: block; padding: 0.8rem; background: rgba(223, 240, 234, 0.2); border-radius: 8px; text-decoration: none; border: 1px solid rgba(223, 240, 234, 0.4); transition: all 0.3s;">
+                                        <p style="font-size: 0.95rem; color: #2e1a47; margin: 0 0 0.2rem 0;">🎙️ Sheltie Taste Test Chronicles</p>
+                                        <p style="font-size: 0.8rem; color: #9b7ab8; margin: 0;">When dogs judge your bakes</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collapse Button -->
+                    <div class="button-centered">
+                        <button class="whimsical-button whimsical-button--secondary" onclick="toggleEpisode()">Collapse Episode</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Signup -->
+            <div class="newsletter-form">
+                <h4>Get recipes, Sunday letters, early drops</h4>
+                <p>Join our cozy community of bakers and storytellers</p>
+                <div class="newsletter-input-group">
+                    <input type="email" placeholder="your@email.com">
+                    <button class="whimsical-button whimsical-button--primary">Subscribe</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section - BELOW Episode -->
+        <section class="social-proof-section">
+            <h2 class="section-title">What Bakers Are Saying</h2>
+            <div class="testimonial-placeholder">
+                (Rotating testimonials carousel with character replies - maintaining current format with washi tape and sheltie graphics)
+            </div>
+        </section>
+
+        <!-- Design Notes -->
+        <div class="note">
+            <h4>✨ MAGICAL PREVIEW - With Whimsical Animations & Interactive Elements ✨</h4>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #2e1a47;"><strong>This preview includes ALL the magical elements from the original website:</strong></p>
+
+            <h5 style="color: #9b7ab8; margin-top: 1rem;">🎭 Ambient Magic (Always Active)</h5>
+            <ul>
+                <li><strong>Candy Stripe Bar:</strong> Diagonal repeating gradient under navbar (lavender→sakura→sky→mint)</li>
+                <li><strong>Grain Overlay:</strong> Subtle texture throughout the entire page for hand-crafted feel</li>
+                <li><strong>Floating Pawprints:</strong> 8 gentle pawprints drifting across the page (20s animations)</li>
+                <li><strong>Watercolor Blobs:</strong> 6 soft blobs floating with blur effects (15s animations)</li>
+                <li><strong>Alchemy Circle:</strong> Rotating decorative circle floating in background (20s rotation + vertical float)</li>
+                <li><strong>Watercolor Splatters:</strong> Soft pink/lavender blobs behind hero image with breathing animation</li>
+            </ul>
+
+            <h5 style="color: #9b7ab8; margin-top: 1rem;">✨ Entrance Animations (Page Load)</h5>
+            <ul>
+                <li><strong>Hero Text:</strong> Slides in from left with 1s ease-out animation</li>
+                <li><strong>Hero Image:</strong> Scales up and rotates into place (0.3s delay, 1.2s duration)</li>
+                <li><strong>Glimmer Effect:</strong> Subtle shimmer overlay on hero image (3s infinite loop)</li>
+            </ul>
+
+            <h5 style="color: #9b7ab8; margin-top: 1rem;">🎪 Surprise Moments</h5>
+            <ul>
+                <li><strong>Sheltie Sightings:</strong> A Sheltie randomly walks across the bottom every ~15 seconds (30% chance, left or right direction)</li>
+                <li><strong>Sparkle Explosions:</strong> Click ANY button to trigger 12 sparkle/flour particles that burst outward</li>
+                <li><strong>Floating "Back to Top":</strong> Appears after scrolling 500px, creates sparkles on click</li>
+            </ul>
+
+            <h5 style="color: #9b7ab8; margin-top: 1rem;">🎨 Visual Depth & Texture</h5>
+            <ul>
+                <li><strong>Layered Animations:</strong> Multiple elements moving at different speeds creates parallax-like depth</li>
+                <li><strong>Organic Motion:</strong> All animations use ease-in-out with yoyo for natural feel</li>
+                <li><strong>Watercolor Effects:</strong> Blur filters (30-40px) on accent elements</li>
+                <li><strong>Continuous Movement:</strong> Something is always gently moving (never static)</li>
+            </ul>
+
+            <h5 style="color: #9b7ab8; margin-top: 1rem;">🐾 Interactive Elements</h5>
+            <ul>
+                <li><strong>Mouse Trail:</strong> Watercolor pawprints follow your cursor and linger for 2 seconds</li>
+                <li><strong>Crystal Ratings:</strong> Hover progressively fills crystals, click to select rating</li>
+                <li><strong>Button Hover:</strong> Scale up + multi-color glow effects</li>
+                <li><strong>Card Hovers:</strong> Smooth transforms with shadow increases</li>
+            </ul>
+
+            <p style="margin-top: 1.5rem; font-style: italic; color: #9b7ab8; font-size: 1.05rem; padding: 1rem; background: rgba(232, 223, 245, 0.2); border-radius: 8px;">
+                <strong>🎯 Key Difference from "Clean Preview":</strong><br>
+                This version has <em>personality, unpredictability, and soul</em>. It doesn't just <em>look</em> whimsical — it <strong>behaves</strong> whimsically!
+                Move your mouse slowly, watch for wandering Shelties, click buttons for sparkles, and scroll to reveal floating actions. 🐾✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================================
+        // WEBGL WATERCOLOR CANVAS - Living Breathing Background
+        // ==========================================================
+        (function() {
+            const canvas = document.getElementById('watercolorCanvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            // Vertex Shader
+            const vertexShader = `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `;
+
+            // Fragment Shader with Simplex Noise
+            const fragmentShader = `
+                uniform float uTime;
+                uniform vec2 uMouse;
+                uniform vec2 uResolution;
+                varying vec2 vUv;
+
+                // Simplex Noise
+                vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+                float snoise(vec2 v) {
+                    const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+                    vec2 i  = floor(v + dot(v, C.yy));
+                    vec2 x0 = v - i + dot(i, C.xx);
+                    vec2 i1;
+                    i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+                    vec4 x12 = x0.xyxy + C.xxzz;
+                    x12.xy -= i1;
+                    i = mod289(i);
+                    vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+                    vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+                    m = m*m;
+                    m = m*m;
+                    vec3 x = 2.0 * fract(p * C.www) - 1.0;
+                    vec3 h = abs(x) - 0.5;
+                    vec3 ox = floor(x + 0.5);
+                    vec3 a0 = x - ox;
+                    m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+                    vec3 g;
+                    g.x  = a0.x  * x0.x  + h.x  * x0.y;
+                    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                    return 130.0 * dot(m, g);
+                }
+
+                void main() {
+                    vec2 uv = vUv;
+                    float n = snoise(uv * 3.0 + uTime * 0.1);
+
+                    // Mouse-following distortion
+                    float dist = distance(uv, uMouse);
+                    float strength = 0.5 / (dist + 0.5);
+                    uv += n * 0.05 * strength;
+
+                    // Watercolor palette
+                    vec3 buttercream = vec3(1.0, 0.99, 0.90);
+                    vec3 sakura = vec3(0.98, 0.90, 0.95);
+                    vec3 lavender = vec3(0.91, 0.83, 1.0);
+
+                    float mix1 = snoise(uv * 2.0 + uTime * 0.05);
+                    float mix2 = snoise(uv * 1.5 - uTime * 0.07);
+
+                    vec3 finalColor = mix(buttercream, sakura, clamp(mix1, 0.0, 1.0));
+                    finalColor = mix(finalColor, lavender, clamp(mix2, 0.0, 1.0));
+
+                    gl_FragColor = vec4(finalColor, 1.0);
+                }
+            `;
+
+            // Shader Material
+            const uniforms = {
+                uTime: { value: 0 },
+                uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+                uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+            };
+
+            const material = new THREE.ShaderMaterial({
+                vertexShader: vertexShader,
+                fragmentShader: fragmentShader,
+                uniforms: uniforms
+            });
+
+            const geometry = new THREE.PlaneGeometry(2, 2);
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            // Mouse tracking
+            let mouseX = 0.5;
+            let mouseY = 0.5;
+            let targetX = 0.5;
+            let targetY = 0.5;
+
+            document.addEventListener('mousemove', (e) => {
+                targetX = e.clientX / window.innerWidth;
+                targetY = 1.0 - (e.clientY / window.innerHeight);
+            });
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Smooth lerp to mouse position
+                mouseX += (targetX - mouseX) * 0.1;
+                mouseY += (targetY - mouseY) * 0.1;
+
+                uniforms.uTime.value += 0.016;
+                uniforms.uMouse.value.set(mouseX, mouseY);
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+            });
+        })();
+
+        // ==========================================================
+        // GSAP ANIMATIONS - Organic Motion for Whimsy Layer
+        // ==========================================================
+        (function() {
+            // Animate pawprints and blobs with GSAP organic motion
+            const whimsyItems = document.querySelectorAll('.whimsy-item');
+
+            whimsyItems.forEach((el, i) => {
+                // Random organic placement
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const rotation = Math.random() * 360;
+                const scale = 0.5 + Math.random() * 1.5;
+
+                gsap.set(el, {
+                    left: `${x}%`,
+                    top: `${y}%`,
+                    rotation: rotation,
+                    scale: scale,
+                    opacity: 0.1 + Math.random() * 0.2
+                });
+
+                // Subtle organic drift with yoyo and sine.inOut easing
+                gsap.to(el, {
+                    x: '+=20',
+                    y: '+=20',
+                    rotation: '+=10',
+                    duration: 10 + Math.random() * 20,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut',
+                    delay: i * 0.5
+                });
+            });
+        })();
+
+        // Toggle recipe expansion
+        function toggleRecipe() {
+            const expanded = document.getElementById('recipeExpanded');
+            const buttonContainer = document.querySelector('#recipeCard .featured-recipe-grid .button-centered');
+
+            if (expanded.style.display === 'none') {
+                expanded.style.display = 'block';
+                buttonContainer.style.display = 'none'; // Hide the View Full Recipe button
+                document.getElementById('recipeCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                expanded.style.display = 'none';
+                buttonContainer.style.display = 'block'; // Show the View Full Recipe button
+            }
+        }
+
+        // Toggle episode expansion
+        function toggleEpisode() {
+            const expanded = document.getElementById('episodeExpanded');
+            const buttonContainer = document.querySelector('#episodeCard .featured-episode-grid .button-centered');
+
+            if (expanded.style.display === 'none') {
+                expanded.style.display = 'block';
+                buttonContainer.style.display = 'none'; // Hide the Listen Now button
+                document.getElementById('episodeCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                expanded.style.display = 'none';
+                buttonContainer.style.display = 'block'; // Show the Listen Now button
+            }
+        }
+
+        // Crystal Rating Interaction - Progressive Hover Fill
+        (function() {
+            const crystals = document.querySelectorAll('.crystal-rating');
+            let selectedRating = 0;
+
+            crystals.forEach((crystal, index) => {
+                const rating = parseInt(crystal.getAttribute('data-rating'));
+                const fillPath = crystal.querySelector('.crystal-fill');
+
+                // Hover effect - fill progressively
+                crystal.addEventListener('mouseenter', () => {
+                    crystals.forEach((c, i) => {
+                        const cFill = c.querySelector('.crystal-fill');
+                        if (i < rating) {
+                            // Fill crystal
+                            cFill.setAttribute('fill', '#D6BCFA');
+                            // Add facet lines
+                            if (!c.querySelector('.crystal-facets')) {
+                                const facets = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                                facets.setAttribute('class', 'crystal-facets');
+                                facets.setAttribute('d', 'M12 5 L12 19 M7 8 L17 16 M17 8 L7 16');
+                                facets.setAttribute('stroke', 'rgba(255,255,255,0.4)');
+                                facets.setAttribute('stroke-width', '1');
+                                c.appendChild(facets);
+                            }
+                            c.style.transform = 'scale(1.15)';
+                            c.style.filter = 'drop-shadow(0 0 10px #D6BCFA)';
+                        } else {
+                            // Unfill crystal
+                            cFill.setAttribute('fill', 'none');
+                            const facets = c.querySelector('.crystal-facets');
+                            if (facets) facets.remove();
+                            c.style.transform = 'scale(1)';
+                            c.style.filter = 'none';
+                        }
+                    });
+                });
+
+                // Click to select rating
+                crystal.addEventListener('click', () => {
+                    selectedRating = rating;
+                    console.log('Selected rating:', selectedRating);
+                });
+            });
+
+            // Mouse leave container - reset to selected or empty
+            document.getElementById('crystalRatingContainer').addEventListener('mouseleave', () => {
+                crystals.forEach((c, i) => {
+                    const cFill = c.querySelector('.crystal-fill');
+                    if (i < selectedRating) {
+                        cFill.setAttribute('fill', '#D6BCFA');
+                        if (!c.querySelector('.crystal-facets')) {
+                            const facets = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                            facets.setAttribute('class', 'crystal-facets');
+                            facets.setAttribute('d', 'M12 5 L12 19 M7 8 L17 16 M17 8 L7 16');
+                            facets.setAttribute('stroke', 'rgba(255,255,255,0.4)');
+                            facets.setAttribute('stroke-width', '1');
+                            c.appendChild(facets);
+                        }
+                    } else {
+                        cFill.setAttribute('fill', 'none');
+                        const facets = c.querySelector('.crystal-facets');
+                        if (facets) facets.remove();
+                    }
+                    c.style.transform = 'scale(1)';
+                    c.style.filter = 'none';
+                });
+            });
+        })();
+
+        // Paw Follower - Watercolor Effect
+        (function() {
+            const pawCursor = document.getElementById('pawCursor');
+            const pawFollower = document.getElementById('pawFollower');
+            const trail = [];
+            const colors = ['rgba(252, 225, 228, 0.4)', 'rgba(232, 223, 245, 0.4)', 'rgba(223, 240, 234, 0.4)'];
+
+            let lastX = 0, lastY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                const { clientX: x, clientY: y } = e;
+
+                // Update cursor position
+                pawCursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+                pawCursor.classList.add('is-visible');
+
+                // Add trail if mouse moved enough
+                const distance = Math.hypot(x - lastX, y - lastY);
+                if (distance > 40) {
+                    lastX = x;
+                    lastY = y;
+
+                    const trailPaw = document.createElement('div');
+                    trailPaw.className = 'trail-point';
+                    trailPaw.style.left = x + 'px';
+                    trailPaw.style.top = y + 'px';
+                    const rotation = Math.random() * 30 - 15;
+                    trailPaw.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    trailPaw.innerHTML = `<svg class="paw-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 10 Q40 5 50 10 Q60 5 70 10 Q80 20 75 35 Q65 50 50 45 Q35 50 25 35 Q20 20 30 10" fill="${color}" />
+                        <ellipse cx="20" cy="50" rx="10" ry="15" transform="rotate(-30 20 50)" fill="${color}" />
+                        <ellipse cx="80" cy="50" rx="10" ry="15" transform="rotate(30 80 50)" fill="${color}" />
+                        <ellipse cx="50" cy="75" rx="25" ry="20" fill="${color}" />
+                    </svg>`;
+
+                    pawFollower.appendChild(trailPaw);
+                    trail.push({ element: trailPaw, timestamp: Date.now() });
+
+                    // Fade out and remove after delay (longer delay so trail is more visible)
+                    setTimeout(() => {
+                        trailPaw.classList.add('fading');
+                        setTimeout(() => {
+                            if (trailPaw.parentNode) {
+                                pawFollower.removeChild(trailPaw);
+                                const index = trail.findIndex(t => t.element === trailPaw);
+                                if (index > -1) trail.splice(index, 1);
+                            }
+                        }, 800);
+                    }, 2000); // Trail stays for 2 seconds before fading
+
+                    // Keep only last 20 trail points
+                    if (trail.length > 20) {
+                        const old = trail.shift();
+                        if (old.element.parentNode) {
+                            pawFollower.removeChild(old.element);
+                        }
+                    }
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                pawCursor.classList.remove('is-visible');
+            });
+
+            document.addEventListener('mouseenter', () => {
+                pawCursor.classList.add('is-visible');
+            });
+        })();
+
+        // ========== MAGICAL INTERACTIONS ==========
+
+        // Sparkle & Flour Explosions on Button Clicks
+        function createSparkles(e) {
+            const rect = e.target.getBoundingClientRect();
+            const sparklesCount = 12;
+
+            for (let i = 0; i < sparklesCount; i++) {
+                const particle = document.createElement('div');
+                const isFlour = i % 2 === 0;
+                particle.className = isFlour ? 'flour-particle' : 'sparkle-particle';
+
+                const size = isFlour ? Math.random() * 6 + 2 : Math.random() * 10 + 5;
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particle.style.position = 'fixed';
+                particle.style.left = `${e.clientX}px`;
+                particle.style.top = `${e.clientY}px`;
+
+                if (isFlour) {
+                    particle.style.background = i % 4 === 0 ? '#fce1e4' : '#fff3e0';
+                }
+
+                const tx = (Math.random() - 0.5) * 150;
+                const ty = (Math.random() - 0.5) * 150;
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => particle.remove(), 800);
+            }
+
+            // GSAP button bounce animation
+            gsap.to(e.target, {
+                scale: 0.9,
+                duration: 0.1,
+                yoyo: true,
+                repeat: 1,
+                ease: 'power1.inOut'
+            });
+        }
+
+        // Add sparkles to all whimsical buttons
+        document.querySelectorAll('.whimsical-button, .action-button, .floating-btn, .review-button').forEach(button => {
+            button.addEventListener('click', createSparkles);
+        });
+
+        // Sheltie Sightings - Random Walks
+        (function() {
+            const sightingsContainer = document.getElementById('sheltieSightings');
+
+            function createSheltie() {
+                const direction = Math.random() > 0.5 ? 1 : -1;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'sighting-wrapper';
+
+                wrapper.innerHTML = `
+                    <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; fill: #2e1a47;">
+                        <ellipse cx="100" cy="80" rx="50" ry="30" />
+                        <ellipse cx="130" cy="70" rx="30" ry="25" />
+                        <ellipse cx="70" cy="95" rx="8" ry="20" />
+                        <ellipse cx="90" cy="95" rx="8" ry="20" />
+                        <ellipse cx="110" cy="95" rx="8" ry="20" />
+                        <ellipse cx="130" cy="95" rx="8" ry="20" />
+                        <path d="M130 50 L140 30 L150 35 L145 55 Z" />
+                        <path d="M145 50 L155 30 L165 35 L160 55 Z" />
+                        <circle cx="145" cy="60" r="3" fill="white" />
+                        <ellipse cx="160" cy="75" rx="15" ry="8" />
+                    </svg>
+                `;
+
+                if (direction === -1) {
+                    wrapper.style.transform = 'scaleX(-1)';
+                }
+
+                wrapper.style.left = direction === 1 ? '-10vw' : '110vw';
+                wrapper.style.animation = 'sheltieWalk 8s linear';
+
+                const endPosition = direction === 1 ? '110vw' : '-10vw';
+                wrapper.animate([
+                    { left: wrapper.style.left },
+                    { left: endPosition }
+                ], {
+                    duration: 8000,
+                    easing: 'linear'
+                });
+
+                sightingsContainer.appendChild(wrapper);
+
+                setTimeout(() => wrapper.remove(), 8000);
+            }
+
+            function triggerSighting() {
+                if (Math.random() > 0.7) {
+                    createSheltie();
+                }
+            }
+
+            setInterval(triggerSighting, 15000);
+            // Trigger one sighting after 3 seconds
+            setTimeout(triggerSighting, 3000);
+        })();
+
+        // Floating Action Button Visibility on Scroll
+        (function() {
+            const floatingActions = document.getElementById('floatingActions');
+            const backToTopBtn = document.getElementById('backToTop');
+
+            function toggleVisibility() {
+                if (window.pageYOffset > 500) {
+                    floatingActions.classList.add('is-visible');
+                } else {
+                    floatingActions.classList.remove('is-visible');
+                }
+            }
+
+            window.addEventListener('scroll', toggleVisibility);
+
+            backToTopBtn.addEventListener('click', (e) => {
+                createSparkles(e);
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        })();
+    </script>
+
+    <!-- Footer with Pawprint Rail -->
+    <footer class="footer" style="background: linear-gradient(135deg, rgba(232, 223, 245, 0.3) 0%, rgba(252, 225, 228, 0.3) 100%); backdrop-filter: blur(10px); border-top: 2px solid rgba(232, 223, 245, 0.3); padding: 2rem 3rem; margin-top: 4rem; text-align: center;">
+        <div class="footer-pawprints" style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <!-- Pawprint rail with decreasing opacity -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8dff5" opacity="0.5">
+                <circle cx="12" cy="14" r="3.5" />
+                <circle cx="8" cy="8" r="2.5" />
+                <circle cx="12" cy="6" r="2.5" />
+                <circle cx="16" cy="8" r="2.5" />
+            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8dff5" opacity="0.42">
+                <circle cx="12" cy="14" r="3.5" />
+                <circle cx="8" cy="8" r="2.5" />
+                <circle cx="12" cy="6" r="2.5" />
+                <circle cx="16" cy="8" r="2.5" />
+            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8dff5" opacity="0.34">
+                <circle cx="12" cy="14" r="3.5" />
+                <circle cx="8" cy="8" r="2.5" />
+                <circle cx="12" cy="6" r="2.5" />
+                <circle cx="16" cy="8" r="2.5" />
+            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8dff5" opacity="0.26">
+                <circle cx="12" cy="14" r="3.5" />
+                <circle cx="8" cy="8" r="2.5" />
+                <circle cx="12" cy="6" r="2.5" />
+                <circle cx="16" cy="8" r="2.5" />
+            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8dff5" opacity="0.18">
+                <circle cx="12" cy="14" r="3.5" />
+                <circle cx="8" cy="8" r="2.5" />
+                <circle cx="12" cy="6" r="2.5" />
+                <circle cx="16" cy="8" r="2.5" />
+            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#e8dff5" opacity="0.10">
+                <circle cx="12" cy="14" r="3.5" />
+                <circle cx="8" cy="8" r="2.5" />
+                <circle cx="12" cy="6" r="2.5" />
+                <circle cx="16" cy="8" r="2.5" />
+            </svg>
+        </div>
+        <p style="font-family: 'Fraunces', serif; color: #5a4668; font-size: 0.95rem; margin: 0;">
+            &copy; 2024 Sunday Brunch With Giselle. Recipes, stories, and Sheltie side-eye.
+        </p>
+    </footer>
+</body>
+</html>

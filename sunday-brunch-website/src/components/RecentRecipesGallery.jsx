@@ -1,10 +1,14 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getRecentRecipes } from '../lib/content'
 import { getRecipeRatings } from '../lib/ratings'
 import { trackRecentRecipeClick, trackSeeAllRecipesClick } from '../lib/analytics'
 import WhimsicalButton from './WhimsicalButton'
+import { createLogger } from '../lib/logger'
 import './RecentRecipesGallery.css'
+
+const logger = createLogger('RecentRecipesGallery')
 
 /**
  * RecentRecipesGallery - Display newest recipes in grid layout
@@ -39,7 +43,7 @@ function RecentRecipesGallery({ limit = 8 }) {
                 setRecipes(enrichedRecipes)
                 setLoading(false)
             } catch (error) {
-                console.error('Error loading recent recipes:', error)
+                logger.error('Error loading recent recipes', error)
                 setLoading(false)
             }
         }
@@ -97,12 +101,8 @@ function RecentRecipesGallery({ limit = 8 }) {
                         <div className="book-info">
                             <div className="book-title">{recipe.title}</div>
                             <div className="book-meta">
-                                {recipe.averageRating > 0 && (
-                                    <span>⭐ {recipe.averageRating.toFixed(1)}</span>
-                                )}
-                                {recipe.times?.total && (
-                                    <span>⏱️ {recipe.times.total}</span>
-                                )}
+                                <span>⭐ {recipe.averageRating > 0 ? recipe.averageRating.toFixed(1) : 'New'}</span>
+                                <span>⏱️ {recipe.times?.total || '--'}</span>
                             </div>
                         </div>
                     </Link>
@@ -121,3 +121,7 @@ function RecentRecipesGallery({ limit = 8 }) {
 }
 
 export default RecentRecipesGallery
+
+RecentRecipesGallery.propTypes = {
+    limit: PropTypes.number,
+};

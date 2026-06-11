@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackAudio } from '../lib/analytics';
+import { createLogger } from '../lib/logger';
 import './AudioPlayer.css';
+
+const logger = createLogger('AudioPlayer');
 
 /**
  * An alchemical frequency tuner for listening to Sunday Brunch.
@@ -40,7 +44,7 @@ const AudioPlayer = ({ title, audioUrl, transcript, context }) => {
             audioRef.current.pause();
         } else {
             audioRef.current.play().catch(e => {
-                console.error("Playback failed:", e);
+                logger.error("Playback failed:", e);
                 setError(true);
             });
         }
@@ -135,6 +139,13 @@ const AudioPlayer = ({ title, audioUrl, transcript, context }) => {
             </details>
         </div>
     );
+};
+
+AudioPlayer.propTypes = {
+    title: PropTypes.string.isRequired,
+    audioUrl: PropTypes.string.isRequired,
+    transcript: PropTypes.string,
+    context: PropTypes.string,
 };
 
 export default AudioPlayer;

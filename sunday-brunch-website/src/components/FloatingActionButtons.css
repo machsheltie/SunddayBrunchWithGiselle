@@ -1,101 +1,54 @@
+/* Floating Action Buttons - Matches preview-magical.html lines 631-670 */
 .floating-actions {
     position: fixed;
-    bottom: var(--space-8);
-    right: var(--space-8);
-    z-index: var(--z-overlay);
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none;
-}
-
-.hubbub-toggle {
-    background: var(--glass-bg);
-}
-
-.hubbub-toggle.is-active {
-    background: var(--pale-buttercream);
-    box-shadow: 0 0 15px var(--soft-sakura);
-    border-color: var(--soft-sakura);
-}
-
-.hubbub-icon {
-    font-size: 1.5rem;
+    transition: all 0.3s ease;
 }
 
 .floating-actions.is-visible {
     opacity: 1;
     transform: translateY(0);
-    pointer-events: all;
 }
 
 .floating-btn {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    border: 2px solid var(--glass-border);
-    border-radius: var(--radius-full);
-    padding: var(--space-3) var(--space-6);
-    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(232, 223, 245, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(155, 122, 184, 0.3);
     display: flex;
     align-items: center;
-    gap: var(--space-3);
-    box-shadow: var(--shadow-lg);
+    justify-content: center;
+    cursor: pointer;
     transition: all 0.3s ease;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 }
 
 .floating-btn:hover {
-    transform: scale(1.05) translateY(-5px);
-    background: var(--soft-sakura);
-    border-color: var(--pastel-lavender);
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(155, 122, 184, 0.4);
 }
 
-.sheltie-silhouette {
-    width: 40px;
-    height: auto;
-    transform: rotate(-10deg);
-    transition: transform 0.3s ease;
+.floating-btn svg {
+    width: 30px;
+    height: 30px;
+    fill: #2e1a47;
 }
 
-.floating-btn:hover .sheltie-silhouette {
-    transform: rotate(0deg) scale(1.1);
+.hubbub-icon {
+    font-size: 1.5rem;
+    line-height: 1;
 }
 
-.btn-label {
-    font-family: var(--font-display);
-    font-size: var(--text-sm);
-    color: var(--midnight-lavender);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-}
-
-/* Sparkle and flour particle animations */
-.sparkle {
-    position: absolute;
-    pointer-events: none;
-    z-index: 10;
-    animation: sparkle-fade 0.6s ease-out forwards;
-}
-
-@keyframes sparkle-fade {
-    0% {
-        transform: translate(0, 0) scale(0) rotate(0deg);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(180deg);
-        opacity: 0;
-    }
-}
-
-.flour-particle {
-    position: absolute;
-    pointer-events: none;
-    z-index: 10;
-    animation: sparkle-fade 0.8s ease-out forwards;
-}
+/* Sparkle & flour click particles live in index.css (.sparkle-particle /
+   .flour-particle) and are spawned by src/lib/sparkles.js onto document.body. */

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PawPrint } from './illustrations/Decorations';
 import './PawFollower.css';
 
-const TRAIL_LIFETIME = 30000; // 30 seconds
+const TRAIL_LIFETIME = 2000; // trail paw lingers 2s before its 0.8s exit fade (preview-magical.html)
 
 const PawFollower = () => {
     const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -38,6 +38,7 @@ const PawFollower = () => {
                 const colors = ['rgba(252, 225, 228, 0.4)', 'rgba(232, 223, 245, 0.4)', 'rgba(223, 240, 234, 0.4)'];
                 const newPoint = {
                     id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, // Unique key with timestamp + random string
+                    createdAt: Date.now(),
                     x,
                     y,
                     rotation: Math.random() * 30 - 15, // -15 to +15 deg
@@ -74,11 +75,15 @@ const PawFollower = () => {
         };
     }, []);
 
-    // Cleanup old trail points (optional if we already slice)
+    // Retire trail points after their 2s linger; AnimatePresence then runs the 0.8s exit fade
     useEffect(() => {
         const interval = setInterval(() => {
-            setTrail(prev => prev.filter(p => Date.now() - p.id < TRAIL_LIFETIME));
-        }, 5000);
+            setTrail(prev => {
+                const now = Date.now();
+                const alive = prev.filter(p => now - p.createdAt < TRAIL_LIFETIME);
+                return alive.length === prev.length ? prev : alive;
+            });
+        }, 250);
         return () => clearInterval(interval);
     }, []);
 
@@ -96,17 +101,14 @@ const PawFollower = () => {
                     <motion.div
                         key={point.id}
                         className="trail-point"
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.2 }}
-                        transition={{
-                            animate: { duration: 0.3 },
-                            exit: { duration: 0.8, delay: 2 } // Stay 2 seconds, then fade over 800ms
-                        }}
+                        initial={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.2, transition: { duration: 0.8, ease: 'easeOut' } }}
                         style={{
-                            left: point.x,
-                            top: point.y,
-                            transform: `translate(-50%, -50%) rotate(${point.rotation}deg)`
+                            // Center the 32px paw on the spawn point without using `transform`,
+                            // which framer-motion would overwrite when animating scale on exit.
+                            left: point.x - 16,
+                            top: point.y - 16,
+                            rotate: point.rotation
                         }}
                     >
                         <PawPrint color={point.color} opacity="1" />
@@ -118,7 +120,7 @@ const PawFollower = () => {
             <motion.div
                 className={`paw-cursor ${isInside ? 'is-visible' : ''}`}
                 animate={{ x: cursorPos.x, y: cursorPos.y }}
-                transition={{ duration: 0.1, ease: 'linear' }}
+                transition={{ duration: 0 }}
                 style={{
                     position: 'fixed',
                     top: 0,

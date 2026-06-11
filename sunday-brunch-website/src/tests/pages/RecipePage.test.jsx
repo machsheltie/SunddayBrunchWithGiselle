@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import { TestMemoryRouter } from '../utils/test-router'
 import RecipePage from '../../pages/RecipePage'
 import { getRecipeBySlug } from '../../lib/content'
 import { applyMeta, applyRecipeSchema } from '../../lib/seo'
@@ -47,11 +48,11 @@ describe('RecipePage Component', () => {
 
     const renderWithRouter = (slug = 'chocolate-cake') => {
         return render(
-            <MemoryRouter initialEntries={[`/recipes/${slug}`]}>
+            <TestMemoryRouter initialEntries={[`/recipes/${slug}`]}>
                 <Routes>
                     <Route path="/recipes/:slug" element={<RecipePage />} />
                 </Routes>
-            </MemoryRouter>
+            </TestMemoryRouter>
         )
     }
 
@@ -288,11 +289,11 @@ describe('RecipePage Component', () => {
         it('should fetch different recipe when slug changes', async () => {
             // Arrange - First render with chocolate-cake
             const { unmount } = render(
-                <MemoryRouter initialEntries={['/recipes/chocolate-cake']}>
+                <TestMemoryRouter initialEntries={['/recipes/chocolate-cake']}>
                     <Routes>
                         <Route path="/recipes/:slug" element={<RecipePage />} />
                     </Routes>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Wait for initial load
@@ -313,11 +314,11 @@ describe('RecipePage Component', () => {
             vi.clearAllMocks()
 
             render(
-                <MemoryRouter initialEntries={['/recipes/vanilla-cake']}>
+                <TestMemoryRouter initialEntries={['/recipes/vanilla-cake']}>
                     <Routes>
                         <Route path="/recipes/:slug" element={<RecipePage />} />
                     </Routes>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert
@@ -374,11 +375,11 @@ describe('RecipePage Component', () => {
         it('should reset to loading state when slug changes', async () => {
             // Arrange - First render
             const { unmount } = render(
-                <MemoryRouter initialEntries={['/recipes/chocolate-cake']}>
+                <TestMemoryRouter initialEntries={['/recipes/chocolate-cake']}>
                     <Routes>
                         <Route path="/recipes/:slug" element={<RecipePage />} />
                     </Routes>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Wait for initial load
@@ -393,11 +394,11 @@ describe('RecipePage Component', () => {
             getRecipeBySlug.mockReturnValue(new Promise(() => {}))
 
             render(
-                <MemoryRouter initialEntries={['/recipes/vanilla-cake']}>
+                <TestMemoryRouter initialEntries={['/recipes/vanilla-cake']}>
                     <Routes>
                         <Route path="/recipes/:slug" element={<RecipePage />} />
                     </Routes>
-                </MemoryRouter>
+                </TestMemoryRouter>
             )
 
             // Assert - Should show loading state

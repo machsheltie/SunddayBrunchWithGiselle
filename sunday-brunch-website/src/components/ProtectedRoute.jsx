@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import WhimsicalLoader from './WhimsicalLoader'
@@ -31,3 +32,7 @@ export default function ProtectedRoute({ children }) {
   // User is authenticated, render the protected content
   return children
 }
+
+ProtectedRoute.propTypes = {
+    children: PropTypes.node.isRequired,
+};

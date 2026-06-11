@@ -6,7 +6,10 @@ import SearchBar from '../components/search/SearchBar'
 import RecipeFilters from '../components/search/RecipeFilters'
 import SearchResults from '../components/search/SearchResults'
 import useRecipeSearch from '../hooks/useRecipeSearch'
+import { createLogger } from '../lib/logger'
 import './RecipeIndexPageEnhanced.css'
+
+const logger = createLogger('RecipeIndex')
 
 function RecipeIndexPageEnhanced() {
   const [allRecipes, setAllRecipes] = useState(null)
@@ -39,7 +42,7 @@ function RecipeIndexPageEnhanced() {
         setLoading(false)
       })
       .catch(err => {
-        console.error('Failed to load recipes:', err)
+        logger.error('Failed to load recipes', err)
         setError('Unable to load recipes. Please try refreshing the page.')
         setLoading(false)
       })

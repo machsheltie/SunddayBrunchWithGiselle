@@ -21,6 +21,35 @@ export const PawPrint = ({ color = "var(--pastel-sky)", className, style, opacit
     </svg>
 );
 
+/* Ambient whimsy-layer paw — preview-magical.html's 4-ellipse design
+   (full-opacity fill; the layer's own opacity does the fading) */
+export const WhimsyPaw = ({ color = "#e8dff5", className, style }) => (
+    <svg viewBox="0 0 100 100" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="70" rx="20" ry="25" fill={color} />
+        <ellipse cx="30" cy="40" rx="12" ry="15" fill={color} />
+        <ellipse cx="50" cy="35" rx="12" ry="15" fill={color} />
+        <ellipse cx="70" cy="40" rx="12" ry="15" fill={color} />
+    </svg>
+);
+
+/* Walking sheltie for SheltieSightings — preview-magical.html's detailed
+   silhouette (body, head, four legs, ears, eye, tail) */
+export const SheltieWalking = ({ color = "#2e1a47", className, style }) => (
+    <svg viewBox="0 0 200 150" className={className} style={style} xmlns="http://www.w3.org/2000/svg" fill={color}>
+        <title>A Sheltie trots past</title>
+        <ellipse cx="100" cy="80" rx="50" ry="30" />
+        <ellipse cx="130" cy="70" rx="30" ry="25" />
+        <ellipse cx="70" cy="95" rx="8" ry="20" />
+        <ellipse cx="90" cy="95" rx="8" ry="20" />
+        <ellipse cx="110" cy="95" rx="8" ry="20" />
+        <ellipse cx="130" cy="95" rx="8" ry="20" />
+        <path d="M130 50 L140 30 L150 35 L145 55 Z" />
+        <path d="M145 50 L155 30 L165 35 L160 55 Z" />
+        <circle cx="145" cy="60" r="3" fill="white" />
+        <ellipse cx="160" cy="75" rx="15" ry="8" />
+    </svg>
+);
+
 export const WhiskIcon = ({ className }) => (
     <svg viewBox="0 0 50 100" className={className} xmlns="http://www.w3.org/2000/svg">
         <path d="M25 60 L25 90 Q25 95 20 95 L30 95 Q25 95 25 90" stroke="var(--midnight-lavender)" strokeWidth="4" fill="none" strokeLinecap="round" />

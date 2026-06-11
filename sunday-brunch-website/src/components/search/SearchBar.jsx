@@ -130,9 +130,4 @@ SearchBar.propTypes = {
   debounceMs: PropTypes.number
 }
 
-SearchBar.defaultProps = {
-  placeholder: 'Search recipes... (Press / to focus)',
-  debounceMs: 0
-}
-
 export default SearchBar

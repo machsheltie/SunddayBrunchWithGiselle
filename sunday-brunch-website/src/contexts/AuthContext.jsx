@@ -23,6 +23,9 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react'
 import { supabase, isSupabaseConfigured } from '../lib/supabase'
 import { useRateLimit } from '../hooks/useRateLimit'
+import { createLogger } from '../lib/logger'
+
+const logger = createLogger('Auth')
 
 export const AuthContext = createContext({
   user: null,
@@ -55,7 +58,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (!configured) {
       setLoading(false)
-      console.warn('Supabase not configured. Authentication features disabled.')
+      logger.warn('Supabase not configured. Authentication features disabled.')
       return
     }
 
@@ -114,7 +117,7 @@ export function AuthProvider({ children }) {
 
         return { user: data.user, session: data.session, error: null }
       } catch (error) {
-        console.error('Sign up error:', error)
+        logger.error('Sign up error:', error)
         return { user: null, session: null, error }
       }
     },
@@ -153,7 +156,7 @@ export function AuthProvider({ children }) {
 
         return { user: data.user, session: data.session, error: null }
       } catch (error) {
-        console.error('Sign in error:', error)
+        logger.error('Sign in error:', error)
         return { user: null, session: null, error }
       }
     },
@@ -174,7 +177,7 @@ export function AuthProvider({ children }) {
       if (error) throw error
       return { error: null }
     } catch (error) {
-      console.error('Sign out error:', error)
+      logger.error('Sign out error:', error)
       return { error }
     }
   }, [configured])
@@ -202,7 +205,7 @@ export function AuthProvider({ children }) {
 
         return { error: null }
       } catch (error) {
-        console.error('Reset password error:', error)
+        logger.error('Reset password error:', error)
         return { error }
       }
     },
@@ -229,7 +232,7 @@ export function AuthProvider({ children }) {
 
         return { user: data.user, error: null }
       } catch (error) {
-        console.error('Update profile error:', error)
+        logger.error('Update profile error:', error)
         return { user: null, error }
       }
     },

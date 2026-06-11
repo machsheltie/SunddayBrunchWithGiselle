@@ -16,6 +16,58 @@ import { createLogger } from './logger'
 const logger = createLogger('Ratings')
 
 /**
+ * Database availability cache
+ * Prevents repeated failed requests when database tables don't exist
+ */
+let dbAvailabilityCache = null
+let dbAvailabilityChecked = false
+
+/**
+ * Reset database availability cache (for testing purposes)
+ * @internal
+ */
+export function _resetDbAvailabilityCache() {
+  dbAvailabilityCache = null
+  dbAvailabilityChecked = false
+}
+
+/**
+ * Check if the ratings database tables are available
+ *
+ * Performs a lightweight query to check if the required tables exist.
+ * Caches the result to avoid repeated failed requests.
+ *
+ * @returns {Promise<boolean>} True if database is available, false otherwise
+ */
+async function isDatabaseAvailable() {
+  // Return cached result if already checked
+  if (dbAvailabilityChecked) {
+    return dbAvailabilityCache
+  }
+
+  try {
+    // Try a lightweight query to check if tables exist
+    const { error } = await supabase
+      .from('recipe_ratings')
+      .select('recipe_slug')
+      .limit(1)
+
+    // If no error or only "no rows" error, database is available
+    if (!error || error.code === 'PGRST116') {
+      dbAvailabilityCache = true
+    } else {
+      // Any other error means tables don't exist or aren't accessible
+      dbAvailabilityCache = false
+    }
+  } catch (error) {
+    dbAvailabilityCache = false
+  }
+
+  dbAvailabilityChecked = true
+  return dbAvailabilityCache
+}
+
+/**
  * Submit or update a rating for a recipe
  *
  * Uses upsert to handle both new ratings and updates to existing ratings.
@@ -146,6 +198,20 @@ export async function getUserRating(recipeSlug) {
  */
 export async function getRecipeRatings(recipeSlug) {
   try {
+    // Check database availability first - skip request if unavailable
+    const dbAvailable = await isDatabaseAvailable()
+    if (!dbAvailable) {
+      // Return fallback data without making HTTP request
+      return {
+        data: {
+          recipe_slug: recipeSlug,
+          average_rating: 0,
+          rating_count: 0
+        },
+        error: null
+      }
+    }
+
     // Query the recipe_ratings materialized view
     const { data, error } = await supabase
       .from('recipe_ratings')
@@ -165,9 +231,8 @@ export async function getRecipeRatings(recipeSlug) {
       }
     }
 
-    // Handle table not found (406) or other database errors - graceful fallback
+    // Handle other errors - graceful fallback
     if (error) {
-      logger.warn('Database table not found or error fetching ratings. Using fallback.', { error, recipeSlug })
       return {
         data: {
           recipe_slug: recipeSlug,
@@ -180,7 +245,6 @@ export async function getRecipeRatings(recipeSlug) {
 
     return { data, error }
   } catch (error) {
-    logger.warn('Error in getRecipeRatings. Using fallback.', { error, recipeSlug })
     return {
       data: {
         recipe_slug: recipeSlug,
@@ -257,6 +321,13 @@ export async function deleteRating(recipeSlug) {
  */
 export async function getRecentHighRatedReviews(limit = 4, minRating = 5) {
   try {
+    // Check database availability first - skip request if unavailable
+    const dbAvailable = await isDatabaseAvailable()
+    if (!dbAvailable) {
+      // Return empty array without making HTTP request
+      return []
+    }
+
     // Fetch high-rated reviews with comments
     const { data: reviews, error } = await supabase
       .from('ratings')
@@ -267,12 +338,7 @@ export async function getRecentHighRatedReviews(limit = 4, minRating = 5) {
       .limit(limit)
 
     if (error) {
-      // Handle missing table (406) or missing column (42703) gracefully
-      if (error.code === '42703' || error.code === 'PGRST204' || error.message?.includes('does not exist')) {
-        logger.warn('Database table/column not found. Using fallback testimonials.', { error })
-        return []
-      }
-      logger.error('Error fetching reviews', error)
+      // Return empty array on error (no logging needed)
       return []
     }
 
@@ -297,7 +363,6 @@ export async function getRecentHighRatedReviews(limit = 4, minRating = 5) {
     // Remove any reviews where recipe enrichment failed
     return enriched.filter(r => r.recipeSlug)
   } catch (error) {
-    logger.warn('Error in getRecentHighRatedReviews. Using fallback testimonials.', error)
     return []
   }
 }

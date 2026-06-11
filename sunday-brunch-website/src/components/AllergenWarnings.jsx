@@ -57,3 +57,7 @@ AllergenWarnings.propTypes = {
 }
 
 export default AllergenWarnings
+
+AllergenWarnings.propTypes = {
+    allergens: PropTypes.arrayOf(PropTypes.string).isRequired,
+};

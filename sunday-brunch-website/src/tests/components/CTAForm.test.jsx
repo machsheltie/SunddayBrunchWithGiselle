@@ -31,9 +31,9 @@ describe('CTAForm Component', () => {
 
             // Assert
             expect(screen.getByText('Stay in the loop')).toBeInTheDocument()
-            expect(screen.getByText('Recipes, Sunday letters, early drops.')).toBeInTheDocument()
-            expect(screen.getByPlaceholderText('you@example.com')).toBeInTheDocument()
-            expect(screen.getByRole('button', { name: /get updates/i })).toBeInTheDocument()
+            expect(screen.getByText('Join our cozy community of bakers and storytellers')).toBeInTheDocument()
+            expect(screen.getByPlaceholderText('your@email.com')).toBeInTheDocument()
+            expect(screen.getByRole('button', { name: /subscribe/i })).toBeInTheDocument()
         })
 
         it('should render with custom headline and subcopy', () => {
@@ -53,7 +53,7 @@ describe('CTAForm Component', () => {
         it('should validate email before submission', async () => {
             // Arrange
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
+            const emailInput = screen.getByPlaceholderText('your@email.com')
             const form = emailInput.closest('form')
 
             // Act - Submit without email (bypass HTML5 validation)
@@ -70,7 +70,7 @@ describe('CTAForm Component', () => {
         it('should validate email format', async () => {
             // Arrange
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
+            const emailInput = screen.getByPlaceholderText('your@email.com')
             const form = emailInput.closest('form')
 
             // Act - Enter invalid email (no @ symbol)
@@ -88,8 +88,8 @@ describe('CTAForm Component', () => {
             // Arrange
             subscribeToNewsletter.mockResolvedValue({ success: true })
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
-            const submitButton = screen.getByRole('button', { name: /get updates/i })
+            const emailInput = screen.getByPlaceholderText('your@email.com')
+            const submitButton = screen.getByRole('button', { name: /subscribe/i })
 
             // Act
             await userEvent.type(emailInput, 'test@example.com')
@@ -98,7 +98,7 @@ describe('CTAForm Component', () => {
             // Assert
             await waitFor(() => {
                 expect(subscribeToNewsletter).toHaveBeenCalledWith('test@example.com')
-                expect(screen.getByText(/you are in! check your email for confirmation/i)).toBeInTheDocument()
+                expect(screen.getByText(/thank you.*subscribed.*check your email/i)).toBeInTheDocument()
                 expect(trackEvent).toHaveBeenCalledWith('cta_subscribe', { status: 'success' })
             })
         })
@@ -107,8 +107,8 @@ describe('CTAForm Component', () => {
             // Arrange
             subscribeToNewsletter.mockResolvedValue({ success: true })
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
-            const submitButton = screen.getByRole('button', { name: /get updates/i })
+            const emailInput = screen.getByPlaceholderText('your@email.com')
+            const submitButton = screen.getByRole('button', { name: /subscribe/i })
 
             // Act
             await userEvent.type(emailInput, 'test@example.com')
@@ -125,8 +125,8 @@ describe('CTAForm Component', () => {
             const errorMessage = 'Subscription failed'
             subscribeToNewsletter.mockResolvedValue({ success: false, error: errorMessage })
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
-            const submitButton = screen.getByRole('button', { name: /get updates/i })
+            const emailInput = screen.getByPlaceholderText('your@email.com')
+            const submitButton = screen.getByRole('button', { name: /subscribe/i })
 
             // Act
             await userEvent.type(emailInput, 'test@example.com')
@@ -146,8 +146,8 @@ describe('CTAForm Component', () => {
             // Arrange
             subscribeToNewsletter.mockRejectedValue(new Error('Network error'))
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
-            const submitButton = screen.getByRole('button', { name: /get updates/i })
+            const emailInput = screen.getByPlaceholderText('your@email.com')
+            const submitButton = screen.getByRole('button', { name: /subscribe/i })
 
             // Act
             await userEvent.type(emailInput, 'test@example.com')
@@ -163,11 +163,11 @@ describe('CTAForm Component', () => {
             // Arrange - Use longer delay to ensure loading state is visible
             subscribeToNewsletter.mockImplementation(() => new Promise(resolve => setTimeout(() => resolve({ success: true }), 2000)))
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
+            const emailInput = screen.getByPlaceholderText('your@email.com')
 
             // Act
             await userEvent.type(emailInput, 'test@example.com')
-            fireEvent.click(screen.getByRole('button', { name: /get updates/i }))
+            fireEvent.click(screen.getByRole('button', { name: /subscribe/i }))
 
             // Assert - Check loading text and disabled input
             await waitFor(() => {
@@ -180,7 +180,7 @@ describe('CTAForm Component', () => {
         it('should have proper accessibility attributes', () => {
             // Act
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
+            const emailInput = screen.getByPlaceholderText('your@email.com')
 
             // Assert
             expect(emailInput).toHaveAttribute('aria-invalid', 'false')
@@ -370,8 +370,8 @@ describe('CTAForm Component', () => {
             // Arrange
             subscribeToNewsletter.mockResolvedValue({ success: false, error: 'Error message' })
             render(<CTAForm />)
-            const emailInput = screen.getByPlaceholderText('you@example.com')
-            const submitButton = screen.getByRole('button', { name: /get updates/i })
+            const emailInput = screen.getByPlaceholderText('your@email.com')
+            const submitButton = screen.getByRole('button', { name: /subscribe/i })
 
             // Act
             await userEvent.type(emailInput, 'test@example.com')

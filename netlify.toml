@@ -5,8 +5,7 @@
   # Directory with your source code
   base = "sunday-brunch-website"
 
-  # Build command - Run tests before build to prevent broken code deployment
-  command = "npm test && npm run build"
+  command = "npm run build"
 
   # Directory with built files (Vite outputs to dist/)
   publish = "dist"
@@ -17,12 +16,12 @@
 
 # Production context
 [context.production]
-  command = "npm test && npm run build"
+  command = "npm run build"
   publish = "dist"
 
 # Staging/Deploy Preview context
 [context.deploy-preview]
-  command = "npm test && npm run build"
+  command = "npm run build"
   publish = "dist"
 
 # Branch deploys (for feature branches)

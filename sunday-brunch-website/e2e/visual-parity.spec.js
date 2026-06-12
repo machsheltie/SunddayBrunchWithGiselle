@@ -24,7 +24,9 @@ const ambientMasks = (page) => [
     page.locator('.paw-follower-layer, [class*="paw-follower"]'),
 ]
 
-const SCREENSHOT_OPTS = { animations: 'disabled', maxDiffPixelRatio: 0.02 }
+// Long timeout: the sanctuary/expanded captures are several thousand pixels
+// tall and need two consecutive identical shots to stabilize
+const SCREENSHOT_OPTS = { animations: 'disabled', maxDiffPixelRatio: 0.02, timeout: 30000 }
 
 async function settle(page) {
     await page.goto('/')

@@ -39,6 +39,14 @@
     {
       "id": "equipment-art-007-whisk-001",
       "name": "balloon whisk"
+    },
+    {
+      "id": "equipment-art-007-bowls-001",
+      "name": "2 medium mixing bowls"
+    },
+    {
+      "id": "equipment-art-007-spatula-001",
+      "name": "rubber spatula"
     }
   ],
   "ingredientGroups": [
@@ -53,10 +61,34 @@
           "ingredient": "all-purpose flour"
         },
         {
+          "id": "ingredient-art-007-baking-powder-001",
+          "quantity": 2,
+          "unit": "teaspoons",
+          "ingredient": "baking powder"
+        },
+        {
+          "id": "ingredient-art-007-salt-001",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "fine sea salt"
+        },
+        {
           "id": "ingredient-art-007-ricotta-001",
           "quantity": 0.75,
           "unit": "cup",
           "ingredient": "whole-milk ricotta"
+        },
+        {
+          "id": "ingredient-art-007-eggs-001",
+          "quantity": 2,
+          "unit": "large",
+          "ingredient": "eggs"
+        },
+        {
+          "id": "ingredient-art-007-milk-001",
+          "quantity": 0.5,
+          "unit": "cup",
+          "ingredient": "whole milk"
         },
         {
           "id": "ingredient-art-007-lemon-001",
@@ -75,7 +107,7 @@
         {
           "id": "instruction-step-art-007-001",
           "order": 1,
-          "instruction": "Whisk the dry ingredients, then fold in the ricotta mixture until just combined."
+          "instruction": "Whisk the all-purpose flour, baking powder, and fine sea salt; separately whisk the whole-milk ricotta, eggs, whole milk, and fresh lemon zest, then fold the mixtures together until just combined."
         },
         {
           "id": "instruction-step-art-007-002",
@@ -122,7 +154,7 @@
   ],
   "storage": {
     "method": "Refrigerate cooled pancakes in an airtight container.",
-    "maximumDuration": "P3D",
+    "maximumDuration": "P5D",
     "reheating": "Warm in a 350 F oven until heated through."
   },
   "media": {

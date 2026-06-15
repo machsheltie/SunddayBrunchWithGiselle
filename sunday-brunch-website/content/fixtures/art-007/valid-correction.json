@@ -19,8 +19,8 @@
   "subjectId": "recipe-art-007-001",
   "affectedVersion": 1,
   "severity": "S2",
-  "rationale": "The original storage guidance overstated the safe refrigerated holding period.",
-  "containment": "Publication of the affected recipe was paused while the storage guidance was reviewed.",
+  "rationale": "Recipe version 1 overstated the safe refrigerated holding period as five days.",
+  "containment": "Publication of recipe version 1 was paused while the storage guidance was reviewed.",
   "correctedVersion": 2,
   "changedFields": [
     {
@@ -38,7 +38,7 @@
     {
       "id": "closure-art-007-001",
       "type": "editorial-verification",
-      "result": "Version 2 displays the three-day storage limit."
+      "result": "Corrected recipe version 2 records storage.maximumDuration as P3D."
     }
   ],
   "preventionAction": {

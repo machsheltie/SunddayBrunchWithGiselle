@@ -1,0 +1,92 @@
+{
+    "artifactId": "ART-007",
+    "validatorVersion": "1.0.0",
+    "executedAt": "2026-06-15T20:49:22.541Z",
+    "command": "npm run validate:content",
+    "schemaVersion": "CONTENT-MODEL-2026-06-12.1",
+    "results": [
+        {
+            "id": "valid-recipe",
+            "name": "Valid recipe returns a successful validation result",
+            "passed": true,
+            "expected": {
+                "valid": true,
+                "errors": []
+            },
+            "actual": {
+                "valid": true,
+                "errors": []
+            }
+        },
+        {
+            "id": "valid-episode",
+            "name": "Valid episode returns a successful validation result",
+            "passed": true,
+            "expected": {
+                "valid": true,
+                "errors": []
+            },
+            "actual": {
+                "valid": true,
+                "errors": []
+            }
+        },
+        {
+            "id": "valid-correction",
+            "name": "Valid correction returns a successful validation result",
+            "passed": true,
+            "expected": {
+                "valid": true,
+                "errors": []
+            },
+            "actual": {
+                "valid": true,
+                "errors": []
+            }
+        },
+        {
+            "id": "invalid-unknown-field",
+            "name": "Unknown popularityScore field is rejected",
+            "passed": true,
+            "expected": {
+                "valid": false,
+                "errors": [
+                    "Unknown field: popularityScore"
+                ]
+            },
+            "actual": {
+                "valid": false,
+                "errors": [
+                    "Unknown field: popularityScore"
+                ]
+            }
+        },
+        {
+            "id": "invalid-reserved-record",
+            "name": "Reserved public-review record type is rejected",
+            "passed": true,
+            "expected": {
+                "valid": false,
+                "errors": [
+                    "Reserved record type is inactive: public-review"
+                ]
+            },
+            "actual": {
+                "valid": false,
+                "errors": [
+                    "Reserved record type is inactive: public-review"
+                ]
+            }
+        },
+        {
+            "id": "projection-writeback",
+            "name": "Website projection source cannot write canonical content",
+            "passed": true,
+            "expected": {
+                "error": "Projection sources cannot write canonical content"
+            },
+            "error": "Projection sources cannot write canonical content"
+        }
+    ],
+    "passed": true
+}

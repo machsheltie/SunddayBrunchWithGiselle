@@ -1,0 +1,16 @@
+{
+  "id": "FIXTURE-BAD-002",
+  "type": "public-review",
+  "status": "draft",
+  "version": 1,
+  "createdAt": "2026-06-12T00:00:00Z",
+  "updatedAt": "2026-06-12T00:00:00Z",
+  "createdBy": "PERSON-anonymous",
+  "updatedBy": "PERSON-anonymous",
+  "ownerId": "PERSON-stacey",
+  "sourceRefs": [],
+  "revisionNote": "ART-007 Test 5 fixture — reserved type: public-review",
+  "subjectId": "REC-001",
+  "rating": 5,
+  "comment": "This should never be stored, published, or activate any storage, workflow, page, permission, or analytics support."
+}

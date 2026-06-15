@@ -1,0 +1,45 @@
+import { describe, expect, it } from 'vitest'
+import {
+    assertCanonicalWrite,
+    validateRecord
+} from '../index'
+
+import validRecipe from '../../../content/fixtures/art-007/valid-recipe.json'
+import validEpisode from '../../../content/fixtures/art-007/valid-episode.json'
+import validCorrection from '../../../content/fixtures/art-007/valid-correction.json'
+import unknownField from '../../../content/fixtures/art-007/invalid-unknown-field.json'
+import reservedRecord from '../../../content/fixtures/art-007/invalid-reserved-record.json'
+
+describe('ART-007 content contract', () => {
+    it('validates a representative recipe', () => {
+        expect(validateRecord(validRecipe)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('validates a representative episode', () => {
+        expect(validateRecord(validEpisode)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('requires corrections to preserve prior-version traceability', () => {
+        expect(validateRecord(validCorrection)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('rejects unknown fields', () => {
+        expect(validateRecord(unknownField)).toEqual({
+            valid: false,
+            errors: ['Unknown field: popularityScore']
+        })
+    })
+
+    it('rejects reserved record types', () => {
+        expect(validateRecord(reservedRecord)).toEqual({
+            valid: false,
+            errors: ['Reserved record type is inactive: public-review']
+        })
+    })
+
+    it('rejects projection writeback', () => {
+        expect(() => assertCanonicalWrite('website-projection')).toThrow(
+            'Projection sources cannot write canonical content'
+        )
+    })
+})

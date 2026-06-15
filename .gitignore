@@ -98,3 +98,6 @@ mainsitegradient.jpg
 
 # Local Netlify folder
 .netlify
+
+# Isolated development worktrees
+.worktrees/

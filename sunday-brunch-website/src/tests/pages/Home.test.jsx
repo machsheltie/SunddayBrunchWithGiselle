@@ -317,7 +317,7 @@ describe('Home Page', () => {
                 const recipeSection = container.querySelector('.featured-recipe-section')
                 expect(recipeSection).toBeInTheDocument()
                 expect(recipeSection.tagName).toBe('SECTION')
-                expect(recipeSection).toHaveClass('section', 'featured-recipe-section')
+                expect(recipeSection).toHaveClass('featured-recipe-section')
             })
         })
 

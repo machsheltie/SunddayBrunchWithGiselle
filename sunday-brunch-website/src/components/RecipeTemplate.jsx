@@ -12,19 +12,13 @@ import { WashiTape, PawPrint } from './illustrations/Decorations'
 import PinterestButton from './PinterestButton'
 import GiselleGuestbook from './GiselleGuestbook'
 import ProcessStep from './ProcessStep'
-import IngredientAlchemist from './IngredientAlchemist'
-import ThePantry from './ThePantry'
 import { trackPrint, trackCopy } from '../lib/analytics'
 import { createSparkles } from '../lib/sparkles'
 import './RecipeTemplate.css'
 
 function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
     const [copied, setCopied] = useState(false)
-    const [checkedIngredients, setCheckedIngredients] = useState({})
     const [servingMultiplier, setServingMultiplier] = useState(1)
-    const [isPantryOpen, setIsPantryOpen] = useState(false)
-    const [isIngredientsOpen, setIsIngredientsOpen] = useState(true)
-    const [isTransmutationsOpen, setIsTransmutationsOpen] = useState(false)
 
     const recipeSchema = useMemo(() => {
         const schema = {
@@ -79,13 +73,6 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
 
         return schema;
     }, [recipe]);
-
-    const toggleIngredient = (idx) => {
-        setCheckedIngredients(prev => ({
-            ...prev,
-            [idx]: !prev[idx]
-        }))
-    }
 
     const handleCopy = (e) => {
         createSparkles(e)

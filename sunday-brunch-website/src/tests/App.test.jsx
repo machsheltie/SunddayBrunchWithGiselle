@@ -9,6 +9,10 @@ vi.mock('../lib/analytics', () => ({
     trackPageView: vi.fn()
 }))
 
+vi.mock('../contexts/AuthContext', () => ({
+    AuthProvider: ({ children }) => children
+}))
+
 // Mock window.scrollTo
 const mockScrollTo = vi.fn()
 Object.defineProperty(window, 'scrollTo', {

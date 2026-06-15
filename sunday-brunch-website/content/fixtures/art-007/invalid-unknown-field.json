@@ -1,0 +1,148 @@
+{
+  "id": "recipe-art-007-001",
+  "recordType": "recipe",
+  "version": 1,
+  "status": "review",
+  "owner": "Stacey",
+  "reviewer": "Stacey",
+  "approver": "Stacey",
+  "createdAt": "2026-06-15T12:00:00Z",
+  "updatedAt": "2026-06-15T12:00:00Z",
+  "sourceReferences": [
+    {
+      "id": "source-art-007-recipe-001",
+      "type": "test-kitchen-note",
+      "title": "Lemon Ricotta Pancake Test Kitchen Notes",
+      "locator": "ART-007/recipe/001"
+    }
+  ],
+  "slug": "lemon-ricotta-sunday-brunch-pancakes",
+  "title": "Lemon Ricotta Sunday Brunch Pancakes",
+  "summary": "Tender lemon ricotta pancakes with crisp edges for a relaxed Sunday brunch.",
+  "pillar": "PILLAR-SUNDAY-BRUNCH-RECIPES",
+  "productionStream": "STREAM-COOKING",
+  "times": {
+    "prep": "PT15M",
+    "cook": "PT25M",
+    "total": "PT40M"
+  },
+  "yield": {
+    "quantity": 4,
+    "unit": "servings"
+  },
+  "difficulty": "easy",
+  "equipment": [
+    {
+      "id": "equipment-art-007-skillet-001",
+      "name": "12-inch nonstick skillet"
+    },
+    {
+      "id": "equipment-art-007-whisk-001",
+      "name": "balloon whisk"
+    }
+  ],
+  "ingredientGroups": [
+    {
+      "id": "ingredient-group-art-007-batter-001",
+      "title": "Pancake batter",
+      "items": [
+        {
+          "id": "ingredient-art-007-flour-001",
+          "quantity": 1,
+          "unit": "cup",
+          "ingredient": "all-purpose flour"
+        },
+        {
+          "id": "ingredient-art-007-ricotta-001",
+          "quantity": 0.75,
+          "unit": "cup",
+          "ingredient": "whole-milk ricotta"
+        },
+        {
+          "id": "ingredient-art-007-lemon-001",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "fresh lemon zest"
+        }
+      ]
+    }
+  ],
+  "instructionSections": [
+    {
+      "id": "instruction-section-art-007-cook-001",
+      "title": "Mix and cook",
+      "steps": [
+        {
+          "id": "instruction-step-art-007-001",
+          "order": 1,
+          "instruction": "Whisk the dry ingredients, then fold in the ricotta mixture until just combined."
+        },
+        {
+          "id": "instruction-step-art-007-002",
+          "order": 2,
+          "instruction": "Cook quarter-cup portions in the warm skillet until golden and set through."
+        }
+      ]
+    }
+  ],
+  "allergens": [
+    "milk",
+    "wheat",
+    "eggs"
+  ],
+  "dietaryDisclosures": [
+    "Contains dairy, wheat, and eggs."
+  ],
+  "sensoryCheckpoints": [
+    {
+      "id": "sensory-art-007-batter-001",
+      "stage": "mixed batter",
+      "indicator": "The batter is thick, spoonable, and still slightly lumpy."
+    },
+    {
+      "id": "sensory-art-007-doneness-001",
+      "stage": "cooked pancake",
+      "indicator": "The center springs back lightly and the edges are golden."
+    }
+  ],
+  "substitutions": [
+    {
+      "id": "substitution-art-007-ricotta-001",
+      "from": "whole-milk ricotta",
+      "to": "full-fat cottage cheese",
+      "guidance": "Blend until smooth before measuring."
+    }
+  ],
+  "troubleshooting": [
+    {
+      "id": "troubleshooting-art-007-spread-001",
+      "issue": "Pancakes spread too quickly.",
+      "resolution": "Rest the batter for five minutes and reduce the skillet heat."
+    }
+  ],
+  "storage": {
+    "method": "Refrigerate cooled pancakes in an airtight container.",
+    "maximumDuration": "P3D",
+    "reheating": "Warm in a 350 F oven until heated through."
+  },
+  "media": {
+    "id": "media-art-007-recipe-hero-001",
+    "type": "image",
+    "source": {
+      "kind": "original-production",
+      "referenceId": "shoot-art-007-001"
+    },
+    "provenance": {
+      "createdBy": "Stacey",
+      "capturedAt": "2026-06-15T12:00:00Z",
+      "originalFileName": "lemon-ricotta-pancakes-hero.jpg"
+    },
+    "rights": {
+      "status": "cleared",
+      "rightsRecordId": "rights-art-007-recipe-001",
+      "usage": "website and owned social channels"
+    },
+    "status": "review"
+  },
+  "popularityScore": 99
+}

@@ -1,0 +1,49 @@
+{
+  "id": "correction-art-007-001",
+  "recordType": "correction",
+  "version": 1,
+  "status": "review",
+  "owner": "Stacey",
+  "reviewer": "Stacey",
+  "approver": "Stacey",
+  "createdAt": "2026-06-15T12:00:00Z",
+  "updatedAt": "2026-06-15T12:00:00Z",
+  "sourceReferences": [
+    {
+      "id": "source-art-007-correction-001",
+      "type": "test-kitchen-verification",
+      "title": "Pancake Storage Duration Verification",
+      "locator": "ART-007/correction/001"
+    }
+  ],
+  "subjectId": "recipe-art-007-001",
+  "affectedVersion": 1,
+  "severity": "S2",
+  "rationale": "The original storage guidance overstated the safe refrigerated holding period.",
+  "containment": "Publication of the affected recipe was paused while the storage guidance was reviewed.",
+  "correctedVersion": 2,
+  "changedFields": [
+    {
+      "field": "storage.maximumDuration",
+      "from": "P5D",
+      "to": "P3D"
+    }
+  ],
+  "noticeDecision": {
+    "required": true,
+    "placement": "recipe correction note",
+    "reason": "The change affects food storage guidance."
+  },
+  "closureEvidence": [
+    {
+      "id": "closure-art-007-001",
+      "type": "editorial-verification",
+      "result": "Version 2 displays the three-day storage limit."
+    }
+  ],
+  "preventionAction": {
+    "id": "prevention-art-007-001",
+    "measure": "Require test-kitchen signoff for all storage duration fields.",
+    "owner": "Stacey"
+  }
+}

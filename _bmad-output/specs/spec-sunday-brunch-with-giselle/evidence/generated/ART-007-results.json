@@ -1,7 +1,7 @@
 {
     "artifactId": "ART-007",
     "validatorVersion": "1.0.0",
-    "executedAt": "2026-06-16T09:27:26.369Z",
+    "executedAt": "2026-06-16T16:34:07.825Z",
     "command": "npm run validate:content",
     "schemaVersion": "CONTENT-MODEL-2026-06-12.1",
     "results": [
@@ -42,6 +42,23 @@
             "actual": {
                 "valid": true,
                 "errors": []
+            }
+        },
+        {
+            "id": "invalid-correction-version",
+            "name": "Correction records must advance correctedVersion beyond affectedVersion",
+            "passed": true,
+            "expected": {
+                "valid": false,
+                "errors": [
+                    "Corrected version must be greater than affected version"
+                ]
+            },
+            "actual": {
+                "valid": false,
+                "errors": [
+                    "Corrected version must be greater than affected version"
+                ]
             }
         },
         {

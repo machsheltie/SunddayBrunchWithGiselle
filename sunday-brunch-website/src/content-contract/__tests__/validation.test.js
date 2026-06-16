@@ -7,6 +7,7 @@ import {
 import validRecipe from '../../../content/fixtures/art-007/valid-recipe.json'
 import validEpisode from '../../../content/fixtures/art-007/valid-episode.json'
 import validCorrection from '../../../content/fixtures/art-007/valid-correction.json'
+import invalidCorrectionVersion from '../../../content/fixtures/art-007/invalid-correction-version.json'
 import unknownField from '../../../content/fixtures/art-007/invalid-unknown-field.json'
 import reservedRecord from '../../../content/fixtures/art-007/invalid-reserved-record.json'
 
@@ -21,6 +22,13 @@ describe('ART-007 content contract', () => {
 
     it('requires corrections to preserve prior-version traceability', () => {
         expect(validateRecord(validCorrection)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('rejects correction records that do not advance the corrected version', () => {
+        expect(validateRecord(invalidCorrectionVersion)).toEqual({
+            valid: false,
+            errors: ['Corrected version must be greater than affected version']
+        })
     })
 
     it('rejects unknown fields', () => {

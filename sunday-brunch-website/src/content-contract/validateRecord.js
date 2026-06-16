@@ -27,8 +27,10 @@ export const validateRecord = (record) => {
         .filter((field) => !definition.allowed.includes(field))
         .map((field) => `Unknown field: ${field}`)
     const correctionErrors = record.recordType === 'correction'
-        && record.affectedVersion === record.correctedVersion
-        ? ['Corrected version must differ from affected version']
+        && record.affectedVersion !== undefined
+        && record.correctedVersion !== undefined
+        && record.correctedVersion <= record.affectedVersion
+        ? ['Corrected version must be greater than affected version']
         : []
     const errors = [...missing, ...unknown, ...correctionErrors]
 

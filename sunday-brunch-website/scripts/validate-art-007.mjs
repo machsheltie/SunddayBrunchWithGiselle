@@ -114,6 +114,15 @@ const results = [
         validRecordExpected
     ),
     await validationCheck(
+        'invalid-correction-version',
+        'Correction records must advance correctedVersion beyond affectedVersion',
+        'invalid-correction-version.json',
+        {
+            valid: false,
+            errors: ['Corrected version must be greater than affected version']
+        }
+    ),
+    await validationCheck(
         'invalid-unknown-field',
         'Unknown popularityScore field is rejected',
         'invalid-unknown-field.json',

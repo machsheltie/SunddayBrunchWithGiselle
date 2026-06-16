@@ -1,9 +1,9 @@
 # ART-014 Correction Exercise Record
 
-- Status: blocked
+- Status: draft
 - Contract owner, correction coordinator, exercise operator, and approver: Stacey
 - Evidence-contract approval date: 2026-06-12
-- Blocking dependency: accepted ART-007 correction-history validation
+- ART-007 dependency: satisfied on 2026-06-16 by accepted website-scoped correction traceability validation; remaining acceptance is pending the real S1 or S2 correction exercise
 - Final acceptance: pending completed S1 or S2 tabletop exercise
 - Governing artifacts: ART-007, ART-013, `content-model.md`, and `editorial-policies.md#correction-and-revision-policy`
 
@@ -38,7 +38,7 @@ The exercise record must identify:
 | Severity and rationale | Pending |
 | Evidence and investigation | Pending |
 | Immediate containment | Pending |
-| Original version preservation | Blocked by ART-007 |
+| Original version preservation | Pending exercise evidence |
 | Corrected version and changed fields | Pending |
 | Related impact | Pending |
 | Notice decision | Pending |
@@ -48,5 +48,5 @@ The exercise record must identify:
 
 ## Acceptance Boundary
 
-Approval of this evidence contract does not prove a correction process. ART-014 remains blocked until ART-007 is accepted, then remains unaccepted until the S1 or S2 exercise is completed, history is preserved, notice and action decisions are recorded, closure evidence exists, and Stacey gives final approval.
+Approval of this evidence contract does not prove a correction process. ART-014 remains unaccepted and draft until the S1 or S2 exercise is completed, history is preserved, notice and action decisions are recorded, closure evidence exists, and Stacey gives final approval.
 

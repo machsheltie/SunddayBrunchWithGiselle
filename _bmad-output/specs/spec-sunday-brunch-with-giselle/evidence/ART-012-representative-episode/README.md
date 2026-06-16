@@ -1,9 +1,9 @@
 # ART-012 Representative Episode Package
 
-- Status: blocked
+- Status: draft
 - Contract owner, episode producer, release reviewer, and approver: Stacey
 - Evidence-contract approval date: 2026-06-12
-- Blocking dependency: accepted ART-007 executable validation
+- ART-007 dependency: satisfied on 2026-06-16 by accepted website-scoped executable validation; remaining acceptance is pending the real representative episode package
 - Final acceptance: pending representative episode and evidence
 - Governing artifacts: ART-007, ART-010, ART-011, `character-canon.md`, `content-model.md`, and `editorial-policies.md`
 
@@ -44,10 +44,10 @@ The package must identify:
 | Disclosure and accessibility review | Pending | Pending |
 | Publication metadata and release identifiers | Pending | Pending |
 | Archive, backup, rollback, and withdrawal records | Pending | Pending |
-| ART-007 executable validation | Blocked | Pending accepted ART-007 evidence |
+| ART-007 executable validation | Satisfied | ART-007 accepted evidence recorded on 2026-06-16; see `../ART-007-content-model-validation.md` |
 | Stacey final approval | Pending | Pending |
 
 ## Acceptance Boundary
 
-Approval of this evidence contract does not approve or release an episode. ART-012 remains blocked until ART-007 is accepted, then remains unaccepted until every package item has inspectable evidence, failures and revisions are preserved, and Stacey records final approval.
+Approval of this evidence contract does not approve or release an episode. ART-012 remains unaccepted and draft until every package item has inspectable evidence from a real representative episode, failures and revisions are preserved, and Stacey records final approval.
 

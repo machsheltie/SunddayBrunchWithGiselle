@@ -38,13 +38,39 @@ const isExactMatch = (actual, expected) => (
     JSON.stringify(actual) === JSON.stringify(expected)
 )
 
-const validationCheck = (id, name, actual, expected) => ({
-    id,
-    name,
-    passed: isExactMatch(actual, expected),
-    expected,
-    actual
-})
+const toErrorMessage = (error) => (
+    error instanceof Error ? error.message : String(error)
+)
+
+const validationCheck = async (id, name, fileName, expected) => {
+    try {
+        const record = await loadJsonFixture(fileName)
+        const actual = validateRecord(record)
+        const passed = isExactMatch(actual, expected)
+
+        const result = {
+            id,
+            name,
+            passed,
+            expected,
+            actual
+        }
+
+        if (!passed) {
+            result.error = 'Actual result did not match expected result'
+        }
+
+        return result
+    } catch (error) {
+        return {
+            id,
+            name,
+            passed: false,
+            expected,
+            error: toErrorMessage(error)
+        }
+    }
+}
 
 const errorCheck = (id, name, action, expectedMessage) => {
     let actualError
@@ -52,7 +78,7 @@ const errorCheck = (id, name, action, expectedMessage) => {
     try {
         action()
     } catch (error) {
-        actualError = error instanceof Error ? error.message : String(error)
+        actualError = toErrorMessage(error)
     }
 
     return {
@@ -62,52 +88,44 @@ const errorCheck = (id, name, action, expectedMessage) => {
         expected: {
             error: expectedMessage
         },
-        error: actualError ?? null
+        error: actualError ?? 'Expected error was not thrown'
     }
-}
-
-const fixtures = {
-    validRecipe: await loadJsonFixture('valid-recipe.json'),
-    validEpisode: await loadJsonFixture('valid-episode.json'),
-    validCorrection: await loadJsonFixture('valid-correction.json'),
-    invalidUnknownField: await loadJsonFixture('invalid-unknown-field.json'),
-    invalidReservedRecord: await loadJsonFixture('invalid-reserved-record.json')
 }
 
 const validRecordExpected = { valid: true, errors: [] }
 
 const results = [
-    validationCheck(
+    await validationCheck(
         'valid-recipe',
         'Valid recipe returns a successful validation result',
-        validateRecord(fixtures.validRecipe),
+        'valid-recipe.json',
         validRecordExpected
     ),
-    validationCheck(
+    await validationCheck(
         'valid-episode',
         'Valid episode returns a successful validation result',
-        validateRecord(fixtures.validEpisode),
+        'valid-episode.json',
         validRecordExpected
     ),
-    validationCheck(
+    await validationCheck(
         'valid-correction',
         'Valid correction returns a successful validation result',
-        validateRecord(fixtures.validCorrection),
+        'valid-correction.json',
         validRecordExpected
     ),
-    validationCheck(
+    await validationCheck(
         'invalid-unknown-field',
         'Unknown popularityScore field is rejected',
-        validateRecord(fixtures.invalidUnknownField),
+        'invalid-unknown-field.json',
         {
             valid: false,
             errors: ['Unknown field: popularityScore']
         }
     ),
-    validationCheck(
+    await validationCheck(
         'invalid-reserved-record',
         'Reserved public-review record type is rejected',
-        validateRecord(fixtures.invalidReservedRecord),
+        'invalid-reserved-record.json',
         {
             valid: false,
             errors: ['Reserved record type is inactive: public-review']

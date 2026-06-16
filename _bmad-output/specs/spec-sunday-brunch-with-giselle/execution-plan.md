@@ -9,7 +9,7 @@ Status values: `not-started`, `in-progress`, `blocked`, `ready-for-approval`, `a
 | WP-00 | CAP-1 | Freeze settled decisions and change control | Stacey | None | ART-001 | Ten decisions present verbatim; change rule approved | approved |
 | WP-01 | CAP-14 | Approve product direction and taxonomy | Stacey | WP-00 | ART-002 | `D-01` closed; exact wording signed; three sample items map cleanly | approved |
 | WP-02 | CAP-4 | Approve compact canon and boundaries | Stacey | WP-00 | ART-003, ART-004 | Canon version signed; blind test passes; human-only subjects accepted | approved |
-| WP-03 | CAP-15 | Select source and ratify source hierarchy and content model | Stacey | WP-01 | ART-005, ART-006, ART-007, ART-026 | `D-02` and `D-07` closed; hierarchy resolves conflicts; recipe and episode validate; unknown and reserved records are rejected | in-progress |
+| WP-03 | CAP-15 | Select source and ratify source hierarchy and content model | Stacey | WP-01 | ART-005, ART-006, ART-007, ART-026 | `D-02` and `D-07` closed; hierarchy resolves conflicts; recipe and episode validate; unknown and reserved records are rejected | approved |
 | WP-04 | CAP-16 | Ratify recipe quality standard | Stacey | WP-03 | ART-008, ART-009 | Representative recipe completes every applicable checklist item with evidence | in-progress |
 | WP-05 | CAP-17 | Ratify episode production standard | Stacey | WP-02, WP-03 | ART-010, ART-011, ART-012 | Representative episode package reaches archive state with complete traceability | in-progress |
 | WP-06 | CAP-18 | Ratify correction and revision policy | Stacey | WP-03 | ART-013, ART-014 | Tabletop S1 or S2 correction closes with preserved history and notice decision | in-progress |
@@ -53,8 +53,8 @@ Content and operations:
 - [x] Canonical source selected.
 - [x] Source-of-truth hierarchy and launch-core schema boundary approved.
 - [x] Stable IDs, relationships, states, validation obligations, and revision rules approved.
-- [ ] Unknown fields, reserved records, and projection writeback are rejected.
-- [ ] Representative recipe and episode validate without new fields.
+- [x] Unknown fields, reserved records, and projection writeback are rejected.
+- [x] Representative recipe and episode validate without new fields.
 - [x] Every launch-critical responsibility has a named assignee and explicit delegate status.
 - [ ] Least-privilege and MFA audit passes.
 - [ ] Backup inventory and jobs exist.

@@ -1,10 +1,10 @@
 # ART-007 Content-Model Validation Record
 
-- Status: ready-for-approval
+- Status: accepted
 - Contract owner, test operator, and approver: Stacey
 - Evidence-contract approval date: 2026-06-12
 - Current executable evidence recorded: 2026-06-16T09:27:26.369Z
-- Final acceptance: pending Stacey approval
+- Final acceptance: accepted by Stacey on 2026-06-16
 - Governing artifacts: website-scoped content contract in `sunday-brunch-website/src/content-contract`, validator runner `sunday-brunch-website/scripts/validate-art-007.mjs`, `content-model.md`, `source-of-truth.md`, ART-006, and ART-026
 - Generated JSON evidence: `_bmad-output/specs/spec-sunday-brunch-with-giselle/evidence/generated/ART-007-results.json`
 
@@ -57,7 +57,7 @@ Each test record must include:
 | 5 | `invalid-reserved-record` | `Reserved public-review record type is rejected` | The website-scoped contract rejects the reserved `public-review` record type. | `sunday-brunch-website/content/fixtures/art-007/invalid-reserved-record.json` | `{"valid":false,"errors":["Reserved record type is inactive: public-review"]}` | `{"valid":false,"errors":["Reserved record type is inactive: public-review"]}` | PASS |
 | 6 | `projection-writeback` | `Website projection source cannot write canonical content` | The write-boundary guard rejects a website projection source attempting canonical content writeback. | `assertCanonicalWrite('website-projection')` | `{"error":"Projection sources cannot write canonical content"}` | `{"error":"Projection sources cannot write canonical content"}` | PASS |
 
-All six website-scoped checks pass in the generated JSON evidence. This makes ART-007 ready for Stacey acceptance request; it does not mark ART-007 accepted.
+All six website-scoped checks pass in the generated JSON evidence. Stacey approved this evidence for ART-007 final acceptance on 2026-06-16.
 
 ## Superseded Historical Context
 
@@ -74,10 +74,10 @@ These limitations do not change the generated 6 / 6 PASS result, but they define
 
 ## Acceptance Boundary
 
-Approval of this evidence contract does not prove final acceptance on its own. The required executable evidence now exists above (6 / 6 PASS), but ART-007 moves to `accepted` only when Stacey records final approval.
+Approval of this evidence contract did not prove final acceptance on its own. The required executable evidence exists above (6 / 6 PASS), and Stacey recorded final approval on 2026-06-16; ART-007 is now `accepted`.
 
 ## Acceptance Decision
 
-- Result: pending Stacey approval
+- Result: accepted
 - Approver: Stacey
-- Date: _pending_
+- Date: 2026-06-16

@@ -8,6 +8,7 @@ import validRecipe from '../../../content/fixtures/art-007/valid-recipe.json'
 import validEpisode from '../../../content/fixtures/art-007/valid-episode.json'
 import validCorrection from '../../../content/fixtures/art-007/valid-correction.json'
 import invalidCorrectionVersion from '../../../content/fixtures/art-007/invalid-correction-version.json'
+import invalidCorrectionVersionEqual from '../../../content/fixtures/art-007/invalid-correction-version-equal.json'
 import unknownField from '../../../content/fixtures/art-007/invalid-unknown-field.json'
 import reservedRecord from '../../../content/fixtures/art-007/invalid-reserved-record.json'
 
@@ -26,6 +27,13 @@ describe('ART-007 content contract', () => {
 
     it('rejects correction records that do not advance the corrected version', () => {
         expect(validateRecord(invalidCorrectionVersion)).toEqual({
+            valid: false,
+            errors: ['Corrected version must be greater than affected version']
+        })
+    })
+
+    it('rejects correction records that reuse the affected version', () => {
+        expect(validateRecord(invalidCorrectionVersionEqual)).toEqual({
             valid: false,
             errors: ['Corrected version must be greater than affected version']
         })

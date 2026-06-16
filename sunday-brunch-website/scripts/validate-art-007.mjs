@@ -115,8 +115,17 @@ const results = [
     ),
     await validationCheck(
         'invalid-correction-version',
-        'Correction records must advance correctedVersion beyond affectedVersion',
+        'Correction records reject lower correctedVersion values',
         'invalid-correction-version.json',
+        {
+            valid: false,
+            errors: ['Corrected version must be greater than affected version']
+        }
+    ),
+    await validationCheck(
+        'invalid-correction-version-equal',
+        'Correction records reject unchanged correctedVersion values',
+        'invalid-correction-version-equal.json',
         {
             valid: false,
             errors: ['Corrected version must be greater than affected version']

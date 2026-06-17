@@ -21,6 +21,16 @@ function Layout({ children }) {
     const location = useLocation()
     const { user } = useAuth()
     const [authModalOpen, setAuthModalOpen] = useState(false)
+    const [showWatercolorCanvas, setShowWatercolorCanvas] = useState(false)
+
+    // Defer decorative WebGL until after first content has settled.
+    useEffect(() => {
+        const timeoutId = window.setTimeout(() => {
+            setShowWatercolorCanvas(true)
+        }, 3000)
+
+        return () => window.clearTimeout(timeoutId)
+    }, [])
 
     // Auto-open auth modal when redirected from a protected route
     useEffect(() => {
@@ -40,9 +50,13 @@ function Layout({ children }) {
     return (
         <div className="app">
             <WatercolorFilters />
-            <Suspense fallback={<div className="watercolor-canvas-placeholder" aria-hidden="true" />}>
-                <WatercolorCanvas />
-            </Suspense>
+            {showWatercolorCanvas ? (
+                <Suspense fallback={<div className="watercolor-canvas-placeholder" aria-hidden="true" />}>
+                    <WatercolorCanvas />
+                </Suspense>
+            ) : (
+                <div className="watercolor-canvas-placeholder" aria-hidden="true" />
+            )}
             <GrainOverlay />
             <WhimsyLayer />
             <SheltieSightings />

@@ -1,7 +1,7 @@
 {
     "artifactId": "ART-007",
     "validatorVersion": "1.0.0",
-    "executedAt": "2026-06-16T16:47:11.163Z",
+    "executedAt": "2026-06-17T10:29:48.692Z",
     "command": "npm run validate:content",
     "schemaVersion": "CONTENT-MODEL-2026-06-12.1",
     "results": [

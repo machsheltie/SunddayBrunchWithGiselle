@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import React from 'react';
 import { WhimsyPaw } from './illustrations/Decorations';
 import './WhimsyLayer.css';
 
@@ -10,39 +9,42 @@ import './WhimsyLayer.css';
  * so the effective drift is the constrained ±20px/±8° one — replicated here).
  */
 const WhimsyLayer = () => {
-    const layerRef = useRef(null);
-
     // Pawprint colors matching preview
     const pawColors = ['#e8dff5', '#fce1e4', '#b3d9ff', '#dff0ea'];
 
     // Blob colors/sizes matching preview's inline values (lines 1489-1494)
     const blobColors = ['rgba(252, 225, 228, 0.3)', 'rgba(232, 223, 245, 0.3)', 'rgba(179, 217, 255, 0.3)', 'rgba(223, 240, 234, 0.3)'];
     const blobSizes = [150, 200, 120, 180, 140, 160];
-
-    useEffect(() => {
-        if (!layerRef.current) return;
-
-        const items = layerRef.current.querySelectorAll('.whimsy-item');
-
-        items.forEach((el) => {
-            // Random placement + opacity - matches preview lines 2442-2448
-            // (rotation/scale are owned by the CSS drift animation, as in preview)
-            gsap.set(el, {
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: 0.1 + Math.random() * 0.2
-            });
-        });
-    }, []);
+    const pawPositions = [
+        { left: '8%', top: '18%', opacity: 0.16 },
+        { left: '24%', top: '72%', opacity: 0.22 },
+        { left: '39%', top: '28%', opacity: 0.14 },
+        { left: '58%', top: '82%', opacity: 0.2 },
+        { left: '76%', top: '24%', opacity: 0.18 },
+        { left: '91%', top: '64%', opacity: 0.13 },
+        { left: '14%', top: '48%', opacity: 0.24 },
+        { left: '67%', top: '42%', opacity: 0.17 }
+    ];
+    const blobPositions = [
+        { left: '4%', top: '62%', opacity: 0.15 },
+        { left: '19%', top: '36%', opacity: 0.22 },
+        { left: '41%', top: '68%', opacity: 0.18 },
+        { left: '66%', top: '22%', opacity: 0.2 },
+        { left: '78%', top: '72%', opacity: 0.16 },
+        { left: '88%', top: '40%', opacity: 0.24 }
+    ];
 
     return (
-        <div className="whimsy-layer" aria-hidden="true" ref={layerRef}>
+        <div className="whimsy-layer" aria-hidden="true">
             {/* 8 Pawprints - matching preview count, staggered drift delays */}
             {[...Array(8)].map((_, i) => (
                 <div
                     key={`paw-${i}`}
                     className="whimsy-item whimsy-paw"
-                    style={{ animationDelay: `${i * 2}s` }}
+                    style={{
+                        ...pawPositions[i],
+                        animationDelay: `${i * 2}s`
+                    }}
                 >
                     <WhimsyPaw color={pawColors[i % pawColors.length]} />
                 </div>
@@ -54,6 +56,7 @@ const WhimsyLayer = () => {
                     key={`blob-${i}`}
                     className="whimsy-item whimsy-blob"
                     style={{
+                        ...blobPositions[i],
                         background: blobColors[i % blobColors.length],
                         width: `${blobSizes[i]}px`,
                         height: `${blobSizes[i]}px`,

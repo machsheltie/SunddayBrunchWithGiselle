@@ -73,6 +73,10 @@ function CharacterShowcase() {
                             src={char.image}
                             alt={char.name}
                             className="character-avatar-img"
+                            width="1024"
+                            height="1024"
+                            loading="lazy"
+                            decoding="async"
                             onError={(e) => { e.target.src = '/images/placeholder.svg'; }}
                         />
                     </div>

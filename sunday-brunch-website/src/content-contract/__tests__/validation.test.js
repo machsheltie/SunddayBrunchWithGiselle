@@ -17,6 +17,16 @@ describe('ART-007 content contract', () => {
         expect(validateRecord(validRecipe)).toEqual({ valid: true, errors: [] })
     })
 
+    it('accepts a recipe narrative story headnote', () => {
+        expect(validRecipe).toHaveProperty('story')
+        expect(validateRecord(validRecipe)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('treats the recipe story as optional', () => {
+        const { story, ...recipeWithoutStory } = validRecipe
+        expect(validateRecord(recipeWithoutStory)).toEqual({ valid: true, errors: [] })
+    })
+
     it('validates a representative episode', () => {
         expect(validateRecord(validEpisode)).toEqual({ valid: true, errors: [] })
     })

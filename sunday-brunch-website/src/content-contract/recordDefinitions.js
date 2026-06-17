@@ -88,7 +88,8 @@ export const recordDefinitions = {
             'media',
             'collectionIds',
             'episodeIds',
-            'testEvidence'
+            'testEvidence',
+            'story'
         ]
     },
     episode: {

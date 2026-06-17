@@ -92,6 +92,11 @@ function WhimsicalHero() {
                     <img
                         src="/assets/stacey-and-giselle.png"
                         alt="Stacey and Giselle in the kitchen"
+                        width="1024"
+                        height="1024"
+                        loading="eager"
+                        decoding="async"
+                        fetchpriority="high"
                         onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1556910110-a5a63dfd393c?w=500&h=600&fit=crop'; }}
                     />
 

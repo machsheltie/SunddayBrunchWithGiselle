@@ -65,6 +65,7 @@ Required recipe fields:
 - Commitment: prep time, cook time, total time, yield, difficulty, equipment.
 - Classification: collections, season, occasion, skill, dietary disclosures, allergens.
 - Structure: ordered ingredient groups, ordered instruction sections, notes.
+- Narrative: optional `story` headnote — a markdown `body` with an optional `headline` — carrying the personal context, occasion, and reason-to-cook that a recipe-blog entry leads with. Optional in the schema but expected for published recipes by the ART-008 checklist. Versioned as part of the recipe; photography stays in Media. Added under change control by D-08 (2026-06-17).
 - Guidance: sensory checkpoints, tested substitutions and impacts, common mistakes, recovery, storage, freezing, reheating, make-ahead, transport, gifting, pet-safe note where relevant, and why-it-works evidence.
 - Behavior: scaling eligibility, supported scale factors, unit-conversion eligibility, print eligibility, copy eligibility.
 - Media: hero asset, process assets where needed, social or pin derivatives, alt text, rights and provenance.
@@ -172,4 +173,6 @@ The model is accepted when:
 - Owner, content architect, and approver: Stacey
 - Approval date: 2026-06-12
 - Approved scope: common record contract, lifecycle and history rules, recipe, episode, chapter, transcript, character, supporting-record aggregates, relationships, reserved future records, and validation obligations
+- D-08 amendment approval: Stacey approved the optional recipe `story` headnote amendment on 2026-06-18 under schema version `CONTENT-MODEL-2026-06-17.1`
 - Boundary: ART-007 must provide representative executable validation evidence; ART-006 approval does not claim that validators or production storage already exist
+- D-08 boundary: approval of the optional story field does not accept ART-009, any production recipe, or any representative recipe evidence

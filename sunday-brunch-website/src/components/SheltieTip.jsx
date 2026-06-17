@@ -41,6 +41,10 @@ function SheltieTip({ character = 'giselle', children }) {
                 className="sheltie-tip__avatar"
                 src={photo}
                 alt={name.replace(/\s(says|barks|yips|explains)\.\.\./, '')}
+                width="1024"
+                height="1024"
+                loading="lazy"
+                decoding="async"
                 onError={handleImageError}
             />
             <div className="sheltie-tip__body">

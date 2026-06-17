@@ -162,7 +162,7 @@ const output = {
     validatorVersion: '1.0.0',
     executedAt: new Date().toISOString(),
     command: 'npm run validate:content',
-    schemaVersion: 'CONTENT-MODEL-2026-06-12.1',
+    schemaVersion: 'CONTENT-MODEL-2026-06-17.1',
     results,
     passed: results.every((result) => result.passed)
 }

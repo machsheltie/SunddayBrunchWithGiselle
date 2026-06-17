@@ -67,6 +67,10 @@ const FeaturedRecipeCard = ({ recipe }) => {
                     <img
                         src={recipe.image}
                         alt={recipe.title}
+                        width="1024"
+                        height="1024"
+                        loading="lazy"
+                        decoding="async"
                     />
                     <div className="category-badge">Featured</div>
                 </div>

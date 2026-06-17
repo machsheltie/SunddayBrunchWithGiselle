@@ -6,6 +6,10 @@ export const GiselleAvatar = ({ className }) => (
     src="/images/shelties/giselle.png" 
     alt="Giselle - The Queen" 
     className={className}
+    width="1024"
+    height="1024"
+    loading="lazy"
+    decoding="async"
     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
   />
 );
@@ -15,6 +19,10 @@ export const PhaedraAvatar = ({ className }) => (
     src="/images/shelties/phaedra.png" 
     alt="Phaedra - The Science Dogter" 
     className={className}
+    width="1024"
+    height="1024"
+    loading="lazy"
+    decoding="async"
     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
   />
 );
@@ -24,6 +32,10 @@ export const TianaAvatar = ({ className }) => (
     src="/images/shelties/tiana.png" 
     alt="Tiana - The Joyful Taster" 
     className={className}
+    width="1024"
+    height="1024"
+    loading="lazy"
+    decoding="async"
     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
   />
 );
@@ -33,6 +45,10 @@ export const HavokAvatar = ({ className }) => (
     src="/images/shelties/havok.png" 
     alt="Havok - The Kitchen War Correspondent" 
     className={className}
+    width="1024"
+    height="1024"
+    loading="lazy"
+    decoding="async"
     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
   />
 );

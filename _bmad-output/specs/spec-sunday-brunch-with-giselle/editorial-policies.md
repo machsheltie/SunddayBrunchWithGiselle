@@ -35,6 +35,7 @@ Identity and authority:
 - Named author, tester, reviewer, approver, and owner
 - Test date, revision state, update history, and source evidence
 - Primary pillar, production stream, collections, and relationships
+- Narrative story/headnote present — the personal context a recipe-blog entry leads with; required for published recipes (D-08)
 
 Cooking contract:
 
@@ -72,7 +73,9 @@ ART-008 approval:
 - Status: accepted
 - Owner, reviewer, and approver: Stacey
 - Approval date: 2026-06-12
+- D-08 amendment approval: Stacey approved the published-recipe narrative story/headnote checklist item on 2026-06-18
 - Boundary: ART-009 must apply this checklist to a representative recipe; checklist approval alone is not recipe acceptance
+- D-08 boundary: approval of the story checklist item does not accept ART-009 or any production recipe
 
 ## Episode Brief
 

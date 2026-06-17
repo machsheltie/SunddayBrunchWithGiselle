@@ -136,7 +136,15 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
                         host card's collapsed grid already shows the photo */}
                     {expandedImage && !embedded && (
                         <div className="recipe__hero-image">
-                            <img src={expandedImage} alt={recipe.title} />
+                            <img
+                                src={expandedImage}
+                                alt={recipe.title}
+                                width="1024"
+                                height="1024"
+                                loading="eager"
+                                decoding="async"
+                                fetchpriority="high"
+                            />
                         </div>
                     )}
 

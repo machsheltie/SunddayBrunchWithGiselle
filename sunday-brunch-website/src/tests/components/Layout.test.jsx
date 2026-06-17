@@ -18,6 +18,12 @@ vi.mock('../../hooks/useAuth', () => ({
     })
 }))
 
+vi.mock('../../components/auth', () => ({
+    AuthModal: ({ isOpen }) => isOpen
+        ? <div data-testid="auth-modal">Auth Modal</div>
+        : null
+}))
+
 // Mock visual layer components (avoid rendering Three.js/WebGL)
 // WatercolorCanvas is lazy-loaded in Layout.jsx, so mock returns synchronous component
 vi.mock('../../components/WatercolorCanvas', () => ({

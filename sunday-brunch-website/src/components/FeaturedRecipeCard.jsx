@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RecipeTemplate from './RecipeTemplate';
 import WhimsicalButton from './WhimsicalButton';
-import DietaryBadges from './DietaryBadges';
-import StarRating from './StarRating';
 import CrystalRating from './CrystalRating';
 import { getRecipeRatings } from '../lib/ratings';
 import './FeaturedRecipeCard.css';

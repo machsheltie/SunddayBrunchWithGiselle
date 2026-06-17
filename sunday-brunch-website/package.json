@@ -7,6 +7,7 @@
         "dev": "vite --port 5178",
         "build": "vite build",
         "preview": "vite preview",
+        "validate:content": "node scripts/validate-art-007.mjs",
         "test": "vitest run",
         "test:ui": "vitest --ui",
         "test:coverage": "vitest run --coverage",

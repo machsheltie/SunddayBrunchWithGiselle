@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import RecipeTemplate from '../../components/RecipeTemplate';
 
 // Mock all child components
@@ -72,16 +71,6 @@ vi.mock('../../components/ProcessStep', () => ({
         <div data-testid="process-step" data-step={stepNumber}>
             {content} {image && `[Image: ${image}]`}
         </div>
-    )
-}));
-
-vi.mock('../../components/IngredientAlchemist', () => ({
-    default: () => <div data-testid="ingredient-alchemist">Alchemist</div>
-}));
-
-vi.mock('../../components/ThePantry', () => ({
-    default: ({ ingredients }) => (
-        <div data-testid="the-pantry">{ingredients?.length} items</div>
     )
 }));
 
@@ -294,14 +283,11 @@ describe('RecipeTemplate', () => {
     // ==========================================
 
     describe('Interactive Features', () => {
-        it('should toggle ingredients checkboxes', () => {
-            // Arrange
+        it('should render recipe calculator for ingredient scaling', () => {
+            // Arrange & Act
             render(<RecipeTemplate recipe={mockRecipe} />);
-            // RecipeCalculator would contain checkboxes, but we're testing state management
-            // This test verifies the toggleIngredient function logic
 
-            // Act & Assert - Component manages this internally
-            // Verify component renders without errors when toggling state
+            // Assert
             expect(screen.getByTestId('recipe-calculator')).toBeInTheDocument();
         });
 
@@ -364,61 +350,43 @@ describe('RecipeTemplate', () => {
     });
 
     // ==========================================
-    // 4. COLLAPSIBLE SECTIONS (3 tests)
+    // 4. FIXED PANEL LAYOUT (3 tests)
     // ==========================================
 
-    describe('Collapsible Sections', () => {
-        it('should toggle Alchemist\'s Pantry section', () => {
-            // Arrange
-            render(<RecipeTemplate recipe={mockRecipe} />);
-            const pantryHeader = screen.getByText('The Alchemist\'s Pantry');
+    describe('Fixed Panel Layout', () => {
+        it('should render ingredients as a fixed panel', () => {
+            // Arrange & Act
+            const { container } = render(<RecipeTemplate recipe={mockRecipe} />);
+            const ingredientsHeader = screen.getByRole('heading', { name: 'Ingredients' });
 
-            // Assert - Initially closed
-            expect(pantryHeader.closest('button')).toHaveAttribute('aria-expanded', 'false');
-
-            // Act - Open
-            fireEvent.click(pantryHeader);
-
-            // Assert - Now open
-            expect(pantryHeader.closest('button')).toHaveAttribute('aria-expanded', 'true');
-            expect(screen.getByTestId('the-pantry')).toBeInTheDocument();
-
-            // Act - Close again
-            fireEvent.click(pantryHeader);
-
-            // Assert - Closed again
-            expect(pantryHeader.closest('button')).toHaveAttribute('aria-expanded', 'false');
+            // Assert
+            expect(container.querySelector('.ingredients-panel')).toContainElement(ingredientsHeader);
+            expect(ingredientsHeader.closest('button')).toBeNull();
+            expect(screen.getByTestId('recipe-calculator')).toBeInTheDocument();
         });
 
-        it('should toggle Ingredients section (default open)', () => {
-            // Arrange
-            render(<RecipeTemplate recipe={mockRecipe} />);
-            const ingredientsHeader = screen.getByText('Ingredients');
+        it('should render tools and nutrition in the left column', () => {
+            // Arrange & Act
+            const { container } = render(<RecipeTemplate recipe={mockRecipe} />);
+            const leftColumn = container.querySelector('.recipe__col-left');
 
-            // Assert - Initially open (default)
-            expect(ingredientsHeader.closest('button')).toHaveAttribute('aria-expanded', 'true');
-
-            // Act - Close
-            fireEvent.click(ingredientsHeader);
-
-            // Assert - Now closed
-            expect(ingredientsHeader.closest('button')).toHaveAttribute('aria-expanded', 'false');
+            // Assert
+            expect(leftColumn).toContainElement(screen.getByTestId('tools-used'));
+            expect(leftColumn).toContainElement(screen.getByTestId('nutrition-facts'));
         });
 
-        it('should toggle Ingredients Transmutations section', () => {
-            // Arrange
-            render(<RecipeTemplate recipe={mockRecipe} />);
-            const transmutationsHeader = screen.getByText('Ingredients Transmutations');
+        it('should render instructions and steps in the right column', () => {
+            // Arrange & Act
+            const { container } = render(<RecipeTemplate recipe={mockRecipe} />);
+            const rightColumn = container.querySelector('.recipe__col-right');
 
-            // Assert - Initially closed
-            expect(transmutationsHeader.closest('button')).toHaveAttribute('aria-expanded', 'false');
-
-            // Act - Open
-            fireEvent.click(transmutationsHeader);
-
-            // Assert - Now open
-            expect(transmutationsHeader.closest('button')).toHaveAttribute('aria-expanded', 'true');
-            expect(screen.getByTestId('ingredient-alchemist')).toBeInTheDocument();
+            // Assert
+            expect(rightColumn).toContainElement(
+                screen.getByRole('heading', { name: 'Instructions' })
+            );
+            screen.getAllByTestId('process-step').forEach((step) => {
+                expect(rightColumn).toContainElement(step);
+            });
         });
     });
 
@@ -446,7 +414,7 @@ describe('RecipeTemplate', () => {
             // Assert
             expect(nutritionFacts).toBeInTheDocument();
             expect(nutritionFacts).toHaveTextContent('250 cal');
-            expect(nutritionFacts).toHaveTextContent('Collapsible: true');
+            expect(nutritionFacts).toHaveTextContent('Collapsible: false');
             expect(nutritionFacts).toHaveAttribute('data-multiplier', '1');
         });
 

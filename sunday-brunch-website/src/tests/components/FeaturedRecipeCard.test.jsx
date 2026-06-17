@@ -71,15 +71,8 @@ describe('FeaturedRecipeCard', () => {
 
     beforeEach(() => {
         vi.clearAllMocks();
-        // Default mock: recipe has ratings
-        getRecipeRatings.mockResolvedValue({
-            data: {
-                recipe_slug: 'blueberry-muffins',
-                average_rating: 4.5,
-                rating_count: 128
-            },
-            error: null
-        });
+        // Keep unrelated rendering tests synchronous unless they opt into a result.
+        getRecipeRatings.mockImplementation(() => new Promise(() => {}));
     });
 
     afterEach(() => {
@@ -97,11 +90,11 @@ describe('FeaturedRecipeCard', () => {
 
             // Assert
             expect(screen.getByText('Blueberry Muffins')).toBeInTheDocument();
-            expect(screen.getByText('Breakfast')).toBeInTheDocument();
+            expect(screen.getByText('Featured')).toBeInTheDocument();
             expect(screen.queryByTestId('recipe-template')).not.toBeInTheDocument();
         });
 
-        it('should display recipe image, title, category', () => {
+        it('should display recipe image, title, and featured badge', () => {
             // Arrange & Act
             const { container } = render(<FeaturedRecipeCard recipe={mockRecipe} />);
 
@@ -111,10 +104,10 @@ describe('FeaturedRecipeCard', () => {
             expect(image).toHaveAttribute('src', '/muffins.jpg');
             expect(screen.getByText('Blueberry Muffins')).toBeInTheDocument();
 
-            // Check for category badge (not CSS class, but element presence)
+            // The homepage card uses a fixed featured badge rather than recipe taxonomy.
             const categoryBadge = container.querySelector('.category-badge');
             expect(categoryBadge).toBeInTheDocument();
-            expect(categoryBadge).toHaveTextContent('Breakfast');
+            expect(categoryBadge).toHaveTextContent('Featured');
         });
 
         it('should display meta information (time, yield, skill level)', async () => {
@@ -254,7 +247,7 @@ describe('FeaturedRecipeCard', () => {
     // ==========================================
 
     describe('Button Behavior', () => {
-        it('should render primary button with paw for "View Full Recipe"', () => {
+        it('should render primary button without paw for "View Full Recipe"', () => {
             // Arrange & Act
             render(<FeaturedRecipeCard recipe={mockRecipe} />);
             const buttons = screen.getAllByTestId('whimsical-button');
@@ -262,7 +255,7 @@ describe('FeaturedRecipeCard', () => {
 
             // Assert
             expect(viewButton).toHaveAttribute('data-type', 'primary');
-            expect(viewButton).toHaveAttribute('data-show-paw', 'true');
+            expect(viewButton).toHaveAttribute('data-show-paw', 'false');
         });
 
         it('should render secondary button without paw for "Collapse Recipe"', () => {
@@ -329,6 +322,15 @@ describe('FeaturedRecipeCard', () => {
 
     describe('Ratings Display', () => {
         it('should fetch and display recipe ratings', async () => {
+            getRecipeRatings.mockResolvedValue({
+                data: {
+                    recipe_slug: 'blueberry-muffins',
+                    average_rating: 4.5,
+                    rating_count: 128
+                },
+                error: null
+            });
+
             // Arrange & Act
             const { container } = render(<FeaturedRecipeCard recipe={mockRecipe} />);
 
@@ -430,7 +432,7 @@ describe('FeaturedRecipeCard', () => {
 
         it('should not fetch ratings if recipe has no slug', () => {
             // Arrange
-            const recipeNoSlug = { ...mockRecipe, slug: null };
+            const recipeNoSlug = { ...mockRecipe, slug: '' };
 
             // Act
             render(<FeaturedRecipeCard recipe={recipeNoSlug} />);

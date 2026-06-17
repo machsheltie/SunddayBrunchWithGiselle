@@ -1,0 +1,126 @@
+{
+    "artifactId": "ART-007",
+    "validatorVersion": "1.0.0",
+    "executedAt": "2026-06-17T10:29:48.692Z",
+    "command": "npm run validate:content",
+    "schemaVersion": "CONTENT-MODEL-2026-06-12.1",
+    "results": [
+        {
+            "id": "valid-recipe",
+            "name": "Valid recipe returns a successful validation result",
+            "passed": true,
+            "expected": {
+                "valid": true,
+                "errors": []
+            },
+            "actual": {
+                "valid": true,
+                "errors": []
+            }
+        },
+        {
+            "id": "valid-episode",
+            "name": "Valid episode returns a successful validation result",
+            "passed": true,
+            "expected": {
+                "valid": true,
+                "errors": []
+            },
+            "actual": {
+                "valid": true,
+                "errors": []
+            }
+        },
+        {
+            "id": "valid-correction",
+            "name": "Valid correction returns a successful validation result",
+            "passed": true,
+            "expected": {
+                "valid": true,
+                "errors": []
+            },
+            "actual": {
+                "valid": true,
+                "errors": []
+            }
+        },
+        {
+            "id": "invalid-correction-version",
+            "name": "Correction records reject lower correctedVersion values",
+            "passed": true,
+            "expected": {
+                "valid": false,
+                "errors": [
+                    "Corrected version must be greater than affected version"
+                ]
+            },
+            "actual": {
+                "valid": false,
+                "errors": [
+                    "Corrected version must be greater than affected version"
+                ]
+            }
+        },
+        {
+            "id": "invalid-correction-version-equal",
+            "name": "Correction records reject unchanged correctedVersion values",
+            "passed": true,
+            "expected": {
+                "valid": false,
+                "errors": [
+                    "Corrected version must be greater than affected version"
+                ]
+            },
+            "actual": {
+                "valid": false,
+                "errors": [
+                    "Corrected version must be greater than affected version"
+                ]
+            }
+        },
+        {
+            "id": "invalid-unknown-field",
+            "name": "Unknown popularityScore field is rejected",
+            "passed": true,
+            "expected": {
+                "valid": false,
+                "errors": [
+                    "Unknown field: popularityScore"
+                ]
+            },
+            "actual": {
+                "valid": false,
+                "errors": [
+                    "Unknown field: popularityScore"
+                ]
+            }
+        },
+        {
+            "id": "invalid-reserved-record",
+            "name": "Reserved public-review record type is rejected",
+            "passed": true,
+            "expected": {
+                "valid": false,
+                "errors": [
+                    "Reserved record type is inactive: public-review"
+                ]
+            },
+            "actual": {
+                "valid": false,
+                "errors": [
+                    "Reserved record type is inactive: public-review"
+                ]
+            }
+        },
+        {
+            "id": "projection-writeback",
+            "name": "Website projection source cannot write canonical content",
+            "passed": true,
+            "expected": {
+                "error": "Projection sources cannot write canonical content"
+            },
+            "error": "Projection sources cannot write canonical content"
+        }
+    ],
+    "passed": true
+}

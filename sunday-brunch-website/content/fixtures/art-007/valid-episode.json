@@ -1,0 +1,45 @@
+{
+  "id": "episode-art-007-001",
+  "recordType": "episode",
+  "version": 1,
+  "status": "review",
+  "owner": "Stacey",
+  "reviewer": "Stacey",
+  "approver": "Stacey",
+  "createdAt": "2026-06-15T12:00:00Z",
+  "updatedAt": "2026-06-15T12:00:00Z",
+  "sourceReferences": [
+    {
+      "id": "source-art-007-episode-001",
+      "type": "production-runbook",
+      "title": "Lemon Ricotta Pancake Episode Runbook",
+      "locator": "ART-007/episode/001"
+    }
+  ],
+  "slug": "lemon-ricotta-pancake-brunch",
+  "title": "A Lemon Ricotta Pancake Brunch",
+  "briefId": "brief-art-007-episode-001",
+  "scriptId": "script-art-007-episode-001",
+  "canonVersion": "CANON-2026-06-11.1",
+  "cast": [
+    "CHAR-001-giselle",
+    "CHAR-002-phaedra",
+    "CHAR-003-tiana",
+    "CHAR-004-havok"
+  ],
+  "chapters": [
+    {
+      "id": "chapter-art-007-episode-001",
+      "title": "Mixing the Brunch Batter",
+      "startMarker": "PT0S"
+    }
+  ],
+  "transcriptId": "transcript-art-007-episode-001",
+  "mediaAssetIds": [
+    "media-art-007-episode-master-001"
+  ],
+  "rightsRecordIds": [
+    "rights-art-007-episode-001"
+  ],
+  "disclosureVersion": "ART-015-2026-06-11"
+}

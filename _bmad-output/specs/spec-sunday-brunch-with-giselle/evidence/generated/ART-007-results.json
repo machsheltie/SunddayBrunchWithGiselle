@@ -1,9 +1,9 @@
 {
     "artifactId": "ART-007",
     "validatorVersion": "1.0.0",
-    "executedAt": "2026-06-17T19:24:05.432Z",
+    "executedAt": "2026-06-18T13:18:38.485Z",
     "command": "npm run validate:content",
-    "schemaVersion": "CONTENT-MODEL-2026-06-17.1",
+    "schemaVersion": "CONTENT-MODEL-2026-06-18.2",
     "results": [
         {
             "id": "valid-recipe",
@@ -109,6 +109,23 @@
                 "valid": false,
                 "errors": [
                     "Reserved record type is inactive: public-review"
+                ]
+            }
+        },
+        {
+            "id": "invalid-taxonomy-value",
+            "name": "Taxonomy value outside the registered vocabulary is rejected",
+            "passed": true,
+            "expected": {
+                "valid": false,
+                "errors": [
+                    "Unknown mainIngredients value: Plutonium"
+                ]
+            },
+            "actual": {
+                "valid": false,
+                "errors": [
+                    "Unknown mainIngredients value: Plutonium"
                 ]
             }
         },

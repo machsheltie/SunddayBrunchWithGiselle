@@ -3,6 +3,38 @@ import {
     recordDefinitions,
     reservedRecordTypes
 } from './recordDefinitions.js'
+import {
+    recipeDifficultyLevels,
+    recipeTaxonomies
+} from './taxonomy.js'
+
+const validateRecipeTaxonomy = (record) => {
+    const errors = []
+
+    for (const [field, allowedValues] of Object.entries(recipeTaxonomies)) {
+        if (record[field] === undefined) {
+            continue
+        }
+
+        if (!Array.isArray(record[field])) {
+            errors.push(`${field} must be an array`)
+            continue
+        }
+
+        for (const value of record[field]) {
+            if (!allowedValues.includes(value)) {
+                errors.push(`Unknown ${field} value: ${value}`)
+            }
+        }
+    }
+
+    if (record.difficulty !== undefined
+        && !recipeDifficultyLevels.includes(record.difficulty)) {
+        errors.push(`Unknown difficulty value: ${record.difficulty}`)
+    }
+
+    return errors
+}
 
 export const validateRecord = (record) => {
     if (reservedRecordTypes.has(record.recordType)) {
@@ -32,7 +64,10 @@ export const validateRecord = (record) => {
         && record.correctedVersion <= record.affectedVersion
         ? ['Corrected version must be greater than affected version']
         : []
-    const errors = [...missing, ...unknown, ...correctionErrors]
+    const taxonomyErrors = record.recordType === 'recipe'
+        ? validateRecipeTaxonomy(record)
+        : []
+    const errors = [...missing, ...unknown, ...correctionErrors, ...taxonomyErrors]
 
     return {
         valid: errors.length === 0,

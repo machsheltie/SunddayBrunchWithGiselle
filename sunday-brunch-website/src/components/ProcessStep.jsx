@@ -17,7 +17,15 @@ const ProcessStep = ({ stepNumber, content, image }) => {
             {image && (
                 <div className="process-reveal">
                     <div className="reveal-mask-container">
-                        <img src={image} alt={`Process step ${stepNumber}`} className="reveal-image" />
+                        <img
+                            src={image}
+                            alt={`Process step ${stepNumber}`}
+                            className="reveal-image"
+                            width="1024"
+                            height="1024"
+                            loading="lazy"
+                            decoding="async"
+                        />
                         <div className="watercolor-mask"></div>
                     </div>
                 </div>

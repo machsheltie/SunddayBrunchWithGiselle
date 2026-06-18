@@ -79,6 +79,7 @@ status.json
 
 # Personal AI tool settings and generated IDE adapters
 .claude/settings.local.json
+.codex/
 .gemini/
 .agent/
 .agents/
@@ -86,6 +87,7 @@ status.json
 .claude/skills/wds-*/
 .claude/skills/memory/
 .claude/skills/sync/
+.claude/skills/humanizer/
 _bmad/config.user.toml
 /y/
 

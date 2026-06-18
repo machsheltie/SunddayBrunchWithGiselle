@@ -3,8 +3,8 @@
 - Status: accepted
 - Contract owner, test operator, and approver: Stacey
 - Evidence-contract approval date: 2026-06-12
-- Current executable evidence recorded: 2026-06-16T16:47:11.163Z
-- Final acceptance: accepted by Stacey on 2026-06-16
+- Current executable evidence recorded: 2026-06-17T19:24:05.432Z
+- Final acceptance: accepted by Stacey on 2026-06-16; D-08 regenerated evidence accepted by Stacey on 2026-06-18
 - Governing artifacts: website-scoped content contract in `sunday-brunch-website/src/content-contract`, validator runner `sunday-brunch-website/scripts/validate-art-007.mjs`, `content-model.md`, `source-of-truth.md`, ART-006, and ART-026
 - Generated JSON evidence: `_bmad-output/specs/spec-sunday-brunch-with-giselle/evidence/generated/ART-007-results.json`
 
@@ -48,8 +48,8 @@ Each test record must include:
 - Command: `npm run validate:content` executed from `sunday-brunch-website`
 - Validator: `sunday-brunch-website/src/content-contract` / `sunday-brunch-website/scripts/validate-art-007.mjs`
 - Validator version: `1.0.0`
-- Governing schema version: `CONTENT-MODEL-2026-06-12.1`
-- Execution timestamp: `2026-06-16T16:47:11.163Z`
+- Governing schema version: `CONTENT-MODEL-2026-06-17.1`
+- Execution timestamp: `2026-06-17T19:24:05.432Z`
 - Overall generated result: `passed=true`
 - Outcome: 8 / 8 PASS
 - Required/supplemental split: the original six required ART-007 checks remain PASS; the supplemental lower- and same-version correction monotonicity guards also pass.
@@ -67,7 +67,7 @@ Each test record must include:
 | Required 5 | `invalid-reserved-record` | `Reserved public-review record type is rejected` | The website-scoped contract rejects the reserved `public-review` record type. | `sunday-brunch-website/content/fixtures/art-007/invalid-reserved-record.json` | `{"valid":false,"errors":["Reserved record type is inactive: public-review"]}` | `{"valid":false,"errors":["Reserved record type is inactive: public-review"]}` | PASS |
 | Required 6 | `projection-writeback` | `Website projection source cannot write canonical content` | The write-boundary guard rejects a website projection source attempting canonical content writeback. | `assertCanonicalWrite('website-projection')` | `{"error":"Projection sources cannot write canonical content"}` | `{"error":"Projection sources cannot write canonical content"}` | PASS |
 
-All six required website-scoped checks and the supplemental correction-version monotonicity guards pass in the generated JSON evidence. Stacey's ART-007 final approval remains dated 2026-06-16.
+All six required website-scoped checks and the supplemental correction-version monotonicity guards pass in the generated JSON evidence. Stacey's ART-007 final approval remains dated 2026-06-16, and Stacey accepted the D-08 regenerated evidence under `CONTENT-MODEL-2026-06-17.1` on 2026-06-18.
 
 ## Superseded Historical Context
 
@@ -84,10 +84,12 @@ These limitations do not change the generated 8 / 8 PASS result, but they define
 
 ## Acceptance Boundary
 
-Approval of this evidence contract did not prove final acceptance on its own. The required executable evidence and supplemental guards exist above (8 / 8 PASS), and Stacey recorded final approval on 2026-06-16; ART-007 remains `accepted`.
+Approval of this evidence contract did not prove final acceptance on its own. The required executable evidence and supplemental guards exist above (8 / 8 PASS), Stacey recorded final approval on 2026-06-16, and Stacey accepted the D-08 regenerated evidence on 2026-06-18; ART-007 remains `accepted`.
 
 ## Acceptance Decision
 
 - Result: accepted
 - Approver: Stacey
 - Date: 2026-06-16
+- D-08 regenerated evidence acceptance: Stacey approved `CONTENT-MODEL-2026-06-17.1` evidence on 2026-06-18
+- Boundary: this D-08 evidence acceptance does not accept ART-009, ART-012, ART-014, any production content, or the final Phase 0 gate

@@ -124,7 +124,14 @@ function SearchResults({
       >
         <div className="recipe-card__image">
           {recipe.image ? (
-            <img src={recipe.image} alt={recipe.title} />
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
           ) : (
             <div className="recipe-card__placeholder" data-testid="recipe-placeholder">
               <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

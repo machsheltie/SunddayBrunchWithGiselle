@@ -56,7 +56,10 @@ function RecipeCollectionCard({ collection, previewRecipes = [] }) {
                                     <img
                                         src={recipe.image}
                                         alt={recipe.title}
+                                        width="1024"
+                                        height="1024"
                                         loading="lazy"
+                                        decoding="async"
                                     />
                                 ) : (
                                     <span role="img" aria-label={recipe.title}>{recipe.emoji || '📖'}</span>

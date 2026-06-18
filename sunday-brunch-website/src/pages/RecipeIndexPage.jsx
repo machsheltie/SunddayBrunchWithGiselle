@@ -240,7 +240,15 @@ function RecipeIndexPage() {
                                                         image={recipe.image}
                                                     />
                                                     {recipe.image ? (
-                                                        <img src={recipe.image} alt={recipe.title} className="recipe-img" />
+                                                        <img
+                                                            src={recipe.image}
+                                                            alt={recipe.title}
+                                                            className="recipe-img"
+                                                            width="1024"
+                                                            height="1024"
+                                                            loading="lazy"
+                                                            decoding="async"
+                                                        />
                                                     ) : (
                                                         <div className="watercolor-blob"></div>
                                                     )}

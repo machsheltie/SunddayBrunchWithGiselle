@@ -6,6 +6,9 @@ export default defineConfig({
     plugins: [react()],
     build: {
         minify: 'terser',
+        // The isolated Three.js vendor chunk is intentional; LHCI enforces
+        // runtime page-weight budgets for the routes users actually load.
+        chunkSizeWarningLimit: 900,
         rollupOptions: {
             output: {
                 manualChunks: {

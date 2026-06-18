@@ -107,6 +107,10 @@ const FeaturedEpisodeCard = ({ episode }) => {
                                 className="episode-expansion__whisper-avatar"
                                 src="/images/recipes/giselle-portrait.png"
                                 alt="Giselle - The Queen"
+                                width="1024"
+                                height="1024"
+                                loading="lazy"
+                                decoding="async"
                                 onError={(e) => {
                                     e.currentTarget.onerror = null;
                                     e.currentTarget.src = GISELLE_AVATAR_FALLBACK;

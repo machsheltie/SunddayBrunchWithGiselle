@@ -33,6 +33,9 @@ describe('Content service canonical recipes', () => {
     )
     expect(recipe.yield).toBe('8 slices')
     expect(recipe.yieldQuantity).toBe(8)
+    expect(recipe.image).toBe('/images/recipes/frenchsilkpie.jpg')
+    expect(recipe.image).not.toContain('1765388327983')
+    expect(recipe.meta.ogImage).toBe('/images/recipes/frenchsilkpie.jpg')
     expect(recipe.steps).toHaveLength(8)
     expect(recipe.steps[0]).toMatchObject({
       content: expect.stringContaining('Bake and fully cool the crust.'),

@@ -95,11 +95,22 @@ const projectEquipment = (equipment = []) =>
         category: 'Equipment'
     }))
 
+// Project the recipe's hero image from its canonical media reference. The
+// served asset in public/images/recipes/ mirrors the canonical filename, so
+// the projection never hardcodes a path that can drift from the record.
+const projectImage = (record) => {
+    const referenceId = record.media?.source?.referenceId
+    return referenceId
+        ? `/images/recipes/${referenceId}`
+        : '/images/placeholder.svg'
+}
+
 const projectRecipe = (record, canonicalSource) => {
     const category = normalizeCategory(record)
     const ingredients = flattenIngredients(record.ingredientGroups)
     const steps = flattenSteps(record.instructionSections)
     const publishedDate = record.approvedAt || record.updatedAt || record.createdAt
+    const image = projectImage(record)
 
     return {
         id: record.id,
@@ -127,7 +138,7 @@ const projectRecipe = (record, canonicalSource) => {
         cookTime: durationToMinutes(record.times?.total),
         date: publishedDate?.slice(0, 10),
         publishedDate,
-        image: '/images/recipes/french_silk_pie_recipe_1765388327983.png',
+        image,
         story: record.story,
         times: {
             prep: formatDuration(record.times?.prep),
@@ -149,7 +160,7 @@ const projectRecipe = (record, canonicalSource) => {
         seasonal: [],
         meta: {
             description: record.summary,
-            ogImage: '/images/recipes/french_silk_pie_recipe_1765388327983.png'
+            ogImage: image
         },
         notes: record.notes?.join('\n\n'),
         characterSegments: record.characterSegments || [],

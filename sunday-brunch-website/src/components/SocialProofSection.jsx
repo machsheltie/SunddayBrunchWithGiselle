@@ -13,13 +13,13 @@ const logger = createLogger('SocialProof')
 /**
  * Seed testimonials for fallback when no real reviews exist yet
  */
-const SEED_TESTIMONIALS = [
+export const SEED_TESTIMONIALS = [
     {
         user_name: 'Emma K.',
         rating: 5,
-        comment: 'The Royal Velvet Cake was absolutely divine! My family couldn\'t stop raving about it. Giselle\'s instructions made it so easy to follow.',
-        recipeTitle: 'Giselle\'s Royal Velvet Cake',
-        recipeSlug: 'giselles-royal-velvet-cake'
+        comment: 'The French Silk Pie was absolutely divine! My family couldn\'t stop raving about it — silky, rich, and the clearest instructions I\'ve ever followed.',
+        recipeTitle: 'French Silk Pie',
+        recipeSlug: 'french-silk-pie'
     },
     {
         user_name: 'Michael R.',

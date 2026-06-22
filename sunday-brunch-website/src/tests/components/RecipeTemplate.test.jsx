@@ -227,6 +227,30 @@ describe('RecipeTemplate', () => {
             expect(heroImage).toBeInTheDocument();
             expect(heroImage).toHaveAttribute('src', '/hero-image.jpg');
         });
+
+        it('should render canonical story object with headline, prose, and blockquote', () => {
+            // Arrange
+            const recipeWithCanonicalStory = {
+                ...mockRecipe,
+                story: {
+                    headline: 'The pie that started everything',
+                    body: 'The first French Silk Pie I ever made was a bribe.\n\n> **Giselle:** *"A bribe."* Darling. You had me at home.\n\nI was twenty-something and trying to bake my way in.'
+                }
+            };
+
+            // Act
+            const { container } = render(<RecipeTemplate recipe={recipeWithCanonicalStory} />);
+            const schemaScript = container.querySelector('script[type="application/ld+json"]');
+            const schema = JSON.parse(schemaScript.textContent);
+
+            // Assert
+            expect(screen.getByRole('heading', { name: 'The pie that started everything' })).toBeInTheDocument();
+            expect(screen.getByText('The first French Silk Pie I ever made was a bribe.')).toBeInTheDocument();
+            expect(screen.getByText(/Giselle:/)).toBeInTheDocument();
+            expect(screen.getByText(/Darling\. You had me at home\./)).toBeInTheDocument();
+            expect(container.querySelector('.story blockquote')).toHaveTextContent('A bribe.');
+            expect(schema.description).toBe('The first French Silk Pie I ever made was a bribe.');
+        });
     });
 
     // ==========================================
@@ -302,7 +326,7 @@ describe('RecipeTemplate', () => {
 
             // Assert
             await waitFor(() => {
-                expect(navigator.clipboard.writeText).toHaveBeenCalled();
+                expect(navigator.clipboard.writeText).toHaveBeenCalledWith('2 cups flour\n1 cup sugar');
                 expect(screen.getByText('Copied ingredients')).toBeInTheDocument();
                 expect(trackCopy).toHaveBeenCalledWith({
                     type: 'ingredients',
@@ -406,6 +430,21 @@ describe('RecipeTemplate', () => {
             expect(calculator).toHaveTextContent('8 servings');
         });
 
+        it('should pass numeric yield quantity to RecipeCalculator when provided', () => {
+            // Arrange
+            const recipeWithStructuredYield = {
+                ...mockRecipe,
+                yield: '8 slices',
+                yieldQuantity: 8
+            };
+
+            // Act
+            render(<RecipeTemplate recipe={recipeWithStructuredYield} />);
+
+            // Assert
+            expect(screen.getByTestId('recipe-calculator')).toHaveTextContent('2 ingredients | 8');
+        });
+
         it('should pass correct props to NutritionFacts', () => {
             // Arrange & Act
             render(<RecipeTemplate recipe={mockRecipe} />);
@@ -487,6 +526,100 @@ describe('RecipeTemplate', () => {
             await waitFor(() => {
                 expect(screen.getByTestId('nutrition-facts')).toHaveAttribute('data-multiplier', '2');
             });
+        });
+    });
+
+    // ==========================================
+    // SHELTIE SEGMENTS
+    // ==========================================
+
+    describe('Sheltie Segments', () => {
+        it('should render the default example tips when recipe has no shelties data', () => {
+            // Arrange & Act
+            render(<RecipeTemplate recipe={mockRecipe} />);
+            const tips = screen.getAllByTestId('sheltie-tip');
+            const characters = tips.map((t) => t.getAttribute('data-character'));
+
+            // Assert - the two legacy example tips (Giselle top, Phaedra below grid)
+            expect(characters).toEqual(['giselle', 'phaedra']);
+            expect(screen.getByText(/I have standards/)).toBeInTheDocument();
+        });
+
+        it('should render all four named segments when recipe.shelties is provided', () => {
+            // Arrange
+            const recipeWithShelties = {
+                ...mockRecipe,
+                shelties: {
+                    havok: 'HAVOK_RECON_TEXT',
+                    tiana: 'TIANA_TASTING_TEXT',
+                    phaedra: ['PHAEDRA_PORCH_TEXT'],
+                    giselleVerdict: 'GISELLE_VERDICT_TEXT'
+                }
+            };
+
+            // Act
+            render(<RecipeTemplate recipe={recipeWithShelties} />);
+            const tips = screen.getAllByTestId('sheltie-tip');
+            const characters = tips.map((t) => t.getAttribute('data-character'));
+
+            // Assert - Havok up top, then Tiana, Phaedra, and Giselle's verdict
+            expect(characters).toEqual(['havok', 'tiana', 'phaedra', 'giselle']);
+            expect(screen.getByText('HAVOK_RECON_TEXT')).toBeInTheDocument();
+            expect(screen.getByText('TIANA_TASTING_TEXT')).toBeInTheDocument();
+            expect(screen.getByText('PHAEDRA_PORCH_TEXT')).toBeInTheDocument();
+            expect(screen.getByText('GISELLE_VERDICT_TEXT')).toBeInTheDocument();
+            // The legacy example copy should be gone once real segments exist
+            expect(screen.queryByText(/I have standards/)).not.toBeInTheDocument();
+        });
+
+        it('should render canonical characterSegments without recipe.shelties', () => {
+            // Arrange
+            const recipeWithCharacterSegments = {
+                ...mockRecipe,
+                characterSegments: [
+                    {
+                        characterId: 'CHAR-004-havok',
+                        segment: "Havok's Kitchen Recon",
+                        title: 'Gear check',
+                        body: 'CANON_HAVOK_TEXT',
+                        canonVersion: 'CANON-2026-06-11.1'
+                    },
+                    {
+                        characterId: 'CHAR-003-tiana',
+                        segment: "Tiana's Tasting Notes",
+                        title: 'The first bite',
+                        body: 'CANON_TIANA_TEXT',
+                        canonVersion: 'CANON-2026-06-11.1'
+                    },
+                    {
+                        characterId: 'CHAR-002-phaedra',
+                        segment: "Phaedra's Porch Light",
+                        title: 'Why it works',
+                        body: ['CANON_PHAEDRA_TEXT'],
+                        canonVersion: 'CANON-2026-06-11.1'
+                    },
+                    {
+                        characterId: 'CHAR-001-giselle',
+                        segment: "Giselle's Grand Verdict",
+                        title: 'The final word',
+                        body: 'CANON_GISELLE_TEXT',
+                        canonVersion: 'CANON-2026-06-11.1'
+                    }
+                ]
+            };
+
+            // Act
+            render(<RecipeTemplate recipe={recipeWithCharacterSegments} />);
+            const tips = screen.getAllByTestId('sheltie-tip');
+            const characters = tips.map((t) => t.getAttribute('data-character'));
+
+            // Assert - canonical segments render in the page's fixed anchor order
+            expect(characters).toEqual(['havok', 'tiana', 'phaedra', 'giselle']);
+            expect(screen.getByText('CANON_HAVOK_TEXT')).toBeInTheDocument();
+            expect(screen.getByText('CANON_TIANA_TEXT')).toBeInTheDocument();
+            expect(screen.getByText('CANON_PHAEDRA_TEXT')).toBeInTheDocument();
+            expect(screen.getByText('CANON_GISELLE_TEXT')).toBeInTheDocument();
+            expect(screen.queryByText(/I have standards/)).not.toBeInTheDocument();
         });
     });
 });

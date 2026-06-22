@@ -10,9 +10,9 @@ Status values: `not-started`, `in-progress`, `blocked`, `ready-for-approval`, `a
 | WP-01 | CAP-14 | Approve product direction and taxonomy | Stacey | WP-00 | ART-002 | `D-01` closed; exact wording signed; three sample items map cleanly | approved |
 | WP-02 | CAP-4 | Approve compact canon and boundaries | Stacey | WP-00 | ART-003, ART-004 | Canon version signed; blind test passes; human-only subjects accepted | approved |
 | WP-03 | CAP-15 | Select source and ratify source hierarchy and content model | Stacey | WP-01 | ART-005, ART-006, ART-007, ART-026 | `D-02` and `D-07` closed; hierarchy resolves conflicts; recipe and episode validate; unknown and reserved records are rejected | approved |
-| WP-04 | CAP-16 | Ratify recipe quality standard | Stacey | WP-03 | ART-008, ART-009 | Representative recipe completes every applicable checklist item with evidence | in-progress |
+| WP-04 | CAP-16 | Ratify recipe quality standard | Stacey | WP-03 | ART-008, ART-009 | Representative recipe completes every applicable checklist item with evidence | approved |
 | WP-05 | CAP-17 | Ratify episode production standard | Stacey | WP-02, WP-03 | ART-010, ART-011, ART-012 | Representative episode package reaches archive state with complete traceability | in-progress |
-| WP-06 | CAP-18 | Ratify correction and revision policy | Stacey | WP-03 | ART-013, ART-014 | Tabletop S1 or S2 correction closes with preserved history and notice decision | in-progress |
+| WP-06 | CAP-18 | Ratify correction and revision policy | Stacey | WP-03 | ART-013, ART-014 | Tabletop S2 correction (SCN-014-S2-001 on REC-001) closed 2026-06-22 with preserved history, required notice, and prevention; ART-013 and ART-014 accepted | approved |
 | WP-07 | CAP-19 | Complete AI voice governance | Stacey | WP-02, WP-05 | ART-015, ART-016, ART-017, ART-018 | `D-04` and `D-05` closed; sample generated asset trace passes | in-progress |
 | WP-08 | CAP-20 | Assign ownership and secure access | Stacey | WP-01 | ART-019, ART-020 | `D-03` closed; every row has named owner and delegate; MFA verified | in-progress |
 | WP-09 | CAP-13, CAP-20 | Establish backup and restoration | Stacey | WP-03, WP-08 | ART-021, ART-022, ART-023, ART-024 | `D-06` closed; backup inventory complete; tabletop and practical restore pass | in-progress |
@@ -29,6 +29,8 @@ Status values: `not-started`, `in-progress`, `blocked`, `ready-for-approval`, `a
 | D-05 | AI-performance disclosure | Approved exact synthetic-voice and memorial wording with accessible placement requirements | Stacey | Exact disclosure, placement rules, accessibility treatment, rights basis, date, and Stacey signoff recorded on 2026-06-11 | ART-015 | WP-07 | closed |
 | D-06 | Recovery targets | Approved RPO and RTO for canonical records, production assets, releases, rights records, and critical access | Stacey | Targets, solo-operator controls, exception process, review schedule, and Stacey approval recorded on 2026-06-11 | ART-022 | WP-09 | closed |
 | D-07 | Launch-core schema boundary | Approved authority hierarchy, active allowlist, operational registers, reserved future boundary, prohibitions, and promotion process | Stacey | Stacey approved every model classification plus the no-writeback and no-silent-expansion rules on 2026-06-11 | ART-026 | WP-03 | closed |
+| D-13 | Memorial and dedication placement/privacy | Memorial and dedication material belongs in Stacey's human voice; launch may use an About/Team section or standalone "For Giselle" page; exact copy and image placement require implementation-specific signoff | Stacey | Stacey approved the memorial governance boundary on 2026-06-22: human voice only, Giselle eternally present in story-world content, Athena introduced through the "those who came before" layer, privacy-first public copy, and no memorial publication without final page-level approval | `editorial-policies.md#memorial-and-dedication-content` | WP-10 | closed |
+| D-14 | Publication freeze and pre-publication revision rule | Freeze starts at `published`; approved/scheduled but unpublished records can be reopened during active development with version, update-history, and current-approval traceability | Stacey | Stacey approved the lifecycle-stage rewrite on 2026-06-22; ART-006 and ART-013 updated without schema-field or validator allowlist changes | `content-model.md#lifecycle-states`; `editorial-policies.md#correction-and-revision-policy` | WP-04, WP-05, WP-06, WP-10 | closed |
 
 ## Phase 0 Gate Checklist
 
@@ -36,9 +38,11 @@ Product and editorial:
 
 - [x] Settled decisions and change control approved.
 - [x] Market position, launch promise, audience jobs, pillars, and streams approved.
-- [ ] Recipe checklist approved and demonstrated.
+- [x] Recipe checklist approved and demonstrated.
 - [ ] Episode brief and release checklist approved and demonstrated.
-- [ ] Correction and revision policy approved and exercised.
+- [x] Correction and revision policy approved and exercised.
+- [x] Memorial and dedication governance boundary approved for launch planning.
+- [ ] Final memorial or dedication page implementation, exact public copy, and image placement approved if included in the launch surface.
 
 Canon and AI:
 
@@ -62,9 +66,9 @@ Content and operations:
 
 Final demonstration:
 
-- [ ] A representative recipe moves from draft to approved record without invented rules.
+- [x] A representative recipe moves from draft to approved record without invented rules.
 - [ ] A representative episode moves from brief to archived release package without invented rules.
-- [ ] A correction exercise preserves history and produces the required notice and evidence.
+- [x] A correction exercise preserves history and produces the required notice and evidence.
 - [ ] Stacey signs the Phase 0 gate report.
 
 ## Gate Report

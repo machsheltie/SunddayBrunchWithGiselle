@@ -4,7 +4,8 @@
 - Contract owner, episode producer, release reviewer, and approver: Stacey
 - Evidence-contract approval date: 2026-06-12
 - ART-007 dependency: satisfied on 2026-06-16 by accepted website-scoped executable validation; remaining acceptance is pending the real representative episode package
-- Final acceptance: pending representative episode and evidence
+- Current record state: EP-001 version 2 is aligned to accepted REC-001 French Silk Pie as of 2026-06-22, but the representative episode package is not yet complete
+- Final acceptance: pending approved brief, final script, production assets, transcript, release metadata, archive evidence, and Stacey final approval
 - Governing artifacts: ART-007, ART-010, ART-011, `character-canon.md`, `content-model.md`, and `editorial-policies.md`
 
 ## Evidence Contract
@@ -33,7 +34,7 @@ The package must identify:
 
 | Package item | Status | Evidence |
 |---|---|---|
-| Episode identity and canonical record | Pending | Pending |
+| Episode identity and canonical record | Partial | `content/records/episodes/EP-001-the-first-sunday.json` version 2 exists and is aligned to accepted REC-001 French Silk Pie; lifecycle remains `draft` |
 | Approved brief and final script | Pending | Pending |
 | Canon and character-line approvals | Pending | Pending |
 | Source recordings and generated assets | Pending | Pending |
@@ -44,10 +45,10 @@ The package must identify:
 | Disclosure and accessibility review | Pending | Pending |
 | Publication metadata and release identifiers | Pending | Pending |
 | Archive, backup, rollback, and withdrawal records | Pending | Pending |
-| ART-007 executable validation | Satisfied | ART-007 accepted evidence recorded on 2026-06-16; see `../ART-007-content-model-validation.md` |
+| ART-007 executable validation | Satisfied | ART-007 accepted evidence recorded on 2026-06-16; EP-001 also validates through `npm run validate:records` at `2026-06-22T13:27:30.088Z` |
 | Stacey final approval | Pending | Pending |
 
 ## Acceptance Boundary
 
-Approval of this evidence contract does not approve or release an episode. ART-012 remains unaccepted and draft until every package item has inspectable evidence from a real representative episode, failures and revisions are preserved, and Stacey records final approval.
+Approval of this evidence contract does not approve or release an episode. ART-012 remains unaccepted and draft until every package item has inspectable evidence from a real representative episode, failures and revisions are preserved, and Stacey records final approval. The 2026-06-22 EP-001 reconciliation only removes stale Royal Velvet Cake framing after ART-009 acceptance; it does not satisfy the script, audio, transcript, release, archive, or final approval requirements.
 

@@ -14,7 +14,21 @@ import GiselleGuestbook from './GiselleGuestbook'
 import ProcessStep from './ProcessStep'
 import { trackPrint, trackCopy } from '../lib/analytics'
 import { createSparkles } from '../lib/sparkles'
+import { getStoryExcerpt, getStoryPresentation } from '../lib/story'
 import './RecipeTemplate.css'
+
+const formatIngredientLine = (ingredient) => {
+    if (typeof ingredient === 'string') {
+        return ingredient
+    }
+
+    const quantity = [ingredient.amount, ingredient.unit].filter(Boolean).join(' ')
+    const name = ingredient.name || ingredient.ingredient || ''
+    const preparation = ingredient.preparation ? `, ${ingredient.preparation}` : ''
+    const note = ingredient.note ? ` (${ingredient.note})` : ''
+
+    return [quantity, name].filter(Boolean).join(' ') + preparation + note
+}
 
 function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
     const [copied, setCopied] = useState(false)
@@ -31,16 +45,14 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
                 "name": "Sunday Brunch with Giselle"
             },
             "datePublished": recipe.date || "2024-12-29",
-            "description": recipe.story ? recipe.story[0] : "",
+            "description": getStoryExcerpt(recipe.story),
             "prepTime": recipe.times?.prepISO || "PT20M",
             "cookTime": recipe.times?.cookISO || "PT30M",
             "totalTime": recipe.times?.totalISO || "PT50M",
             "recipeYield": recipe.yield,
             "recipeCategory": "Dessert",
             "recipeCuisine": "Whimsical",
-            "recipeIngredient": recipe.ingredients.map(ing =>
-                `${ing.amount} ${ing.unit} ${ing.name}`
-            ),
+            "recipeIngredient": recipe.ingredients.map(formatIngredientLine),
             "recipeInstructions": recipe.steps.map(step => ({
                 "@type": "HowToStep",
                 "text": step
@@ -76,7 +88,7 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
 
     const handleCopy = (e) => {
         createSparkles(e)
-        const text = recipe.ingredients.join('\n')
+        const text = recipe.ingredients.map(formatIngredientLine).join('\n')
         navigator.clipboard.writeText(text).then(() => {
             setCopied(true)
             trackCopy({ type: 'ingredients', recipe: recipe.slug })
@@ -91,6 +103,58 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
         trackPrint({ type: 'recipe', slug: recipe.slug })
         window.print()
     }
+
+    const story = getStoryPresentation(recipe.story)
+
+    // A Sheltie segment's body is authored as one string or an array of
+    // paragraphs (see Personas/Recipe-Page-Sheltie-Segments-Guide.md).
+    const renderSegmentBody = (content) =>
+        (Array.isArray(content) ? content : [content]).map((para, idx) => (
+            <p key={idx}>{para}</p>
+        ))
+
+    const shelties = recipe.shelties || {}
+    const characterSegments = Array.isArray(recipe.characterSegments) ? recipe.characterSegments : []
+    const getCanonicalSegment = (character) =>
+        characterSegments.find((segment) =>
+            segment.characterId?.toLowerCase().includes(character)
+        )
+    const getRecipeSegment = (character, legacyKey, defaults) => {
+        if (shelties[legacyKey]) {
+            return {
+                body: shelties[legacyKey],
+                segmentName: defaults.segmentName,
+                purpose: defaults.purpose
+            }
+        }
+
+        const canonicalSegment = getCanonicalSegment(character)
+        if (!canonicalSegment) {
+            return null
+        }
+
+        return {
+            body: canonicalSegment.body,
+            segmentName: canonicalSegment.segment || defaults.segmentName,
+            purpose: canonicalSegment.title || defaults.purpose
+        }
+    }
+    const havokSegment = getRecipeSegment('havok', 'havok', {
+        segmentName: "Havok's Kitchen Recon",
+        purpose: 'equipment & substitution intel'
+    })
+    const tianaSegment = getRecipeSegment('tiana', 'tiana', {
+        segmentName: "Tiana's Tasting Notes",
+        purpose: 'what a perfect slice is like'
+    })
+    const phaedraSegment = getRecipeSegment('phaedra', 'phaedra', {
+        segmentName: "Phaedra's Porch Light",
+        purpose: "why it works, and how to fix it if it doesn't"
+    })
+    const giselleSegment = getRecipeSegment('giselle', 'giselleVerdict', {
+        segmentName: "Giselle's Grand Verdict",
+        purpose: null
+    })
 
     return (
         <>
@@ -169,10 +233,17 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
                         <AllergenWarnings allergens={recipe.allergens} />
                     )}
 
-                    {recipe.story && (
+                    {story.blocks.length > 0 && (
                         <div className="story">
-                            {recipe.story.map((p, idx) => (
-                                <p key={idx} style={{ fontStyle: 'italic', color: '#5a4668', lineHeight: '1.6', marginBottom: '1rem' }}>{p}</p>
+                            {story.headline && (
+                                <h4>{story.headline}</h4>
+                            )}
+                            {story.blocks.map((block, idx) => (
+                                block.type === 'quote' ? (
+                                    <blockquote key={idx} style={{ fontStyle: 'italic', color: '#5a4668', lineHeight: '1.6', marginBottom: '1rem' }}>{block.text}</blockquote>
+                                ) : (
+                                    <p key={idx} style={{ fontStyle: 'italic', color: '#5a4668', lineHeight: '1.6', marginBottom: '1rem' }}>{block.text}</p>
+                                )
                             ))}
                         </div>
                     )}
@@ -190,10 +261,21 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
                         </ul>
                     </div>
 
-                    {/* Example Sheltie Tip - Giselle */}
-                    <SheltieTip character="giselle">
-                        <p>Darling, if you're going to make this, do it properly. No shortcuts. We're not animals... well, <em>I</em> am, but I have standards.</p>
-                    </SheltieTip>
+                    {/* Pre-bake briefing: Havok's gear + substitution recon when the
+                        recipe supplies it, otherwise the default Giselle tip. */}
+                    {havokSegment ? (
+                        <SheltieTip
+                            character="havok"
+                            segmentName={havokSegment.segmentName}
+                            purpose={havokSegment.purpose}
+                        >
+                            {renderSegmentBody(havokSegment.body)}
+                        </SheltieTip>
+                    ) : (
+                        <SheltieTip character="giselle">
+                            <p>Darling, if you're going to make this, do it properly. No shortcuts. We're not animals... well, <em>I</em> am, but I have standards.</p>
+                        </SheltieTip>
+                    )}
 
                     <div className="recipe__actions">
                         <button className="recipe__action" onClick={handleCopy}>
@@ -209,7 +291,7 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
                                 <h4>Ingredients</h4>
                                 <RecipeCalculator
                                     initialIngredients={recipe.ingredients}
-                                    initialYield={recipe.yield}
+                                    initialYield={recipe.yieldQuantity || recipe.yield}
                                     onScaleChange={setServingMultiplier}
                                 />
                             </div>
@@ -259,10 +341,43 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
                         </div>
                     </div>
 
-                    {/* Science tip from Phaedra - Full Width Below Grid */}
-                    <SheltieTip character="phaedra">
-                        <p>The key to this recipe is temperature control. When chocolate cools too quickly, it can seize. Patience, friends!</p>
-                    </SheltieTip>
+                    {/* Tiana's tasting notes — the finished-slice payoff, just after the steps. */}
+                    {tianaSegment && (
+                        <SheltieTip
+                            character="tiana"
+                            segmentName={tianaSegment.segmentName}
+                            purpose={tianaSegment.purpose}
+                        >
+                            {renderSegmentBody(tianaSegment.body)}
+                        </SheltieTip>
+                    )}
+
+                    {/* Phaedra's Porch Light: why-it-works + troubleshooting when supplied,
+                        otherwise the default science tip. */}
+                    {phaedraSegment ? (
+                        <SheltieTip
+                            character="phaedra"
+                            segmentName={phaedraSegment.segmentName}
+                            purpose={phaedraSegment.purpose}
+                        >
+                            {renderSegmentBody(phaedraSegment.body)}
+                        </SheltieTip>
+                    ) : (
+                        <SheltieTip character="phaedra">
+                            <p>The key to this recipe is temperature control. When chocolate cools too quickly, it can seize. Patience, friends!</p>
+                        </SheltieTip>
+                    )}
+
+                    {/* Giselle bookends the page with her closing verdict. */}
+                    {giselleSegment && (
+                        <SheltieTip
+                            character="giselle"
+                            segmentName={giselleSegment.segmentName}
+                            purpose={giselleSegment.purpose}
+                        >
+                            {renderSegmentBody(giselleSegment.body)}
+                        </SheltieTip>
+                    )}
 
                     <GiselleGuestbook recipeSlug={recipe.slug} />
 
@@ -287,9 +402,29 @@ RecipeTemplate.propTypes = {
         category: PropTypes.string,
         skill: PropTypes.string,
         description: PropTypes.string,
+        story: PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.string),
+            PropTypes.shape({
+                headline: PropTypes.string,
+                body: PropTypes.string
+            })
+        ]),
         ingredients: PropTypes.array,
         steps: PropTypes.array,
         dietary: PropTypes.arrayOf(PropTypes.string),
+        shelties: PropTypes.shape({
+            havok: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+            tiana: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+            phaedra: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+            giselleVerdict: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+        }),
+        characterSegments: PropTypes.arrayOf(PropTypes.shape({
+            characterId: PropTypes.string.isRequired,
+            segment: PropTypes.string,
+            title: PropTypes.string,
+            body: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
+            canonVersion: PropTypes.string
+        })),
     }).isRequired,
     expandedImage: PropTypes.string,
     embedded: PropTypes.bool,

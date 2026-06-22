@@ -97,7 +97,10 @@ function WhimsicalHero() {
                         loading="eager"
                         decoding="async"
                         fetchpriority="high"
-                        onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1556910110-a5a63dfd393c?w=500&h=600&fit=crop'; }}
+                        onError={(e) => {
+                            e.currentTarget.onerror = null
+                            e.currentTarget.src = '/images/recipes/stacey_and_giselle_hero_v2_1766407974937.png'
+                        }}
                     />
 
                     {/* Glimmer Overlay */}

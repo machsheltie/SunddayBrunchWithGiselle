@@ -96,7 +96,7 @@ The following are prohibited:
 - Adding schema fields to satisfy one page or component without model review and accepted validation evidence.
 - Activating reserved future records during Phase 0 or using them to expand Phase 1 scope.
 - Publishing a record without canonical ID, version, owner, approval, and source reference.
-- Overwriting published records or deleting revision, correction, withdrawal, rights, or approval history.
+- Overwriting published records or deleting revision, correction, withdrawal, rights, or approval history. Approved or scheduled but unpublished records may be revised only with version, audit, update-history, and current-approval traceability.
 - Letting AI-generated text, audio, metadata, classifications, or relationships become canonical without human review and approval.
 - Storing secrets, provider credentials, recovery codes, or payment data inside content records or evidence artifacts.
 - Copying character facts into recipe or episode records when a character-version reference can preserve one authority.

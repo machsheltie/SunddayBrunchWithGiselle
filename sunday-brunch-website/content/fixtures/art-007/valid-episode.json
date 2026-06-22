@@ -1,14 +1,14 @@
 {
   "id": "episode-art-007-001",
-  "recordType": "episode",
-  "version": 1,
+  "type": "episode",
   "status": "review",
-  "owner": "Stacey",
-  "reviewer": "Stacey",
-  "approver": "Stacey",
+  "version": 1,
   "createdAt": "2026-06-15T12:00:00Z",
   "updatedAt": "2026-06-15T12:00:00Z",
-  "sourceReferences": [
+  "createdBy": "PERSON-stacey",
+  "updatedBy": "PERSON-stacey",
+  "ownerId": "PERSON-stacey",
+  "sourceRefs": [
     {
       "id": "source-art-007-episode-001",
       "type": "production-runbook",
@@ -16,17 +16,24 @@
       "locator": "ART-007/episode/001"
     }
   ],
+  "revisionNote": "ART-007 representative episode fixture.",
   "slug": "lemon-ricotta-pancake-brunch",
   "title": "A Lemon Ricotta Pancake Brunch",
-  "briefId": "brief-art-007-episode-001",
-  "scriptId": "script-art-007-episode-001",
-  "canonVersion": "CANON-2026-06-11.1",
+  "summary": "The Shelties talk through a relaxed lemon ricotta pancake brunch.",
+  "episodeNumber": 7,
+  "primaryPillarId": "pillar-the-sunday-brunch-podcast",
+  "productionStreamId": "stream-sunday-brunch-podcast",
+  "objective": "Walk through the lemon ricotta pancake recipe while introducing the brunch format.",
+  "emotionalThread": "The calm pleasure of a slow Sunday morning.",
+  "featuredRecipe": "recipe-art-007-001",
+  "primaryComicEngine": "Phaedra's precision against Havok's improvisation.",
   "cast": [
     "CHAR-001-giselle",
     "CHAR-002-phaedra",
     "CHAR-003-tiana",
     "CHAR-004-havok"
   ],
+  "canonVersion": "CANON-2026-06-11.1",
   "chapters": [
     {
       "id": "chapter-art-007-episode-001",
@@ -34,12 +41,15 @@
       "startMarker": "PT0S"
     }
   ],
-  "transcriptId": "transcript-art-007-episode-001",
-  "mediaAssetIds": [
-    "media-art-007-episode-master-001"
+  "transcript": "transcript-art-007-episode-001",
+  "aiDisclosure": "ART-015-2026-06-11",
+  "relatedRecipes": [
+    "recipe-art-007-001"
   ],
-  "rightsRecordIds": [
-    "rights-art-007-episode-001"
-  ],
-  "disclosureVersion": "ART-015-2026-06-11"
+  "characters": [
+    "CHAR-001-giselle",
+    "CHAR-002-phaedra",
+    "CHAR-003-tiana",
+    "CHAR-004-havok"
+  ]
 }

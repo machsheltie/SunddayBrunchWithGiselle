@@ -65,7 +65,11 @@ function RecipeIndexPage() {
             const matchesDietary = activeDietary === 'all' || recipe.dietary?.includes(activeDietary)
             const matchesOccasion = activeOccasion === 'all' || recipe.occasion === activeOccasion
             const matchesIngredient = ingredientSearch === '' ||
-                recipe.ingredients?.some(i => i.toLowerCase().includes(ingredientSearch.toLowerCase())) ||
+                recipe.ingredients?.some(i =>
+                    (typeof i === 'string' ? i : i.name || '')
+                        .toLowerCase()
+                        .includes(ingredientSearch.toLowerCase())
+                ) ||
                 recipe.title.toLowerCase().includes(ingredientSearch.toLowerCase())
             return matchesCategory && matchesSkill && matchesDietary && matchesOccasion && matchesIngredient
         })

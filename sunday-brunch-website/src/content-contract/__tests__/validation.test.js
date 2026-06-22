@@ -27,6 +27,45 @@ describe('ART-007 content contract', () => {
         expect(validateRecord(recipeWithoutStory)).toEqual({ valid: true, errors: [] })
     })
 
+    it('accepts canon-stamped character segments', () => {
+        expect(validRecipe).toHaveProperty('characterSegments')
+        expect(validateRecord(validRecipe)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('treats character segments as optional', () => {
+        const { characterSegments, ...recipeWithoutSegments } = validRecipe
+        expect(validateRecord(recipeWithoutSegments)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('accepts registered taxonomy tags on a recipe', () => {
+        expect(validRecipe).toHaveProperty('course')
+        expect(validateRecord(validRecipe)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('accepts the full content-model authority, guidance, behavior, and relationship fields', () => {
+        expect(validRecipe).toHaveProperty('createdBy')
+        expect(validRecipe).toHaveProperty('whyItWorks')
+        expect(validRecipe).toHaveProperty('scalingEligible')
+        expect(validRecipe).toHaveProperty('characters')
+        expect(validateRecord(validRecipe)).toEqual({ valid: true, errors: [] })
+    })
+
+    it('rejects taxonomy values outside the registered vocabulary', () => {
+        const record = { ...validRecipe, mainIngredients: ['Plutonium'] }
+        expect(validateRecord(record)).toEqual({
+            valid: false,
+            errors: ['Unknown mainIngredients value: Plutonium']
+        })
+    })
+
+    it('rejects difficulty values outside the registered vocabulary', () => {
+        const record = { ...validRecipe, difficulty: 'wizard' }
+        expect(validateRecord(record)).toEqual({
+            valid: false,
+            errors: ['Unknown difficulty value: wizard']
+        })
+    })
+
     it('validates a representative episode', () => {
         expect(validateRecord(validEpisode)).toEqual({ valid: true, errors: [] })
     })

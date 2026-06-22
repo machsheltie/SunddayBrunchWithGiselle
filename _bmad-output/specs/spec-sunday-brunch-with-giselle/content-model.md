@@ -27,7 +27,7 @@ Every record has:
 - `sourceRefs`: evidence or originating records.
 - `revisionNote`: reason for the current revision.
 
-Published records additionally have `slug`, `publishedAt`, `approvedBy`, and `approvedAt`. Withdrawn records retain their IDs and history.
+Approved records carry `approvedBy` and `approvedAt` for the approved version. Published records additionally have `publishedAt`. Withdrawn records retain their IDs and history.
 
 ## Lifecycle States
 
@@ -42,7 +42,11 @@ Exceptional terminal or reversible state:
 Rules:
 
 - Only approved records may become scheduled or published.
-- Corrections create a new version and preserve the prior version.
+- The publication freeze starts at `published`, not at approval. A published record is closed to in-place editorial changes; changes to published content go through a versioned correction, withdrawal, or archival workflow that preserves the prior published version.
+- An approved or scheduled record that has not been published may be reopened and revised by its owner during active development. Each revision must increment `version`, update `updatedAt`, `updatedBy`, and `revisionNote`, and append an `updateHistory` entry where the aggregate defines one.
+- A revised pre-publication record cannot publish until approval is current for that revised version. Approval may be re-recorded immediately with refreshed `approvedBy` and `approvedAt`, or the record may explicitly mark approval as pending while polishing continues.
+- Historical artifact acceptance remains valid for the accepted version it names. If a later pre-publication revision becomes the version intended for launch or gate evidence, its approval must be re-recorded before publication or final gate use.
+- Corrections create a new version and preserve the prior published version.
 - Archived records remain addressable internally.
 - Withdrawn records retain reason, authority, public handling, and restoration conditions.
 
@@ -64,8 +68,10 @@ Required recipe fields:
 - Authority: author, tester, reviewer, approver, test date, revision state, update history.
 - Commitment: prep time, cook time, total time, yield, difficulty, equipment.
 - Classification: collections, season, occasion, skill, dietary disclosures, allergens.
+- Taxonomy (controlled vocabulary, added under D-10, 2026-06-18): optional multi-value `course`, `dishType`, `mainIngredients`, `methods`, `occasions`, `seasons`, and `dietary` tags, plus single-value `difficulty` (`Beginner`/`Intermediate`/`Advanced`). Allowed values are registered in the canonical recipe taxonomy; the validator rejects any tag outside the registered set, so the vocabulary never expands silently. Curated brand collections remain Collection records referenced by `collectionIds`, not taxonomy tags.
 - Structure: ordered ingredient groups, ordered instruction sections, notes.
 - Narrative: optional `story` headnote — a markdown `body` with an optional `headline` — carrying the personal context, occasion, and reason-to-cook that a recipe-blog entry leads with. Optional in the schema but expected for published recipes by the ART-008 checklist. Versioned as part of the recipe; photography stays in Media. Added under change control by D-08 (2026-06-17).
+- Character segments: optional `characterSegments` — an ordered array of canon character commentary (Havok, Tiana, Phaedra, Giselle). Each segment records `characterId`, the recurring `segment` name, a `title`, markdown `body`, the `canonVersion` it was reviewed against, and an optional `placement` hint. Optional in the schema; when present, each segment must be canon-compliant per the ART-008 checklist and is never the sole authority for safety, recipe, or human-voice-only content. Added under change control by D-09 (2026-06-18).
 - Guidance: sensory checkpoints, tested substitutions and impacts, common mistakes, recovery, storage, freezing, reheating, make-ahead, transport, gifting, pet-safe note where relevant, and why-it-works evidence.
 - Behavior: scaling eligibility, supported scale factors, unit-conversion eligibility, print eligibility, copy eligibility.
 - Media: hero asset, process assets where needed, social or pin derivatives, alt text, rights and provenance.
@@ -174,5 +180,9 @@ The model is accepted when:
 - Approval date: 2026-06-12
 - Approved scope: common record contract, lifecycle and history rules, recipe, episode, chapter, transcript, character, supporting-record aggregates, relationships, reserved future records, and validation obligations
 - D-08 amendment approval: Stacey approved the optional recipe `story` headnote amendment on 2026-06-18 under schema version `CONTENT-MODEL-2026-06-17.1`
+- D-09 amendment approval: Stacey approved the optional recipe `characterSegments` field and the schema advance to `CONTENT-MODEL-2026-06-18.1` on 2026-06-18
+- D-10 amendment approval: Stacey approved the controlled-vocabulary recipe taxonomy (seven tag axes plus the `Beginner`/`Intermediate`/`Advanced` difficulty vocabulary) and the schema advance to `CONTENT-MODEL-2026-06-18.2` on 2026-06-18
+- D-12 reconciliation approval: Stacey re-approved ART-006 and accepted the regenerated ART-007 evidence under the reconciled schema on 2026-06-18. The executable validator now enforces this contract — `type`, the `createdBy`/`updatedBy`/`ownerId`/`revisionNote` audit fields, and the Schema-A recipe/episode field names — while retaining the nested `times`/`yield`/`storage`/`media` objects. Schema `CONTENT-MODEL-2026-06-18.4`. The real records `REC-001` (French Silk Pie) and `EP-001` validate; see `.decision-log.md` D-12.
+- D-14 lifecycle-rule approval: Stacey approved the publication-freeze clarification on 2026-06-22. Approved or scheduled but unpublished records may be reopened during active development with version, audit, and update-history preservation; the freeze applies at `published`; the latest revised version must have current approval before publication or final gate use. No schema fields or validator allowlists changed.
 - Boundary: ART-007 must provide representative executable validation evidence; ART-006 approval does not claim that validators or production storage already exist
 - D-08 boundary: approval of the optional story field does not accept ART-009, any production recipe, or any representative recipe evidence

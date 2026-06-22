@@ -35,6 +35,7 @@ Identity and authority:
 - Named author, tester, reviewer, approver, and owner
 - Test date, revision state, update history, and source evidence
 - Primary pillar, production stream, collections, and relationships
+- Controlled-vocabulary category tags (course, dish type, main ingredient, method, occasion, season, dietary) use only registered values (D-10)
 - Narrative story/headnote present — the personal context a recipe-blog entry leads with; required for published recipes (D-08)
 
 Cooking contract:
@@ -59,6 +60,7 @@ Usability and truth:
 
 - Standard labels carry essential information
 - Character guidance is optional, useful, and canon-compliant
+- Each character segment records its character, recurring segment, and the canon version reviewed against, and is never the sole authority for safety, recipe, or human-voice-only content (D-09)
 - Measurements, warnings, and safety remain under human authority
 - Print, copy, scale, and mobile presentation requirements are documented for later implementation
 - Placeholder, prototype, and unverified material is labeled and cannot be approved for public release
@@ -74,6 +76,8 @@ ART-008 approval:
 - Owner, reviewer, and approver: Stacey
 - Approval date: 2026-06-12
 - D-08 amendment approval: Stacey approved the published-recipe narrative story/headnote checklist item on 2026-06-18
+- D-09 amendment approval: Stacey approved the character-segment canon-stamp checklist item on 2026-06-18
+- D-10 amendment approval: Stacey approved the registered controlled-vocabulary category-tag checklist item on 2026-06-18
 - Boundary: ART-009 must apply this checklist to a representative recipe; checklist approval alone is not recipe acceptance
 - D-08 boundary: approval of the story checklist item does not accept ART-009 or any production recipe
 
@@ -175,6 +179,14 @@ Required correction record:
 - Related episode, recipe, campaign, or asset impact
 - Closure date and prevention action
 
+Publication-freeze rule:
+
+- A published record is closed. Changes to published content must go through a versioned correction, withdrawal, or archival workflow; published content is never silently rewritten in place.
+- A record that is approved or scheduled but not yet published may still be reopened and revised by its owner during active development.
+- Pre-publication revisions must preserve the ledger: increment `version`, update `updatedAt`, `updatedBy`, and `revisionNote`, append an `updateHistory` entry where the record has one, and preserve prior approval/history evidence.
+- The revised version cannot publish until approval is current for that version. Re-record approval with refreshed `approvedBy` and `approvedAt`, or explicitly mark re-approval as pending while polishing continues.
+- Corrections are required for published content. Unpublished editorial polish does not require a correction record, but it still requires version and approval traceability.
+
 No published version is silently overwritten. Corrections preserve history and create a new version.
 
 ART-013 approval:
@@ -182,6 +194,7 @@ ART-013 approval:
 - Status: accepted
 - Owner, correction coordinator, and approver: Stacey
 - Approval date: 2026-06-12
+- D-14 amendment approval: Stacey approved the lifecycle-stage rewrite on 2026-06-22; the freeze applies at publication, while approved/scheduled but unpublished records remain editable with version, update-history, and approval traceability
 - Boundary: ART-014 must exercise an S1 or S2 case with preserved history and closure evidence; policy approval alone is not correction-process acceptance
 
 ## AI-Performance Disclosure
@@ -202,6 +215,27 @@ Placement requirements:
 The disclosure does not need to interrupt every scene or joke. Material changes require a new version and Stacey's approval.
 
 Approval: Stacey, 2026-06-11. Rights basis: ART-016.
+
+## Memorial And Dedication Content
+
+Status: accepted policy boundary approved by Stacey on 2026-06-22. Exact public page implementation, final copy, and image placement still require final content-specific signoff before publication.
+
+Purpose:
+
+- The memorial and dedication layer carries the plain truth of grief and tribute so weekly recipe pages can stay light, welcoming, and usable.
+- Giselle remains eternally present in recipe and podcast story-world content. Her real passing is acknowledged only in Stacey's human voice in approved dedication, About, or memorial material.
+- Athena's memorial introduces the "those who came before" layer and the origin story behind the Sheltie line; future departed dogs may be introduced over time under the same boundary.
+
+Required boundaries:
+
+- Dogs never narrate real death, grief, medical detail, or true personal memories.
+- Character segments can carry warmth, comedy, continuity, and tribute, but they are not the source of memorial facts.
+- Public copy uses first names or call names only unless Stacey separately approves a more identifying detail.
+- Public copy omits AKC registered names, full formal titles, exact locations, club or trial specifics, searchable personal identifiers, and medical detail unless Stacey separately approves them.
+- Any Athena portrait, Giselle image, or other memorial image requires explicit placement and usage approval before publication.
+- Draft memorial prose in `Personas/` is not canonical public copy until Stacey approves the exact text and placement.
+
+D-13 governance approval is closed. A memorial or dedication page, section, or image still requires final page-level approval before publication.
 
 ## AI Voice Use Policy
 

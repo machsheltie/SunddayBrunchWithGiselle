@@ -1,0 +1,80 @@
+{
+  "id": "correction-art-014-001",
+  "type": "correction",
+  "status": "published",
+  "version": 1,
+  "createdAt": "2026-06-22T00:00:00Z",
+  "updatedAt": "2026-06-22T00:00:00Z",
+  "createdBy": "PERSON-stacey",
+  "updatedBy": "PERSON-stacey",
+  "ownerId": "PERSON-stacey",
+  "approvedBy": "PERSON-stacey",
+  "approvedAt": "2026-06-22T00:00:00Z",
+  "sourceRefs": [
+    {
+      "id": "source-art-014-reader-report",
+      "type": "audience-correction-report",
+      "title": "Reader report: French Silk Pie soupy and unsliceable after the stated chill time",
+      "locator": "ART-014/scenario/SCN-014-S2-001; audience correction contact, 2026-06-22"
+    },
+    {
+      "id": "source-art-014-retest",
+      "type": "test-kitchen-verification",
+      "title": "Set-time re-test of a deep 9-inch French Silk Pie",
+      "locator": "ART-014/investigation/retest-001; one hour leaves the filling too soft to slice; at least two hours sets it firmly, overnight is better"
+    }
+  ],
+  "revisionNote": "ART-014 tabletop S2 correction exercise (WP-06). Subject REC-001 French Silk Pie. The scenario injects a deliberately incorrect published value (chill time PT1H) so the exercise has a real error to catch; the correction lands on PT2H, which is also the value the real record already carries. affectedVersion and correctedVersion refer to a hypothetical PUBLISHED edition line used only for this tabletop and are distinct from REC-001's real pre-publication development ledger (currently version 14, scheduled/unpublished). No record under content/records/ was modified; this file is evidence only.",
+  "subjectId": "REC-001",
+  "affectedVersion": 1,
+  "severity": "S2",
+  "rationale": "The published edition understated the chilling time as one hour (times.chill PT1H; step 7 'Refrigerate at least 1 hour'). A deep 9-inch French silk filling sets by whipped butterfat and air rather than gelatin and needs at least two hours cold to slice cleanly. One hour can materially mislead a reader into serving a soupy, unsliceable pie. This is not a safety, legal, or rights hazard, so it is S2 Major rather than S1: correct promptly and add a visible notice where audience action may be affected.",
+  "reporter": "Audience correction contact — a reader reported on 2026-06-22 that they refrigerated the pie for the stated hour, served it at a gathering, and it would not hold a slice.",
+  "reviewDate": "2026-06-22",
+  "containment": "The published recipe was not withdrawn (S2, no safety/legal hazard). An interim correction notice was placed on the recipe page flagging that the chilling time was under review while the corrected edition was prepared, so any reader cooking from it that day was warned to chill the pie longer.",
+  "correctedVersion": 2,
+  "changedFields": [
+    {
+      "field": "times.chill",
+      "from": "PT1H",
+      "to": "PT2H"
+    },
+    {
+      "field": "times.total",
+      "from": "PT1H42M",
+      "to": "PT2H42M"
+    },
+    {
+      "field": "instructionSections[instruction-section-rec-001-main].steps[instruction-step-rec-001-07].body",
+      "from": "Whip the cream and chill. Beat the cold cream to stiff peaks (about 3 minutes), add the powdered sugar, and beat until smooth. Spread over the pie. Refrigerate at least 1 hour.",
+      "to": "Whip the cream and chill. Beat the cold cream to stiff peaks (about 3 minutes), add the powdered sugar, and beat until smooth. Spread over the pie. Refrigerate at least 2 hours, or overnight."
+    }
+  ],
+  "noticeDecision": {
+    "required": true,
+    "placement": "Visible correction note at the top of the recipe page and a matching entry in the recipe's update history; carried in any feed/show-notes that reference the recipe.",
+    "wording": "Correction (2026-06-22): An earlier version of this recipe understated the chilling time. This pie needs at least 2 hours in the refrigerator (overnight is better) to set firmly enough to slice cleanly. We have corrected the chill time and the total time.",
+    "reason": "Chill time directly affects whether a reader can serve the pie successfully, so audience action is affected and a visible notice is required under the S2 rule."
+  },
+  "actionDecision": "Correct forward into a new version (published edition 2). No rollback, withdrawal, or replacement: the error is non-safety and is fixed by the corrected edition. The prior published edition (1) is preserved in history alongside the correction notice; it is not silently overwritten.",
+  "relatedImpact": "EP-001 (draft episode) features REC-001 but is unpublished and carries no independent chill-time claim, so it needs no correction; its brief/script review confirmed no echoed value. Collections that list the recipe (chocolate-lovers, make-ahead-magic, crowd-favorites, from-the-podcast) reference it by ID and need no change. No campaign, transcript, or feed had published the understated value beyond the recipe-derived references covered by the notice.",
+  "closureEvidence": [
+    {
+      "id": "closure-art-014-correction",
+      "type": "editorial-verification",
+      "date": "2026-06-22",
+      "result": "Corrected published edition 2 records times.chill PT2H, times.total PT2H42M, and step 7 'Refrigerate at least 2 hours, or overnight.' The correction notice is published on the recipe page and in update history. Re-test confirmed the corrected timing sets the pie firmly enough to slice."
+    },
+    {
+      "id": "closure-art-014-history",
+      "type": "traceability-check",
+      "date": "2026-06-22",
+      "result": "Prior published edition 1 is preserved and the corrected edition is a new version. This conforms to the correction contract validated under ART-007 (accepted evidence: correctedVersion must exceed affectedVersion, and website projection cannot write canonical content), so correction history is preserved and no published version is silently overwritten."
+    }
+  ],
+  "preventionAction": {
+    "id": "prevention-art-014-001",
+    "measure": "Add a timed set-verification gate to the recipe quality checklist (ART-008 cooking contract): chill time and total time on any no-bake or chilled recipe must be confirmed by a timed test-kitchen set, recorded against testDate, before the recipe is approved for publication.",
+    "owner": "PERSON-stacey"
+  }
+}

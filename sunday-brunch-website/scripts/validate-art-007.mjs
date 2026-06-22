@@ -94,6 +94,24 @@ const errorCheck = (id, name, action, expectedMessage) => {
 
 const validRecordExpected = { valid: true, errors: [] }
 
+const taxonomyRejectionCheck = async () => {
+    const baseRecipe = await loadJsonFixture('valid-recipe.json')
+    const record = { ...baseRecipe, mainIngredients: ['Plutonium'] }
+    const expected = {
+        valid: false,
+        errors: ['Unknown mainIngredients value: Plutonium']
+    }
+    const actual = validateRecord(record)
+
+    return {
+        id: 'invalid-taxonomy-value',
+        name: 'Taxonomy value outside the registered vocabulary is rejected',
+        passed: isExactMatch(actual, expected),
+        expected,
+        actual
+    }
+}
+
 const results = [
     await validationCheck(
         'valid-recipe',
@@ -149,6 +167,7 @@ const results = [
             errors: ['Reserved record type is inactive: public-review']
         }
     ),
+    await taxonomyRejectionCheck(),
     errorCheck(
         'projection-writeback',
         'Website projection source cannot write canonical content',
@@ -162,7 +181,7 @@ const output = {
     validatorVersion: '1.0.0',
     executedAt: new Date().toISOString(),
     command: 'npm run validate:content',
-    schemaVersion: 'CONTENT-MODEL-2026-06-17.1',
+    schemaVersion: 'CONTENT-MODEL-2026-06-18.4',
     results,
     passed: results.every((result) => result.passed)
 }

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { TestBrowserRouter } from '../utils/test-router';
 import WhimsicalHero from '../../components/WhimsicalHero';
 
@@ -253,17 +253,17 @@ describe('WhimsicalHero', () => {
     // ==========================================
 
     describe('Image Error Handling', () => {
-        it('should have onError handler for image fallback', () => {
+        it('should fall back to the local Stacey and Giselle image, never a generic external image', () => {
             // Arrange & Act
             const { container } = renderWithRouter(<WhimsicalHero />);
 
             // Assert
             const image = container.querySelector('img');
             expect(image).toHaveAttribute('src', '/assets/stacey-and-giselle.png');
+            fireEvent.error(image);
 
-            // Verify onError handler exists by checking it's a function
-            // We can't directly test the handler without triggering it, but we can verify the component renders correctly
-            expect(image).toBeInTheDocument();
+            expect(image).toHaveAttribute('src', '/images/recipes/stacey_and_giselle_hero_v2_1766407974937.png');
+            expect(image.getAttribute('src')).not.toContain('images.unsplash.com');
         });
     });
 });

@@ -1,12 +1,12 @@
 # About-Page Memorials & Dedication (DRAFT)
 
-*Tender, human-voice-only content for the About / The Team page — Stacey's voice alone, true to what really happened. Grief is handled openly but gently (no medical detail). Drafts for Stacey's review; nothing here is final, and every word is hers to change. Placement: the eventual About page; for now it lives with the other creative drafts. The dogs never narrate these — they are Stacey's to tell.*
+*Tender, human-voice-only content for the footer-linked "For Giselle" page — Stacey's voice alone, true to what really happened. Grief is handled openly but gently (no medical detail). The dogs never narrate these — they are Stacey's to tell. **Placement (decided):** a standalone "For Giselle" page, linked from the site footer, holding the dedication and the "Those who came before" memorials. For now it lives here with the other creative drafts.*
 
 ---
 
 ## Giselle's Dedication
 
-*The piece that carries the love openly, so the weekly recipes can stay light. Suggested placement: a quiet dedication on the About page (or a standalone "For Giselle" page linked from the footer). In the recipes themselves, Giselle stays eternally present and in charge — this is the one place we tell the whole truth.*
+*The piece that carries the love openly, so the weekly recipes can stay light. Lives at the top of the footer-linked "For Giselle" page. In the recipes themselves, Giselle stays eternally present and in charge — this is the one place we tell the whole truth.*
 
 ---
 
@@ -48,6 +48,8 @@ She also never met a job she didn't intend to run. Every move, every project, th
 
 She stayed for sixteen and a half years, and at the very end, I think she was only holding on for me. She let go the night I finally told her it was okay — that I'd be alright, that she'd done enough. She'd done so much more than enough.
 
+After she was gone, I spent more than forty hours drawing her in colored pencil, crying off and on the whole way through. Last summer I finally worked up the nerve to enter it at the state fair. Of the four pieces I submitted, hers was the one that placed. Of course it was.
+
 You can see her in Tiana now — that same carefree, sunlit joy, come back around. It took me a lot of years and a lot of love to find my way back to it. Athena would be glad. She never did like the road to end.
 
 ---
@@ -58,10 +60,10 @@ You can see her in Tiana now — that same carefree, sunlit joy, come back aroun
 - **The two truths bridged:** the dedication says plainly that Giselle is gone, *and* that she's eternally present in the recipes — so the weekly pages never have to carry the grief.
 - **The love-letter framing is now explicit** (Stacey's request): the dedication states that this whole place is a love letter to Giselle and all her Shelties, past and present; that as long as it's alive a piece of Giselle lives on; and that what's shared here is the truest version of her — the one she only ever showed Stacey. This is the project's stated soul.
 - **Athena: "handler" specified as agility** (Stacey's note) — "the two of us ran agility together."
-- **Athena's portrait (held back, optional):** I did not put your 40-hour state-fair portrait into the memorial yet — it's deeply personal, and it might be its own beautiful beat (a caption under the portrait if you ever display it, rather than a line in the bio). Want it woven in, or kept separate?
+- **Athena's portrait: woven in** (Stacey approved) — the 40-hour colored-pencil portrait and its state-fair placement now close Athena's memorial, just before the Tiana beat.
 - **Length:** both run a little longer than a recipe headnote on purpose — a memorial earns its length. Happy to tighten either.
-- **Signature:** I signed the dedication "— Stacey." Keep, change, or cut.
-- **Placement is a guess** (About page / a "For Giselle" page). Tell me where these should live and I'll note it.
+- **Signature: kept** — the dedication signs off "— Stacey" (Stacey approved).
+- **Placement: decided** — a standalone "For Giselle" page, linked from the site footer, holds the dedication + the "Those who came before" memorials. (Engineering: build the page + footer link at wiring time.)
 - **Anonymity vs. authenticity (Stacey's open concern):** the real dog names + breeding lines are an identifying fingerprint to anyone in the Sheltie/agility world, so insiders (including the people who betrayed her) will likely recognize her early. Decision is hers. Protective levers that keep authenticity intact: (1) face-free + first-name-only (already decided); (2) **keep AKC registered names and full titles, exact locations, and club/trial specifics OUT of public copy** — they're the most searchable identifiers; the full record (e.g., Athena's registered name + MACH4 PACH titles) lives only in the private pack bible, and the public memorial uses warm prose instead ("we ran agility," "a dozen sports," "championships"). This already holds in the current drafts. The remaining exposure is the dogs' call names themselves, which can't be changed without gutting the truth. → Stacey to decide her comfort line; no wrong answer.
 
 ## To add later (as you're ready)

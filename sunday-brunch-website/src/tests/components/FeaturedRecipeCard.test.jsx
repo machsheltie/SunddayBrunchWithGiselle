@@ -130,6 +130,23 @@ describe('FeaturedRecipeCard', () => {
             // Assert
             expect(screen.getByText('These muffins are perfect for Sunday brunch.')).toBeInTheDocument();
         });
+
+        it('should display excerpt from canonical story object body', () => {
+            // Arrange
+            const recipeWithCanonicalStory = {
+                ...mockRecipe,
+                story: {
+                    headline: 'The muffin that started everything',
+                    body: 'The first French Silk Pie I ever made was a bribe.\n\n> **Giselle:** *"A bribe."*'
+                }
+            };
+
+            // Act
+            render(<FeaturedRecipeCard recipe={recipeWithCanonicalStory} />);
+
+            // Assert
+            expect(screen.getByText('The first French Silk Pie I ever made was a bribe.')).toBeInTheDocument();
+        });
     });
 
     // ==========================================

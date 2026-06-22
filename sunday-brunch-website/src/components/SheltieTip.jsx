@@ -26,8 +26,12 @@ const SHELTIE_CONFIG = {
     }
 }
 
-function SheltieTip({ character = 'giselle', children }) {
+// `segmentName` turns a casual tip ("Havok barks...") into a named recurring
+// segment ("🐾 Havok's Kitchen Recon") with an optional one-line purpose tag.
+// Left unset, the component behaves exactly as before.
+function SheltieTip({ character = 'giselle', segmentName = null, purpose = null, children }) {
     const { name, photo, fallback } = SHELTIE_CONFIG[character] || SHELTIE_CONFIG.giselle
+    const avatarAlt = name.replace(/\s(says|barks|yips|explains)\.\.\./, '')
 
     const handleImageError = (e) => {
         if (e.target.src !== fallback) {
@@ -36,11 +40,14 @@ function SheltieTip({ character = 'giselle', children }) {
     }
 
     return (
-        <div className={`sheltie-tip sheltie-tip--${character}`}>
+        <aside
+            className={`sheltie-tip sheltie-tip--${character}`}
+            aria-label={segmentName || avatarAlt}
+        >
             <img
                 className="sheltie-tip__avatar"
                 src={photo}
-                alt={name.replace(/\s(says|barks|yips|explains)\.\.\./, '')}
+                alt={avatarAlt}
                 width="1024"
                 height="1024"
                 loading="lazy"
@@ -49,18 +56,23 @@ function SheltieTip({ character = 'giselle', children }) {
             />
             <div className="sheltie-tip__body">
                 <div className="sheltie-tip__header">
-                    <span className="sheltie-tip__name">{name}</span>
+                    <span className="sheltie-tip__name">
+                        {segmentName ? `🐾 ${segmentName}` : name}
+                    </span>
+                    {purpose && <span className="sheltie-tip__purpose">{purpose}</span>}
                 </div>
                 <div className="sheltie-tip__content">
                     {children}
                 </div>
             </div>
-        </div>
+        </aside>
     )
 }
 
 SheltieTip.propTypes = {
     character: PropTypes.oneOf(['giselle', 'havok', 'tiana', 'phaedra']),
+    segmentName: PropTypes.string,
+    purpose: PropTypes.string,
     children: PropTypes.node.isRequired
 }
 

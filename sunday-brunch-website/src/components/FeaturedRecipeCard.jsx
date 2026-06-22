@@ -4,6 +4,7 @@ import RecipeTemplate from './RecipeTemplate';
 import WhimsicalButton from './WhimsicalButton';
 import CrystalRating from './CrystalRating';
 import { getRecipeRatings } from '../lib/ratings';
+import { getStoryExcerpt } from '../lib/story';
 import './FeaturedRecipeCard.css';
 
 const FeaturedRecipeCard = ({ recipe }) => {
@@ -11,6 +12,7 @@ const FeaturedRecipeCard = ({ recipe }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [ratings, setRatings] = useState(null);
     const [ratingsLoading, setRatingsLoading] = useState(true);
+    const storyExcerpt = getStoryExcerpt(recipe.story);
 
     useEffect(() => {
         // Fetch ratings for this recipe
@@ -92,7 +94,7 @@ const FeaturedRecipeCard = ({ recipe }) => {
                     </div>
 
                     <p style={{ fontStyle: 'italic', color: '#5a4668' }}>
-                        {recipe.story && recipe.story.length > 0 ? recipe.story[0] : recipe.description}
+                        {storyExcerpt || recipe.description}
                     </p>
 
                     {!isExpanded && (
@@ -136,6 +138,13 @@ FeaturedRecipeCard.propTypes = {
         category: PropTypes.string,
         skill: PropTypes.string,
         description: PropTypes.string,
+        story: PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.string),
+            PropTypes.shape({
+                headline: PropTypes.string,
+                body: PropTypes.string
+            })
+        ]),
         dietary: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
 };

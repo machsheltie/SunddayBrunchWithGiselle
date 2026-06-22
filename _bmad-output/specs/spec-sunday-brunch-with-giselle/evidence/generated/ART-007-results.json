@@ -1,9 +1,9 @@
 {
     "artifactId": "ART-007",
     "validatorVersion": "1.0.0",
-    "executedAt": "2026-06-18T13:18:38.485Z",
+    "executedAt": "2026-06-22T18:47:12.443Z",
     "command": "npm run validate:content",
-    "schemaVersion": "CONTENT-MODEL-2026-06-18.2",
+    "schemaVersion": "CONTENT-MODEL-2026-06-18.4",
     "results": [
         {
             "id": "valid-recipe",

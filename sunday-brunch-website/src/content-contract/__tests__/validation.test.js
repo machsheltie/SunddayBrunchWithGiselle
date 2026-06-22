@@ -42,6 +42,14 @@ describe('ART-007 content contract', () => {
         expect(validateRecord(validRecipe)).toEqual({ valid: true, errors: [] })
     })
 
+    it('accepts the full content-model authority, guidance, behavior, and relationship fields', () => {
+        expect(validRecipe).toHaveProperty('createdBy')
+        expect(validRecipe).toHaveProperty('whyItWorks')
+        expect(validRecipe).toHaveProperty('scalingEligible')
+        expect(validRecipe).toHaveProperty('characters')
+        expect(validateRecord(validRecipe)).toEqual({ valid: true, errors: [] })
+    })
+
     it('rejects taxonomy values outside the registered vocabulary', () => {
         const record = { ...validRecipe, mainIngredients: ['Plutonium'] }
         expect(validateRecord(record)).toEqual({

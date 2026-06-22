@@ -1,3 +1,5 @@
+import { getStoryExcerpt } from './story'
+
 const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://sundaybrunchwithgiselle.com'
 
 const ensureMeta = (name, attr = 'name') => {
@@ -63,7 +65,7 @@ export const applyRecipeSchema = (recipe) => {
         '@context': 'https://schema.org/',
         '@type': 'Recipe',
         name: recipe.title,
-        description: recipe.meta?.description || recipe.story?.[0],
+        description: recipe.meta?.description || getStoryExcerpt(recipe.story),
         image: recipe.meta?.ogImage ? `${SITE_URL}${recipe.meta.ogImage}` : undefined,
         recipeYield: recipe.yield,
         prepTime: asDuration(recipe.times?.prep),

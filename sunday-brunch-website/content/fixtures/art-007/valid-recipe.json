@@ -1,14 +1,14 @@
 {
   "id": "recipe-art-007-001",
-  "recordType": "recipe",
-  "version": 1,
+  "type": "recipe",
   "status": "review",
-  "owner": "Stacey",
-  "reviewer": "Stacey",
-  "approver": "Stacey",
+  "version": 1,
   "createdAt": "2026-06-15T12:00:00Z",
   "updatedAt": "2026-06-15T12:00:00Z",
-  "sourceReferences": [
+  "createdBy": "PERSON-stacey",
+  "updatedBy": "PERSON-stacey",
+  "ownerId": "PERSON-stacey",
+  "sourceRefs": [
     {
       "id": "source-art-007-recipe-001",
       "type": "test-kitchen-note",
@@ -16,15 +16,19 @@
       "locator": "ART-007/recipe/001"
     }
   ],
+  "revisionNote": "ART-007 representative recipe fixture.",
   "slug": "lemon-ricotta-sunday-brunch-pancakes",
   "title": "Lemon Ricotta Sunday Brunch Pancakes",
   "summary": "Tender lemon ricotta pancakes with crisp edges for a relaxed Sunday brunch.",
-  "story": {
-    "headline": "The pancakes that turned slow Sundays into a ritual",
-    "body": "These began as a way to use up a half-tub of ricotta on a quiet Sunday morning, and they quietly became the thing everyone asks for. The ricotta keeps the centers custardy while the edges crisp, so they feel indulgent without being heavy. Make the batter first, pour a coffee, and let the morning move at its own pace."
-  },
-  "pillar": "PILLAR-SUNDAY-BRUNCH-RECIPES",
-  "productionStream": "STREAM-COOKING",
+  "primaryPillarId": "pillar-recipes-from-giselles-kitchen",
+  "productionStreamId": "stream-cook-with-stacey-and-giselle",
+  "author": "PERSON-stacey",
+  "tester": "PERSON-stacey",
+  "reviewer": "PERSON-stacey",
+  "approver": "PERSON-stacey",
+  "testDate": "2026-06-15",
+  "revisionState": "initial-draft",
+  "updateHistory": [],
   "times": {
     "prep": "PT15M",
     "cook": "PT25M",
@@ -34,7 +38,20 @@
     "quantity": 4,
     "unit": "servings"
   },
-  "difficulty": "easy",
+  "difficulty": "Beginner",
+  "course": [
+    "Breakfast & Brunch"
+  ],
+  "mainIngredients": [
+    "Cheese",
+    "Citrus"
+  ],
+  "seasons": [
+    "All Seasons"
+  ],
+  "dietary": [
+    "Vegetarian"
+  ],
   "equipment": [
     {
       "id": "equipment-art-007-skillet-001",
@@ -47,34 +64,20 @@
     {
       "id": "equipment-art-007-bowls-001",
       "name": "2 medium mixing bowls"
-    },
-    {
-      "id": "equipment-art-007-spatula-001",
-      "name": "rubber spatula"
     }
   ],
   "ingredientGroups": [
     {
       "id": "ingredient-group-art-007-batter-001",
-      "title": "Pancake batter",
+      "recipeId": "recipe-art-007-001",
+      "label": "Pancake batter",
+      "order": 1,
       "items": [
         {
           "id": "ingredient-art-007-flour-001",
           "quantity": 1,
           "unit": "cup",
           "ingredient": "all-purpose flour"
-        },
-        {
-          "id": "ingredient-art-007-baking-powder-001",
-          "quantity": 2,
-          "unit": "teaspoons",
-          "ingredient": "baking powder"
-        },
-        {
-          "id": "ingredient-art-007-salt-001",
-          "quantity": 0.5,
-          "unit": "teaspoon",
-          "ingredient": "fine sea salt"
         },
         {
           "id": "ingredient-art-007-ricotta-001",
@@ -89,12 +92,6 @@
           "ingredient": "eggs"
         },
         {
-          "id": "ingredient-art-007-milk-001",
-          "quantity": 0.5,
-          "unit": "cup",
-          "ingredient": "whole milk"
-        },
-        {
           "id": "ingredient-art-007-lemon-001",
           "quantity": 1,
           "unit": "tablespoon",
@@ -106,17 +103,19 @@
   "instructionSections": [
     {
       "id": "instruction-section-art-007-cook-001",
-      "title": "Mix and cook",
+      "recipeId": "recipe-art-007-001",
+      "label": "Mix and cook",
+      "order": 1,
       "steps": [
         {
           "id": "instruction-step-art-007-001",
           "order": 1,
-          "instruction": "Whisk the all-purpose flour, baking powder, and fine sea salt; separately whisk the whole-milk ricotta, eggs, whole milk, and fresh lemon zest, then fold the mixtures together until just combined."
+          "body": "Whisk the dry ingredients; separately whisk the ricotta, eggs, and lemon zest, then fold the mixtures together until just combined."
         },
         {
           "id": "instruction-step-art-007-002",
           "order": 2,
-          "instruction": "Cook quarter-cup portions in the warm skillet until golden and set through."
+          "body": "Cook quarter-cup portions in the warm skillet until golden and set through."
         }
       ]
     }
@@ -141,26 +140,61 @@
       "indicator": "The center springs back lightly and the edges are golden."
     }
   ],
-  "substitutions": [
+  "commonMistakes": [
+    {
+      "id": "mistake-art-007-spread-001",
+      "issue": "Pancakes spread too quickly.",
+      "resolution": "Rest the batter for five minutes and reduce the skillet heat."
+    }
+  ],
+  "recovery": "If the batter loosens, fold in a spoonful more flour and let it rest before cooking.",
+  "testedSubstitutions": [
     {
       "id": "substitution-art-007-ricotta-001",
       "from": "whole-milk ricotta",
       "to": "full-fat cottage cheese",
-      "guidance": "Blend until smooth before measuring."
+      "impact": "Blend until smooth before measuring."
     }
   ],
-  "troubleshooting": [
-    {
-      "id": "troubleshooting-art-007-spread-001",
-      "issue": "Pancakes spread too quickly.",
-      "resolution": "Rest the batter for five minutes and reduce the skillet heat."
-    }
+  "whyItWorks": "Folding rather than whisking keeps the ricotta curds intact, so the centers stay custardy instead of rubbery.",
+  "notes": [
+    "Best eaten straight off the skillet while the edges are still crisp."
   ],
   "storage": {
     "method": "Refrigerate cooled pancakes in an airtight container.",
     "maximumDuration": "P5D",
     "reheating": "Warm in a 350 F oven until heated through."
   },
+  "scalingEligible": true,
+  "scaleFactors": [
+    2
+  ],
+  "unitConversionEligible": true,
+  "printEligible": true,
+  "copyEligible": true,
+  "characterSegmentsInPrint": false,
+  "story": {
+    "headline": "Slow Sunday pancakes",
+    "body": "These started as a way to use up a half-tub of ricotta on a quiet Sunday morning and quietly became a weekend ritual."
+  },
+  "characterSegments": [
+    {
+      "id": "character-segment-art-007-phaedra-001",
+      "characterId": "CHAR-002-phaedra",
+      "segment": "Phaedra's Porch Light",
+      "title": "Why you fold instead of whisk",
+      "body": "Stopping while the batter is still a little lumpy keeps the ricotta curds intact, and those soft pockets are what make the centers custardy instead of rubbery.",
+      "canonVersion": "CANON-2026-06-11.1",
+      "placement": "after-instructions"
+    }
+  ],
+  "characters": [
+    "CHAR-002-phaedra",
+    "CHAR-003-tiana"
+  ],
+  "collections": [],
+  "tags": [],
+  "campaigns": [],
   "media": {
     "id": "media-art-007-recipe-hero-001",
     "type": "image",
@@ -169,7 +203,7 @@
       "referenceId": "shoot-art-007-001"
     },
     "provenance": {
-      "createdBy": "Stacey",
+      "createdBy": "PERSON-stacey",
       "capturedAt": "2026-06-15T12:00:00Z",
       "originalFileName": "lemon-ricotta-pancakes-hero.jpg"
     },
@@ -178,6 +212,7 @@
       "rightsRecordId": "rights-art-007-recipe-001",
       "usage": "website and owned social channels"
     },
+    "altText": "A stack of golden lemon ricotta pancakes with crisp edges.",
     "status": "review"
   }
 }

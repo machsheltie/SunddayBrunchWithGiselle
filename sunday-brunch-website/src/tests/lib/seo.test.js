@@ -360,6 +360,27 @@ describe('SEO Library', () => {
       expect(schema.description).toBe('This is the story')
     })
 
+    it('should use canonical story object body as fallback description', () => {
+      const recipeWithoutMetaDesc = {
+        title: 'Recipe Title',
+        story: {
+          headline: 'The pie that started everything',
+          body: 'The first French Silk Pie I ever made was a bribe.\n\n> **Giselle:** *"A bribe."*'
+        },
+        ingredients: ['Ingredient 1'],
+        steps: ['Step 1']
+      }
+
+      applyRecipeSchema(recipeWithoutMetaDesc)
+
+      const schemaEl = mockHead.children.find(
+        child => child.id === 'structured-data'
+      )
+      const schema = JSON.parse(schemaEl.textContent)
+
+      expect(schema.description).toBe('The first French Silk Pie I ever made was a bribe.')
+    })
+
     it('should handle invalid time strings gracefully', () => {
       const recipeWithInvalidTimes = {
         ...mockRecipe,

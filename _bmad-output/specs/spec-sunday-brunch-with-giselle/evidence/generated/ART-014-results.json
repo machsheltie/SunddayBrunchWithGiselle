@@ -1,0 +1,21 @@
+{
+    "artifactId": "ART-014",
+    "validatorVersion": "1.0.0",
+    "contract": "src/content-contract/index.js#validateRecord (accepted under ART-007)",
+    "schemaVersion": "CONTENT-MODEL-2026-06-18.4",
+    "executedAt": "2026-06-22T18:41:55.759Z",
+    "command": "node scripts/validate-art-007.mjs equivalent: validateRecord(ART-014-correction-record.json)",
+    "subject": {
+        "id": "correction-art-014-001",
+        "type": "correction",
+        "subjectId": "REC-001",
+        "severity": "S2",
+        "affectedVersion": 1,
+        "correctedVersion": 2
+    },
+    "result": {
+        "valid": true,
+        "errors": []
+    },
+    "passed": true
+}

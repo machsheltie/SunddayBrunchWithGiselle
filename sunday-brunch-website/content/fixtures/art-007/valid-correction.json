@@ -1,14 +1,14 @@
 {
   "id": "correction-art-007-001",
-  "recordType": "correction",
-  "version": 1,
+  "type": "correction",
   "status": "review",
-  "owner": "Stacey",
-  "reviewer": "Stacey",
-  "approver": "Stacey",
+  "version": 1,
   "createdAt": "2026-06-15T12:00:00Z",
   "updatedAt": "2026-06-15T12:00:00Z",
-  "sourceReferences": [
+  "createdBy": "PERSON-stacey",
+  "updatedBy": "PERSON-stacey",
+  "ownerId": "PERSON-stacey",
+  "sourceRefs": [
     {
       "id": "source-art-007-correction-001",
       "type": "test-kitchen-verification",
@@ -16,6 +16,7 @@
       "locator": "ART-007/correction/001"
     }
   ],
+  "revisionNote": "ART-007 correction-traceability fixture.",
   "subjectId": "recipe-art-007-001",
   "affectedVersion": 1,
   "severity": "S2",
@@ -44,6 +45,6 @@
   "preventionAction": {
     "id": "prevention-art-007-001",
     "measure": "Require test-kitchen signoff for all storage duration fields.",
-    "owner": "Stacey"
+    "owner": "PERSON-stacey"
   }
 }

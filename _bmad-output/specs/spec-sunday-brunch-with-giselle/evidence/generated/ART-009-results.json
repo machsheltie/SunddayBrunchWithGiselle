@@ -1,0 +1,23 @@
+{
+    "artifactId": "ART-009",
+    "validatorVersion": "1.0.0",
+    "executedAt": "2026-06-22T18:47:13.249Z",
+    "command": "npm run validate:records",
+    "schemaVersion": "CONTENT-MODEL-2026-06-18.4",
+    "recordCount": 2,
+    "results": [
+        {
+            "file": "content/records/episodes/EP-001-the-first-sunday.json",
+            "id": "EP-001",
+            "valid": true,
+            "errors": []
+        },
+        {
+            "file": "content/records/recipes/1_french_silk_pie/REC-001-french-silk-pie.json",
+            "id": "REC-001",
+            "valid": true,
+            "errors": []
+        }
+    ],
+    "passed": true
+}

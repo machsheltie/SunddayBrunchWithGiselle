@@ -37,34 +37,34 @@ const validateRecipeTaxonomy = (record) => {
 }
 
 export const validateRecord = (record) => {
-    if (reservedRecordTypes.has(record.recordType)) {
+    if (reservedRecordTypes.has(record.type)) {
         return {
             valid: false,
-            errors: [`Reserved record type is inactive: ${record.recordType}`]
+            errors: [`Reserved record type is inactive: ${record.type}`]
         }
     }
 
-    if (!activeRecordTypes.has(record.recordType)) {
+    if (!activeRecordTypes.has(record.type)) {
         return {
             valid: false,
-            errors: [`Unknown record type: ${record.recordType}`]
+            errors: [`Unknown record type: ${record.type}`]
         }
     }
 
-    const definition = recordDefinitions[record.recordType]
+    const definition = recordDefinitions[record.type]
     const missing = definition.required
         .filter((field) => record[field] === undefined)
         .map((field) => `Missing required field: ${field}`)
     const unknown = Object.keys(record)
         .filter((field) => !definition.allowed.includes(field))
         .map((field) => `Unknown field: ${field}`)
-    const correctionErrors = record.recordType === 'correction'
+    const correctionErrors = record.type === 'correction'
         && record.affectedVersion !== undefined
         && record.correctedVersion !== undefined
         && record.correctedVersion <= record.affectedVersion
         ? ['Corrected version must be greater than affected version']
         : []
-    const taxonomyErrors = record.recordType === 'recipe'
+    const taxonomyErrors = record.type === 'recipe'
         ? validateRecipeTaxonomy(record)
         : []
     const errors = [...missing, ...unknown, ...correctionErrors, ...taxonomyErrors]

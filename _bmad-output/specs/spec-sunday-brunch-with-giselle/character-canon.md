@@ -1,12 +1,16 @@
 # Character Canon
 
-Canon version: `CANON-2026-06-11.1`
+Canon version: `CANON-2026-06-22.1`
 
 Authority: Stacey approves revisions and every published character performance. The existing detailed persona files remain source evidence; this file is the compact production baseline.
 
 ## Memorial Truth
 
 The real Giselle was loved and inspired this world. Podcast Giselle is an intentionally authored and AI-assisted character created in her honor. Stacey writes, directs, edits, approves, and remains responsible for the character's words, values, and evolution. The character does not claim to be Giselle's literal consciousness.
+
+## All Dogs Are Real
+
+Every dog in this world is a real dog. There are no invented or composite dogs, ever. Sunday Brunch With Giselle is a living memorial to Stacey's own Shelties — five generations bred and loved across more than twenty years — and the site exists in part to keep their memories alive. Dogs introduced over time, as occasional guest stars on the blog or podcast or as memorial figures, are likewise always real members of this family. Their character voices are authored, AI-assisted performances, but the dogs, their names, and their lineage are true. Real losses, death, medical detail, and grief are handled only in Stacey's human voice and are never narrated by a character (D-13).
 
 ## Stacey
 
@@ -50,6 +54,33 @@ The real Giselle was loved and inspired this world. Podcast Giselle is an intent
 - Specialty: comedy around recoverable mistakes, resilience, behind-the-scenes production, and tactical framing.
 - Recurring segment: Havok's Kitchen Recon.
 - Boundaries: comedy cannot encourage unsafe behavior, interrupt critical steps, or humiliate sincere beginners.
+
+## Athena (Origin Dam, Memorial)
+
+- Role: origin dam of the lines and "the supervisor"; the first of the "those who came before" memorial layer (D-13). A real dog and Giselle's great-grandmother.
+- Use: appears in Stacey's human-voice narration and as an occasional guest presence. Athena has no authored speaking voice yet; adding one would require its own canon profile and blind-test attribution. Real death, grief, and medical detail about Athena stay in Stacey's human voice and are never narrated by a character.
+
+## Lineage And Family Roster
+
+The four mascot voices are real dogs from Stacey's lines, and their family relationships are canon. Public copy uses first or call names only and omits registered names, titles, locations, and club or trial specifics unless Stacey separately approves them (D-13). Sensitive losses are private and are never depicted or narrated.
+
+Dam lines descending from Athena, the origin dam (Athena's two daughters are Lark and Aurora):
+
+- Athena -> Lark -> Breeze -> **Giselle** -> **Tiana**
+- Athena -> Aurora -> Andromeda -> Epona and Artemis
+
+Ember's line (Ember is Athena's half-sister):
+
+- Elektra -> Ember -> Fury -> **Havok**
+- Elektra -> Ember -> **Phaedra**
+
+Sires: Caleb (Stacey's own; sire of Lark and Aurora) and Roxas (sire of Breeze and Andromeda). Other dogs Stacey owned in these lines: Elektra (Ember's dam) and Kai (Ember's aunt).
+
+Established relationships used in canon content:
+
+- Athena is Giselle's great-grandmother.
+- Tiana is Giselle's daughter.
+- Phaedra is Havok's aunt (both descend from Ember: Phaedra is Ember's daughter; Havok is Ember's grandson through Fury).
 
 ## Ensemble Rules
 
@@ -104,6 +135,15 @@ Every revision records:
 - Rights or merchandise impact
 - Stacey's approval
 
+### Revision CANON-2026-06-22.1 (2026-06-22)
+
+- Changed: added the All-Dogs-Are-Real principle, the Athena origin-dam/memorial entry, and the Lineage and Family Roster (five generations); recorded the Athena -> Giselle great-grandmother, Giselle -> Tiana dam, and Phaedra -> Havok aunt relationships.
+- Source/reason: Stacey's real Sheltie pedigree (22 years, five generations); supports the REC-001 story's Athena lineage and the Phaedra/Havok household cross-talk, and the D-13 memorial layer.
+- Real fact vs fictional embellishment: all dogs and relationships are real facts; only the character voices are authored, AI-assisted performances.
+- Continuity and published-content impact: REC-001 character segments re-stamped to this canon version; EP-001 canon reference updated. No mascot voice, specialty, or boundary changed.
+- Rights or merchandise impact: none.
+- Stacey's approval: approved 2026-06-22.
+
 ## ART-003 Acceptance
 
 - Status: accepted
@@ -111,4 +151,6 @@ Every revision records:
 - Owner and approver: Stacey
 - Approval date: 2026-06-11
 - Approval scope: memorial truth, Stacey's authority, all four character roles and voices, specialties, boundaries, relationships, ensemble rules, human-voice-only subjects, AI draft control, and revision requirements
+- Current canon version: `CANON-2026-06-22.1`
+- Revision CANON-2026-06-22.1 approval: Stacey approved the All-Dogs-Are-Real principle, the Athena origin-dam/memorial entry, the five-generation lineage roster, and the Athena/Giselle/Tiana/Phaedra/Havok relationships on 2026-06-22. No mascot voice changed, so ART-004 blind-test attribution is unaffected and does not require re-running.
 - Separate evidence: ART-004 must still demonstrate blind character distinction

@@ -51,6 +51,15 @@
     line-height: 1;
 }
 
+/* One-line purpose tag under a named segment header */
+.sheltie-tip__purpose {
+    display: block;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #6b5a87;
+    margin-top: 0.15rem;
+}
+
 /* Content Text */
 .sheltie-tip__content {
     margin: 0;
@@ -61,5 +70,17 @@
 }
 
 .sheltie-tip__content p {
-    margin: 0;
+    margin: 0 0 0.75rem;
+}
+
+.sheltie-tip__content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Keep the Shelties' chatter out of the printed/copied recipe so the
+   printout stays clean for the casual baker (see recipe-page guide). */
+@media print {
+    .sheltie-tip {
+        display: none;
+    }
 }

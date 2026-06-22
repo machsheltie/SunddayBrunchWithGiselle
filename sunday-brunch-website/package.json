@@ -8,6 +8,8 @@
         "build": "vite build",
         "preview": "vite preview",
         "validate:content": "node scripts/validate-art-007.mjs",
+        "validate:records": "node scripts/validate-records.mjs",
+        "lint:editorial": "node scripts/editorial-lint.mjs",
         "test": "vitest run",
         "test:ui": "vitest --ui",
         "test:coverage": "vitest run --coverage",

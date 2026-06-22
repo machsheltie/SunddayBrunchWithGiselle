@@ -1,26 +1,33 @@
 {
-  "id": "recipe-art-007-001",
-  "recordType": "recipe",
-  "version": 1,
+  "id": "recipe-art-007-unknown-field",
+  "type": "recipe",
   "status": "review",
-  "owner": "Stacey",
-  "reviewer": "Stacey",
-  "approver": "Stacey",
+  "version": 1,
   "createdAt": "2026-06-15T12:00:00Z",
   "updatedAt": "2026-06-15T12:00:00Z",
-  "sourceReferences": [
+  "createdBy": "PERSON-stacey",
+  "updatedBy": "PERSON-stacey",
+  "ownerId": "PERSON-stacey",
+  "sourceRefs": [
     {
-      "id": "source-art-007-recipe-001",
+      "id": "source-art-007-recipe-unknown",
       "type": "test-kitchen-note",
       "title": "Lemon Ricotta Pancake Test Kitchen Notes",
-      "locator": "ART-007/recipe/001"
+      "locator": "ART-007/recipe/unknown-field"
     }
   ],
-  "slug": "lemon-ricotta-sunday-brunch-pancakes",
+  "revisionNote": "ART-007 unknown-field rejection fixture.",
+  "slug": "lemon-ricotta-sunday-brunch-pancakes-unknown",
   "title": "Lemon Ricotta Sunday Brunch Pancakes",
   "summary": "Tender lemon ricotta pancakes with crisp edges for a relaxed Sunday brunch.",
-  "pillar": "PILLAR-SUNDAY-BRUNCH-RECIPES",
-  "productionStream": "STREAM-COOKING",
+  "primaryPillarId": "pillar-recipes-from-giselles-kitchen",
+  "productionStreamId": "stream-cook-with-stacey-and-giselle",
+  "author": "PERSON-stacey",
+  "tester": "PERSON-stacey",
+  "reviewer": "PERSON-stacey",
+  "approver": "PERSON-stacey",
+  "testDate": "2026-06-15",
+  "revisionState": "initial-draft",
   "times": {
     "prep": "PT15M",
     "cook": "PT25M",
@@ -30,89 +37,40 @@
     "quantity": 4,
     "unit": "servings"
   },
-  "difficulty": "easy",
+  "difficulty": "Beginner",
   "equipment": [
     {
-      "id": "equipment-art-007-skillet-001",
+      "id": "equipment-art-007-skillet-002",
       "name": "12-inch nonstick skillet"
-    },
-    {
-      "id": "equipment-art-007-whisk-001",
-      "name": "balloon whisk"
-    },
-    {
-      "id": "equipment-art-007-bowls-001",
-      "name": "2 medium mixing bowls"
-    },
-    {
-      "id": "equipment-art-007-spatula-001",
-      "name": "rubber spatula"
     }
   ],
   "ingredientGroups": [
     {
-      "id": "ingredient-group-art-007-batter-001",
-      "title": "Pancake batter",
+      "id": "ingredient-group-art-007-batter-002",
+      "recipeId": "recipe-art-007-unknown-field",
+      "label": "Pancake batter",
+      "order": 1,
       "items": [
         {
-          "id": "ingredient-art-007-flour-001",
+          "id": "ingredient-art-007-flour-002",
           "quantity": 1,
           "unit": "cup",
           "ingredient": "all-purpose flour"
-        },
-        {
-          "id": "ingredient-art-007-baking-powder-001",
-          "quantity": 2,
-          "unit": "teaspoons",
-          "ingredient": "baking powder"
-        },
-        {
-          "id": "ingredient-art-007-salt-001",
-          "quantity": 0.5,
-          "unit": "teaspoon",
-          "ingredient": "fine sea salt"
-        },
-        {
-          "id": "ingredient-art-007-ricotta-001",
-          "quantity": 0.75,
-          "unit": "cup",
-          "ingredient": "whole-milk ricotta"
-        },
-        {
-          "id": "ingredient-art-007-eggs-001",
-          "quantity": 2,
-          "unit": "large",
-          "ingredient": "eggs"
-        },
-        {
-          "id": "ingredient-art-007-milk-001",
-          "quantity": 0.5,
-          "unit": "cup",
-          "ingredient": "whole milk"
-        },
-        {
-          "id": "ingredient-art-007-lemon-001",
-          "quantity": 1,
-          "unit": "tablespoon",
-          "ingredient": "fresh lemon zest"
         }
       ]
     }
   ],
   "instructionSections": [
     {
-      "id": "instruction-section-art-007-cook-001",
-      "title": "Mix and cook",
+      "id": "instruction-section-art-007-cook-002",
+      "recipeId": "recipe-art-007-unknown-field",
+      "label": "Mix and cook",
+      "order": 1,
       "steps": [
         {
-          "id": "instruction-step-art-007-001",
+          "id": "instruction-step-art-007-003",
           "order": 1,
-          "instruction": "Whisk the all-purpose flour, baking powder, and fine sea salt; separately whisk the whole-milk ricotta, eggs, whole milk, and fresh lemon zest, then fold the mixtures together until just combined."
-        },
-        {
-          "id": "instruction-step-art-007-002",
-          "order": 2,
-          "instruction": "Cook quarter-cup portions in the warm skillet until golden and set through."
+          "body": "Fold the mixtures together and cook until golden."
         }
       ]
     }
@@ -127,54 +85,44 @@
   ],
   "sensoryCheckpoints": [
     {
-      "id": "sensory-art-007-batter-001",
+      "id": "sensory-art-007-batter-002",
       "stage": "mixed batter",
-      "indicator": "The batter is thick, spoonable, and still slightly lumpy."
-    },
-    {
-      "id": "sensory-art-007-doneness-001",
-      "stage": "cooked pancake",
-      "indicator": "The center springs back lightly and the edges are golden."
+      "indicator": "The batter is thick and slightly lumpy."
     }
   ],
-  "substitutions": [
+  "commonMistakes": [
     {
-      "id": "substitution-art-007-ricotta-001",
-      "from": "whole-milk ricotta",
-      "to": "full-fat cottage cheese",
-      "guidance": "Blend until smooth before measuring."
-    }
-  ],
-  "troubleshooting": [
-    {
-      "id": "troubleshooting-art-007-spread-001",
+      "id": "mistake-art-007-spread-002",
       "issue": "Pancakes spread too quickly.",
-      "resolution": "Rest the batter for five minutes and reduce the skillet heat."
+      "resolution": "Rest the batter and reduce the heat."
     }
   ],
+  "recovery": "Fold in a spoonful more flour if the batter loosens.",
+  "testedSubstitutions": [],
   "storage": {
-    "method": "Refrigerate cooled pancakes in an airtight container.",
+    "method": "Refrigerate in an airtight container.",
     "maximumDuration": "P5D",
     "reheating": "Warm in a 350 F oven until heated through."
   },
   "media": {
-    "id": "media-art-007-recipe-hero-001",
+    "id": "media-art-007-recipe-hero-002",
     "type": "image",
     "source": {
       "kind": "original-production",
-      "referenceId": "shoot-art-007-001"
+      "referenceId": "shoot-art-007-002"
     },
     "provenance": {
-      "createdBy": "Stacey",
+      "createdBy": "PERSON-stacey",
       "capturedAt": "2026-06-15T12:00:00Z",
       "originalFileName": "lemon-ricotta-pancakes-hero.jpg"
     },
     "rights": {
       "status": "cleared",
-      "rightsRecordId": "rights-art-007-recipe-001",
+      "rightsRecordId": "rights-art-007-recipe-002",
       "usage": "website and owned social channels"
     },
+    "altText": "A stack of golden lemon ricotta pancakes.",
     "status": "review"
   },
-  "popularityScore": 99
+  "popularityScore": 42
 }

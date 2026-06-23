@@ -15,4 +15,17 @@ describe('SocialProofSection seed testimonials', () => {
       recipeSlug: 'french-silk-pie'
     })
   })
+
+  it('points every seed testimonial at the live French Silk Pie recipe', () => {
+    expect(SEED_TESTIMONIALS.length).toBeGreaterThan(0)
+    for (const testimonial of SEED_TESTIMONIALS) {
+      expect(testimonial.recipeTitle).toBe('French Silk Pie')
+      expect(testimonial.recipeSlug).toBe('french-silk-pie')
+    }
+  })
+
+  it('contains no retired placeholder recipe slugs', () => {
+    const blob = JSON.stringify(SEED_TESTIMONIALS)
+    expect(blob).not.toContain('placeholder-')
+  })
 })

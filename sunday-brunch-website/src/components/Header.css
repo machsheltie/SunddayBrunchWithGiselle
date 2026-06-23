@@ -22,6 +22,7 @@
 }
 
 .brand-title {
+    display: block;
     font-family: 'Italiana', serif;
     font-size: 1.8rem;
     color: #2e1a47;

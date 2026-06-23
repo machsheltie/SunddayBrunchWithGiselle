@@ -157,6 +157,21 @@ describe('Layout Component', () => {
             expect(brandLink).toHaveAttribute('href', '/')
             expect(brandLink).toHaveClass('brand-link')
         })
+
+        it('should not use the persistent brand mark as a page-level h1', () => {
+            // Arrange & Act
+            const { container } = render(
+                <TestMemoryRouter>
+                    <Layout>
+                        <div>Test content</div>
+                    </Layout>
+                </TestMemoryRouter>
+            )
+
+            // Assert
+            expect(container.querySelector('h1.brand-title')).not.toBeInTheDocument()
+            expect(screen.getByRole('link', { name: /Sunday Brunch with Giselle/i })).toBeInTheDocument()
+        })
     })
 
     describe('Primary Navigation', () => {

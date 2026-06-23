@@ -72,9 +72,9 @@ function Layout({ children }) {
                             className="brand-link"
                             onClick={() => handleNavClick('Home (Brand)', '/')}
                         >
-                            <h1 className="brand-title">
+                            <span className="brand-title">
                                 Sunday Brunch <span className="brand-accent">with</span> Giselle
-                            </h1>
+                            </span>
                         </NavLink>
                         <div className="brand-divider"></div>
                         <p className="brand-subtitle">Whimsy, warmth, and wags</p>

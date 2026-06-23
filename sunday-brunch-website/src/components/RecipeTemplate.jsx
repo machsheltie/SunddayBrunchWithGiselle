@@ -30,7 +30,7 @@ const formatIngredientLine = (ingredient) => {
     return [quantity, name].filter(Boolean).join(' ') + preparation + note
 }
 
-function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
+function RecipeTemplate({ recipe, expandedImage, embedded = false, showTitle = true }) {
     const [copied, setCopied] = useState(false)
     const [servingMultiplier, setServingMultiplier] = useState(1)
 
@@ -214,7 +214,9 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false }) {
 
                     <div className="recipe__header">
                         <div>
-                            <h3 className="recipe__title">{recipe.title}</h3>
+                            {showTitle && (
+                                <h3 className="recipe__title">{recipe.title}</h3>
+                            )}
                             {recipe.times && (
                                 <p className="recipe__meta">
                                     Prep {recipe.times.prep} | Cook {recipe.times.cook} | Total {recipe.times.total} | Yield {recipe.yield}
@@ -428,4 +430,5 @@ RecipeTemplate.propTypes = {
     }).isRequired,
     expandedImage: PropTypes.string,
     embedded: PropTypes.bool,
+    showTitle: PropTypes.bool,
 };

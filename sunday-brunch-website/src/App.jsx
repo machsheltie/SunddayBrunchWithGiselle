@@ -17,6 +17,7 @@ const EpisodePage = lazy(() => import('./pages/EpisodePage'))
 const MediaKitPage = lazy(() => import('./pages/MediaKitPage'))
 const TeamPage = lazy(() => import('./pages/TeamPage'))
 const AboutPage = lazy(() => import('./pages/About'))
+const ForGiselle = lazy(() => import('./pages/ForGiselle'))
 const NewsletterPage = lazy(() => import('./pages/NewsletterPage'))
 const AlchemistsLab = lazy(() => import('./pages/AlchemistsLab'))
 const ProfilePage = lazy(() => import('./pages/ProfilePage'))
@@ -50,6 +51,7 @@ function App() {
                             <Route path="/about" element={<AboutPage />} />
                             <Route path="/media-kit" element={<MediaKitPage />} />
                             <Route path="/team" element={<TeamPage />} />
+                            <Route path="/for-giselle" element={<ForGiselle />} />
                             <Route path="/newsletter" element={<NewsletterPage />} />
                             <Route path="/lab" element={<AlchemistsLab />} />
                             <Route

@@ -147,6 +147,16 @@ function Layout({ children }) {
                             </svg>
                         ))}
                     </div>
+                    <nav className="footer-links" aria-label="Footer" style={{ marginBottom: '0.75rem' }}>
+                        <NavLink
+                            to="/for-giselle"
+                            className="footer-link"
+                            onClick={() => handleNavClick('For Giselle', '/for-giselle')}
+                            style={{ color: '#7a5c8a', textDecoration: 'underline' }}
+                        >
+                            For Giselle
+                        </NavLink>
+                    </nav>
                     <p>&copy; 2024 Sunday Brunch With Giselle. Recipes, stories, and Sheltie side-eye.</p>
                 </footer>
             </div>

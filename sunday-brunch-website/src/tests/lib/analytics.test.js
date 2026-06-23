@@ -116,7 +116,7 @@ describe('Analytics Service', () => {
 
         it('should track print event with recipe slug', () => {
             // Arrange
-            const context = 'giselles-royal-velvet-cake'
+            const context = 'french-silk-pie'
 
             // Act
             trackPrint(context)

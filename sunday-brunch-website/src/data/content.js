@@ -11,51 +11,11 @@ const categoryEmojiMap = {
     'Pastries': '🥐'
 }
 
-// All recipes below except the Royal Velvet Cake are designed sample data
-// (isSample: true) standing in until real recipes are ready. Slugs are
-// stable — tests, seed testimonials, and episode links reference them.
+// Sample/placeholder recipes only. The canonical recipes (e.g. French Silk Pie)
+// are projected from content/records and served via src/lib/content.js, which
+// excludes these stand-ins from the public recipe set. Slugs are stable —
+// tests and episode links reference them.
 export const recipes = [
-    {
-        slug: 'giselles-royal-velvet-cake',
-        title: "Giselle's Royal Velvet Cake",
-        category: 'Cakes',
-        emoji: '🍰',
-        skill: 'Intermediate',
-        difficulty: 'Medium',
-        dietary: ['Vegetarian'],
-        occasion: 'Birthdays',
-        tags: ['Chocolate', 'Celebration', 'Layer Cake'],
-        season: 'All Seasons',
-        cookTime: 60,
-        publishedDate: '2026-06-07',
-        image: '/images/recipes/redvelvet.jpg',
-        story: [
-            "Darling, a Velvet Cake isn't just a dessert; it's a declaration of standards. It must be as smooth as silk and twice as dramatic.",
-            "This recipe uses a touch extra cocoa and just the right amount of alchemical precision to ensure every crumb is worthy of a crown."
-        ],
-        times: { prep: '25 min', cook: '35 min', total: '1 hr' },
-        prepISO: 'PT25M',
-        cookISO: 'PT35M',
-        totalISO: 'PT1H',
-        yield: '12 servings',
-        ingredients: [
-            { name: "Cake Flour", amount: 2.5, unit: "cups", metricAmount: 315, metricUnit: "g" },
-            { name: "Unsweetened Cocoa Powder", amount: 2, unit: "tbsp", metricAmount: 15, metricUnit: "g" },
-            { name: "Baking Soda", amount: 1, unit: "tsp", metricAmount: 5, metricUnit: "g" },
-            { name: "Unsalted Butter, softened", amount: 0.5, unit: "cups", metricAmount: 115, metricUnit: "g" },
-            { name: "Granulated Sugar", amount: 1.5, unit: "cups", metricAmount: 300, metricUnit: "g" },
-            { name: "Large Eggs", amount: 2, unit: "pcs", metricAmount: 2, metricUnit: "pcs" },
-            { name: "Buttermilk", amount: 1, unit: "cups", metricAmount: 240, metricUnit: "ml" }
-        ],
-        steps: [
-            { content: "Preheat your oven to 350°F (175°C) and grease two 9-inch round cake pans. Sift together the cake flour, cocoa, and baking soda.", image: "/images/recipes/process/sifting.png" },
-            { content: "In a standing mixer, cream the butter and sugar until light and fluffy. Add eggs one at a time, ensuring a regal emulsion.", image: "/images/recipes/process/creaming.png" },
-            { content: "Gradually add the dry ingredients alternately with the buttermilk, beginning and ending with the flour mixture.", image: "/images/recipes/process/mixing.png" }
-        ],
-        tools: ['Standing Mixer', 'Sifter', '9-inch Cake Pans'],
-        related: [],
-        meta: { description: "Giselle's signature Royal Velvet Cake recipe – artistic, sophisticated, and utterly delicious." }
-    },
     {
         slug: 'placeholder-breakfast-1',
         title: 'Sunday Brunch Scones',

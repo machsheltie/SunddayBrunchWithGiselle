@@ -1,0 +1,61 @@
+import { useEffect } from 'react'
+import { applyMeta } from '../lib/seo'
+import './ForGiselle.css'
+
+// Human-voice-only memorial content. Source of truth:
+// Personas/About-Page-Memorials-and-Dedication-DRAFT.md (Stacey-approved).
+// This page is the projection of that draft onto the footer-linked "For Giselle" page.
+function ForGiselle() {
+    useEffect(() => {
+        applyMeta({
+            title: 'For Giselle | Sunday Brunch With Giselle',
+            description: 'A dedication to Giselle, and to the Shelties who came before — the love letter at the heart of Sunday Brunch With Giselle.'
+        })
+    }, [])
+
+    return (
+        <div className="for-giselle-page">
+            <section className="for-giselle__dedication">
+                <h1>For Giselle</h1>
+
+                <p>This whole table is named after a fourteen-pound dog who didn&rsquo;t much care for people and loved me like it was her entire job.</p>
+
+                <p>Giselle was my shadow. She came everywhere, supervised everything, and had opinions about all of it. The afternoon the other dogs found a gap in the fence and went off adventuring, she stayed &mdash; I came outside and found her pressed right up against the door, waiting, because wherever I was happened to be the only place she ever wanted to be. She had this enormous personality that almost nobody else ever got to see, because she saved it for the few she&rsquo;d decided were hers. I was the lucky one she picked.</p>
+
+                <p>If you know what it&rsquo;s like to be fully yourself with only a precious few &mdash; to be &ldquo;too much&rdquo; everywhere but home &mdash; then you already understand her. She was so much like me. That&rsquo;s why her name is on the door.</p>
+
+                <p>She left us suddenly, in the late winter of 2026, after eleven good years, and I&rsquo;m not going to pretend that part is anything but hard. But loving a dog is a bargain you make with your eyes wide open: they come into your life like shooting stars, they make everything brighter, and one day their light goes on ahead to wait for us. I&rsquo;d pay that price a thousand times over for what she gave me.</p>
+
+                <p>So this is me keeping her. This whole place &mdash; the recipes, the podcast, the four bossy dogs underfoot in the kitchen &mdash; isn&rsquo;t really just a cute little baking blog. It&rsquo;s a love letter: to her, and to all my Shelties, the ones still here and the ones who went before. As long as it&rsquo;s alive, a little piece of her is too. And the piece I get to share with you is the truest one there is &mdash; the Giselle she only ever showed me. In these pages she&rsquo;s exactly who she always was: the queen at the head of the table, handing down her verdicts, completely unbothered and entirely in charge.</p>
+
+                <p>Pull up a chair. And save her the good seat &mdash; she&rsquo;ll want it.</p>
+
+                <p className="for-giselle__signature">&mdash; Stacey</p>
+            </section>
+
+            <section className="for-giselle__memorials" aria-labelledby="those-who-came-before">
+                <h2 id="those-who-came-before">Those who came before</h2>
+
+                <p>Every dog who&rsquo;s shared my life is still here &mdash; in the way the ones we love always are, tucked into the stories and carried on by the dogs who came after them. Every so often you&rsquo;ll meet one of them here as a guest, with a recipe of their very own. We start with the one who started it all.</p>
+
+                <article className="for-giselle__memorial">
+                    <h3>Athena <span className="for-giselle__years">(2004&ndash;2021)</span></h3>
+
+                    <p>Before there was a Giselle, before there was a table, there was Athena &mdash; my heart dog.</p>
+
+                    <p>She was thirteen inches and twelve and a half pounds of pure, fearless joy, and she let me dream as big as I wanted to. For years the two of us ran agility together, traveling the country weekend after weekend, and she made me look like a real handler long before I actually was one. We tried a dozen different dog sports, and she threw herself into every one with the same delighted <em>what&rsquo;s next?</em> She was the smartest dog I&rsquo;ve ever known &mdash; and trust me, I&rsquo;ve known a lot of them &mdash; but it was never the brains I loved best. It was the heart. She gave me everything she had, every single time.</p>
+
+                    <p>She also never met a job she didn&rsquo;t intend to run. Every move, every project, there she&rsquo;d be, planted nearby, certain the whole operation needed her. It&rsquo;s how she earned the only title that ever stuck: the supervisor. Though let&rsquo;s be honest about what she was mostly supervising: snacks. She was a shark, kept lean only because I had to be strict about her agility diet, convinced that if she stared hard enough, any project in that kitchen might end in a treat for her. (You&rsquo;ll catch her on her cushion in our very first recipe, presiding over a much younger, much more frantic me.)</p>
+
+                    <p>She stayed for sixteen and a half years, and at the very end, I think she was only holding on for me. She let go the night I finally told her it was okay &mdash; that I&rsquo;d be alright, that she&rsquo;d done enough. She&rsquo;d done so much more than enough.</p>
+
+                    <p>After she was gone, I spent more than forty hours drawing her in colored pencil, crying off and on the whole way through. Last summer I finally worked up the nerve to enter it at the state fair. Of the four pieces I submitted, hers was the one that placed. Of course it was.</p>
+
+                    <p>You can see her in Tiana now &mdash; that same carefree, sunlit joy, come back around. It took me a lot of years and a lot of love to find my way back to it. Athena would be glad. She never did like the road to end.</p>
+                </article>
+            </section>
+        </div>
+    )
+}
+
+export default ForGiselle

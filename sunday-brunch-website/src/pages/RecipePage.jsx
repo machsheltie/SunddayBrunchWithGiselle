@@ -10,6 +10,7 @@ function RecipePage() {
     const { slug } = useParams()
     const [recipe, setRecipe] = useState(null)
     const [status, setStatus] = useState('loading')
+    const pageTitle = status === 'ready' && recipe ? recipe.title : 'Recipe'
 
     useEffect(() => {
         setStatus('loading')
@@ -34,7 +35,7 @@ function RecipePage() {
     return (
         <section className="section">
             <div className="section__header">
-                <h1 className="section__title">Recipe</h1>
+                <h1 className="section__title">{pageTitle}</h1>
                 <span className="pill">{status === 'ready' ? 'Fresh' : status === 'loading' ? 'Loading' : 'Not found'}</span>
             </div>
             <div className="card">
@@ -42,7 +43,7 @@ function RecipePage() {
                 {status === 'missing' && <p className="small-muted">We could not find that recipe.</p>}
                 {status === 'ready' && recipe && (
                     <>
-                        <RecipeTemplate recipe={recipe} />
+                        <RecipeTemplate recipe={recipe} showTitle={false} />
                         <ShareBar />
                         <CTAForm headline="Get recipes, Sunday letters, early drops" />
                     </>

@@ -12,8 +12,8 @@ vi.mock('../../lib/seo')
 
 // Mock child components
 vi.mock('../../components/RecipeTemplate', () => ({
-    default: ({ recipe }) => (
-        <div data-testid="recipe-template">
+    default: ({ recipe, showTitle = true }) => (
+        <div data-testid="recipe-template" data-show-title={showTitle ? 'true' : 'false'}>
             RecipeTemplate: {recipe.title}
         </div>
     )
@@ -67,13 +67,14 @@ describe('RecipePage Component', () => {
     })
 
     describe('Rendering Tests', () => {
-        it('should render page header with "Recipe" title', async () => {
+        it('should use the loaded recipe title as the primary page heading', async () => {
             // Arrange & Act
             renderWithRouter()
 
             // Assert
             await waitFor(() => {
-                expect(screen.getByRole('heading', { level: 1, name: 'Recipe' })).toBeInTheDocument()
+                expect(screen.getByRole('heading', { level: 1, name: 'Chocolate Cake' })).toBeInTheDocument()
+                expect(screen.queryByRole('heading', { level: 1, name: 'Recipe' })).not.toBeInTheDocument()
             })
         })
 
@@ -110,6 +111,7 @@ describe('RecipePage Component', () => {
             renderWithRouter()
 
             // Assert
+            expect(screen.getByRole('heading', { level: 1, name: 'Recipe' })).toBeInTheDocument()
             expect(screen.getByText('Loading recipe...')).toBeInTheDocument()
         })
 
@@ -134,6 +136,7 @@ describe('RecipePage Component', () => {
             await waitFor(() => {
                 expect(screen.getByTestId('recipe-template')).toBeInTheDocument()
                 expect(screen.getByText('RecipeTemplate: Chocolate Cake')).toBeInTheDocument()
+                expect(screen.getByTestId('recipe-template')).toHaveAttribute('data-show-title', 'false')
             })
         })
 
@@ -430,7 +433,7 @@ describe('RecipePage Component', () => {
 
                 const title = sectionHeader.querySelector('.section__title')
                 expect(title).toBeInTheDocument()
-                expect(title).toHaveTextContent('Recipe')
+                expect(title).toHaveTextContent('Chocolate Cake')
 
                 const pill = sectionHeader.querySelector('.pill')
                 expect(pill).toBeInTheDocument()

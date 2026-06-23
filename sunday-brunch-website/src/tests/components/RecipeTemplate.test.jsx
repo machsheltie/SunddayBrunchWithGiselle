@@ -1,5 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import fs from 'node:fs';
+import path from 'node:path';
 import RecipeTemplate from '../../components/RecipeTemplate';
 
 // Mock all child components
@@ -110,6 +112,9 @@ vi.mock('../../lib/analytics', () => ({
 
 // Mock CSS imports
 vi.mock('../../components/RecipeTemplate.css', () => ({}));
+
+const recipeTemplateCssPath = path.resolve(process.cwd(), 'src/components/RecipeTemplate.css');
+const readRecipeTemplateCss = () => fs.readFileSync(recipeTemplateCssPath, 'utf8');
 
 describe('RecipeTemplate', () => {
     const mockRecipe = {
@@ -411,6 +416,39 @@ describe('RecipeTemplate', () => {
             screen.getAllByTestId('process-step').forEach((step) => {
                 expect(rightColumn).toContainElement(step);
             });
+        });
+    });
+
+    describe('Mobile Layout Guardrails', () => {
+        it('should use active mobile selectors for the live recipe grid', () => {
+            // Arrange & Act
+            const css = readRecipeTemplateCss();
+            const mobileBlocks = css.match(/@media\s*\(max-width:\s*(?:720|768)px\)\s*\{[\s\S]*?\n\}/g) || [];
+            const combinedMobileCss = mobileBlocks.join('\n');
+
+            // Assert
+            expect(combinedMobileCss).toContain('.recipe__main-grid');
+            expect(combinedMobileCss).not.toContain('.recipe__two-col');
+        });
+
+        it('should keep copy and print actions large enough for touch on mobile', () => {
+            // Arrange & Act
+            const css = readRecipeTemplateCss();
+
+            // Assert
+            expect(css).toMatch(/\.recipe__action\s*\{[\s\S]*min-height:\s*44px/);
+            expect(css).toMatch(/\.recipe__actions\s*\{[\s\S]*flex-wrap:\s*wrap/);
+        });
+
+        it('should preserve embedded mode without standalone mobile spacing', () => {
+            // Arrange & Act
+            const { container } = render(<RecipeTemplate recipe={mockRecipe} embedded />);
+
+            // Assert
+            expect(container.querySelector('.recipe-container--embedded')).toBeInTheDocument();
+            expect(container.querySelector('.recipe--embedded')).toBeInTheDocument();
+            expect(container.querySelector('.scrapbook-paper')).not.toBeInTheDocument();
+            expect(container.querySelector('.tape-top-center-wrapper')).not.toBeInTheDocument();
         });
     });
 

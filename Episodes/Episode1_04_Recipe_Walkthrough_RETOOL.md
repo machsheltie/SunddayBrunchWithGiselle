@@ -4,15 +4,13 @@
 
 [Sound: a cabinet closing, the soft clack of a bowl set on the counter, a single regal paw-tap on tile]
 
-**STACEY:** So. Let me teach you how to make the pie that taught me about belonging.
+**STACEY:** So — let me teach you how to make the pie that started all of this.
 
-Here's the first thing, and it's the thing nobody tells you up front: this recipe is almost entirely waiting. If you came for a fast dessert — I love you, go make brownies, we'll be right here when you get back. Still with me? Good.
+Here's the first thing, and it's the thing nobody tells you up front: this recipe is almost entirely waiting. If you came for a fast dessert — I love you, truly, go make brownies, we'll be right here when you get back. Still with me? Good.
 
 **GISELLE:** [from the cushion, not bothering to rise] A rare moment of honesty. Most people promise their listeners ease. You are promising them labor.
 
 **STACEY:** I'm promising them silk.
-
-**GISELLE:** …Acceptable. Continue.
 
 **STACEY:** Okay. Before you touch anything — your butter and your eggs have to be room temperature. Not cold, not melty. Room temp. Which means you took them out an hour ago. So if you're hearing this and your butter is still in the fridge —
 
@@ -24,11 +22,11 @@ Here's the first thing, and it's the thing nobody tells you up front: this recip
 
 **GISELLE:** [a single, wounded sigh] An offense to my very being.
 
-**STACEY:** It's a Tuesday, Giselle.
+**STACEY:** It's a Tuesday kind of crust, Giselle.
 
 **GISELLE:** It is Sunday.
 
-**STACEY:** …It's *emotionally* a Tuesday. Listen — buy the good one, the kind in the freezer aisle that actually flakes. Bake it, cool it all the way, feel zero guilt. The filling is where the work goes. Nobody at your table is going to interrogate the crust.
+**STACEY:** Not for this crust it isn't. Listen — buy the good one, the kind in the freezer aisle that actually flakes. Bake it, cool it all the way, feel zero guilt. The filling is where the work goes. Nobody at your table is going to interrogate the crust.
 
 **GISELLE:** And if they do, they are not your people.
 
@@ -38,19 +36,17 @@ Here's the first thing, and it's the thing nobody tells you up front: this recip
 
 **STACEY:** Now — melt your chocolate. Four ounces, unsweetened; the exact amounts are all on the site so you're not pausing this with chocolate on your hands. Microwave in fifteen-second bursts, stirring between each. Or use a double boiler, if you don't trust yourself — and I say that with love, because *I* do not trust myself.
 
-**GISELLE:** Self-awareness. Refreshing.
-
 **STACEY:** The one thing that ruins it here is seizing. If your smooth chocolate suddenly goes grainy and stiff on you — that's seized. Too much heat, or a single drop of water got in.
 
 **GISELLE:** The chocolate flinched. You startled it, and it will not forgive you. Begin again.
 
 **STACEY:** …That's genuinely the clearest anyone's ever explained it to me. It flinches. So keep it gentle, keep it just-barely-melted, and the second it's smooth enough to draw a clean line through with your spoon — stop. Set it aside to cool. Warm chocolate plus butter is chocolate soup, and we are not making soup.
 
-**STACEY:** Okay. The part your arms will remember. You want a stand mixer for this. I tried it once with a hand mixer —
+**STACEY:** Okay. The part your arms will remember. You want a stand mixer for this. I tried it once with a hand mixer, and my right shoulder still brings it up in arguments.
 
-**GISELLE:** The less said, the better.
+**GISELLE:** I tried to warn you. I barked through the entire ordeal — start to finish. You called it "unhelpful." It was the most constructive feedback this kitchen has ever produced.
 
-**STACEY:** — and my right shoulder still brings it up in arguments. Cream your butter with the sugar. And here's the one ingredient I'll actually fight you on: ultrafine sugar. Not regular.
+**STACEY:** Constructive. Sure. Cream your butter with the sugar. And here's the one ingredient I'll actually fight you on: ultrafine sugar. Not regular.
 
 **GISELLE:** Tell them what you did.
 
@@ -78,7 +74,7 @@ Here's the first thing, and it's the thing nobody tells you up front: this recip
 
 **GISELLE:** [theatrical] Twenty minutes. Say your goodbyes. Cancel your afternoon.
 
-**STACEY:** And somewhere in that first egg — around minute three — you're going to look down and the whole thing is going to look *broken.* Curdled. Grainy. Wrong. You'll be certain you've wasted two sticks of good butter.
+**STACEY:** And somewhere in that first egg — around minute three — you'll look down and the whole thing is going to look *broken.* Curdled. Grainy. Wrong. You'll be certain you've wasted two sticks of good butter.
 
 **GISELLE:** You have not. Keep going.
 
@@ -88,30 +84,34 @@ Here's the first thing, and it's the thing nobody tells you up front: this recip
 
 **STACEY:** There it is. By the fourth egg you'll stop doubting me. It's smooth, it's glossy, it's three times the size it started, and it looks like the most expensive mousse you've never paid for. *That's* silk. And you made it — out of butter, eggs, and twenty minutes of refusing to quit.
 
-**STACEY:** Pour it into your cooled crust. Watch how it settles — it almost levels itself.
+**STACEY:** [quieter] …Giselle. Giselle, you're asleep.
 
-**GISELLE:** Resist the spatula. You will want to "help." It does not need your help. For once in this kitchen, the correct move is to do nothing.
+**GISELLE:** [without opening her eyes] I am resting between observations.
 
-**STACEY:** Hands off. She's right. Then the genuinely hard part: you chill it. Four hours minimum. Overnight if you can stand it. I know. You just want to see it. Wait anyway. This is when it sets into the real thing.
+**STACEY:** You made me do the full twenty minutes and then you napped through nineteen of them.
 
-**GISELLE:** Good things come to those who wait. Soup comes to those who don't.
+**GISELLE:** I supervised the part that mattered. The rest is simply time, and I trust you with time. [a small yawn] Wake me for the cream.
 
-**STACEY:** While it chills, whip a cup of heavy cream with a little powdered sugar. Soft peaks — the kind that hold their shape but still look like they'd hug you back. Not stiff. Stiff cream is sad cream.
+**STACEY:** [laughing] Unbelievable. Okay. Pour it into your cooled crust — watch how it settles, it almost levels itself. And then resist the spatula. You'll want to help. It does not need your help. For once in this kitchen, the move is to do nothing — which, conveniently, is also Giselle's current strategy.
 
-**GISELLE:** And no one — *no one* — sends me a photograph of overwhipped cream gone to cottage cheese. I have a cushion. I have a kingdom. I have standards.
+Then the genuinely hard part: you chill it. Four hours minimum. Overnight if you can stand it. I know — you just want to see it. Wait anyway. This is when it sets into the real thing.
 
-**STACEY:** Spread that cloud over the chilled pie. Chocolate curls on top if you're feeling fancy — and after twenty minutes of beating, you've earned fancy. Then you slice it. And you watch whoever's at your table go quiet for a second on that first bite.
+While it chills, whip a cup of heavy cream with a little powdered sugar. Soft peaks — the kind that hold their shape but still look like they'd hug you back. Not stiff. Stiff cream is sad cream —
 
-That quiet? That's the whole reason. That's the pie saying the thing you didn't have the words for.
+**GISELLE:** [instantly awake] — and no one, *no one*, sends me a photograph of overwhipped cream gone to cottage cheese. I have a cushion. I have a kingdom. I have standards.
 
-And if your first one comes out a little soft, or your chocolate curls look more like chocolate confetti — you still made this. You stood at a counter for twenty minutes trusting that something good was coming. That counts. Honestly, that's the whole thing.
+**STACEY:** And there she is. Right on time, for the cream.
 
-**GISELLE:** [satisfied, and only a little softer] Kingdom conquered. Subjects fed. You may tell them it was magic — or superior instruction-following. I will allow either.
+**STACEY:** Spread that cloud over the chilled pie. Chocolate curls on top if you're feeling fancy — and after twenty minutes of beating, you've earned fancy. Then you slice it, and you watch whoever's at your table go quiet for a second on that first bite.
 
-**STACEY:** [laughing] Generous of you.
+And if your first one comes out a little soft, or your curls look more like chocolate confetti — you still made this. You stood at a counter for twenty minutes betting something good was coming. It was.
+
+**GISELLE:** [satisfied, only a little softer] Kingdom conquered. Subjects fed. You may tell them it was magic — or superior instruction-following. I will allow either.
+
+**STACEY:** [laughing] Generous.
 
 **GISELLE:** I have my moments.
 
-**STACEY:** You do. Go on — make some magic. We'll be right here when it's chilled.
+**STACEY:** You do. Go on — go make yours.
 
 [Sound: a drawer sliding shut, the fridge door, a contented Sheltie huff settling back into the cushion]

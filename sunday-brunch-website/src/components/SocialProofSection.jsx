@@ -24,23 +24,23 @@ export const SEED_TESTIMONIALS = [
     {
         user_name: 'Michael R.',
         rating: 5,
-        comment: 'I swapped regular flour for almond flour in the brownie recipe and it turned out amazing! More nutty and rich.',
-        recipeTitle: 'Fudgy Brownies',
-        recipeSlug: 'placeholder-brownie-1'
+        comment: 'I was skeptical about beating the eggs that long, but I trusted the recipe and it paid off — the filling came together glossy and smooth. Used the cooked-egg method and it was perfect.',
+        recipeTitle: 'French Silk Pie',
+        recipeSlug: 'french-silk-pie'
     },
     {
         user_name: 'Sarah T.',
         rating: 5,
-        comment: 'As a beginner baker, I was nervous, but the step-by-step photos and clear instructions gave me so much confidence. My first pie came out perfect!',
-        recipeTitle: 'Classic Apple Pie',
-        recipeSlug: 'placeholder-pie-1'
+        comment: 'As a beginner baker I was nervous, but the sensory checkpoints and the "it looks broken, keep going" note gave me so much confidence. My first French silk came out flawless!',
+        recipeTitle: 'French Silk Pie',
+        recipeSlug: 'french-silk-pie'
     },
     {
         user_name: 'David L.',
         rating: 5,
-        comment: 'The Sunday Brunch scones are now a weekly tradition in our house. Light, flaky, and the perfect companion to morning coffee. ☕',
-        recipeTitle: 'Sunday Brunch Scones',
-        recipeSlug: 'placeholder-breakfast-1'
+        comment: 'Made it the day before and just added the chocolate shards before serving — it has officially become the pie my family requests for every birthday. ☕',
+        recipeTitle: 'French Silk Pie',
+        recipeSlug: 'french-silk-pie'
     }
 ]
 

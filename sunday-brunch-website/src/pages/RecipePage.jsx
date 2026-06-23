@@ -10,11 +10,19 @@ function RecipePage() {
     const { slug } = useParams()
     const [recipe, setRecipe] = useState(null)
     const [status, setStatus] = useState('loading')
-    const pageTitle = status === 'ready' && recipe ? recipe.title : 'Recipe'
+    const pageTitle = status === 'ready' && recipe?.title?.trim() ? recipe.title : 'Recipe'
 
     useEffect(() => {
+        let isCurrent = true
+
         setStatus('loading')
+        setRecipe(null)
+
         getRecipeBySlug(slug).then((data) => {
+            if (!isCurrent) {
+                return
+            }
+
             if (data) {
                 setRecipe(data)
                 applyMeta({
@@ -30,6 +38,10 @@ function RecipePage() {
                 setStatus('missing')
             }
         })
+
+        return () => {
+            isCurrent = false
+        }
     }, [slug])
 
     return (
@@ -43,7 +55,7 @@ function RecipePage() {
                 {status === 'missing' && <p className="small-muted">We could not find that recipe.</p>}
                 {status === 'ready' && recipe && (
                     <>
-                        <RecipeTemplate recipe={recipe} showTitle={false} />
+                        <RecipeTemplate recipe={recipe} expandedImage={recipe.image} showTitle={false} />
                         <ShareBar />
                         <CTAForm headline="Get recipes, Sunday letters, early drops" />
                     </>

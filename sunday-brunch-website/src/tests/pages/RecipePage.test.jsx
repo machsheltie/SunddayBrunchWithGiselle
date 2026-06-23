@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
-import { Routes, Route } from 'react-router-dom'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import fs from 'node:fs'
+import path from 'node:path'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { TestMemoryRouter } from '../utils/test-router'
 import RecipePage from '../../pages/RecipePage'
 import { getRecipeBySlug } from '../../lib/content'
@@ -12,8 +14,12 @@ vi.mock('../../lib/seo')
 
 // Mock child components
 vi.mock('../../components/RecipeTemplate', () => ({
-    default: ({ recipe, showTitle = true }) => (
-        <div data-testid="recipe-template" data-show-title={showTitle ? 'true' : 'false'}>
+    default: ({ recipe, showTitle = true, expandedImage }) => (
+        <div
+            data-testid="recipe-template"
+            data-show-title={showTitle ? 'true' : 'false'}
+            data-expanded-image={expandedImage || ''}
+        >
             RecipeTemplate: {recipe.title}
         </div>
     )
@@ -30,6 +36,19 @@ vi.mock('../../components/CTAForm', () => ({
         </div>
     )
 }))
+
+const appCssPath = path.resolve(process.cwd(), 'src/App.css')
+const readAppCss = () => fs.readFileSync(appCssPath, 'utf8')
+
+function NavigationControls() {
+    const navigate = useNavigate()
+
+    return (
+        <button type="button" onClick={() => navigate('/recipes/vanilla-cake')}>
+            Go vanilla
+        </button>
+    )
+}
 
 describe('RecipePage Component', () => {
     const mockRecipe = {
@@ -137,6 +156,7 @@ describe('RecipePage Component', () => {
                 expect(screen.getByTestId('recipe-template')).toBeInTheDocument()
                 expect(screen.getByText('RecipeTemplate: Chocolate Cake')).toBeInTheDocument()
                 expect(screen.getByTestId('recipe-template')).toHaveAttribute('data-show-title', 'false')
+                expect(screen.getByTestId('recipe-template')).toHaveAttribute('data-expanded-image', '/chocolate-cake.jpg')
             })
         })
 
@@ -276,6 +296,23 @@ describe('RecipePage Component', () => {
                 })
             })
         })
+
+        it('should keep a readable fallback h1 when loaded recipe title is blank', async () => {
+            // Arrange
+            getRecipeBySlug.mockResolvedValue({
+                ...mockRecipe,
+                title: ''
+            })
+
+            // Act
+            renderWithRouter()
+
+            // Assert
+            await waitFor(() => {
+                expect(screen.getByRole('heading', { level: 1, name: 'Recipe' })).toBeInTheDocument()
+                expect(screen.getByText('Fresh')).toBeInTheDocument()
+            })
+        })
     })
 
     describe('Route Parameter Tests', () => {
@@ -408,6 +445,53 @@ describe('RecipePage Component', () => {
             expect(screen.getByText('Loading')).toBeInTheDocument()
             expect(screen.getByText('Loading recipe...')).toBeInTheDocument()
         })
+
+        it('should ignore stale lookup results after navigating to a different recipe', async () => {
+            // Arrange
+            const resolvers = {}
+            const vanillaCakeRecipe = {
+                ...mockRecipe,
+                slug: 'vanilla-cake',
+                title: 'Vanilla Cake',
+                image: '/vanilla-cake.jpg'
+            }
+
+            getRecipeBySlug.mockImplementation((requestedSlug) => (
+                new Promise((resolve) => {
+                    resolvers[requestedSlug] = resolve
+                })
+            ))
+
+            render(
+                <TestMemoryRouter initialEntries={['/recipes/chocolate-cake']}>
+                    <NavigationControls />
+                    <Routes>
+                        <Route path="/recipes/:slug" element={<RecipePage />} />
+                    </Routes>
+                </TestMemoryRouter>
+            )
+
+            // Act - navigate before the original lookup resolves.
+            fireEvent.click(screen.getByRole('button', { name: 'Go vanilla' }))
+
+            await act(async () => {
+                resolvers['vanilla-cake'](vanillaCakeRecipe)
+            })
+
+            await waitFor(() => {
+                expect(screen.getByRole('heading', { level: 1, name: 'Vanilla Cake' })).toBeInTheDocument()
+            })
+
+            await act(async () => {
+                resolvers['chocolate-cake'](mockRecipe)
+            })
+
+            // Assert - the stale chocolate result must not overwrite the current route.
+            await waitFor(() => {
+                expect(screen.getByRole('heading', { level: 1, name: 'Vanilla Cake' })).toBeInTheDocument()
+                expect(screen.queryByRole('heading', { level: 1, name: 'Chocolate Cake' })).not.toBeInTheDocument()
+            })
+        })
     })
 
     describe('Component Structure', () => {
@@ -453,6 +537,15 @@ describe('RecipePage Component', () => {
                 expect(children[1]).toHaveAttribute('data-testid', 'share-bar')
                 expect(children[2]).toHaveAttribute('data-testid', 'cta-form')
             })
+        })
+
+        it('should guard the route title against long unbroken mobile text', () => {
+            // Arrange & Act
+            const css = readAppCss()
+
+            // Assert
+            expect(css).toMatch(/\.section__title\s*\{[\s\S]*min-width:\s*0/)
+            expect(css).toMatch(/\.section__title\s*\{[\s\S]*overflow-wrap:\s*anywhere/)
         })
     })
 

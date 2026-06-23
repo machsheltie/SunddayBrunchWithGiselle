@@ -2,7 +2,7 @@
 title: 'Repair mobile recipe layout'
 type: 'bugfix'
 created: '2026-06-23'
-status: 'in-review'
+status: 'done'
 route: 'plan-code-review'
 baseline_commit: '25a786424ad1323f5535fca7b7a10eb849abe19f'
 context:
@@ -69,6 +69,7 @@ context:
 ## Spec Change Log
 
 - 2026-06-23: Implemented route `h1` promotion, duplicate recipe-title suppression in standalone route usage, active mobile grid/action CSS, and Layout brand semantics fix after browser verification showed the persistent masthead was also an `h1`.
+- 2026-06-23: Review loop fixed canonical hero image binding, stale async lookup protection, blank-title fallback, and long-title route heading wrapping.
 
 ## Design Notes
 
@@ -81,8 +82,64 @@ The near-term goal is "mobile cooking baseline," not full cook mode. The impleme
 - `npm run build` - expected: production build succeeds.
 - `npm test -- src/tests/pages/RecipePage.test.jsx src/tests/components/RecipeTemplate.test.jsx src/tests/components/Layout.test.jsx` - actual: 68 tests passed.
 - `npm run build` - actual: production build passed.
+- `npm test -- src/tests/pages/RecipePage.test.jsx src/tests/components/RecipeTemplate.test.jsx src/tests/components/Layout.test.jsx` - review-loop actual: 71 tests passed.
+- `npm run build` - review-loop actual: production build passed.
 
 **Manual checks:**
 - Open `/recipes/french-silk-pie` at 390x844 and 375x667; expected: no horizontal scrolling, readable single-column content, visible recipe title `h1`, tappable copy/print controls, and decorative elements not blocking content.
 - Playwright mobile check at 390x844: one `h1` (`French Silk Pie`), overflow `0px`, one-column grid (`276px`), copy/print buttons `51px` tall.
 - Playwright mobile check at 375x667: one `h1` (`French Silk Pie`), overflow `0px`, one-column grid (`261px`), copy/print buttons `51px` tall.
+- Review-loop Playwright check at 390x844: one `h1` (`French Silk Pie`), overflow `0px`, hero image `/images/recipes/frenchsilkpie.jpg`, one-column grid (`276px`), copy/print buttons `51px` tall.
+- Review-loop Playwright check at 375x667: one `h1` (`French Silk Pie`), overflow `0px`, hero image `/images/recipes/frenchsilkpie.jpg`, one-column grid (`261px`), copy/print buttons `51px` tall.
+
+## Suggested Review Order
+
+**Route Data Flow**
+
+- Entry point: route title, loading fallback, and blank-title safety.
+  [`RecipePage.jsx:13`](../../sunday-brunch-website/src/pages/RecipePage.jsx#L13)
+
+- Async lookup guard prevents stale recipe results after route changes.
+  [`RecipePage.jsx:15`](../../sunday-brunch-website/src/pages/RecipePage.jsx#L15)
+
+- Canonical route image feeds the standalone recipe hero.
+  [`RecipePage.jsx:58`](../../sunday-brunch-website/src/pages/RecipePage.jsx#L58)
+
+**Recipe Presentation**
+
+- Template renders canonical hero imagery only for standalone expanded image input.
+  [`RecipeTemplate.jsx:202`](../../sunday-brunch-website/src/components/RecipeTemplate.jsx#L202)
+
+- Title suppression avoids duplicate route/template heading hierarchy.
+  [`RecipeTemplate.jsx:217`](../../sunday-brunch-website/src/components/RecipeTemplate.jsx#L217)
+
+- Mobile grid and action controls collapse around real template selectors.
+  [`RecipeTemplate.css:174`](../../sunday-brunch-website/src/components/RecipeTemplate.css#L174)
+
+- Recipe grid uses `minmax(0, 1fr)` to prevent content-driven overflow.
+  [`RecipeTemplate.css:216`](../../sunday-brunch-website/src/components/RecipeTemplate.css#L216)
+
+- Phone breakpoint reduces chrome while preserving the decorative system.
+  [`RecipeTemplate.css:411`](../../sunday-brunch-website/src/components/RecipeTemplate.css#L411)
+
+**Heading Semantics**
+
+- Persistent brand mark stays visual, no longer competes as page `h1`.
+  [`Layout.jsx:75`](../../sunday-brunch-website/src/components/Layout.jsx#L75)
+
+- Route title can wrap long recipe names without horizontal scroll.
+  [`App.css:273`](../../sunday-brunch-website/src/App.css#L273)
+
+**Tests**
+
+- Route test verifies canonical hero image reaches the template.
+  [`RecipePage.test.jsx:159`](../../sunday-brunch-website/src/tests/pages/RecipePage.test.jsx#L159)
+
+- Route test verifies blank-title fallback remains readable.
+  [`RecipePage.test.jsx:300`](../../sunday-brunch-website/src/tests/pages/RecipePage.test.jsx#L300)
+
+- Route test verifies stale async lookups cannot overwrite current route.
+  [`RecipePage.test.jsx:449`](../../sunday-brunch-website/src/tests/pages/RecipePage.test.jsx#L449)
+
+- CSS guard locks in long-title overflow protection.
+  [`RecipePage.test.jsx:542`](../../sunday-brunch-website/src/tests/pages/RecipePage.test.jsx#L542)

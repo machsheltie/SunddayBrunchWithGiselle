@@ -111,7 +111,7 @@ function ForGiselle() {
             <section className="for-giselle__dedication for-giselle__card">
                 <p>This whole table is named after a fourteen-pound dog who didn&rsquo;t much care for people and loved me like it was her entire job.</p>
 
-                <p>Giselle was my shadow. She came everywhere, supervised everything, and had opinions about all of it. The afternoon the other dogs found a gap in the fence and went off adventuring, she stayed &mdash; I came outside and found her pressed right up against the door, waiting, because wherever I was happened to be the only place she ever wanted to be. She had this enormous personality that almost nobody else ever got to see, because she saved it for the few she&rsquo;d decided were hers. I was the lucky one she picked.</p>
+                <p>Giselle was my shadow. She came everywhere, supervised everything, and had opinions about all of it. I used to get the proof of it from clear across a field &mdash; she&rsquo;d be off doing her own important business, and then she&rsquo;d catch sight of me, let out this ecstatic little shriek of a bark, and come barreling full-tilt across the whole thing just to get back to my side. Wherever I was happened to be the only place she ever wanted to be. She had this enormous personality that almost nobody else ever got to see, because she saved it for the few she&rsquo;d decided were hers. I was the lucky one she picked.</p>
 
                 <p>If you know what it&rsquo;s like to be fully yourself with only a precious few &mdash; to be &ldquo;too much&rdquo; everywhere but home &mdash; then you already understand her. She was so much like me. That&rsquo;s why her name is on the door.</p>
 

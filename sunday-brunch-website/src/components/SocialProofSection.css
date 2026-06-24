@@ -113,6 +113,24 @@
     background: var(--dusty-plum);
 }
 
+/* Phones: keep the dot visually 12px but expand the tap target to 24px
+   (WCAG 2.5.8 minimum). background-clip:content-box keeps the colored dot
+   the same size while the padding enlarges the clickable area. */
+@media (max-width: 768px) {
+
+    /* .active is included so its `background` shorthand doesn't reset
+       background-clip back to border-box (which would render the active dot
+       as a solid 24px blob instead of a 12px dot). */
+    .testimonial-carousel__dot,
+    .testimonial-carousel__dot.active {
+        box-sizing: border-box;
+        width: 24px;
+        height: 24px;
+        padding: 6px;
+        background-clip: content-box;
+    }
+}
+
 /* Testimonial Card */
 .testimonial-card {
     display: flex;

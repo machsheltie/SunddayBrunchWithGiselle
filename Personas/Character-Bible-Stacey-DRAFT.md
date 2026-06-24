@@ -104,7 +104,7 @@ Season headnotes from *her* shelf, not generic nostalgia:
 
 ## Her bond with each dog (the emotional truth, for how she writes them)
 
-- **Giselle — her mirror and her shadow.** The huge personality only Stacey ever truly saw, just like Stacey herself; the dog who refused to leave, found waiting against the door. Fierce, loyal love to the very end. *This is why the brand carries her name.* (Eternally present in the blog. Grief = human-voice-only.)
+- **Giselle — her mirror and her shadow.** The huge personality only Stacey ever truly saw, just like Stacey herself; the dog who'd shriek with joy and come barreling across a whole field the instant she spotted Stacey. Fierce, loyal love to the very end. *This is why the brand carries her name.* (Eternally present in the blog. Grief = human-voice-only.)
 - **Tiana — hope across the years.** Athena's carefree, joyful essence returned after generations of breeding back toward it; the soft soul who naps behind Stacey's knees while she draws.
 - **Phaedra — the one who tends *her.*** The "rub me" foot on the arm, the tears licked away; a caretaker-empath, not just a science nerd.
 - **Havok — grief, forgiven.** The dog she had to learn to love for himself instead of resenting for not being his late mother, Fury; now her rock, her hiking sentry, the fearless one who made the whole pack okay again.

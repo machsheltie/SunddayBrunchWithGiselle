@@ -5,6 +5,44 @@ import './ForGiselle.css'
 // Human-voice-only memorial content. Source of truth:
 // Personas/About-Page-Memorials-and-Dedication-DRAFT.md (Stacey-approved).
 // This page is the projection of that draft onto the footer-linked "For Giselle" page.
+
+// Lavender washi-tape strip with a row of pawprints — the same scrapbook tape the
+// home hero uses. The positioned wrapper class is supplied per call site so it can
+// sit on top of whichever photo it decorates.
+function PawWashiTape({ className }) {
+    return (
+        <span className={className} aria-hidden="true">
+            <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0 5 L2 2 L5 0 L95 0 L98 2 L100 5 L100 25 L98 28 L95 30 L5 30 L2 28 L0 25 Z" fill="rgba(232, 223, 245, 0.8)" opacity="0.8" />
+                <path d="M0 0 L100 0" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeDasharray="2,2" />
+                <path d="M0 30 L100 30" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
+                <g opacity="0.4">
+                    <ellipse cx="15" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="12" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="15" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="18" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="35" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="32" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="35" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="38" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="50" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="47" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="50" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="53" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="65" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="62" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="65" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="68" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="85" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="82" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="85" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                    <ellipse cx="88" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
+                </g>
+            </svg>
+        </span>
+    )
+}
+
 function ForGiselle() {
     useEffect(() => {
         applyMeta({
@@ -15,41 +53,16 @@ function ForGiselle() {
 
     return (
         <div className="for-giselle-page">
+            {/* Outer glassmorphic container — mirrors the home page's master
+                .container so every box on the page sits inside one frosted-glass
+                panel that the watercolor canvas shows through. */}
+            <div className="for-giselle__container">
             {/* Hero — mirrors the home page's gradient photo-frame + pawprint washi
                 tape, so Giselle's portrait introduces the page and her name reads
                 like a plaque beneath it. */}
             <section className="for-giselle__hero" aria-labelledby="for-giselle-title">
-                <span className="for-giselle__hero-washi" aria-hidden="true">
-                    <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                        <path d="M0 5 L2 2 L5 0 L95 0 L98 2 L100 5 L100 25 L98 28 L95 30 L5 30 L2 28 L0 25 Z" fill="rgba(232, 223, 245, 0.8)" opacity="0.8" />
-                        <path d="M0 0 L100 0" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeDasharray="2,2" />
-                        <path d="M0 30 L100 30" stroke="rgba(0,0,0,0.1)" strokeWidth="1" />
-                        <g opacity="0.4">
-                            <ellipse cx="15" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="12" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="15" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="18" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="35" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="32" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="35" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="38" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="50" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="47" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="50" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="53" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="65" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="62" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="65" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="68" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="85" cy="15" rx="1.5" ry="2" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="82" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="85" cy="10" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                            <ellipse cx="88" cy="11" rx="1" ry="1.3" fill="rgba(93, 77, 122, 0.6)" />
-                        </g>
-                    </svg>
-                </span>
-
                 <div className="for-giselle__hero-frame">
+                    <PawWashiTape className="for-giselle__hero-washi" />
                     <img
                         src="/assets/giselle-hero.jpg"
                         alt="Giselle, a sable-and-white Sheltie, resting atop a blue agility A-frame in the autumn woods"
@@ -119,15 +132,18 @@ function ForGiselle() {
                 <p>Every dog who&rsquo;s shared my life is still here &mdash; in the way the ones we love always are, tucked into the stories and carried on by the dogs who came after them. Every so often you&rsquo;ll meet one of them here as a guest, with a recipe of their very own. We start with the one who started it all.</p>
 
                 <article className="for-giselle__memorial">
-                    <img
-                        className="for-giselle__memorial-photo"
-                        src="/assets/athena-memorial.jpg"
-                        alt="Athena, a tricolor Sheltie, flying mid-air over an agility jump at a 2009 competition in Louisville, Kentucky"
-                        width="604"
-                        height="483"
-                        loading="lazy"
-                        decoding="async"
-                    />
+                    <div className="for-giselle__memorial-frame">
+                        <PawWashiTape className="for-giselle__memorial-washi" />
+                        <img
+                            className="for-giselle__memorial-photo"
+                            src="/assets/athena-memorial.jpg"
+                            alt="Athena, a tricolor Sheltie, flying mid-air over an agility jump at a 2009 competition in Louisville, Kentucky"
+                            width="604"
+                            height="483"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
                     <h3>Athena <span className="for-giselle__years">(2004&ndash;2021)</span></h3>
 
                     <p>Before there was a Giselle, before there was a table, there was Athena &mdash; my heart dog.</p>
@@ -143,6 +159,7 @@ function ForGiselle() {
                     <p>You can see her in Tiana now &mdash; that same carefree, sunlit joy, come back around. It took me a lot of years and a lot of love to find my way back to it. Athena would be glad. She never did like the road to end.</p>
                 </article>
             </section>
+            </div>
         </div>
     )
 }

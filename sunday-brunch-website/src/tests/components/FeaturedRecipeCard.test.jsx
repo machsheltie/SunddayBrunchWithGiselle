@@ -34,6 +34,12 @@ vi.mock('../../components/DietaryBadges', () => ({
     )
 }));
 
+vi.mock('../../components/AllergenWarnings', () => ({
+    default: ({ allergens }) => (
+        <div data-testid="allergen-warnings">{allergens?.join(', ')}</div>
+    )
+}));
+
 vi.mock('../../components/StarRating', () => ({
     default: ({ value, count, size }) => (
         <div data-testid="star-rating" data-value={value} data-count={count} data-size={size}>
@@ -61,6 +67,8 @@ describe('FeaturedRecipeCard', () => {
         yield: '12 muffins',
         skill: 'Easy',
         dietary: ['Vegetarian'],
+        allergens: ['Gluten', 'Dairy'],
+        description: 'Fluffy bakery-style muffins bursting with fresh blueberries.',
         story: ['These muffins are perfect for Sunday brunch.'],
         ingredients: [
             { amount: '2', unit: 'cups', name: 'flour' },
@@ -123,29 +131,22 @@ describe('FeaturedRecipeCard', () => {
             // Note: yield (12 muffins) is not shown in the featured card meta
         });
 
-        it('should display recipe story excerpt', () => {
-            // Arrange & Act
+        it('should display the recipe description (what it is), not the story hook', () => {
+            // The unexpanded card must describe the recipe, not lead with the
+            // story's opening line (which tells a searcher nothing about the dish).
             render(<FeaturedRecipeCard recipe={mockRecipe} />);
 
-            // Assert
-            expect(screen.getByText('These muffins are perfect for Sunday brunch.')).toBeInTheDocument();
+            expect(screen.getByText('Fluffy bakery-style muffins bursting with fresh blueberries.')).toBeInTheDocument();
+            expect(screen.queryByText('These muffins are perfect for Sunday brunch.')).not.toBeInTheDocument();
         });
 
-        it('should display excerpt from canonical story object body', () => {
-            // Arrange
-            const recipeWithCanonicalStory = {
-                ...mockRecipe,
-                story: {
-                    headline: 'The muffin that started everything',
-                    body: 'The first French Silk Pie I ever made was a bribe.\n\n> **Giselle:** *"A bribe."*'
-                }
-            };
+        it('should fall back to the story excerpt when no description is provided', () => {
+            // Defensive fallback only — every recipe SHOULD supply a description.
+            const recipeWithoutDescription = { ...mockRecipe, description: undefined };
 
-            // Act
-            render(<FeaturedRecipeCard recipe={recipeWithCanonicalStory} />);
+            render(<FeaturedRecipeCard recipe={recipeWithoutDescription} />);
 
-            // Assert
-            expect(screen.getByText('The first French Silk Pie I ever made was a bribe.')).toBeInTheDocument();
+            expect(screen.getByText('These muffins are perfect for Sunday brunch.')).toBeInTheDocument();
         });
     });
 
@@ -214,10 +215,9 @@ describe('FeaturedRecipeCard', () => {
             // Arrange & Act
             render(<FeaturedRecipeCard recipe={mockRecipe} />);
 
-            // Assert - FeaturedRecipeCard doesn't display dietary badges
-            // It's imported but not used in the component
-            // This test now just verifies the component renders without error
+            // Assert - dietary badges now render in the card header.
             expect(screen.getByText('Blueberry Muffins')).toBeInTheDocument();
+            expect(screen.getByTestId('dietary-badges')).toBeInTheDocument();
         });
 
         it('should handle recipe without story (optional field)', () => {
@@ -291,45 +291,53 @@ describe('FeaturedRecipeCard', () => {
     });
 
     // ==========================================
-    // BONUS: DIETARY BADGES INTEGRATION
+    // DIETARY + ALLERGEN BADGES IN CARD HEADER
     // ==========================================
+    // The dietary/allergen pills now live in the card header (under the
+    // rating/time/skill meta line), visible in the COLLAPSED card — no expand
+    // needed. The expanded RecipeTemplate no longer renders them (see its own
+    // suite), so they appear exactly once.
 
-    describe('Dietary Badges Integration', () => {
+    describe('Dietary + Allergen Badges in card header', () => {
+        it('should render dietary badges in the collapsed card when dietary present', () => {
+            render(<FeaturedRecipeCard recipe={mockRecipe} />);
+
+            // Visible without expanding the recipe.
+            expect(screen.queryByTestId('recipe-template')).not.toBeInTheDocument();
+            expect(screen.getByTestId('dietary-badges')).toBeInTheDocument();
+        });
+
+        it('should render allergen badges in the collapsed card when allergens present', () => {
+            render(<FeaturedRecipeCard recipe={mockRecipe} />);
+
+            const allergens = screen.getByTestId('allergen-warnings');
+            expect(allergens).toBeInTheDocument();
+            expect(allergens).toHaveTextContent('Gluten');
+            expect(allergens).toHaveTextContent('Dairy');
+        });
+
         it('should not render dietary badges when dietary array is empty', () => {
-            // Arrange
             const recipeNoDietary = { ...mockRecipe, dietary: [] };
 
-            // Act
             render(<FeaturedRecipeCard recipe={recipeNoDietary} />);
 
-            // Assert
             expect(screen.queryByTestId('dietary-badges')).not.toBeInTheDocument();
         });
 
         it('should not render dietary badges when dietary is null', () => {
-            // Arrange
             const recipeNoDietary = { ...mockRecipe, dietary: null };
 
-            // Act
             render(<FeaturedRecipeCard recipe={recipeNoDietary} />);
 
-            // Assert
             expect(screen.queryByTestId('dietary-badges')).not.toBeInTheDocument();
         });
 
-        it('should render without dietary badges (not displayed in featured card)', () => {
-            // Arrange
-            const recipeMultipleDietary = {
-                ...mockRecipe,
-                dietary: ['Vegetarian', 'Gluten-Free', 'Dairy-Free', 'Nut-Free']
-            };
+        it('should not render allergen badges when allergens absent', () => {
+            const recipeNoAllergens = { ...mockRecipe, allergens: [] };
 
-            // Act
-            render(<FeaturedRecipeCard recipe={recipeMultipleDietary} />);
+            render(<FeaturedRecipeCard recipe={recipeNoAllergens} />);
 
-            // Assert - FeaturedRecipeCard doesn't show dietary badges
-            expect(screen.queryByTestId('dietary-badges')).not.toBeInTheDocument();
-            expect(screen.getByText('Blueberry Muffins')).toBeInTheDocument();
+            expect(screen.queryByTestId('allergen-warnings')).not.toBeInTheDocument();
         });
     });
 

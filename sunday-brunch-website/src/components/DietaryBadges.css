@@ -14,6 +14,27 @@
   list-style: none;
 }
 
+/* Optional "Dietary" lead-in group — mirrors the allergen row's
+   "Contains" label so the two rows share a label | pills rhythm. */
+.dietary-badges-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.dietary-badges-group .dietary-badges {
+  margin: 0; /* the group owns the outer spacing */
+}
+
+.dietary-badges__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #7a6a8c;
+}
+
 .dietary-badge {
   display: inline-flex;
   align-items: center;

@@ -221,6 +221,15 @@ describe('RecipeTemplate', () => {
             expect(allergenWarnings).toHaveTextContent('Dairy');
         });
 
+        it('should NOT render dietary badges or allergens when embedded (the host card shows them)', () => {
+            // When embedded inside the featured card, the dietary/allergen pills
+            // live in the card header, so the template must not duplicate them.
+            render(<RecipeTemplate recipe={mockRecipe} embedded />);
+
+            expect(screen.queryByTestId('dietary-badges')).not.toBeInTheDocument();
+            expect(screen.queryByTestId('allergen-warnings')).not.toBeInTheDocument();
+        });
+
         it('should render expanded image when expandedImage prop provided', () => {
             // Arrange & Act
             render(

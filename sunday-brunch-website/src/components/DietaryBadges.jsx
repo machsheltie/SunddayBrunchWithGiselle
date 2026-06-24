@@ -66,7 +66,7 @@ const DIETARY_CONFIG = {
   }
 }
 
-function DietaryBadges({ dietary, maxVisible = null }) {
+function DietaryBadges({ dietary, maxVisible = null, label = null }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [hoveredBadge, setHoveredBadge] = useState(null)
 
@@ -97,7 +97,7 @@ function DietaryBadges({ dietary, maxVisible = null }) {
 
   const hiddenCount = maxVisible ? dietary.length - maxVisible : 0
 
-  return (
+  const list = (
     <ul className="dietary-badges is-responsive" role="list">
       {displayedBadges.map((diet) => {
         const config = getDietaryConfig(diet)
@@ -144,11 +144,25 @@ function DietaryBadges({ dietary, maxVisible = null }) {
       )}
     </ul>
   )
+
+  if (!label) {
+    return list
+  }
+
+  // Optional category lead-in (e.g. "Dietary") that mirrors the allergen
+  // row's "Contains" label for a consistent label | pills rhythm.
+  return (
+    <div className="dietary-badges-group">
+      <span className="dietary-badges__label">{label}</span>
+      {list}
+    </div>
+  )
 }
 
 DietaryBadges.propTypes = {
   dietary: PropTypes.arrayOf(PropTypes.string),
-  maxVisible: PropTypes.number
+  maxVisible: PropTypes.number,
+  label: PropTypes.string
 }
 
 export default DietaryBadges

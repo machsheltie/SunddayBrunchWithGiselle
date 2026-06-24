@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import RecipeTemplate from './RecipeTemplate';
 import WhimsicalButton from './WhimsicalButton';
 import CrystalRating from './CrystalRating';
+import DietaryBadges from './DietaryBadges';
+import AllergenWarnings from './AllergenWarnings';
 import { getRecipeRatings } from '../lib/ratings';
 import { getStoryExcerpt } from '../lib/story';
 import './FeaturedRecipeCard.css';
@@ -12,7 +14,10 @@ const FeaturedRecipeCard = ({ recipe }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [ratings, setRatings] = useState(null);
     const [ratingsLoading, setRatingsLoading] = useState(true);
-    const storyExcerpt = getStoryExcerpt(recipe.story);
+    // The card blurb describes what the recipe IS (the canonical summary),
+    // falling back to the story excerpt only if a recipe is missing its
+    // description. See docs/recipe-card-description-standard.md.
+    const cardDescription = recipe.description || getStoryExcerpt(recipe.story);
 
     useEffect(() => {
         // Fetch ratings for this recipe
@@ -93,8 +98,18 @@ const FeaturedRecipeCard = ({ recipe }) => {
                         <span>📊 {recipe.skill || 'Medium'}</span>
                     </div>
 
+                    {/* Dietary + allergen pills sit with the card meta, in both the
+                        collapsed and expanded states. */}
+                    {recipe.dietary && recipe.dietary.length > 0 && (
+                        <DietaryBadges dietary={recipe.dietary} maxVisible={5} label="Dietary" />
+                    )}
+
+                    {recipe.allergens && recipe.allergens.length > 0 && (
+                        <AllergenWarnings allergens={recipe.allergens} />
+                    )}
+
                     <p style={{ fontStyle: 'italic', color: '#5a4668' }}>
-                        {storyExcerpt || recipe.description}
+                        {cardDescription}
                     </p>
 
                     {!isExpanded && (
@@ -146,6 +161,7 @@ FeaturedRecipeCard.propTypes = {
             })
         ]),
         dietary: PropTypes.arrayOf(PropTypes.string),
+        allergens: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
 };
 

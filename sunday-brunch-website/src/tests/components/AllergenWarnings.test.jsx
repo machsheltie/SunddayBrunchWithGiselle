@@ -5,179 +5,66 @@ import AllergenWarnings from '../../components/AllergenWarnings'
 describe('AllergenWarnings Component', () => {
   const mockAllergens = ['Milk', 'Eggs', 'Wheat']
 
-  it('should display allergen warnings prominently', () => {
-    render(<AllergenWarnings allergens={mockAllergens} />)
+  // --- New compact-badge contract ---------------------------------------
+  // Allergens render as small inline pills (like the dietary badges), NOT a
+  // large alert box. Each allergen type gets its own badge.
 
-    expect(screen.getByRole('alert')).toBeInTheDocument()
-  })
-
-  it('should show warning icon', () => {
-    render(<AllergenWarnings allergens={mockAllergens} />)
-
-    const warningIcon = screen.getByText('⚠️')
-    expect(warningIcon).toBeInTheDocument()
-  })
-
-  it('should display "Contains" heading', () => {
-    render(<AllergenWarnings allergens={mockAllergens} />)
-
-    const heading = screen.getByRole('heading', { name: /contains/i })
-    expect(heading).toBeInTheDocument()
-  })
-
-  it('should list all allergens', () => {
-    render(<AllergenWarnings allergens={mockAllergens} />)
-
-    expect(screen.getByText(/milk/i)).toBeInTheDocument()
-    expect(screen.getByText(/eggs/i)).toBeInTheDocument()
-    expect(screen.getByText(/wheat/i)).toBeInTheDocument()
-  })
-
-  it('should display milk allergen', () => {
-    render(<AllergenWarnings allergens={['Milk']} />)
-
-    expect(screen.getByText(/milk/i)).toBeInTheDocument()
-  })
-
-  it('should display eggs allergen', () => {
-    render(<AllergenWarnings allergens={['Eggs']} />)
-
-    expect(screen.getByText(/eggs/i)).toBeInTheDocument()
-  })
-
-  it('should display wheat allergen', () => {
-    render(<AllergenWarnings allergens={['Wheat']} />)
-
-    expect(screen.getByText(/wheat/i)).toBeInTheDocument()
-  })
-
-  it('should display soy allergen', () => {
-    render(<AllergenWarnings allergens={['Soy']} />)
-
-    expect(screen.getByText(/soy/i)).toBeInTheDocument()
-  })
-
-  it('should display peanuts allergen', () => {
-    render(<AllergenWarnings allergens={['Peanuts']} />)
-
-    expect(screen.getByText(/peanuts/i)).toBeInTheDocument()
-  })
-
-  it('should display tree nuts allergen', () => {
-    render(<AllergenWarnings allergens={['Tree Nuts']} />)
-
-    expect(screen.getByText(/tree nuts/i)).toBeInTheDocument()
-  })
-
-  it('should display fish allergen', () => {
-    render(<AllergenWarnings allergens={['Fish']} />)
-
-    expect(screen.getByText(/fish/i)).toBeInTheDocument()
-  })
-
-  it('should display shellfish allergen', () => {
-    render(<AllergenWarnings allergens={['Shellfish']} />)
-
-    expect(screen.getByText(/shellfish/i)).toBeInTheDocument()
-  })
-
-  it('should handle no allergens gracefully', () => {
-    const { container } = render(<AllergenWarnings allergens={[]} />)
-
-    const alert = container.querySelector('[role="alert"]')
-    expect(alert).not.toBeInTheDocument()
-  })
-
-  it('should handle undefined allergens prop', () => {
-    const { container } = render(<AllergenWarnings />)
-
-    const alert = container.querySelector('[role="alert"]')
-    expect(alert).not.toBeInTheDocument()
-  })
-
-  it('should handle null allergens prop', () => {
-    const { container } = render(<AllergenWarnings allergens={null} />)
-
-    const alert = container.querySelector('[role="alert"]')
-    expect(alert).not.toBeInTheDocument()
-  })
-
-  it('should be accessible with proper ARIA roles', () => {
-    render(<AllergenWarnings allergens={mockAllergens} />)
-
-    const alert = screen.getByRole('alert')
-    expect(alert).toHaveAttribute('aria-live', 'polite')
-  })
-
-  it('should have ARIA label for screen readers', () => {
-    render(<AllergenWarnings allergens={mockAllergens} />)
-
-    const alert = screen.getByRole('alert')
-    expect(alert).toHaveAttribute('aria-label', expect.stringContaining('allergen'))
-  })
-
-  it('should apply warning styling class', () => {
+  it('should render each allergen as a badge', () => {
     const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
 
-    const warningBox = container.querySelector('.allergen-warnings')
-    expect(warningBox).toBeInTheDocument()
-    expect(warningBox).toHaveClass('allergen-warnings--warning')
+    const badges = container.querySelectorAll('.allergen-badge')
+    expect(badges.length).toBe(3)
   })
 
-  it('should display allergens as tags', () => {
-    const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
-
-    const tags = container.querySelectorAll('.allergen-tag')
-    expect(tags.length).toBe(3)
-  })
-
-  it('should separate allergens visually', () => {
+  it('should display each allergen name', () => {
     render(<AllergenWarnings allergens={mockAllergens} />)
 
-    const allergenList = screen.getByRole('list')
-    expect(allergenList).toBeInTheDocument()
-
-    const allergenItems = screen.getAllByRole('listitem')
-    expect(allergenItems.length).toBe(3)
+    expect(screen.getByText('Milk')).toBeInTheDocument()
+    expect(screen.getByText('Eggs')).toBeInTheDocument()
+    expect(screen.getByText('Wheat')).toBeInTheDocument()
   })
 
-  it('should use high contrast colors for visibility', () => {
+  it('should show a visible "Contains" lead-in', () => {
+    render(<AllergenWarnings allergens={mockAllergens} />)
+
+    expect(screen.getByText(/contains/i)).toBeInTheDocument()
+  })
+
+  it('should NOT render a large alert box', () => {
+    render(<AllergenWarnings allergens={mockAllergens} />)
+
+    // The old garish red "caution" box is gone — no alert role, no box element.
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  })
+
+  it('should NOT render the old allergen-warnings box element', () => {
     const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
 
-    const warningBox = container.querySelector('.allergen-warnings')
-    const styles = window.getComputedStyle(warningBox)
-
-    // Should have warning background
-    expect(warningBox).toHaveClass('allergen-warnings--warning')
+    expect(container.querySelector('.allergen-warnings')).not.toBeInTheDocument()
   })
 
-  it('should be prominently positioned', () => {
-    const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
+  it('should label the badge group as containing allergens for screen readers', () => {
+    render(<AllergenWarnings allergens={mockAllergens} />)
 
-    const warningBox = container.querySelector('.allergen-warnings')
-    expect(warningBox).toHaveClass('is-prominent')
+    const list = screen.getByRole('list')
+    const label = list.getAttribute('aria-label') || ''
+    expect(label).toMatch(/contains/i)
+    expect(label).toMatch(/allergen/i)
   })
 
-  it('should display FDA-required allergens in correct format', () => {
-    const fdaAllergens = [
-      'Milk', 'Eggs', 'Fish', 'Shellfish', 'Tree Nuts',
-      'Peanuts', 'Wheat', 'Soybeans'
-    ]
+  it('should render allergens as list items', () => {
+    render(<AllergenWarnings allergens={mockAllergens} />)
 
-    render(<AllergenWarnings allergens={fdaAllergens} />)
+    const items = screen.getAllByRole('listitem')
+    expect(items.length).toBe(3)
+  })
 
-    // Check allergen tags directly to avoid "fish" matching in "shellfish"
-    const allergenTags = screen.getAllByRole('listitem')
-    const allergenTexts = allergenTags.map(tag => tag.textContent)
+  // --- Preserved behaviour ----------------------------------------------
 
-    expect(allergenTexts).toContain('Milk')
-    expect(allergenTexts).toContain('Eggs')
-    expect(allergenTexts).toContain('Fish')
-    expect(allergenTexts).toContain('Shellfish')
-    expect(allergenTexts).toContain('Tree Nuts')
-    expect(allergenTexts).toContain('Peanuts')
-    expect(allergenTexts).toContain('Wheat')
-    expect(allergenTexts).toContain('Soy') // Soybeans normalized to Soy
+  it('should normalize "Soybeans" to "Soy"', () => {
+    render(<AllergenWarnings allergens={['Soybeans']} />)
+
+    expect(screen.getByText('Soy')).toBeInTheDocument()
   })
 
   it('should handle case-insensitive allergen names', () => {
@@ -188,38 +75,29 @@ describe('AllergenWarnings Component', () => {
     expect(screen.getByText(/wheat/i)).toBeInTheDocument()
   })
 
-  it('should display allergen count for screen readers', () => {
-    render(<AllergenWarnings allergens={mockAllergens} />)
+  it('should display all FDA-required allergens', () => {
+    const fdaAllergens = [
+      'Milk', 'Eggs', 'Fish', 'Shellfish', 'Tree Nuts',
+      'Peanuts', 'Wheat', 'Soybeans'
+    ]
 
-    const alert = screen.getByRole('alert')
-    expect(alert).toHaveTextContent(/3.*allergen/i)
+    render(<AllergenWarnings allergens={fdaAllergens} />)
+
+    const allergenTexts = screen.getAllByRole('listitem').map((item) => item.textContent)
+    expect(allergenTexts).toContain('Milk')
+    expect(allergenTexts).toContain('Eggs')
+    expect(allergenTexts).toContain('Fish')
+    expect(allergenTexts).toContain('Shellfish')
+    expect(allergenTexts).toContain('Tree Nuts')
+    expect(allergenTexts).toContain('Peanuts')
+    expect(allergenTexts).toContain('Wheat')
+    expect(allergenTexts).toContain('Soy') // Soybeans normalized to Soy
   })
 
-  it('should use semantic HTML for better accessibility', () => {
-    const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
+  it('should display sesame allergen (new FDA requirement)', () => {
+    render(<AllergenWarnings allergens={['Sesame']} />)
 
-    const section = container.querySelector('section.allergen-warnings')
-    expect(section).toBeInTheDocument()
-  })
-
-  it('should be print-friendly', () => {
-    const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
-
-    const warningBox = container.querySelector('.allergen-warnings')
-    expect(warningBox).toHaveClass('print-friendly')
-  })
-
-  it('should display allergen disclaimer text', () => {
-    render(<AllergenWarnings allergens={mockAllergens} />)
-
-    expect(screen.getByText(/manufactured in a facility/i)).toBeInTheDocument()
-  })
-
-  it('should animate warning on mount for attention', () => {
-    const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
-
-    const warningBox = container.querySelector('.allergen-warnings')
-    expect(warningBox).toHaveClass('animate-in')
+    expect(screen.getByText('Sesame')).toBeInTheDocument()
   })
 
   it('should handle very long allergen lists', () => {
@@ -230,27 +108,32 @@ describe('AllergenWarnings Component', () => {
 
     render(<AllergenWarnings allergens={manyAllergens} />)
 
-    const allergenItems = screen.getAllByRole('listitem')
-    expect(allergenItems.length).toBe(9)
+    expect(screen.getAllByRole('listitem').length).toBe(9)
   })
 
-  it('should support mobile responsive layout', () => {
+  it('should be mobile responsive', () => {
     const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
 
-    const warningBox = container.querySelector('.allergen-warnings')
-    expect(warningBox).toHaveClass('is-responsive')
+    expect(container.querySelector('.allergen-badges')).toBeInTheDocument()
   })
 
-  it('should have high visibility border', () => {
-    const { container } = render(<AllergenWarnings allergens={mockAllergens} />)
+  // --- Graceful empty states --------------------------------------------
 
-    const warningBox = container.querySelector('.allergen-warnings')
-    expect(warningBox).toHaveClass('has-warning-border')
+  it('should render nothing for an empty allergen list', () => {
+    const { container } = render(<AllergenWarnings allergens={[]} />)
+
+    expect(container.querySelector('.allergen-badges')).not.toBeInTheDocument()
   })
 
-  it('should display sesame allergen (new FDA requirement)', () => {
-    render(<AllergenWarnings allergens={['Sesame']} />)
+  it('should render nothing when allergens prop is undefined', () => {
+    const { container } = render(<AllergenWarnings />)
 
-    expect(screen.getByText(/sesame/i)).toBeInTheDocument()
+    expect(container.querySelector('.allergen-badges')).not.toBeInTheDocument()
+  })
+
+  it('should render nothing when allergens prop is null', () => {
+    const { container } = render(<AllergenWarnings allergens={null} />)
+
+    expect(container.querySelector('.allergen-badges')).not.toBeInTheDocument()
   })
 })

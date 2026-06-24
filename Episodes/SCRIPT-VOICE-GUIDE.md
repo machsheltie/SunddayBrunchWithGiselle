@@ -4,6 +4,15 @@
 canonical Dec 2025 blog story, the persona/worldbuilding docs, and a study of
 **The Recipe with Kenji and Deb** (our model for the two-host dynamic).*
 
+> **Before you write any segment: read `Personas/CANON-INDEX.md`** — the project's canon map and
+> preflight reading list (characters, timeline, writing-issues to avoid, the read-only records).
+> This guide is only the *how-to-write-for-audio* layer.
+>
+> **Character source of truth (for podcast AND blog):** *who* Stacey and the four Shelties really
+> are lives in `Personas/Character-Bible-Stacey-DRAFT.md`, `Character-Notes-WORKING.md`, and the
+> pack bible. **That is the canon both the scripts and the blog derive from.** This guide only
+> covers *how to write them for audio.* When the two ever disagree, the bible wins.
+
 ---
 
 ## 0. The one rule above all
@@ -26,7 +35,8 @@ intuitive, and the tension between those approaches is what makes the show click
 - **Stacey is Deb.** Warm, self-deprecating, "an email from your best friend." Honest about
   every shortcut and failure (Deb literally crosses out "~~success~~ failure"). Her superpower,
   like Deb's, is **solutions** — she sends you away able to actually make the thing. She owns
-  the **heart, the story, and the permission.**
+  the **heart, the story, and the permission.** (But Deb-warm ≠ soft: Stacey's humor runs
+  satirical, Cards-Against-Humanity sharp — she's warm *with a bite*. See §2's comedic lane.)
 - **Giselle is Kenji — run through a monarchy.** She owns the **standards and the why.** The
   technique that actually matters (room-temp butter, the 20 minutes, ultrafine sugar) rides in
   on *her* insistence, never a lecture from Stacey. Giselle is how the show teaches without
@@ -66,6 +76,25 @@ payoff rather than spoiling it. Don't promise "edible velvet" up front. Let Stac
 mixture is breaking at minute three, let Giselle be smug, and let the listener feel the silk
 arrive **with** them. Suspense is a gift you can give an audio audience.
 
+**Two sides of one coin (the show's real heart).** Stacey and Giselle are mirror selves. The world
+mostly meets Stacey's *public* self — sweet, shy, quiet, kind (and, when her AuDHD is misread,
+unfairly tagged "cold," "stuck-up," or "rude"). The sharp, satirical, unfiltered self is just as
+real, but she shows it only to the trusted few. **Giselle is that inner voice given a microphone** —
+the "off with their heads" we all think and rarely say aloud. Same coin: Stacey is the warmth that
+holds the wit; Giselle is the wit that guards the warmth. Both keep their real selves for the few —
+and the quiet magic of the podcast is that it lets the *listener become one of the few.* So: write
+the audience as trusted company, not a crowd. And when Giselle drops her armor for half a second,
+that is not a punchline — it's the real her, the version almost no one is allowed to see. Ration it
+like it's precious, because it is.
+
+**Full range, and mutual seeing (the tribute's whole point).** The Shelties are *people*, not bits —
+give them real range: Giselle can be fiercely sincere one breath and demand tribute for the
+indignity of having *had* a feeling the next, and that contrast *is* the character (a soft beat is
+allowed to be followed immediately by a punchy one — the whiplash is the dimension). And the love
+runs **both ways**: they see the real Stacey, and Stacey sees the real *them* — the versions only the
+two of them ever knew. Write that whole-hearted mutual seeing into every segment. That's why this
+exists.
+
 ---
 
 ## 2. Stacey (host / narrator)
@@ -77,6 +106,20 @@ arrive **with** them. Suspense is a gift you can give an audio audience.
   chatting while she cooks." Contractions, short sentences, the occasional unfinished thought.
 - **Vulnerability is stated plainly, then she moves on.** She doesn't marinate in it. The Story
   segment's "bake my way in" already does this; it's the bar for everything else.
+
+### Stacey's register (script-facing distillation — full canon in the bible)
+Warm *with a bite.* Satire-forward (Cards Against Humanity / Liquid Death), clever, "sarcasm and a
+gun" (her words). **She is not the soft straight-man to Giselle's sharpness — both are sharp, in
+different registers:** her dry satire vs. Giselle's regal disdain. Let the proportion shift by
+context — at home with the dogs the sharp private self leads; meeting listeners cold (the Intro)
+the warm/shy public self leads and the bite peeks out as she relaxes. Verbal tics to reach for:
+*"that's a tomorrow problem,"* *"emotionally a Tuesday,"* the spoons line, affectionate
+self-deprecation, sparing era-aware pop-culture pulls. Her quirk and whimsy are *her*, not a
+costume — protect them (see §6's "de-purpling ≠ de-whimsy-ing").
+**Wit is a requirement, not seasoning** — the clever / satirical / subtle humor is core to who she
+is; warmth and whimsy ride in *on* the wit, never instead of it. A flat, earnest line is as wrong
+for her as a purple one.
+*The full, tender truth of who she is lives in `Personas/Character-Bible-Stacey-DRAFT.md` — canon.*
 
 > **Before:** "You've just transformed ordinary ingredients into something that looks like the
 > most luxurious chocolate mousse you've ever seen — light, airy, and impossibly rich. This is
@@ -95,6 +138,8 @@ The personas are strong; the problem is each runs at a single setting. Every cha
 - **Default:** regal, cutting, exacting. "Write that down."
 - **Missing gear:** the rare drop of the armor — *"(with none of her usual venom)."* The blog
   proves this is her best move. **Ration it: ~one genuine warmth beat per segment, never more.**
+  Thematically this *is* the real Giselle — the version very few ever saw. The armor is her public
+  self; the warmth is who she actually is. That's why it must stay rare, and why it lands so hard.
 - **Avoid:** snark with no specific target. Her best lines have a *victim* — the cold butter, the
   box crust, the over-whipped cream — not "humans" in the abstract.
 - **Watch:** she's in ~every other line of the walkthrough. Fewer, sharper interjections win.
@@ -150,6 +195,19 @@ omniscience. More dog, and funnier.
 ---
 
 ## 6. The de-purpling checklist (run on every paragraph)
+
+> **De-purpling ≠ de-whimsy-ing — read this first, it's the most important caveat here.** The
+> tagline is *Whimsy, Warmth & Wags.* The magic, quirk, and wonder ARE the product (per the project
+> constitution) — and they're *Stacey*, not decoration. These rules cut **hollow, AI-flowery
+> padding** ("edible velvet kissed by clouds"), never genuine whimsy. The test for any sparkly line:
+> does it spark real wonder or quirk (**keep it**), or is it an empty intensifier dressed up as
+> magic (**cut it**)? When in doubt, keep the magic.
+>
+> **Deliver the magic *through the wit*, not draped over it.** *"A magic trick I'm getting away
+> with"* (wonder + a wink) lands; *"this is pure alchemy and magic!"* (wonder, naked) is cheese.
+> Stacey's satire is the vehicle that carries the sparkle so it never goes saccharine. **Clever,
+> not cheesy — every time.** That's the happy medium between the too-dry and the too-precious.
+
 1. **Metaphors explain; they don't decorate (Kenji).** A good image makes the science *clearer*
    ("seized chocolate is what happens when you shock it — like the chocolate flinched"), not just
    prettier. One working metaphor beats five decorative ones.

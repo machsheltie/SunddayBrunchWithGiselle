@@ -160,6 +160,22 @@
 
 /* ===== MOBILE RESPONSIVE NAV BUTTONS ===== */
 @media (max-width: 768px) {
+    /* Mobile: swap the thin Pinyon Script for Courgette on the CTA buttons so
+       labels are easy to read on a phone. The doubled-class / :not(--nav)
+       specificity (0,2,0+) is needed to beat WhimsicalHero.css, which
+       redefines .whimsical-button with Pinyon AFTER this block in the bundle.
+       We also set the label span so its inherited font flips too. The --nav
+       icon buttons are excluded and keep their own sans label. Courgette reads
+       larger than Pinyon, so trim the rem a touch. */
+    .whimsical-button:not(.whimsical-button--nav),
+    .whimsical-button:not(.whimsical-button--nav) .whimsical-button__text {
+        font-family: 'Courgette', cursive;
+    }
+
+    .whimsical-button:not(.whimsical-button--nav) {
+        font-size: 1.1rem;
+    }
+
     .whimsical-button--nav {
         width: 60px;
         height: 60px;

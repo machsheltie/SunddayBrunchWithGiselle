@@ -2,6 +2,8 @@
 
 *How to write the personal story that opens every recipe, so each one sounds like Stacey and pulls the reader into our world. Part of the Sunday Brunch recipe format (see `Recipe-Page-Sheltie-Segments-Guide.md` and `Recipe-Writing-Guide.md`).*
 
+> **Before you write: read `Personas/CANON-INDEX.md`** — the canon map + preflight reading (characters, timeline, writing-issues, the read-only records). It routes you to everything this guide assumes you know.
+
 ---
 
 ## What the story is for

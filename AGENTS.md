@@ -1,5 +1,7 @@
 # Repository Guidelines
 
+> **Writing or reviewing creative content** (podcast segment, blog post, recipe, headnote, Sheltie box, memorial)? Read `Personas/CANON-INDEX.md` first — the canon map + preflight reading (characters, voice, continuity, writing-issues to avoid) for both the podcast and the blog, which must stay consistent.
+
 ## Project Structure & Modules
 - Root holds production guides (e.g., `ai_voice_guide.md`, `episode_1_production_guide.md`) plus the web app in `sunday-brunch-website/`.
 - Frontend lives in `sunday-brunch-website/src/` with React + Vite:

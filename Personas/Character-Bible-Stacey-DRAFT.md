@@ -144,7 +144,7 @@ Season headnotes from *her* shelf, not generic nostalgia:
 ## Confirmed / approved
 - **Origin spine:** confirmed true (+ the "home / safe harbor" core drive).
 - **First name only** in public + **public About bio: approved** (face-free).
-- **French Silk reconciliation:** swap granulated → **ultrafine/superfine baking sugar**; add the "why" to **Phaedra's troubleshooting**. (Apply during the French Silk re-run.)
+- **French Silk reconciliation:** swap granulated → **ultrafine baking sugar**; add the "why" to **Phaedra's troubleshooting**. (Apply during the French Silk re-run.)
 
 ## Still open (when you're ready)
 - **Stacey's arc** across the blog — does the reader watch her grow braver / more at home in her own loudness over time, or is she a steady warm constant? Either is valid; affects long-term story shape, not the next recipe.

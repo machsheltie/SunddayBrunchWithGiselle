@@ -1,6 +1,8 @@
-# French Silk Pie — Recipe Story (RETOOL working draft)
-*"The pie that started everything." Story segment. Cast: Stacey, Giselle (present-tense co-host);
-Athena referenced in human-voice memory. Built against SCRIPT-VOICE-GUIDE.md + canonical REC-001 story.*
+# Sunday Brunch With Giselle — Episode 1
+## Segment 3 — Recipe Story: French Silk Pie
+*"The pie that started everything." Final script. Cast: Stacey, Giselle (present-tense co-host); Athena referenced in human-voice memory (Stacey's voice only).*
+
+---
 
 [Sound: the kitchen settles — the Echo Dot dropping to something slow, a mug set down, a dog turning a circle on a cushion and flopping with a sigh.]
 

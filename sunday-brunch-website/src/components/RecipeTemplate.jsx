@@ -225,13 +225,14 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false, showTitle = t
                         </div>
                     </div>
 
-                    {/* Dietary Badges */}
-                    {recipe.dietary && recipe.dietary.length > 0 && (
-                        <DietaryBadges dietary={recipe.dietary} maxVisible={5} />
+                    {/* Dietary + allergen pills. When embedded in the featured card,
+                        these live in the card header instead, so we skip them here
+                        to avoid showing them twice. */}
+                    {!embedded && recipe.dietary && recipe.dietary.length > 0 && (
+                        <DietaryBadges dietary={recipe.dietary} maxVisible={5} label="Dietary" />
                     )}
 
-                    {/* Allergen Warnings */}
-                    {recipe.allergens && recipe.allergens.length > 0 && (
+                    {!embedded && recipe.allergens && recipe.allergens.length > 0 && (
                         <AllergenWarnings allergens={recipe.allergens} />
                     )}
 

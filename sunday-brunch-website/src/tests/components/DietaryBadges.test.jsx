@@ -126,6 +126,19 @@ describe('DietaryBadges Component', () => {
     expect(tooltip).toHaveTextContent(/no animal products/i)
   })
 
+  it('should render an optional category label before the badges', () => {
+    render(<DietaryBadges dietary={['Vegetarian']} label="Dietary" />)
+
+    expect(screen.getByText('Dietary')).toBeInTheDocument()
+    expect(screen.getByText(/vegetarian/i)).toBeInTheDocument()
+  })
+
+  it('should not render a label element when no label is provided', () => {
+    const { container } = render(<DietaryBadges dietary={['Vegetarian']} />)
+
+    expect(container.querySelector('.dietary-badges__label')).not.toBeInTheDocument()
+  })
+
   it('should handle empty dietary array gracefully', () => {
     const { container } = render(<DietaryBadges dietary={[]} />)
 

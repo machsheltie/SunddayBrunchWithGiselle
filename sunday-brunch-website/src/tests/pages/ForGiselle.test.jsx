@@ -72,4 +72,14 @@ describe('ForGiselle memorial page', () => {
         // Dedication and memorials are each presented as a framed card.
         expect(container.querySelectorAll('.for-giselle__card').length).toBeGreaterThanOrEqual(2)
     })
+
+    it('encloses every box in a single outer glassmorphic container, like the home page', () => {
+        const { container } = render(<ForGiselle />)
+
+        const outer = container.querySelector('.for-giselle__container')
+        expect(outer).toBeTruthy()
+        // The hero and all the cards live inside that one wrapper.
+        expect(outer.querySelector('.for-giselle__hero')).toBeTruthy()
+        expect(outer.querySelectorAll('.for-giselle__card').length).toBeGreaterThanOrEqual(2)
+    })
 })

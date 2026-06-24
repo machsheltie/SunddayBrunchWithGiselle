@@ -6,6 +6,7 @@ import {
   getRecipes,
   getRecentRecipes
 } from '../../lib/content'
+import { recipes as legacyDataRecipes } from '../../data/content'
 
 describe('Content service canonical recipes', () => {
   it('serves French Silk Pie as the active representative recipe', async () => {
@@ -65,6 +66,14 @@ describe('Content service canonical recipes', () => {
     expect(recipes.every((recipe) => recipe.isSample !== true)).toBe(true)
   })
 
+  it('keeps the legacy data export pointed at the canonical approved recipe index', () => {
+    const slugs = legacyDataRecipes.map((recipe) => recipe.slug)
+
+    expect(slugs).toEqual(['french-silk-pie'])
+    expect(legacyDataRecipes.every((recipe) => recipe.canonicalSource)).toBe(true)
+    expect(slugs.some((slug) => slug.startsWith('placeholder-'))).toBe(false)
+  })
+
   it('returns canonical slugs and featured recipe from the public canonical set', async () => {
     const allSlugs = getAllSlugs()
     const featured = await getFeatured()
@@ -77,5 +86,14 @@ describe('Content service canonical recipes', () => {
 
   it('does not resolve the retired Royal Velvet placeholder route', async () => {
     await expect(getRecipeBySlug('giselles-royal-velvet-cake')).resolves.toBeUndefined()
+  })
+
+  it('returns recipe list copies so callers cannot mutate the canonical index', async () => {
+    const firstRead = await getRecipes()
+    firstRead.pop()
+
+    const secondRead = await getRecipes()
+
+    expect(secondRead.map((recipe) => recipe.slug)).toEqual(['french-silk-pie'])
   })
 })

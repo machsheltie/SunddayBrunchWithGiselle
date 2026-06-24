@@ -309,8 +309,15 @@
         min-height: 350px;
     }
 
+    /* Phones: the reviews section (3rem) + card (2rem) stacked ~80px of
+       padding around the quote. Trim both so the review uses the width. */
+    .social-proof-section {
+        padding: 0.875rem;
+        border-radius: 20px;
+    }
+
     .testimonial-card {
-        padding: var(--space-6);
+        padding: 1rem;
     }
 
     .testimonial-card__comment {

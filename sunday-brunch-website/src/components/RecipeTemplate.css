@@ -603,7 +603,20 @@
     }
 
     .bakers-prep {
-        padding: 0.875rem 0.75rem;
+        padding: 0.75rem;
         margin: 1.5rem auto;
+    }
+
+    /* The .recipe-container wrapper and the <ul> list indents add no value on
+       a phone but cost ~30px of line width; collapse them so ingredient and
+       step text runs nearly edge-to-edge inside the panels. Mobile only. */
+    .recipe-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .recipe__list,
+    .recipe__steps {
+        padding-left: 0;
     }
 }

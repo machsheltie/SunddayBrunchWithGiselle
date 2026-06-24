@@ -2,6 +2,8 @@
 
 *How to write the recipe portion of every page so a casual baker can read it, understand it, and pull it off on the first try. The story has its own guide (`Recipe-Story-Guide.md`); the Sheltie boxes have theirs (`Recipe-Page-Sheltie-Segments-Guide.md`). This one is the recipe.*
 
+> **Before you write: read `Personas/CANON-INDEX.md`** — the canon map + preflight reading (characters, timeline, writing-issues, the read-only records). It routes you to everything this guide assumes you know.
+
 ---
 
 ## The one goal

@@ -107,4 +107,16 @@
     .reveal-mask-container {
         height: 180px;
     }
+
+    /* Smaller numbered step circles on phones so they don't dominate the row
+       and leave more width for the instruction text. */
+    .process-step {
+        gap: 0.75rem;
+    }
+
+    .process-step__number {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
 }

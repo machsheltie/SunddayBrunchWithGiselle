@@ -2,6 +2,8 @@
 
 *A repeatable guide for writing every recipe page on the site so the Shelties sound like themselves every single time. Stacey narrates and holds all authority; each dog gets one segment matched to their podcast role. Companion to the individual persona files in this folder.*
 
+> **Before you write: read `Personas/CANON-INDEX.md`** — the canon map + preflight reading (characters, timeline, writing-issues, the read-only records). It routes you to everything this guide assumes you know.
+
 ---
 
 ## The idea in one line

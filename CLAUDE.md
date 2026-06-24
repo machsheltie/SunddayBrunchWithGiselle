@@ -100,6 +100,17 @@ recipe and episode records.
   happens through the editorial process, not through code.
 - Validate content with `node content/art-007-run.js` (see `content/README.md`).
 
+### Authoring or reviewing podcast / blog content (the pre-work canon mandate)
+
+If your task is to **write or edit creative content** — a podcast segment, a recipe page, a
+headnote, a Sheltie box, an About-page memorial, or launch copy — or to **review/critique** that
+work, **stop and read `Personas/CANON-INDEX.md` first** (or invoke the
+`sunday-brunch-content-preflight` skill, which loads it for you). It is the canon map and preflight
+reading list — characters, voice guides, timeline/continuity, and the recurring writing-issues to
+avoid — for **both** the podcast and the blog, which must stay consistent with each other. Skipping
+it is how the project drifts. This is separate from, and in addition to, the read-only
+`content/records/` boundary above.
+
 ---
 
 ## Working in the app

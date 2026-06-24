@@ -1,6 +1,8 @@
-# French Silk Pie — Recipe Walkthrough (RETOOL prototype)
-*"Let's Bake It Together." Prototype draft against SCRIPT-VOICE-GUIDE.md. Original preserved in
-`Episode 1/4 Recipe Walkthrough.txt` for comparison.*
+# Sunday Brunch With Giselle — Episode 1
+## Segment 4 — Recipe Walkthrough: French Silk Pie
+*"Let's Bake It Together." Final script. Cast: Stacey, Giselle.*
+
+---
 
 [Sound: something fast and a little too loud from the Echo Dot — then nudged down a notch. A bowl set on the counter. The unhurried click of nails crossing tile, proprietary, in no particular rush.]
 

@@ -139,6 +139,33 @@ Strategic answer: **be reliable enough that they trust the recipe, and character
 - **Dating-app lore (voice sample):** answered low-effort openers ("Sup," "Do u snapchat," "Hey") with lengthy novels — a personal "Are You Smarter Than a 5th Grader," weeding out men without reading comprehension or substance. Low-effort openers short-circuit her ("how do I make a conversation out of 'hey'?").
 - **Has a neurodivergent partner (SO)** — coregulation "bids," childlike-voiced "rub me." (Already noted; Phaedra mirrors it.)
 
+### Stacey — verbal tics & self-image (added this session — June 2026)
+- **"That's a tomorrow problem."** Her real phrase for a chore she's out of spoons for at the end of
+  an overwhelm day — distinct from the spoons line; this is the *deferral-from-overwhelm* tic. Said
+  to Aaron in real life. Gold for the relatable ADHD beats (best home: a cleanup beat or the
+  *Before We Bake* overwhelm check-in, not the chill-the-pie wait — that's a reward, not a chore).
+- **"Sarcasm and a gun"** (Sandra Bullock, *Miss Congeniality*) — her own shorthand for herself
+  **and** for Giselle. Add **Miss Congeniality** to the pop-culture palette.
+- **"Emotionally a Tuesday"** — a low-stakes thing dressed in absurd specificity; pure her register.
+- Affectionately self-labels **"quirky"** and wants to **own** it: the blog/podcast is the one space
+  she gets to be her whole true self — accepted, seen, and (given the internet's scale) found by the
+  many who'll recognize themselves in it.
+- **Mission, in her words:** *"to shout out into the void — to be heard, known, and hopefully loved
+  for who we are,"* and to give a voice and a safe space to others like her. (Refines the existing
+  "home / I give what others won't give me" drive.)
+- **Whimsy is non-negotiable.** Tagline = *Whimsy, Warmth & Wags*; the magic/quirk/wonder is part of
+  *her*, not decoration. Protect it in every edit (script guide: "de-purpling ≠ de-whimsy-ing").
+
+### Project history (context — her call on private vs. usable)
+Conceived last summer as **"Lamb Chop for grownups"** — a fun, neurodivergent space to share baking,
+quirk, and dogs with Giselle, her favorite. It has since **evolved into a love letter to Giselle**,
+who passed unexpectedly in **February 2026**. Stacey set the project down in grief and didn't return
+until **~mid-June 2026**, when Anthropic's limited-run **Fable** release pushed her to pick it back
+up (Fable solved a website UX / pixel-match problem she'd been stuck on right before Giselle's
+death). She's back at it now — *"for me, for Giselle, for all of them."* Touchstones for the grief
+register: Garth Brooks, *The Dance*; the Resurrection Stone (HP) walk-beside-the-ghosts image; the
+rainbow bridge. **Human-voice-only; never a dog's voice; handled in small, disciplined doses.**
+
 ### Mission / business expansion (future, capture for direction)
 - **Dedication to Giselle** on the page; **further down, a memorial section** for others who've gone before her — introduced over time as recurring **little guest personalities** (the departed live on as occasional characters).
 - **Merch** down the road: cute baking-Sheltie stickers, etc.
@@ -172,8 +199,8 @@ Strategic answer: **be reliable enough that they trust the recipe, and character
 - Long brown hair up in a **high ponytail** (no hair in anyone's baked goods — respects the eater).
 - **Pandora on the Echo Dot.** Pop / alternative. Lately: **Banks, Bishop Briggs, Lorde, Jessie Murph, Fall Out Boy.**
 - **Good day:** excitement, anticipation, first taste, the **dopamine hit** of decadence, accomplishment, and **sharing a piece of herself**. Baking = saying what words can't (love, care, kindness); also a **"life preserver"** — something to set out that gives her a social "in" when anxiety makes her lost for words.
-- **Bad day:** things fall apart; perfectionist brain doesn't handle failure. **The real French Silk struggle:** the filling sugar kept feeling **gritty** batch after batch; repeated Kroger runs for different sugars; holiday deadline the next day = crushing stress; **fix = ultrafine/superfine sugar.** Overwhelm-from-failing is a recurring issue.
-- `<AI>` FRENCH SILK FLAG: the *true* origin struggle is the gritty-sugar/ultrafine-sugar battle. Current published recipe calls for **granulated** sugar; the real fix was **superfine**. When we re-run French Silk, consider a Read-This-First or Phaedra note on superfine sugar (and reconcile with the "keep beating dissolves the sugar" science). Two real headnote-worthy stories now exist: (a) the "bake my way into the loud family" bribe, and (b) the perfectionist gritty-sugar battle. `</AI>`
+- **Bad day:** things fall apart; perfectionist brain doesn't handle failure. **The real French Silk struggle:** the filling sugar kept feeling **gritty** batch after batch; repeated Kroger runs for different sugars; holiday deadline the next day = crushing stress; **fix = ultrafine sugar.** Overwhelm-from-failing is a recurring issue.
+- `<AI>` FRENCH SILK FLAG: the *true* origin struggle is the gritty-sugar/ultrafine-sugar battle. Current published recipe calls for **granulated** sugar; the real fix was **ultrafine**. When we re-run French Silk, consider a Read-This-First or Phaedra note on ultrafine sugar (and reconcile with the "keep beating dissolves the sugar" science). Two real headnote-worthy stories now exist: (a) the "bake my way into the loud family" bribe, and (b) the perfectionist gritty-sugar battle. `</AI>`
 
 ### Pop-culture DNA
 - **My Little Pony — core lifelong identity, not a casual ref.** Huge 80s-kid fan: cartoons, movies, more toys than other girls. Grandma took her to **Toys R Us Saturdays, $10 of ponies before church** as a "be quiet" bribe (neurodivergent kid, long service). Mom mailed in packaging points for mail-in ponies. Got "players" for birthdays/Christmas. Had hundreds. **Re-collected as an adult: now owns Generations 1–4, hundreds of ponies.**
@@ -201,8 +228,8 @@ Strategic answer: **be reliable enough that they trust the recipe, and character
 Confirmed true. Addition (the brand's soul, her words): she sees herself as **"home" — the safe harbor for others.** Judges the person in front of her, not their past or others' opinions; cares who you are *now*. Loves/protects her people fiercely — *"if I'm in your corner, I have you, no questions asked,"* will do anything in her power to help. Gives grace to those others have written off. **"I give what others won't give me. A second chance. Kindness, compassion and friendship without strings. And safety."** → She extends the welcome she never got. This is the un-stated mission; pages should make a stranger feel *taken in*.
 
 ### French Silk — reconciliation LOCKED
-- Replace **granulated sugar → ultrafine/superfine baking sugar** throughout the recipe.
-- Add the **"why"** in **Phaedra's Porch Light troubleshooting.** `<AI>` Reconcile with existing science note: superfine dissolves faster/more completely (kills the grit); the long beat still does the work of finishing dissolution + whipping in air for the mousse body. Real backstory available: the gritty-sugar meltdown solved by superfine. `</AI>`
+- Replace **granulated sugar → ultrafine baking sugar** throughout the recipe.
+- Add the **"why"** in **Phaedra's Porch Light troubleshooting.** `<AI>` Reconcile with existing science note: ultrafine dissolves faster/more completely (kills the grit); the long beat still does the work of finishing dissolution + whipping in air for the mousse body. Real backstory available: the gritty-sugar meltdown solved by ultrafine. `</AI>`
 - Apply during the French Silk re-run (step 4 of the plan), not yet.
 
 ### Heritage & future recipes

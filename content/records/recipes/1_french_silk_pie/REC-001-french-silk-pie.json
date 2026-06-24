@@ -38,11 +38,11 @@
       "summary": "Voice-and-accuracy revision following the character-bible work.",
       "changedFields": [
         "story.body",
-        "ingredientGroups.filling.sugar (granulated -> superfine; 300 g -> 340 g)",
+        "ingredientGroups.filling.sugar (granulated -> ultrafine; 300 g -> 340 g)",
         "whyItWorks",
         "commonMistakes",
         "notes",
-        "characterSegments (Phaedra superfine science; Havok/Phaedra cross-talk; Havok box trimmed)",
+        "characterSegments (Phaedra ultrafine science; Havok/Phaedra cross-talk; Havok box trimmed)",
         "instructionSections (step 5: looks-broken-but-isn't reassurance)"
       ]
     },
@@ -52,8 +52,8 @@
       "updatedBy": "PERSON-stacey",
       "summary": "Prose-critique refinements.",
       "changedFields": [
-        "story.body (trimmed the triple-stated theme so Giselle lands it; added Stacey's box-crust ownership beat; concrete callback replaces a stock phrase; de-duplicated origin phrasing)",
-        "characterSegments.giselle (restored the indictment — box-crust provenance — before the verdict)",
+        "story.body (trimmed the triple-stated theme so Giselle lands it; added Stacey's freezer-crust ownership beat; concrete callback replaces a stock phrase; de-duplicated origin phrasing)",
+        "characterSegments.giselle (restored the indictment — freezer-crust provenance — before the verdict)",
         "characterSegments.tiana (restored her tail-wag signature)",
         "ingredientGroups (split the crust into its own group; renumbered orders)",
         "times (active time widened to about 30-40 min for honest planning; total adjusted to PT2H42M)"
@@ -65,7 +65,7 @@
       "updatedBy": "PERSON-stacey",
       "summary": "Second prose-critique pass.",
       "changedFields": [
-        "story.body (gave the box-crust confession its own beat so it stops crowding the 'oh' moment; reworded Athena's callback to drop an 'unimpressed' echo and two em-dashes)",
+        "story.body (gave the freezer-crust confession its own beat so it stops crowding the 'oh' moment; reworded Athena's callback to drop an 'unimpressed' echo and two em-dashes)",
         "characterSegments.tiana (trimmed back under the length ceiling)"
       ]
     },
@@ -247,7 +247,7 @@
           "id": "ingredient-rec-001-crust",
           "quantity": 0.5,
           "unit": "box",
-          "ingredient": "refrigerated pie crust",
+          "ingredient": "frozen pie crust",
           "preparation": null,
           "note": "one crust"
         }
@@ -279,9 +279,9 @@
           "id": "ingredient-rec-001-sugar",
           "quantity": 1.5,
           "unit": "cups",
-          "ingredient": "superfine (ultrafine/caster) baking sugar",
+          "ingredient": "ultrafine baking sugar",
           "preparation": null,
-          "note": "about 340 g; see Phaedra's box for why superfine matters"
+          "note": "about 340 g; see Phaedra's box for why ultrafine matters"
         },
         {
           "id": "ingredient-rec-001-vanilla",
@@ -424,11 +424,11 @@
   ],
   "dietaryDisclosures": [
     "Contains wheat/gluten (crust), milk/dairy (butter, cream, milk chocolate), eggs (filling), and soy (soy lecithin in most chocolate — verify your labels).",
-    "Cross-contact advisory: may contain tree nuts or peanuts depending on the chocolate brand; check the crust box too (some contain milk or soy)."
+    "Cross-contact advisory: may contain tree nuts or peanuts depending on the chocolate brand; check the crust package too (some contain milk or soy)."
   ],
   "story": {
     "headline": "The pie that started everything",
-    "body": "The first French Silk Pie I ever made was a bribe.\n\n> **Giselle:** *\"A bribe.\"* (A long-suffering sigh from the head of the table — which is hers, as is everything else around here; I just work for her.) *\"Darling. You had me at home. You never needed leverage.\"*\n\nI was twenty-something and dating someone whose family did Thanksgiving at full volume, the kind of people who laugh over each other and lob teasing across the room like a sport. I love a loud, warm kitchen now. Back then it flattened me. I'd stand at the edge of the room forgetting my own punchlines, going quiet in exactly the moments I wanted to be charming. So I gave up on talking my way into that family and decided to bake my way in instead. If I couldn't be the funny one, I'd be the one who showed up with something unforgettable.\n\nWhat followed was a week my dogs still haven't forgiven. Five recipes lined up on the counter, cookbooks splayed open, sticky notes everywhere in my own increasingly unhinged handwriting: *beat the eggs LONGER. more butter. why grainy??* Through all of it, Giselle's great-grandmother Athena presided from her cushion. She was the one who started all of this, the dog who earned the title 'the supervisor.' She didn't nap. She watched, bright-eyed and almost unsettlingly human, as if she followed every word and had notes on my technique. And under all that watching, she hoped: a shark in a thirteen-inch frame, up like a shot at the first clink of a bowl, convinced this disaster would finally drop something good on the floor.\n\nGiselle holds that cushion now. Where Athena watched and hoped in silence, her great-granddaughter narrates — out loud, mid-step, ruff puffed, fully prepared to tell you she could do the whole thing better, faster, and with considerably more dignity. The throne, it turns out, is hereditary. The opinions came with it. Hers just arrive with commentary.\n\n> **Giselle:** *\"Five recipes. In my kitchen. For people who are not me.\"* (A pause, regal and unimpressed.) *\"I cannot fathom the motivation.\"*\n\nThe one thing I refused to agonize over? The crust. I bought it in a box, I've never once been sorry, and neither should you.\n\nWhen I finally landed on the version I'm giving you here, I said \"oh\" out loud, alone in my kitchen. (Well, nearly alone. Athena lifted her head at the sound, certain it meant a scrap was headed her way at last.) Glossy, light, rich, structured but silky. I carried it into that Thanksgiving like a holy relic, sure it would say everything I couldn't: she's quiet, but look how much she cares. Then someone took a bite, tilted their head, gave me a polite little smile, and said, \"it's… a bit rich.\" And friend, what I heard was \"you're a bit much.\"\n\nHere's the part I didn't understand until years later, and the reason this pie is still my favorite thing to make: they were right that it's rich, and completely wrong about what that meant. Some people taste all that abundance and want it dialed down. Some of us taste it and say: more, please. This is a pie for the second kind of person.\n\n> **Giselle:** *\"The right people see thoughtfulness where others see extravagance.\"* (And then, with none of her usual venom:) *\"Those are the only people worth baking for anyway.\"*\n\nThat \"too rich\" pie became the one people now request for their birthdays. Eventually it became the reason for the slow Sunday afternoons, the stories, and a houseful of opinionated dogs who insist on a say in every dessert you make. So this is where we begin: the first recipe, the bribe that quietly became my whole world, made for anyone who's ever been told they're too much by people who just wanted easy. Pour something warm, give it a slow afternoon, and pull up a chair. I'm so glad you're here."
+    "body": "The first French Silk Pie I ever made was a bribe.\n\n> **Giselle:** *\"A bribe.\"* (A long-suffering sigh from the head of the table — which is hers, as is everything else around here; I just work for her.) *\"Darling. You had me at home. You never needed leverage.\"*\n\nI was twenty-something and dating someone whose family did Thanksgiving at full volume, the kind of people who laugh over each other and lob teasing across the room like a sport. I love a loud, warm kitchen now. Back then it flattened me. I'd stand at the edge of the room forgetting my own punchlines, going quiet in exactly the moments I wanted to be charming. So I gave up on talking my way into that family and decided to bake my way in instead. If I couldn't be the funny one, I'd be the one who showed up with something unforgettable.\n\nWhat followed was a week my dogs still haven't forgiven. Five recipes lined up on the counter, cookbooks splayed open, sticky notes everywhere in my own increasingly unhinged handwriting: *beat the eggs LONGER. more butter. why grainy??* Through all of it, Giselle's great-grandmother Athena presided from her cushion. She was the one who started all of this, the dog who earned the title 'the supervisor.' She didn't nap. She watched, bright-eyed and almost unsettlingly human, as if she followed every word and had notes on my technique. And under all that watching, she hoped: a shark in a thirteen-inch frame, up like a shot at the first clink of a bowl, convinced this disaster would finally drop something good on the floor.\n\nGiselle holds that cushion now. Where Athena watched and hoped in silence, her great-granddaughter narrates — out loud, mid-step, ruff puffed, fully prepared to tell you she could do the whole thing better, faster, and with considerably more dignity. The throne, it turns out, is hereditary. The opinions came with it. Hers just arrive with commentary.\n\n> **Giselle:** *\"Five recipes. In my kitchen. For people who are not me.\"* (A pause, regal and unimpressed.) *\"I cannot fathom the motivation.\"*\n\nThe one thing I refused to agonize over? The crust. I bought it in the freezer section, I've never once been sorry, and neither should you.\n\nWhen I finally landed on the version I'm giving you here, I said \"oh\" out loud, alone in my kitchen. (Well, nearly alone. Athena lifted her head at the sound, certain it meant a scrap was headed her way at last.) Glossy, light, rich, structured but silky. I carried it into that Thanksgiving like a holy relic, sure it would say everything I couldn't: she's quiet, but look how much she cares. Then someone took a bite, tilted their head, gave me a polite little smile, and said, \"it's… a bit rich.\" And friend, what I heard was \"you're a bit much.\"\n\nHere's the part I didn't understand until years later, and the reason this pie is still my favorite thing to make: they were right that it's rich, and completely wrong about what that meant. Some people taste all that abundance and want it dialed down. Some of us taste it and say: more, please. This is a pie for the second kind of person.\n\n> **Giselle:** *\"The right people see thoughtfulness where others see extravagance.\"* (And then, with none of her usual venom:) *\"Those are the only people worth baking for anyway.\"*\n\nThat \"too rich\" pie became the one people now request for their birthdays. Eventually it became the reason for the slow Sunday afternoons, the stories, and a houseful of opinionated dogs who insist on a say in every dessert you make. So this is where we begin: the first recipe, the bribe that quietly became my whole world, made for anyone who's ever been told they're too much by people who just wanted easy. Pour something warm, give it a slow afternoon, and pull up a chair. I'm so glad you're here."
   },
   "sensoryCheckpoints": [
     {
@@ -461,7 +461,7 @@
     {
       "id": "mistake-rec-001-grainy",
       "issue": "Grainy or gritty filling.",
-      "resolution": "Use superfine sugar (it dissolves far more easily than granulated) and keep beating — you can't overdo it."
+      "resolution": "Use ultrafine sugar (it dissolves far more easily than granulated) and keep beating — you can't overdo it."
     },
     {
       "id": "mistake-rec-001-cream",
@@ -483,7 +483,7 @@
   "testedSubstitutions": [
     {
       "id": "substitution-rec-001-crust",
-      "from": "refrigerated pie crust",
+      "from": "frozen pie crust",
       "to": "homemade crust or a crushed-cookie crust",
       "impact": "All work; crust is dealer's choice."
     },
@@ -512,10 +512,10 @@
       "impact": "Do NOT substitute — it throws off the sugar balance."
     }
   ],
-  "whyItWorks": "Superfine sugar is the quiet hero: its tiny crystals melt into the butter far more readily than granulated, so the filling sets satin-smooth instead of gritty. The 20-minute beat (one egg at a time, five minutes each) then finishes dissolving every last grain and whips in thousands of tiny air bubbles for that light, mousse-like body. Cooling the melted chocolate and using room-temperature butter keeps the mixture emulsified and fluffy rather than soupy. Verified against standard French silk technique; pasteurized or gently cooked eggs make the no-bake filling safe.",
+  "whyItWorks": "ultrafine sugar is the quiet hero: its tiny crystals melt into the butter far more readily than granulated, so the filling sets satin-smooth instead of gritty. The 20-minute beat (one egg at a time, five minutes each) then finishes dissolving every last grain and whips in thousands of tiny air bubbles for that light, mousse-like body. Cooling the melted chocolate and using room-temperature butter keeps the mixture emulsified and fluffy rather than soupy. Verified against standard French silk technique; pasteurized or gently cooked eggs make the no-bake filling safe.",
   "petSafeNote": "This one stays on the human side of the table. Chocolate is toxic to dogs, and the dark, unsweetened kind in this filling is the most dangerous of all, so keep every slice well out of reach of your own Giselles.",
   "notes": [
-    "No pasteurized eggs? Cook them instead. In a saucepan over low-medium heat, whisk the 4 eggs with the 1½ cups superfine sugar constantly until a thermometer reads 160°F. Off heat, stir in the melted (cooled) chocolate; beat about 5 minutes. Separately, beat the softened butter until fluffy (about 3 minutes), then beat in the chocolate-egg mixture and the vanilla. Spread into the cooled crust and jump to step 7."
+    "No pasteurized eggs? Cook them instead. In a saucepan over low-medium heat, whisk the 4 eggs with the 1½ cups ultrafine sugar constantly until a thermometer reads 160°F. Off heat, stir in the melted (cooled) chocolate; beat about 5 minutes. Separately, beat the softened butter until fluffy (about 3 minutes), then beat in the chocolate-egg mixture and the vanilla. Spread into the cooled crust and jump to step 7."
   ],
   "storage": {
     "method": "Keep loosely covered in the refrigerator.",
@@ -556,7 +556,7 @@
       "characterId": "CHAR-002-phaedra",
       "segment": "Phaedra's Porch Light",
       "title": "Why it works, and how to fix it if it doesn't",
-      "body": "Here's something wonderful: superfine sugar is the quiet hero of this pie. Its tiny crystals melt into the butter far more easily than regular granulated, so the filling turns satin-smooth instead of gritty. Then the long, patient beat does the rest: it dissolves every last grain and whisks in thousands of tiny air bubbles that give it that light, mousse-like body. That's the whole difference between \"fine\" and \"silk.\" If something looks off, there's almost always a temperature reason and a gentle fix: soupy filling means the chocolate or butter was still warm (chill the bowl 15 minutes and re-whip); grainy or gritty means reach for superfine next time and keep beating now (you truly can't overdo it); cream that won't hold peaks is too warm (cold bowl, cold cream, and it whips up beautifully). Understand the why, and you can rescue almost anything. You've got this. — Tiana (bursting in): \"That's my BEST FRIEND! Did you hear all that? She knows everything. Okay, now can we please eat the pie?\"",
+      "body": "Here's something wonderful: ultrafine sugar is the quiet hero of this pie. Its tiny crystals melt into the butter far more easily than regular granulated, so the filling turns satin-smooth instead of gritty. Then the long, patient beat does the rest: it dissolves every last grain and whisks in thousands of tiny air bubbles that give it that light, mousse-like body. That's the whole difference between \"fine\" and \"silk.\" If something looks off, there's almost always a temperature reason and a gentle fix: soupy filling means the chocolate or butter was still warm (chill the bowl 15 minutes and re-whip); grainy or gritty means reach for ultrafine next time and keep beating now (you truly can't overdo it); cream that won't hold peaks is too warm (cold bowl, cold cream, and it whips up beautifully). Understand the why, and you can rescue almost anything. You've got this. — Tiana (bursting in): \"That's my BEST FRIEND! Did you hear all that? She knows everything. Okay, now can we please eat the pie?\"",
       "canonVersion": "CANON-2026-06-22.1",
       "placement": "after-notes"
     },

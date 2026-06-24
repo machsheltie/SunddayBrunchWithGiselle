@@ -371,7 +371,14 @@
 @media (max-width: 768px) {
     .featured-episode-grid {
         grid-template-columns: 1fr;
-        padding: 1.5rem;
+        /* Trim the card padding on phones (matches the recipe card treatment)
+           and let the column shrink so content can't blow past the card edge. */
+        padding: 0.875rem;
+        min-width: 0;
+    }
+
+    .featured-episode-grid > * {
+        min-width: 0;
     }
 
     .episode-waveform {

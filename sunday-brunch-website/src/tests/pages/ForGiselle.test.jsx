@@ -35,6 +35,17 @@ describe('ForGiselle memorial page', () => {
         expect(details.textContent).toMatch(/just this side of heaven/i)
     })
 
+    it('signals the Rainbow Bridge label is clickable and drops the generic rainbow icon', () => {
+        const { container } = render(<ForGiselle />)
+
+        // The generic rainbow emoji has been removed.
+        expect(container.textContent).not.toContain('🌈')
+
+        // A disclosure caret and a textual cue make the expandable obvious.
+        expect(container.querySelector('.rainbow-bridge__caret')).toBeTruthy()
+        expect(screen.getByText(/read the story/i)).toBeTruthy()
+    })
+
     it('wraps its content in framed cards rather than letting it sit on the bare background', () => {
         const { container } = render(<ForGiselle />)
 

@@ -19,8 +19,9 @@ function ForGiselle() {
 
             <details className="rainbow-bridge for-giselle__card">
                 <summary className="rainbow-bridge__summary">
+                    <span className="rainbow-bridge__caret" aria-hidden="true"></span>
                     <span className="rainbow-bridge__title">The Rainbow Bridge</span>
-                    <span className="rainbow-bridge__icon" aria-hidden="true">🌈</span>
+                    <span className="rainbow-bridge__hint" aria-hidden="true">read the story</span>
                 </summary>
                 <div className="rainbow-bridge__body">
                     <p className="rainbow-bridge__intro">There&rsquo;s a story a lot of us hold onto when a dog&rsquo;s light goes on ahead. I keep it here, for Giselle and for all of them.</p>

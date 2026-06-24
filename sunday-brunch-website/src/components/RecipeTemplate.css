@@ -590,7 +590,20 @@
     .scrapbook-paper {
         /* Trim the inner padding on phones so the cooking content gets more
            reading width (it nests inside .section + .card padding already). */
-        padding: 1rem;
+        padding: 0.75rem;
         border-radius: 18px;
+    }
+
+    /* The cooking content nests 4-5 padded layers deep on a phone (section >
+       card > scrapbook > panel > calculator), starving the text to a few words
+       per line. Trim each inner layer so ingredients, tools, instructions and
+       the gradient boxes get real reading width. Mobile only. */
+    .recipe-card-panel {
+        padding: 0.75rem;
+    }
+
+    .bakers-prep {
+        padding: 0.875rem 0.75rem;
+        margin: 1.5rem auto;
     }
 }

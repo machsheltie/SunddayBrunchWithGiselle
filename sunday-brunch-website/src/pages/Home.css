@@ -186,7 +186,7 @@
 @media (max-width: 768px) {
     .section {
         margin: 3rem auto;
-        padding: 0 2rem;
+        padding: 0 1.25rem;
     }
 
     .hero-content-divider {
@@ -210,7 +210,7 @@
 @media (max-width: 480px) {
     .section {
         margin: 2rem auto;
-        padding: 0 1.5rem;
+        padding: 0 0.75rem;
     }
 
     .hero-content-divider {

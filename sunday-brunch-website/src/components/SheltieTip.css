@@ -86,6 +86,9 @@
         align-items: center;
         text-align: center;
         gap: 0.75rem;
+        /* Trim the 1.5rem box padding so the chatter gets more line width. */
+        padding: 0.875rem;
+        margin-bottom: 1.5rem;
     }
 
     .sheltie-tip__body {

@@ -15,9 +15,35 @@ function ForGiselle() {
 
     return (
         <div className="for-giselle-page">
-            <section className="for-giselle__dedication">
-                <h1>For Giselle</h1>
+            <h1>For Giselle</h1>
 
+            <details className="rainbow-bridge for-giselle__card">
+                <summary className="rainbow-bridge__summary">
+                    <span className="rainbow-bridge__title">The Rainbow Bridge</span>
+                    <span className="rainbow-bridge__icon" aria-hidden="true">🌈</span>
+                </summary>
+                <div className="rainbow-bridge__body">
+                    <p className="rainbow-bridge__intro">There&rsquo;s a story a lot of us hold onto when a dog&rsquo;s light goes on ahead. I keep it here, for Giselle and for all of them.</p>
+
+                    <blockquote className="rainbow-bridge__story">
+                        <p>Just this side of heaven is a place called the Rainbow Bridge.</p>
+
+                        <p>When an animal dies that has been especially close to someone here, that pet goes to the Rainbow Bridge. There are meadows and hills for all of our special friends so they can run and play together. There is plenty of food, water, and sunshine, and our friends are warm and comfortable.</p>
+
+                        <p>All the animals who had been ill and old are restored to health and vigor. Those who were hurt or maimed are made whole and strong again, just as we remember them in our dreams of days and times gone by. The animals are happy and content, except for one small thing: they each miss someone very special, someone who had to be left behind.</p>
+
+                        <p>They all run and play together, but the day comes when one suddenly stops and looks into the distance. Bright eyes intent, eager body quivering. Suddenly she begins to run from the group, flying over the green grass, her legs carrying her faster and faster.</p>
+
+                        <p>You have been spotted, and when you and your special friend finally meet, you cling together in joyous reunion, never to be parted again. The happy kisses rain upon your face; your hands again caress the beloved head, and you look once more into the trusting eyes of your friend, so long gone from your life but never absent from your heart.</p>
+
+                        <p>Then you cross the Rainbow Bridge together.</p>
+                    </blockquote>
+
+                    <p className="rainbow-bridge__attribution">&mdash; author unknown, passed hand to hand among those who&rsquo;ve loved and lost a dog</p>
+                </div>
+            </details>
+
+            <section className="for-giselle__dedication for-giselle__card">
                 <p>This whole table is named after a fourteen-pound dog who didn&rsquo;t much care for people and loved me like it was her entire job.</p>
 
                 <p>Giselle was my shadow. She came everywhere, supervised everything, and had opinions about all of it. The afternoon the other dogs found a gap in the fence and went off adventuring, she stayed &mdash; I came outside and found her pressed right up against the door, waiting, because wherever I was happened to be the only place she ever wanted to be. She had this enormous personality that almost nobody else ever got to see, because she saved it for the few she&rsquo;d decided were hers. I was the lucky one she picked.</p>
@@ -33,7 +59,9 @@ function ForGiselle() {
                 <p className="for-giselle__signature">&mdash; Stacey</p>
             </section>
 
-            <section className="for-giselle__memorials" aria-labelledby="those-who-came-before">
+            <div className="for-giselle__divider" aria-hidden="true">🐾 🐾 🐾</div>
+
+            <section className="for-giselle__memorials for-giselle__card" aria-labelledby="those-who-came-before">
                 <h2 id="those-who-came-before">Those who came before</h2>
 
                 <p>Every dog who&rsquo;s shared my life is still here &mdash; in the way the ones we love always are, tucked into the stories and carried on by the dogs who came after them. Every so often you&rsquo;ll meet one of them here as a guest, with a recipe of their very own. We start with the one who started it all.</p>

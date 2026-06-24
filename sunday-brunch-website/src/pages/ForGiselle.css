@@ -1,5 +1,5 @@
 .for-giselle-page {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 3rem 1.5rem 5rem;
     color: #4a3a5a;
@@ -12,6 +12,38 @@
     text-align: center;
     color: #5a4668;
     margin-bottom: 2rem;
+}
+
+/* ============================================
+   Framed card — glassmorphic panel with an animated
+   lavender→pink→mint gradient border, matching the
+   home page's Recipe Sanctuary so the memorial content
+   sits inside the magic rather than on the bare canvas.
+   ============================================ */
+.for-giselle__card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 28px;
+    padding: 2.5rem 2.75rem;
+    margin: 0 0 2rem;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    overflow: visible;
+}
+
+.for-giselle__card::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 28px;
+    padding: 3px;
+    background: linear-gradient(135deg, #e8dff5, #fce1e4, #dff0ea, #e8dff5);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
 }
 
 .for-giselle__dedication p,
@@ -30,12 +62,17 @@
     font-weight: 600;
     color: #5a4668;
     margin-top: 1.5rem;
+    margin-bottom: 0;
 }
 
-.for-giselle__memorials {
-    margin-top: 3.5rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(122, 92, 138, 0.25);
+/* Paw divider between cards — mirrors the home page sections */
+.for-giselle__divider {
+    text-align: center;
+    font-size: 1.25rem;
+    letter-spacing: 0.4em;
+    color: #c9a8d8;
+    margin: 0.5rem 0 2rem;
+    user-select: none;
 }
 
 .for-giselle__memorials h2 {
@@ -43,11 +80,13 @@
     font-size: clamp(1.6rem, 4vw, 2.1rem);
     text-align: center;
     color: #5a4668;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem;
 }
 
 .for-giselle__memorial {
     margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(122, 92, 138, 0.2);
 }
 
 .for-giselle__memorial h3 {
@@ -64,8 +103,131 @@
     color: #7a5c8a;
 }
 
+/* ============================================
+   The Rainbow Bridge — collapsed by default, showing
+   only its label; expands to the story. Native
+   <details>/<summary> for keyboard + screen-reader support.
+   ============================================ */
+.rainbow-bridge {
+    padding: 1.5rem 2.75rem;
+}
+
+.rainbow-bridge__summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    list-style: none;
+    cursor: pointer;
+    font-family: 'Italiana', serif;
+    font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+    color: #5a4668;
+    text-align: center;
+    border-radius: 16px;
+    padding: 0.4rem 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.rainbow-bridge__summary::-webkit-details-marker {
+    display: none;
+}
+
+.rainbow-bridge__summary:hover,
+.rainbow-bridge__summary:focus-visible {
+    color: #8a5ca8;
+    outline: none;
+}
+
+.rainbow-bridge__summary:focus-visible {
+    box-shadow: 0 0 0 3px rgba(155, 122, 184, 0.4);
+}
+
+.rainbow-bridge__icon {
+    display: inline-block;
+    font-size: 0.9em;
+    transition: transform 0.3s ease;
+}
+
+.rainbow-bridge[open] .rainbow-bridge__icon {
+    transform: scale(1.15) rotate(-6deg);
+}
+
+.rainbow-bridge__body {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(122, 92, 138, 0.2);
+    animation: rainbow-bridge-reveal 0.4s ease;
+}
+
+@keyframes rainbow-bridge-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rainbow-bridge__intro {
+    font-style: italic;
+    color: #6a5478;
+    margin: 0 0 1.25rem;
+}
+
+.rainbow-bridge__story {
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 3px solid rgba(201, 168, 216, 0.6);
+}
+
+.rainbow-bridge__story p {
+    font-size: 1.05rem;
+    margin: 0 0 1rem;
+}
+
+.rainbow-bridge__attribution {
+    margin: 1.25rem 0 0;
+    text-align: right;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: #7a5c8a;
+}
+
+@media (max-width: 768px) {
+    .for-giselle__card {
+        padding: 2rem 1.5rem;
+        border-radius: 24px;
+    }
+
+    .rainbow-bridge {
+        padding: 1.25rem 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rainbow-bridge__body {
+        animation: none;
+    }
+
+    .rainbow-bridge__icon {
+        transition: none;
+    }
+}
+
 @media print {
     .for-giselle-page {
         color: #000;
+    }
+
+    .for-giselle__card {
+        background: none;
+        border: 1px solid #ccc;
+    }
+
+    /* Always show the story in print */
+    .rainbow-bridge__body {
+        display: block;
     }
 }

@@ -246,6 +246,16 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
         padding: 1.5rem;
+        /* Let the single column shrink to the phone width instead of being
+           held open at the image's aspect-ratio * min-height (which forced a
+           ~450px track and clipped the card). */
+        min-width: 0;
+    }
+
+    /* Grid items default to min-width:auto (min-content); zero it so the
+       image container's aspect-ratio/min-height can't blow the track out. */
+    .featured-recipe-grid > * {
+        min-width: 0;
     }
 
     .card-washi-top {
@@ -254,6 +264,12 @@
     }
 
     .featured-image-container {
+        /* Pin to the grid cell. Without an explicit width, aspect-ratio (3/2)
+           plus min-height (300px) computes width = 450px and overflows the
+           column. width:100% makes the cell drive width; min-height drives
+           height; object-fit:cover on the img handles the ratio. */
+        width: 100%;
+        max-width: 100%;
         min-height: 300px;
         aspect-ratio: 3/2;
     }

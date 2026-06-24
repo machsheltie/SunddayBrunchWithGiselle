@@ -77,6 +77,14 @@
     margin-bottom: 0;
 }
 
+/* Mobile: swap the thin Pinyon Script header for Grand Hotel — warmer and far
+   more readable at this size on a phone. Desktop keeps Pinyon Script. */
+@media (max-width: 768px) {
+    .sheltie-tip__name {
+        font-family: 'Grand Hotel', cursive;
+    }
+}
+
 /* Phones: stack the portrait on its own line above the text. Side-by-side,
    the 80px avatar squeezes the body into a ~230px column that's awful to read.
    Tablets/desktop (>600px) keep the original side-by-side layout untouched. */

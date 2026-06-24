@@ -25,6 +25,17 @@
     box-shadow: 0 8px 32px rgba(46, 26, 71, 0.1);
 }
 
+/* Mobile only: the desktop 3rem padding eats ~96px on a phone and squeezes
+   every section into a narrow strip. Scoped + specific so it reliably wins
+   over the base rule's source order. Desktop padding (3rem) is unchanged. */
+@media (max-width: 768px) {
+    .home .container {
+        margin: 1rem auto;
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+}
+
 /* ============================================
    GRADIENT DIVIDER - Between sections
    ============================================ */

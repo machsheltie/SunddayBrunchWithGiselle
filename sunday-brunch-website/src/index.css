@@ -181,6 +181,19 @@ body {
     position: relative;
 }
 
+/* Mobile only: contain decorative floaters (WhimsyLayer blobs, paws) and any
+   off-canvas overflow so phones don't scroll/zoom sideways. `clip` is used
+   instead of `hidden` on purpose: it does NOT establish a scroll container,
+   so the sticky header keeps working (the reason plain overflow-x:hidden was
+   removed earlier). Desktop/laptop layout is untouched. */
+@media (max-width: 768px) {
+
+    html,
+    body {
+        overflow-x: clip;
+    }
+}
+
 /* Animations from Preview */
 @keyframes drift {
 

@@ -77,6 +77,28 @@
     margin-bottom: 0;
 }
 
+/* Phones: stack the portrait on its own line above the text. Side-by-side,
+   the 80px avatar squeezes the body into a ~230px column that's awful to read.
+   Tablets/desktop (>600px) keep the original side-by-side layout untouched. */
+@media (max-width: 600px) {
+    .sheltie-tip {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .sheltie-tip__body {
+        width: 100%;
+    }
+
+    /* Paragraph chatter reads better left-aligned even when the header is
+       centered above it. */
+    .sheltie-tip__content {
+        text-align: left;
+    }
+}
+
 /* Keep the Shelties' chatter out of the printed/copied recipe so the
    printout stays clean for the casual baker (see recipe-page guide). */
 @media print {

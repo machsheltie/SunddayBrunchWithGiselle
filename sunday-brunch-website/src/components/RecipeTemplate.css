@@ -588,7 +588,9 @@
     }
 
     .scrapbook-paper {
-        padding: 1.5rem;
+        /* Trim the inner padding on phones so the cooking content gets more
+           reading width (it nests inside .section + .card padding already). */
+        padding: 1rem;
         border-radius: 18px;
     }
 }

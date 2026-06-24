@@ -1,17 +1,16 @@
 .for-giselle-page {
-    padding: 2rem 1.5rem 5rem;
     color: #4a3a5a;
     line-height: 1.75;
 }
 
 /* ============================================
    Outer glassmorphic container — the master frosted-glass panel that wraps
-   every box on the page, mirroring the home page's .container so this page
-   sits inside the same magic rather than on the bare watercolor canvas.
+   every box on the page. Matches the home page's .container exactly (width,
+   margin, padding) so the two pages line up on mobile and desktop alike.
    ============================================ */
 .for-giselle__container {
-    max-width: 860px;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin: 2rem auto;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -374,6 +373,7 @@
     /* Reclaim width on phones: the desktop 3rem container padding would squeeze
        every box into a narrow strip (same fix the home .container uses). */
     .for-giselle__container {
+        margin: 1rem auto;
         padding: 1.25rem;
         border-radius: 16px;
     }

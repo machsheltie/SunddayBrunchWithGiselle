@@ -150,3 +150,18 @@
 .ing-name {
     color: var(--midnight-lavender);
 }
+
+/* Phones: the scale slider + US/Metric toggle sat in a 2-column grid that
+   overflowed its panel (the toggle was cut off), and the card's 2rem padding
+   starved the ingredient list. Stack the controls and trim the padding so the
+   ingredients fit and read full-width. Mobile only; desktop unchanged. */
+@media (max-width: 768px) {
+    .alchemist-card {
+        padding: 0.875rem;
+    }
+
+    .alchemist-controls {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}

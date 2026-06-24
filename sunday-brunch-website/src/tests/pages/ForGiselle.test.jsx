@@ -20,4 +20,25 @@ describe('ForGiselle memorial page', () => {
         expect(screen.getByText(/the supervisor/i)).toBeTruthy()
         expect(screen.getByText(/the one that placed/i)).toBeTruthy()
     })
+
+    it('offers a collapsed "The Rainbow Bridge" expandable section just under the title', () => {
+        render(<ForGiselle />)
+
+        const summary = screen.getByText('The Rainbow Bridge')
+        expect(summary).toBeTruthy()
+
+        const details = summary.closest('details')
+        expect(details).toBeTruthy()
+        // Collapsed by default — the label shows before the story is expanded.
+        expect(details.open).toBe(false)
+        // The Rainbow Bridge story lives inside the expandable.
+        expect(details.textContent).toMatch(/just this side of heaven/i)
+    })
+
+    it('wraps its content in framed cards rather than letting it sit on the bare background', () => {
+        const { container } = render(<ForGiselle />)
+
+        // Dedication and memorials are each presented as a framed card.
+        expect(container.querySelectorAll('.for-giselle__card').length).toBeGreaterThanOrEqual(2)
+    })
 })

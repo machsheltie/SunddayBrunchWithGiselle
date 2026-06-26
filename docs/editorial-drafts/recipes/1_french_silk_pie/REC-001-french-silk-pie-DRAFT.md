@@ -167,7 +167,7 @@ That "too rich" pie became the one people now request for their birthdays. Event
 - 1 cup (226 g) unsalted butter, softened to room temperature
 - 1½ cups (about 340 g) superfine (ultrafine/caster) baking sugar
 - 2 tsp pure vanilla extract
-- 4 large eggs, pasteurized
+- 4 large pasteurized eggs
 
 **Whipped cream topping**
 
@@ -184,7 +184,7 @@ That "too rich" pie became the one people now request for their birthdays. Event
 2. **Melt the chocolate.** Microwave the unsweetened chocolate 1 minute, stir, then 15-second bursts (stirring each time) until smooth. Cool to room temperature.
 3. **Beat the butter and sugar.** Beat softened butter with sugar on medium-high until pale and fluffy, about 3 minutes.
 4. **Add the chocolate and vanilla.** With the mixer on medium, drizzle in the cooled chocolate, then beat in the vanilla. Scrape the bowl.
-5. **Add the eggs, one at a time.** Add one egg and beat a full 5 minutes before the next; repeat for all four (about 20 minutes total). *Watch for:* grainy-and-loose turning thick, glossy, and silky. Rub a little between two fingers — no sugar grains means it's ready. It may look curdled or soupy partway through — totally normal; keep going and it pulls together glossy and smooth.
+5. **Add the eggs, one at a time.** They stay raw in this no-bake filling, so use pasteurized eggs to keep them safe to eat. Add one egg and beat a full 5 minutes before the next; repeat for all four (about 20 minutes total). *Watch for:* grainy-and-loose turning thick, glossy, and silky. Rub a little between two fingers — no sugar grains means it's ready. It may look curdled or soupy partway through — totally normal; keep going and it pulls together glossy and smooth.
 6. **Fill the crust.** Scrape the filling into the cooled crust; smooth the top.
 7. **Whip the cream and chill.** Beat cold cream to stiff peaks (~3 min), add powdered sugar, beat until smooth. Spread over the pie. Refrigerate at least 2 hours or overnight.
 8. **Chocolate shards (while it chills).** Melt the chips as before; spread very thinly on parchment; roll into a tube; chill 30+ min; unroll so it cracks into shards. Scatter on just before serving.
@@ -216,7 +216,7 @@ Slice cold, serve, accept the compliments.
 
 **🐾 Phaedra's Porch Light** — *why it works, and how to fix it if it doesn't*
 
-> Here's something wonderful: superfine sugar is the quiet hero of this pie. Its tiny crystals melt into the butter far more easily than regular granulated, so the filling turns satin-smooth instead of gritty. Then the long, patient beat does the rest: it dissolves every last grain and whisks in thousands of tiny air bubbles that give it that light, mousse-like body. That's the whole difference between "fine" and "silk." If something looks off, there's almost always a temperature reason and a gentle fix: soupy filling means the chocolate or butter was still warm (chill the bowl 15 minutes and re-whip); grainy or gritty means reach for superfine next time and keep beating now (you truly can't overdo it); cream that won't hold peaks is too warm (cold bowl, cold cream, and it whips up beautifully). Understand the why, and you can rescue almost anything. You've got this.
+> Here's something wonderful: superfine sugar is the quiet hero of this pie. Its tiny crystals melt into the butter far more easily than regular granulated, so the filling turns satin-smooth instead of gritty. Then the long, patient beat whisks thousands of tiny air bubbles into the filling, and raw eggs hold that air in place. That's exactly why we use pasteurized ones: cooked eggs set into a denser custard, while raw ones keep the body light and mousse-like. It's the whole difference between "fine" and "silk." If something looks off, there's almost always a temperature fix: soupy filling means the chocolate or butter was still warm (chill the bowl 15 minutes and re-whip); grainy means reach for superfine and keep beating (you can't overdo it); cream that won't hold peaks is too warm (cold bowl, cold cream). Understand the why, and you can rescue almost anything. You've got this.
 >
 > **Tiana** *(bursting in)*: "That's my BEST FRIEND! Did you hear all that? She knows everything. Okay, now can we please eat the pie?"
 
@@ -251,7 +251,7 @@ shelties: {
     havok: "Agent Havok reporting from Kitchen Base Alpha. Gear check: the Mixer Beast is your primary weapon — stand mixer strongly advised, since this is a twenty-minute engagement and with a hand mixer your arm IS the stand. Substitution intel: crust is dealer's choice (store-bought, homemade, or crushed-cookie); the chips on top are decorative, so any chocolate works. But do not swap the unsweetened baking chocolate for sweet chocolate without clearance from Command — it wrecks the sugar balance. Failure is just success that hasn't been reported yet. — Phaedra (cutting in): \"He means: when in doubt, ask Command. He once tried to eat a bee. We do not take my nephew's risk assessments at face value.\"",
     tiana: "Oh, hello, hello, HELLO — the first forkful! It doesn't crunch or squish, it just melts, like a little chocolate cloud that learned some manners. The chocolate is deep and rich but NOT a bully — it just wants to be friends with your whole mouth. The whipped cream floats in soft and barely-sweet, the shards go snap, and a perfect slice stands tall on the fork, then vanishes. My tail is going so fast it could power a small village! Five paws up. Hooray for pie!",
     phaedra: [
-        "Here's something wonderful: superfine sugar is the quiet hero of this pie. Its tiny crystals melt into the butter far more easily than regular granulated, so the filling turns satin-smooth instead of gritty. Then the long, patient beat does the rest: it dissolves every last grain and whisks in thousands of tiny air bubbles that give it that light, mousse-like body. That's the whole difference between \"fine\" and \"silk.\"",
+        "Here's something wonderful: superfine sugar is the quiet hero of this pie. Its tiny crystals melt into the butter far more easily than regular granulated, so the filling turns satin-smooth instead of gritty. Then the long, patient beat whisks thousands of tiny air bubbles into the filling, and raw eggs hold that air in place. That's exactly why we use pasteurized ones: cooked eggs set into a denser custard, while raw ones keep the body light and mousse-like. It's the whole difference between \"fine\" and \"silk.\"",
         "Soupy filling? Your chocolate or butter was still warm — chill the bowl 15 minutes and re-whip.",
         "Grainy or gritty? Reach for superfine sugar next time, and keep beating now; you can't overdo it.",
         "Cream won't hold peaks? The cream or bowl is too warm — cold bowl, cold cream, and it whips up beautifully.",

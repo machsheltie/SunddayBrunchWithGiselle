@@ -2,9 +2,9 @@
   "id": "REC-001",
   "type": "recipe",
   "status": "scheduled",
-  "version": 14,
+  "version": 15,
   "createdAt": "2026-06-18T12:00:00Z",
-  "updatedAt": "2026-06-22T22:30:00Z",
+  "updatedAt": "2026-06-26T12:00:00Z",
   "createdBy": "PERSON-stacey",
   "updatedBy": "PERSON-stacey",
   "ownerId": "PERSON-stacey",
@@ -16,7 +16,7 @@
       "locator": "Stacey's tested adaptation; developed and first tested 2009-11-25, made unchanged since."
     }
   ],
-  "revisionNote": "Version 14 (2026-06-22): FULL APPROVAL re-confirmed by Stacey at current content. approvedAt refreshed to cover v13 (the v10 prose polish, v11 canon stamps, and the v13 Tiana best-friend cut-in), so the approval on file matches the live prose and is no longer stale. This is the launch-ready, fully-approved version; no prose, science, or cooking instructions changed in this step.",
+  "revisionNote": "Version 15 (2026-06-26): Pasteurized-egg clarity pass approved by Stacey. The ingredient line now reads '4 large pasteurized eggs', step 5 carries a short Stacey clause that the eggs stay raw in this no-bake filling, and Phaedra's Porch Light names pasteurized-raw eggs as the silky-texture move (raw holds the whipped-in air for a light, mousse-like body; cooking those same eggs sets a denser custard). Safety directive stays in Stacey's human voice (ingredient line + step 5); Phaedra explains the why only. No amount, time, temperature, or method changed; the cooked-egg alternative is unchanged.",
   "slug": "french-silk-pie",
   "title": "French Silk Pie",
   "summary": "A cold, silky, mousse-like chocolate pie in a flaky crust under sweetened whipped cream and chocolate shards.",
@@ -27,7 +27,7 @@
   "reviewer": "PERSON-stacey",
   "approver": "PERSON-stacey",
   "approvedBy": "PERSON-stacey",
-  "approvedAt": "2026-06-22T22:30:00Z",
+  "approvedAt": "2026-06-26T12:00:00Z",
   "testDate": "2009-11-25",
   "revisionState": "approved",
   "updateHistory": [
@@ -171,6 +171,18 @@
         "revisionNote"
       ],
       "note": "Stacey re-confirmed FULL approval; the approved snapshot now matches the live prose (no longer stale). Launch-ready. No prose, science, or cooking instructions changed in this step."
+    },
+    {
+      "version": 15,
+      "date": "2026-06-26",
+      "updatedBy": "PERSON-stacey",
+      "summary": "Pasteurized-egg clarity pass (pre-launch reader protection).",
+      "changedFields": [
+        "ingredientGroups.filling.eggs (ingredient 'eggs' + preparation 'pasteurized' -> ingredient 'pasteurized eggs' / preparation null, so the line reads '4 large pasteurized eggs')",
+        "instructionSections (step 5: added a short Stacey clause that the eggs stay raw in this no-bake filling, so use pasteurized to keep them safe to eat)",
+        "characterSegments.phaedra (Porch Light now names pasteurized-raw eggs as the silky-texture move — raw holds the whipped-in air for a light, mousse-like body, cooked sets into a denser custard; trimmed the fix list to hold the box length)"
+      ],
+      "note": "Safety directive stays in Stacey's human voice (ingredient line + step 5); Phaedra explains the why only and never issues the safety call. No amount, time, temperature, or method changed; cooked-egg alternative unchanged. Approved by Stacey at edit time (approvedAt refreshed to cover v15)."
     }
   ],
   "times": {
@@ -295,8 +307,8 @@
           "id": "ingredient-rec-001-eggs",
           "quantity": 4,
           "unit": "large",
-          "ingredient": "eggs",
-          "preparation": "pasteurized",
+          "ingredient": "pasteurized eggs",
+          "preparation": null,
           "note": "see Read This First; or use the cooked-egg method"
         }
       ]
@@ -384,7 +396,7 @@
         {
           "id": "instruction-step-rec-001-05",
           "order": 5,
-          "body": "Add the eggs, one at a time. Add one egg and beat a full 5 minutes before the next; repeat for all four (about 20 minutes total).",
+          "body": "Add the eggs, one at a time. They stay raw in this no-bake filling, so use pasteurized eggs to keep them safe to eat. Add one egg and beat a full 5 minutes before the next; repeat for all four (about 20 minutes total).",
           "sensoryCheckpoint": "Grainy-and-loose turns thick, glossy, and silky; rub a little between two fingers and feel no sugar grains.",
           "warning": null,
           "recoveryNote": "It may look curdled, broken, or soupy partway through — that's completely normal. Keep beating and it pulls together thick, glossy, and smooth; you cannot overdo this step."
@@ -556,7 +568,7 @@
       "characterId": "CHAR-002-phaedra",
       "segment": "Phaedra's Porch Light",
       "title": "Why it works, and how to fix it if it doesn't",
-      "body": "Here's something wonderful: ultrafine sugar is the quiet hero of this pie. Its tiny crystals melt into the butter far more easily than regular granulated, so the filling turns satin-smooth instead of gritty. Then the long, patient beat does the rest: it dissolves every last grain and whisks in thousands of tiny air bubbles that give it that light, mousse-like body. That's the whole difference between \"fine\" and \"silk.\" If something looks off, there's almost always a temperature reason and a gentle fix: soupy filling means the chocolate or butter was still warm (chill the bowl 15 minutes and re-whip); grainy or gritty means reach for ultrafine next time and keep beating now (you truly can't overdo it); cream that won't hold peaks is too warm (cold bowl, cold cream, and it whips up beautifully). Understand the why, and you can rescue almost anything. You've got this. — Tiana (bursting in): \"That's my BEST FRIEND! Did you hear all that? She knows everything. Okay, now can we please eat the pie?\"",
+      "body": "Here's something wonderful: ultrafine sugar is the quiet hero of this pie. Its tiny crystals melt into the butter far more easily than regular granulated, so the filling turns satin-smooth instead of gritty. Then the long, patient beat whisks thousands of tiny air bubbles into the filling, and raw eggs hold that air in place. That's exactly why we use pasteurized ones: cooked eggs set into a denser custard, while raw ones keep the body light and mousse-like. It's the whole difference between \"fine\" and \"silk.\" If something looks off, there's almost always a temperature fix: soupy filling means the chocolate or butter was still warm (chill the bowl 15 minutes and re-whip); grainy means reach for ultrafine and keep beating (you can't overdo it); cream that won't hold peaks is too warm (cold bowl, cold cream). Understand the why, and you can rescue almost anything. You've got this. — Tiana (bursting in): \"That's my BEST FRIEND! Did you hear all that? She knows everything. Okay, now can we please eat the pie?\"",
       "canonVersion": "CANON-2026-06-22.1",
       "placement": "after-notes"
     },

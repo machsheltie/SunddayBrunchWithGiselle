@@ -121,6 +121,8 @@ const projectRecipe = (record, canonicalSource) => {
     const steps = flattenSteps(record.instructionSections)
     const publishedDate = record.approvedAt || record.updatedAt || record.createdAt
     const image = projectImage(record)
+    const chillMinutes = durationToMinutes(record.times?.chill)
+    const totalMinutes = durationToMinutes(record.times?.total)
 
     return {
         id: record.id,
@@ -164,7 +166,13 @@ const projectRecipe = (record, canonicalSource) => {
             total: formatDuration(record.times?.total),
             prepISO: record.times?.prep,
             cookISO: record.times?.cook,
-            totalISO: record.times?.total
+            chillISO: record.times?.chill,
+            totalISO: record.times?.total,
+            // True when the chill is the majority of total time, so the stats
+            // line can reassure that the long total is mostly hands-off chilling.
+            // Guard total > 0 so a missing/unparseable total can't false-trigger.
+            mostlyChilling:
+                chillMinutes > 0 && totalMinutes > 0 && chillMinutes * 2 > totalMinutes
         },
         yield: formatYield(record.yield),
         yieldQuantity: record.yield?.quantity,

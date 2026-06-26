@@ -56,6 +56,16 @@ describe('Content service canonical recipes', () => {
     )
   })
 
+  it('surfaces chill time and flags French Silk Pie as mostly hands-off chilling', async () => {
+    const recipe = await getRecipeBySlug('french-silk-pie')
+
+    expect(recipe.times.chill).toBe('2 hr')
+    expect(recipe.times.chillISO).toBe('PT2H')
+    expect(recipe.times.total).toBe('2 hr 42 min')
+    // chill (120 min) is the majority of total (162 min) -> note should show
+    expect(recipe.times.mostlyChilling).toBe(true)
+  })
+
   it('excludes retired and sample placeholder recipes from public recipe lists', async () => {
     const recipes = await getRecipes()
     const slugs = recipes.map((recipe) => recipe.slug)

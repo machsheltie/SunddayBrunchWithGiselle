@@ -219,7 +219,16 @@ function RecipeTemplate({ recipe, expandedImage, embedded = false, showTitle = t
                             )}
                             {recipe.times && (
                                 <p className="recipe__meta">
-                                    Prep {recipe.times.prep} | Cook {recipe.times.cook} | Total {recipe.times.total} | Yield {recipe.yield}
+                                    {[
+                                        `Prep ${recipe.times.prep}`,
+                                        `Cook ${recipe.times.cook}`,
+                                        recipe.times.chill && `Chill ${recipe.times.chill}`,
+                                        `Total ${recipe.times.total}`,
+                                        `Yield ${recipe.yield}`
+                                    ].filter(Boolean).join(' | ')}
+                                    {recipe.times.mostlyChilling && (
+                                        <span className="recipe__meta-note">(mostly hands-off chilling)</span>
+                                    )}
                                 </p>
                             )}
                         </div>

@@ -200,6 +200,48 @@ describe('RecipeTemplate', () => {
             expect(screen.getByText(/Yield 8 servings/)).toBeInTheDocument();
         });
 
+        it('should surface chill time and the hands-off note when chilling dominates the total', () => {
+            const chillDominant = {
+                ...mockRecipe,
+                times: {
+                    ...mockRecipe.times,
+                    chill: '2 hr',
+                    chillISO: 'PT2H',
+                    total: '2 hr 42 min',
+                    mostlyChilling: true
+                }
+            };
+
+            render(<RecipeTemplate recipe={chillDominant} />);
+
+            expect(screen.getByText(/Chill 2 hr/)).toBeInTheDocument();
+            expect(screen.getByText(/mostly hands-off chilling/)).toBeInTheDocument();
+        });
+
+        it('should show chill time but no note when chilling does not dominate the total', () => {
+            const shortChill = {
+                ...mockRecipe,
+                times: {
+                    ...mockRecipe.times,
+                    chill: '15 min',
+                    chillISO: 'PT15M',
+                    mostlyChilling: false
+                }
+            };
+
+            render(<RecipeTemplate recipe={shortChill} />);
+
+            expect(screen.getByText(/Chill 15 min/)).toBeInTheDocument();
+            expect(screen.queryByText(/mostly hands-off chilling/)).not.toBeInTheDocument();
+        });
+
+        it('should not show a chill field when the recipe has no chill time', () => {
+            render(<RecipeTemplate recipe={mockRecipe} />);
+
+            expect(screen.queryByText(/Chill/)).not.toBeInTheDocument();
+            expect(screen.queryByText(/mostly hands-off chilling/)).not.toBeInTheDocument();
+        });
+
         it('should render dietary badges when provided', () => {
             // Arrange & Act
             render(<RecipeTemplate recipe={mockRecipe} />);

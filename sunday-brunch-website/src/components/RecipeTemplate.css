@@ -170,6 +170,16 @@
     overflow-wrap: anywhere;
 }
 
+/* Soft reassurance under the stats line when the long total is mostly chilling.
+   Same color as .recipe__meta (no opacity dimming, to hold text contrast). */
+.recipe__meta-note {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #9b7ab8;
+}
+
 /* Action Buttons - Copy / Print */
 .recipe__actions {
     display: flex;
